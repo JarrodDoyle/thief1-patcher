@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "T1Patcher"
-#define MyAppVersion "0.3"
+#define MyAppVersion "1.0"
 #define MyAppPublisher "Jarrod Doyle"
 #define MyAppURL "https://jayrude.xyz/"
 
