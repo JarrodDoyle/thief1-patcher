@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "T1Patcher"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.1"
 #define MyAppPublisher "Jarrod Doyle"
 #define MyAppURL "https://jayrude.xyz/"
 
@@ -39,11 +39,13 @@ Name: "newdark"; Description: "Install NewDark 1.27";
 
 Name: "dromed"; Description: "Install DromEd"; GroupDescription: "Level Editor:"; Flags: unchecked
 Name: "toolkit"; Description: "Install the Basic Toolkit"; GroupDescription: "Level Editor:"; Flags: unchecked
+Name: "dromedhw"; Description: "Enable hardware rendering"; GroupDescription: "Level Editor:"; Flags: unchecked
 
 ;Name: "fpsfix"; Description: "High refresh rate physics corrections"; GroupDescription: "Fixes/Corrections:"; Flags: unchecked
 ;Name: "stutterfix"; Description: "Micro stutter/mouse lag fix (Not recommended on CrossFire/SLI setups)"; GroupDescription: "Fixes/Corrections:"; Flags: unchecked
 
-Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "Config Edits:"; Flags: unchecked
+Name: "newmantle"; Description: "Enable NewDark mantling (HIGHLY RECOMMENDED)"; GroupDescription: "Config Edits:";
+Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "Config Edits:";
 Name: "texfilter"; Description: "Disable texture filtering"; GroupDescription: "Config Edits:"; Flags: unchecked
 Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Config Edits:"; Flags: unchecked
 
@@ -63,11 +65,15 @@ begin
   WizardForm.TasksList.ItemEnabled[0] := False;
 
   if WizardIsTaskSelected('dromed') then
-    WizardForm.TasksList.ItemEnabled[3] := True
+    begin
+      WizardForm.TasksList.ItemEnabled[3] := True;
+      WizardForm.TasksList.ItemEnabled[4] := True;
+    end
   else
     begin
-      WizardSelectTasks('!toolkit');
+      WizardSelectTasks('!toolkit, !dromedhw');
       WizardForm.TasksList.ItemEnabled[3] := False;
+      WizardForm.TasksList.ItemEnabled[4] := False;
     end
 end;
 
@@ -104,12 +110,22 @@ procedure PerformTasks();
 begin
   EditConfigLine('cam.cfg', 'dark1', 'dark1');
 
+  if IsTaskSelected('dromedhw') then
+    begin
+      EditConfigLine('DromEd.cfg', 'edit_screen_depth 16', ';edit_screen_depth 16');
+      EditConfigLine('DromEd.cfg', ';editor_disable_gdi', 'editor_disable_gdi');
+      EditConfigLine('DromEd.cfg', ';edit_screen_depth 32', 'edit_screen_depth 32');
+    end;
+
+  if IsTaskSelected('newmantle') then
+    EditConfigLine('cam_ext.ini', ';new_mantle', 'new_mantle');
   if IsTaskSelected('fmsel') then
     EditConfigLine('cam_mod.ini', ';fm', 'fm');
   if IsTaskSelected('texfilter') then
     EditConfigLine('cam_ext.cfg', 'tex_filter_mode 16', 'tex_filter_mode 0');
   if IsTaskSelected('windowed') then
     EditConfigLine('cam_ext.cfg', ';force_windowed', 'force_windowed');
+
   if IsTaskSelected('fpsfix') then
     begin
       EditConfigLine('cam_ext.cfg', 'framerate_cap 100.0', 'framerate_cap 200.0');
