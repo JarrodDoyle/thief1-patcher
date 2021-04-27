@@ -51,8 +51,8 @@ Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Config
 
 [Files]
 Source: "Resources\NewDark 1.27\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Messages]
@@ -106,9 +106,39 @@ begin
   end;
 end;
 
+function GetLineContaining(File, TargetString: String): String;
+var
+  i: Integer;
+  StringList: TStringList;
+  FileName: String;
+begin
+  FileName := WizardDirValue + '\' + File;
+  StringList := TStringList.Create;
+  try
+    StringList.LoadFromFile(FileName);
+    Result := '';
+    for i:=0 to StringList.Count-1 do
+      if Pos(TargetString, StringList[i]) <> 0 then
+        begin
+          Result := StringList[i];
+          break;
+        end;
+  finally
+    StringList.Free;
+  end;
+end;
+
 procedure PerformTasks();
 begin
+  // Make sure things work properly with T1
   EditConfigLine('cam.cfg', 'dark1', 'dark1');
+
+  // Fix up install.cfg to use relative paths
+  EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'install_path'), 'install_path .\');
+  EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'resname_base'), 'resname_base .\RES');
+  EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'load_path'), 'load_path .\');
+  EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'script_module_path'), 'script_module_path .\');
+  EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'movie_path'), 'movie_path .\MOVIES');
 
   if IsTaskSelected('dromedhw') then
     begin
@@ -118,7 +148,7 @@ begin
     end;
 
   if IsTaskSelected('newmantle') then
-    EditConfigLine('cam_ext.ini', ';new_mantle', 'new_mantle');
+    EditConfigLine('cam_ext.cfg', ';new_mantle', 'new_mantle');
   if IsTaskSelected('fmsel') then
     EditConfigLine('cam_mod.ini', ';fm', 'fm');
   if IsTaskSelected('texfilter') then
