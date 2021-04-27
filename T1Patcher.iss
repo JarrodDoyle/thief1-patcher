@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "T1Patcher"
-#define MyAppVersion "1.0-alpha-1"
+#define MyAppVersion "1.0-alpha-2"
 #define MyAppPublisher "Jarrod Doyle"
 #define MyAppURL "https://jayrude.xyz/"
 
@@ -51,8 +51,8 @@ Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Config
 
 [Files]
 Source: "Resources\NewDark 1.27\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Messages]
