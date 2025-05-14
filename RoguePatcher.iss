@@ -25,11 +25,16 @@ WizardImageFile=thiefgold.bmp
 WizardSmallImageFile=darkicon.bmp
 WizardStyle=modern
 
-[Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"
+[Types]
+Name: "custom"; Description: "Custom"; Flags: iscustom
 
-[Tasks]
-Name: "newdark"; Description: "Install NewDark 1.28";
+[Components]
+Name: "newdark"; Description: "NewDark 1.28"; Types: custom; Flags: fixed;
+; Name: "dromed"; Description: "DromEd 1.28"; 
+; Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit 1.14"; 
+
+; [Tasks]
+; Name: "newdark"; Description: "Install NewDark 1.28";
 
 ;Name: "dromed"; Description: "Install DromEd"; GroupDescription: "Level Editor:"; Flags: unchecked
 ;Name: "toolkit"; Description: "Install the Basic Toolkit"; GroupDescription: "Level Editor:"; Flags: unchecked
@@ -48,6 +53,9 @@ Name: "newdark"; Description: "Install NewDark 1.28";
 ;Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
 WelcomeLabel1=Welcome to the {#Name} Wizard
