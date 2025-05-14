@@ -29,9 +29,10 @@ WizardStyle=modern
 Name: "custom"; Description: "Custom"; Flags: iscustom
 
 [Components]
-Name: "newdark"; Description: "NewDark 1.28"; Types: custom; Flags: fixed;
-; Name: "dromed"; Description: "DromEd 1.28"; 
-; Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit 1.14"; 
+Name: "newdark"; Description: "NewDark"; Types: custom; Flags: fixed;
+Name: "dromed"; Description: "DromEd"; 
+Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit";
+Name: "multiplayer"; Description: "Multiplayer";
 
 ; [Tasks]
 ; Name: "newdark"; Description: "Install NewDark 1.28";
@@ -49,10 +50,11 @@ Name: "newdark"; Description: "NewDark 1.28"; Types: custom; Flags: fixed;
 ;Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Config Edits:"; Flags: unchecked
 
 [Files]
-;Source: "Resources\NewDark 1.27\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Resources\DromEd 1.27\*"; DestDir: "{app}"; Tasks: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Resources\DromEd Basic Toolkit 1.14 (Beta4)\*"; DestDir: "{app}"; Tasks: toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
+Source: "Resources\NewDark\*"; DestDir: "{app}"; Components: newdark; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\DromEd\*"; DestDir: "{app}"; Components: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
