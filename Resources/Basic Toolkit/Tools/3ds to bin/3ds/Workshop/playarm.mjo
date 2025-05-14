@@ -1,0 +1,11 @@
+NUM_TORSOS 1
+NUM_LIMBS  1
+TORSO
+   root 0
+   parent -1
+   fixed 1
+LIMB
+   torso 0
+   segments 1 2 3 4
+
+

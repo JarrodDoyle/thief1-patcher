@@ -1,0 +1,266 @@
+; $Header: r:/prj/campatch/src/RCS/default.bnd 1.9 1998/12/15 16:22:09 ccarollo Exp $
+;
+; TABLE OF CONTENTS:
+;
+;  sections:
+;
+;      unshifted
+;      +SHIFT
+;      +ALT
+;      +CTRL
+;      +ALT+SHIFT
+;      +CTRL+SHIFT
+;      +ALT+CTRL
+;      +ALT+CTRL+SHIFT
+;
+
+; DO NOT USE TABS IN THIS FILE!
+
+
+; unshifted
+
+edit bind a "cam_rotate 2"                          ; turn left
+edit bind c "cam_slew 4"                            ; sidestep right
+edit bind d "cam_rotate 5"                          ; turn right
+edit bind e "cam_slew 5"                            ; up = e
+edit bind f "cam_level"                             ; reset camera pitch, olddark only
+;edit bind f "cam_reset"                             ; reset camera pitch, newdark only
+edit bind h "set_medium 0"                          ; make brush solid
+edit bind j "set_medium 1"                          ; make brush air
+edit bind k "set_medium 2"                          ; make brush water
+edit bind l "set_medium 3"                          ; make brush flood (air->water,solid->solid)
+edit bind m "cycle_media 1"                         ; cycle media forward
+;edit bind n "set_2d_tex_filter -1"                  ; toggle texture filtering (Newdark in HW mode only)
+edit bind o "solo_toggle"                           ; toggle this window to/from full screen
+game bind p "unfly"                                 ; stop flying, fall
+edit bind q "cam_slew 2"                            ; down = q
+edit bind r "cam_rotate 4"                          ; look up = r
+edit bind s "cam_slew 0"                            ; forward = s as well
+edit bind t "cycle_tex 1"                           ; cycle texture forward
+;game bind u "unstick_player"                        ; unsticks the player, Newdark Only
+edit bind v "cam_rotate 1"                          ; look down
+edit bind w "cam_slew 0"                            ; forward = w
+edit bind x "cam_slew 3"                            ; backward = x
+edit bind z "cam_slew 1"                            ; sidestep left = z
+edit bind 1 "cam_rotate 3"                          ; roll camera clockwise
+edit bind 2 "cam_unroll"                            ; reset camera roll
+edit bind 3 "cam_rotate 0"                          ; roll camera counter-clockwise
+edit bind ; "cycle_face 100"                        ; deviously selects the default face
+all  bind : edit_command                            ; open console
+edit bind + "zoom_all 0.5"                          ; zoom in
+edit bind , "cycle_face -1"                         ; reverse through above
+edit bind - "zoom_all 2.0"                          ; zoom out
+edit bind . "cycle_face 1"                          ; select a different brush face
+edit bind < "global_scale 0"                        ; zoom in
+edit bind = "zoom_all 0.5"                          ; zoom in
+edit bind > "global_scale 1"                        ; zoom out
+;edit bind [ "cycle_view 0"                         ; make previous camera current
+;edit bind ] "cycle_view 1"                         ; make next camera current
+;edit bind \ toggle_3d                              ; toggle selected camera 2d/3d edit
+edit bind tab "cycle_brush 1"                       ; next brush in time
+edit bind del delete_brush                          ; delete selected brush
+edit bind end vBrush_EOT                            ; make this brush last in time
+edit bind ins insert_brush                          ; clone current brush
+all  bind home "vm_teleport 0,0,0"                  ; return camera to default position
+all  bind print_screen screen_dump                  ; save screenshot
+edit bind keypad_plus "brush_translate 5"           ; move brush up
+edit bind keypad_minus "brush_translate 2"          ; move brush down
+edit bind keypad_down "brush_translate 0"           ; move brush south
+edit bind keypad_left "brush_translate 4"           ; move brush west
+edit bind keypad_right "brush_translate 1"          ; move brush east
+edit bind keypad_up "brush_translate 3"             ; move brush north
+edit bind keypad_home "run .\cmds\TransNW.cmd"      ; move brush NW
+edit bind keypad_end "run .\cmds\TransSW.cmd"       ; move brush SW
+edit bind keypad_pgup "run .\cmds\TransNE.cmd"      ; move brush NE
+edit bind keypad_pgdn "run .\cmds\TransSE.cmd"      ; move brush SE
+edit bind F1 "help @@help"                          ; print all commands
+edit bind F2 cycle_mode                             ; cycle through rendering modes for cur camera
+edit bind F3 "find_obj @@"                          ; look up object by name or number 
+edit bind F5 "obj_tree"                             ; open the object hierarchy editor
+edit bind F6 "edit_obj"                             ; edit selected object
+edit bind F7 "texture_pal"                          ; open texture palette
+edit bind F8 "cam_to_brush"                         ; teleport camera to selected object
+edit bind F9 "play_schema @@"                       ; play schema
+edit bind F10 "halt_schemas"                        ; halt all schemas
+edit bind F11 "run .\cmds\DoSaveMis.cmd"            ; save mission
+edit bind F12 "load_file"                           ; load mission
+
+
+;      SHIFT-
+
+edit bind c+shift ceil_object                       ; 'drop' selected object to ceiling
+edit bind d+shift store_group                       ; store multibrush group
+game bind e+shift "+fly -1"                         ; fly down
+edit bind f+shift floor_object                      ; drop selected object to floor
+edit bind m+shift "cycle_media -1"                  ; cycle media backward
+;all  bind o+shift toggle_object_render              ; toggle rendering of objects (Newdark only)
+game bind q+shift "+fly  1"                         ; fly up
+edit bind s+shift set_grid                          ; snap brush vertices to grid
+edit bind t+shift "cycle_tex -1"                    ; cycle texture backward
+edit bind u+shift go_to_meonly                      ; select meonly area brush
+edit bind w+shift wall_object                       ; move selected object to wall
+edit bind z+shift hilight_check_snap                ; highlight all unsnapped brushes
+edit bind ins+shift "brush_to_room 0"               ; clones brush as a room brush, 5% bigger
+edit bind tab+shift "cycle_brush -1"                ; select previous brush
+edit bind keypad_plus+shift "brush_translate 5"     ; move brush up
+edit bind keypad_minus+shift "brush_translate 2"    ; move brush down
+edit bind keypad_down+shift "brush_translate 0"     ; move brush south
+edit bind keypad_left+shift "brush_translate 4"     ; move brush west
+edit bind keypad_right+shift "brush_translate 1"    ; move brush east
+edit bind keypad_up+shift "brush_translate 3"       ; move brush north
+edit bind F1+shift "brush_filter 3088"              ; filter terrain
+edit bind F2+shift "brush_filter 3104"              ; filter light
+edit bind F3+shift "brush_filter 3136"              ; filter area
+edit bind F4+shift "brush_filter 3200"              ; filter room
+edit bind F5+shift "brush_filter 3328"              ; filter object
+edit bind F6+shift "brush_filter 3584"              ; filter flow
+edit bind F7+shift "brush_filter 4080"              ; filter none
+
+
+;      ALT-
+
+edit bind b+alt save_group                          ; save multibrush as vbr
+edit bind a+alt "gfh_coord_edit 3"
+edit bind c+alt "gfh_coord_edit 8"
+edit bind d+alt "gfh_coord_edit 5"
+edit bind e+alt "gfh_coord_edit 2"
+game bind e+alt "run .\cmds\EditMode.cmd"           ; return to edit mode
+edit bind l+alt load_file                           ; load file
+edit bind o+alt edit_obj                            ; open object editor
+all  bind g+alt "run .\cmds\gamemode.cmd"           ; enter game mode
+edit bind p+alt auto_portalize                      ; toggle portalizing after every edit
+edit bind q+alt "gfh_coord_edit 0"
+edit bind r+alt reset_brush                         ; reset selected brush's rotation
+game bind r+alt "run .\cmds\EditModeAtPlr.cmd"      ; return to edit mode at player
+edit bind s+alt "gfh_coord_edit 4"
+edit bind t+alt texture_pal                         ; open texture palette
+edit bind v+alt load_group                          ; load multibrush *.vbr file
+edit bind w+alt "gfh_coord_edit 1"
+edit bind x+alt "gfh_coord_edit 7"
+edit bind z+alt "gfh_coord_edit 6"
+all bind 6+alt show_poly_edges                      ; show poly wireframe
+all bind 7+alt show_all_edges                       ; show cell wireframe
+all bind 8+alt show_cell                            ; show cells in color
+all bind 9+alt show_mip                             ; show polys in light gray
+all bind 0+alt show_poly                            ; show polys in black
+all bind ?+alt "render_info 30"                     ; more info about current rendered scene
+edit bind ++alt "grid_scale 0.5"                    ; decrease grid scale
+edit bind -+alt "grid_scale 2.0"                    ; increase grid scale 
+all bind /+alt "render_info 10"                     ; info about current rendered scene
+edit bind =+alt "grid_scale 0.5"                    ; decrease grid scale
+edit bind _+alt "grid_scale 2.0"                    ; increase grid scale
+all bind `+shift+alt screen_dump                    ; save screenshot
+edit bind space+alt quick_resynch                   ; synch all windows, rerender, desynch them
+edit bind ins+alt "run .\cmds\gridclone.cmd"        ; clone brush with set grid
+edit bind keypad_plus+alt  "brush_rotate 2"
+edit bind keypad_minus+alt "brush_rotate 5"
+edit bind keypad_down+alt  "brush_rotate 0"
+edit bind keypad_left+alt  "brush_rotate 4"
+edit bind keypad_right+alt "brush_rotate 1"
+edit bind keypad_up+alt    "brush_rotate 3"
+all  bind F1+alt mono_debug
+all  bind F8+alt ai_aware_of_player                 ; toggle ai awareness
+
+
+;       CTRL-
+
+edit bind a+ctrl "next_room"                        ; goes to next room
+edit bind d+ctrl dissolve_group                     ; break cur group into individual brushes
+game bind f+ctrl ai_forget_player                   ; AI forgets they saw player
+edit bind g+ctrl grid_toggle                        ; toggle operation grid snap
+edit bind i+ctrl brush_to_mono                      ; dump brush info to mono
+all  bind o+ctrl lit_obj_toggle                     ; toggles object lighting
+all  bind p+ctrl "history_cmd -1"                   ; open console with previous command
+edit bind s+ctrl "run .\cmds\DoSaveMis.cmd"         ; save the mission
+edit bind q+ctrl brush_relative                     ; toggle brush relative
+edit bind r+ctrl "Run .\cmds\DoLight.cmd"           ; relight the level
+edit bind u+ctrl undo                               ; move back in history
+edit bind w+ctrl "cycle_group 0"                    ; select last stored group (buggy)
+edit bind x+ctrl xmouse                             ; toggle auto-camera selection
+edit bind z+ctrl undo                               ; windows compatible, eh?
+edit bind 7+ctrl "brush_color 1"                    ; brush colors static
+edit bind 8+ctrl "brush_color 2"                    ; brush colors darkened based on distance from camera
+edit bind 9+ctrl "brush_color 3"                    ; terrain darkened when non-terrain brush selected
+edit bind space+ctrl redraw_all                     ; refresh all views
+edit bind ins+ctrl "new_brush 1"                    ; make a cube
+edit bind keypad_plus+ctrl "brush_stretch 5"
+edit bind keypad_minus+ctrl "brush_stretch 2"
+edit bind keypad_down+ctrl "brush_stretch 3"
+edit bind keypad_left+ctrl "brush_stretch 4"
+edit bind keypad_right+ctrl "brush_stretch 1"
+edit bind keypad_up+ctrl "brush_stretch 0"
+edit bind tab+ctrl "cycle_context 1"                ; cycle to next brush, or brush in group
+edit bind F1+ctrl "set_room_type 1"                 ; set room eax type small dead
+edit bind F2+ctrl "set_room_type 2"                 ; set room eax type small normal
+edit bind F3+ctrl "set_room_type 20"                ; set room eax type small live 
+edit bind F4+ctrl "set_room_type 19"                ; set room eax type large dead
+edit bind F5+ctrl "set_room_type 5"                 ; set room eax type large normal
+edit bind F6+ctrl "set_room_type 8"                 ; set room eax type large live
+edit bind F7+ctrl "set_room_type 11"                ; set room eax type dead hallway
+edit bind F8+ctrl "set_room_type 12"                ; set room eax type normal hallway
+edit bind F9+ctrl "set_room_type 13"                ; set room eax type live hallway
+edit bind F10+ctrl "set_room_type 14"               ; set room eax type tunnels
+edit bind F11+ctrl "set_room_type 9"                ; set room eax type caverns
+edit bind F12+ctrl "set_room_type 21"               ; set room eax type sewers
+
+
+;      ALT-SHIFT-
+
+edit bind l+alt+shift ai_draw_links                 ; draw links between AI path cells in 3D view
+edit bind m+alt+shift merge_node                    ; force "perfect" levels with coplanar polys
+edit bind o+alt+shift "obj_tree"                    ; edit hierarchy
+edit bind p+alt+shift "run .\cmds\PathFind.cmd"     ; build pathfinding database
+all  bind q+alt+shift ai_draw                       ; enables drawing in-game AI stuff
+edit bind r+alt+shift ai_draw_cells                 ; draws AI Path cells in editor 3D view
+all  bind s+alt+shift show_stats                    ; show FPS and scene info in-game
+all  bind t+alt+shift ai_test_cells                 ; spews iffy path cells to mono
+all  bind w+alt+shift ai_draw_suggestsions          ; draw line to destination, shows blocked directions
+all  bind x+alt+shift quit_game                     ; quit
+
+
+;      CTRL-SHIFT-
+
+edit bind f+ctrl+shift ceil_object                  ; 'drop' selected object to ceiling
+edit bind l+ctrl+shift edit_links                   ; open links dialog for selected object
+all  bind o+ctrl+shift "light_bright"               ; OldDark Only
+;all  bind o+ctrl+shift "toggle_lighting"            ; Newdark Only
+edit bind p+ctrl+shift "run .\cmds\optimize.cmd"    ; optimize the level to view in solid 3d
+edit bind r+ctrl+shift rooms_build                  ; build the rooms database
+edit bind s+ctrl+shift synch_all                    ; synchronize the camera in 2d views
+edit bind u+ctrl+shift redo                         ; move forward in history
+edit bind w+ctrl+shift "cycle_group 1"              ; next stored group (buggy)
+edit bind z+shift+ctrl hilight_clear                ; clear highlight
+edit bind tab+ctrl+shift "cycle_context -1"         ; cycle to previous brush, or brush in group
+edit bind F12+ctrl+shift "set_room_type 15"         ; set room eax type outside
+
+
+;      ALT-CTRL-
+
+all  bind d+alt+ctrl "dump_cmds cmd.txt"            ; produce list of all commands
+all  bind o+alt+ctrl "rend_name_toggle 23"          ; display object names in blue
+all  bind p+alt+ctrl physics                        ; toggle physics
+;all  bind q+alt+ctrl foot_sounds                    ; ShockEd Only
+edit bind w+alt+ctrl "cycle_group -1"               ; previous stored group (buggy)
+game bind 1+ctrl+alt "scale_player_speed 1"
+game bind 2+ctrl+alt "scale_player_speed 1.25"
+game bind 3+ctrl+alt "scale_player_speed 1.5"
+game bind 4+ctrl+alt "scale_player_speed 1.75"
+game bind 5+ctrl+alt "scale_player_speed 2"
+game bind 6+ctrl+alt "scale_player_speed 2.25"
+game bind 7+ctrl+alt "scale_player_speed 2.5"
+game bind 8+ctrl+alt "scale_player_speed 2.75"
+game bind 9+ctrl+alt "scale_player_speed 3"
+game bind 0+ctrl+alt "scale_player_speed 3.25"
+
+
+;      ALT-CTRL-SHIFT
+
+edit bind p+alt+ctrl+shift "run .\cmds\portalize.cmd" ; portalize the level to view solid 3d
+all  bind s+alt+ctrl+shift stats_full
+all  bind t+alt+ctrl+shift time_stats
+
+; show network status of objects -- colors are hex GBR
+;all bind o+alt+ctrl+shift "rend_net_name_toggle 1b00000, 100b000, 10000b0" ;ShockEd Only
+
+
+

@@ -1,0 +1,52 @@
+DECLARE_SCRIPT_SERVICE(Sound, 0xf1)
+{
+#ifndef THIEF1
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, object TargetObject, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, vector ref Vector, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlayAmbient)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, object SourceObject, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, vector ref Vector, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchemaAmbient)(object CallbackObject, object Schema, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlayEnvSchema)(object CallbackObject, const string ref Tags, object SourceObject = OBJ_NULL, object AgentObject = OBJ_NULL, eEnvSoundLoc loc = kEnvSoundOnObj, eSoundNetwork Network = kSoundNetDefault) PURE;
+#else
+	STDMETHOD_(boolean, PlayLegacy)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal) PURE;
+	STDMETHOD_(boolean, PlayLegacy)(object CallbackObject, const string ref SoundName, object TargetObject, eSoundSpecial Special = kSoundNormal) PURE;
+	STDMETHOD_(boolean, PlayLegacy)(object CallbackObject, const string ref SoundName, vector ref Vector, eSoundSpecial Special = kSoundNormal) PURE;
+	STDMETHOD_(boolean, PlayAmbientLegacy)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal) PURE;
+	STDMETHOD_(boolean, PlaySchemaLegacy)(object CallbackObject, object Schema) PURE;
+	STDMETHOD_(boolean, PlaySchemaLegacy)(object CallbackObject, object Schema, object SourceObject) PURE;
+	STDMETHOD_(boolean, PlaySchemaLegacy)(object CallbackObject, object Schema, vector ref Vector) PURE;
+	STDMETHOD_(boolean, PlaySchemaAmbientLegacy)(object CallbackObject, object Schema) PURE;
+	STDMETHOD_(boolean, PlayEnvSchemaLegacy)(object CallbackObject, const string ref Tags, object SourceObject = OBJ_NULL, object AgentObject = OBJ_NULL, eEnvSoundLoc loc = kEnvSoundOnObj) PURE;
+#endif
+	STDMETHOD_(boolean,PlayVoiceOver)(object cb_obj, object Schema) PURE; 
+	STDMETHOD_(integer, Halt)(object TargetObject, const string ref SoundName = "", object CallbackObject = OBJ_NULL) PURE;
+	STDMETHOD_(boolean, HaltSchema)(object TargetObject, const string ref SoundName = "", object CallbackObject = OBJ_NULL) PURE;
+	STDMETHOD(HaltSpeech)(object speakerObj) PURE;
+	STDMETHOD_(boolean,PreLoad)(const string ref SpeechName) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+#ifdef THIEF1
+	// these should replace the old T1/G interface methods and should be preferred over the legacy methods in new modules
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, object TargetObject, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, Play)(object CallbackObject, const string ref SoundName, vector ref Vector, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlayAmbient)(object CallbackObject, const string ref SoundName, eSoundSpecial Special = kSoundNormal, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, object SourceObject, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchema)(object CallbackObject, object Schema, vector ref Vector, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlaySchemaAmbient)(object CallbackObject, object Schema, eSoundNetwork Network = kSoundNetDefault) PURE;
+	STDMETHOD_(boolean, PlayEnvSchema)(object CallbackObject, const string ref Tags, object SourceObject = OBJ_NULL, object AgentObject = OBJ_NULL, eEnvSoundLoc loc = kEnvSoundOnObj, eSoundNetwork Network = kSoundNetDefault) PURE;
+#endif
+
+	// change the current song
+	STDMETHOD_(void, SongChange)(const char *song) PURE;
+
+	// change active song theme
+	STDMETHOD_(void, SongSetTheme)(const char *theme) PURE;
+};

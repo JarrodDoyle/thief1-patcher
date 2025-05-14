@@ -1,0 +1,44 @@
+1.4.1
+Bug fix: Converted textures always went in the same folder as the 3ds, even when the user selected a different location.
+
+1.4
+Removed 'Ignore OBJ.crf/MESH.crf option. It wasn't needed.
+Added 'Ignore little crf' option instead. Tafferpatcher combines the two sets of crfs, and some users might have done so manually.
+
+1.3.2
+Fixed a texture format bug - would check for a 'format' selection despite 'Don't Convert' being checked
+Reinstated a check to ensure a texture conversion program/command has been selected
+Added a check to see if the texture conversion program exists
+Fixed a bug where on the first instance of the program being run, "model names" were not detected
+
+1.3.1
+Fixed a bug that occurred when a source texture was found in obj\txt16 or obj\txt
+
+1.3
+Changed the way textures are found. For each texture in the object file, a .dds version is sought, then png, tga and others. This matches NewDark's texture priority feature.
+Changed the texture conversion options. Since the extensions don't matter to NewDark, this program now converts all textures to a single format (e.g. png).
+Replaced "Don't extract unconverted textures" with "Don't convert/extract textures"
+Removed "Texture Format Options" tab due to redundancy.
+Updated readme to reflect the above changes.
+
+1.2.1
+Open file/folder windows now start in the same location as the current selection - if the selection contains a valid path.
+
+1.2
+Allowed text to be pasted/typed into the drop down menus
+Improved temp file cleanup - extracted textures had been left behind but now get deleted
+Fixed a window size issue caused by larger-than-normal font sizes
+Fixed a bug that prevented conversion if the 'object folder' did not match what was in the 'select object' menu.
+
+1.1
+Added option to not extract textures that have not been converted
+Added option to remember output folders the next time the program is run
+Improved pre-convert error handling - in addition to valid selection check from version 1.0, also checks that selected files/folders exist.
+Added a message box reporting any textures that could not be found.
+Added a message box reporting if BinToE.exe has failed to make a valid .e file - conversion aborts
+Temp files cleaned up after (attempted) conversion.
+Added a choice of 3 icons for the program shortcut. The 'gear icon' ones are from nightshifter
+Texture finding code changed - does not find false positives such as c.dmd, which isn't a texture filename
+Fixed a permissions bug that brought up UAC prompts for all write operations rather than just to protected folders.
+Changed the Obj.crf labels to remove potential for confusion.
+Updated readme.html and associated files

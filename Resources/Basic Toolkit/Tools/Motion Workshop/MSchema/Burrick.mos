@@ -1,0 +1,268 @@
+
+torso  Burrick
+
+schema Test 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BURR01     0  500
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0.7
+XYZScale  0
+motion BK111ooo     4  500
+motion BK111214     6  500
+motion BK111215     6  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BK111012     0  150
+motion BK111011     0  150
+
+schema Stand 0, Wheel 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BK111ooo     4  500
+motion BK111212     2  500
+motion BK111213     2  500
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0.4
+XYZScale  0
+motion BK111o3o     0  150
+motion BK111o31     0  150
+
+schema Locomote 0, LocoUrgent 0, WithTurns 0
+MType  GLP180Turn
+TimeScale 0.4
+XYZScale  0
+motion BK111o3o     0  150
+motion BK111o31     0  150
+motion BK111213     2  500
+
+schema Locomote 0, Direction 4
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion BK111050     0  500
+motion BK111051     0  500
+
+schema Locomote 0, Halt 0
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion BK111036     0  500
+
+schema Stalled 0, Rebalance 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK111037     0  500
+
+schema Discover 0, Recoil 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK112100     0  500
+
+schema Discover 0, Recoil 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK111213     2  500
+
+schema Search 0, Peek 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK112110     0  500
+
+schema Search 0, Peek 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK112101     0  500
+
+schema Search 0, Peek 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK112102     0  500
+
+schema Search 0, Scan 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK112115     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 5
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BK111000     4  500
+motion BK113001     0  500
+motion BK113002     0  500
+motion BK113003     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BK111000     4  500
+motion BK113005     0  500
+
+schema MeleeCombat 0, Attack 0, SpecialAttack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BK111000     4  500
+motion BK113120     0  500
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113100     4  500
+motion BK113101     4  500
+
+schema ReceiveWound 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113510     0  500
+
+schema ReceiveWound 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113520     0  500
+motion BK113521     0  500
+
+schema ReceiveWound 0, Direction 8
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113550     0  500
+
+schema ReceiveWound 0, Direction 7
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113500     0  500
+
+schema ReceiveWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113521     0  500
+
+schema ReceiveWound 0, SevereWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113500     0  500
+
+schema Stalled 0, Stunned 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113601     0  500
+motion BK113602     0  500
+motion BK113603     0  500
+
+schema Stalled 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113601     0  500
+motion BK113602     0  500
+motion BK113603     0  500
+
+schema Stalled 0, Flail 0, Long 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113600     0  500
+
+schema Stalled 0, Flail 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113650     0  500
+motion BK113651     0  500
+motion BK113652     0  500
+
+schema Stalled 0, Flail 0, InAir 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK134100     0  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK114212     0  500
+motion BK114213     0  500
+
+schema Discover 0, Thwarted 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK114300     0  500
+
+schema Discover 0, Challenge 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK114350     0  500
+motion BK114351     0  500
+
+schema Crumple 0, KnockOut 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113700     0  500
+
+schema Crumple 0, Die 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113701     0  500
+
+schema Crumple 0, Die 0, IsConfined 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK113700     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK111225     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK111226     0  500
+
+schema Stand 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion Burrsway     4  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BK111001     4  500
+motion BK111002     4  500
+motion BK111000     4  500

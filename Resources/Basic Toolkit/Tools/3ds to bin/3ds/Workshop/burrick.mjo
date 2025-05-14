@@ -1,0 +1,30 @@
+NUM_TORSOS 3
+NUM_LIMBS  5
+TORSO
+   root 8
+   parent -1
+   fixed 6 7 18
+TORSO
+   root 8
+   parent -1
+   fixed 20
+TORSO
+   root 18
+   parent 0
+   fixed 9 10 11
+LIMB
+   torso 0
+   segments 6 4 2 0
+LIMB
+   torso 0
+   segments 7 5 3 1
+LIMB
+   torso 2
+   segments 10 12 14 16
+LIMB
+   torso 2
+   segments 11 13 15 17
+LIMB
+   torso 2
+   segments 9 19
+

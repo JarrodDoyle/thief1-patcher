@@ -1,0 +1,6 @@
+; toggle drawing of player name labels
+bind tab+ctrl show_player_names
+
+; command can also take an optional argument:
+;    0 disable, 1 draw always, 2 draw only if rendered, -1 toggle 0/1, -2 toggle 0/2
+;bind tab+ctrl "show_player_names -2"

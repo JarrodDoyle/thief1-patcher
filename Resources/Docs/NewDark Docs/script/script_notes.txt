@@ -1,0 +1,93 @@
+Important info for 'string' script function parameters
+------------------------------------------------------
+
+The string class used for non-const "string ref" arguments, as for example found in Engine::GetWeather, must
+use IMemory to allocate/free string memory. Otherwise string memory allocation happens on the engine side and
+deallocation on the OSM side using different memory heaps. At least for non-const string refs the string class
+also has to have a compatible basic layout and functionality as the one in the engine.
+
+It's generally very important to always use the provided IMalloc for any kind of objects where the OSM allocates
+a memory block which the engine then frees, or the other way around. Failure to do so will lead to heap corruption
+which immediately crashes at best, or can cause not immediately noticable memory corruptions at worst. It should
+be of no concern to the OSM how IMalloc is implemented on the engine side, whether it uses malloc/free or custom
+memory management, the only thing that matters is that the OSM sticks to the provided IMalloc.
+
+Pseudo-code for a minimal compatible string class:
+
+    class string
+    {
+    public:
+        string()
+        {
+            m_pchData = g_pMalloc->Alloc(1);
+            m_pchData[0] = '\0';
+        }
+        string(const string &str)
+        {
+		*this = (const char *)str;
+        }
+
+        ~string()
+        {
+            if (m_pchData)
+                g_pMalloc->Free(m_pchData);
+        }
+
+        operator const char *() const { return m_pchData; }
+
+        string& operator =(const char *s)
+        {
+            if (!s)
+                s = "";
+
+            if (m_pchData)
+                g_pMalloc->Free(m_pchData);
+
+            m_pchData = g_pMalloc->Alloc(strlen(s) + 1);
+
+            strcpy(m_pchData, s);
+
+            return *this;
+        }
+
+    private:
+        char *m_pchData;
+    };
+
+
+Accessing files from script modules (OSMs)
+------------------------------------------
+
+When a script module needs to open files directly it should either resolve the file path using the
+"FindFileInPath" function in the "Engine" script service, which will ensure that all mod and FM paths are
+automagically taken into account, or use the "FMizeRelativePath" / "FMizePath" functions in the "Version"
+script service. Failing to do either will break the built-in FM support (usually utilized using the
+FM Selector), because an FM that includes an OSM that loads files without FM awareness won't be able to
+locate resource files from the active FM dir.
+
+Pseudo-code example 1:
+
+    Search for the file "scriptdata\myfile.bin" in mod, FM and "resname_base" paths as appropriate. If the
+    file is found then the resolved file name with path is returned
+
+        string fname;
+        if ( EngineService.FindFileInPath("resname_base", "scriptdata\\myfile.bin", fname) )
+        {
+            fopen(fname, "rb");
+            ...
+        }
+
+Pseudo-code example 2:
+
+    Old OSM code that opens a file "scriptdata\myfile.bin" might do
+
+        fopen("scriptdata\\myfile.bin", "rb");
+
+    Updated code with FM awareness should instead do
+
+        string fname;
+        VersionService.FMizeRelativePath("scriptdata\\myfile.bin", fname);
+        fopen(fname, "rb");
+
+    which will have the same effect as the old code if no FM is active, but if an FM is active it will instead
+    load the file from the active FM directory. It will however not take mod paths into account.

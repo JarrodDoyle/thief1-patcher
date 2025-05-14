@@ -1,0 +1,166 @@
+// brc32 -r dromcolors.rc
+///////////////////////////////////////////////////////////////////////////////
+//    dromcolors.rc
+//
+//    This file is part of Dromed Colors
+//    Copyright (C) 2002 Tom N Harris <telliamed@whoopdedo.cjb.net>
+//
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#include "windows.h"
+
+#define PROGRAM_VENDOR		"BakaTek"
+#define PROGRAM_LONGNAME	"Dromed Colors"
+#define PROGRAM_SHORTNAME	"Dromed Colors"
+#define VERSION_MAJOR		0
+#define VERSION_MINOR		92
+#define VERSION_STRING		"0.92"
+
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif
+
+1024 DIALOGEX 32768, 0, 240, 210
+STYLE WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Dromed Colors"
+FONT 8, "MS Shell Dlg"
+MENU 1024
+BEGIN
+	CONTROL	"", 1000, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 8, 24, 12
+	LTEXT	"Terrain Selected", 1100, 38, 8, 72, 12
+	CONTROL	"", 1001, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 24, 24, 12
+	LTEXT	"Terrain Unselected", 1100, 38, 24, 72, 12
+	CONTROL	"", 1002, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 40, 24, 12
+	LTEXT	"Terrain Face", 1100, 38, 40, 72, 12
+	CONTROL	"", 1003, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 56, 24, 12
+	LTEXT	"Light Selected", 1100, 38, 56, 72, 12
+	CONTROL	"", 1004, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 72, 24, 12
+	LTEXT	"Light Unselected", 1100, 38, 72, 72, 12
+	CONTROL	"", 1005, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 88, 24, 12
+	LTEXT	"Area Selected", 1100, 38, 88, 72, 12
+	CONTROL	"", 1006, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 104, 24, 12
+	LTEXT	"Area Me-Only", 1100, 38, 104, 72, 12
+	CONTROL	"", 1007, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 120, 24, 12
+	LTEXT	"Area Activated", 1100, 38, 120, 72, 12
+	CONTROL	"", 1008, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 136, 24, 12
+	LTEXT	"Area Unselected", 1100, 38, 136, 72, 12
+	CONTROL	"", 1009, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 152, 24, 12
+	LTEXT	"Object Selected", 1100, 38, 152, 72, 12
+	CONTROL	"", 1010, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 168, 24, 12
+	LTEXT	"Object Unselected", 1100, 38, 168, 72, 12
+	CONTROL	"", 1011, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 10, 184, 24, 12
+	LTEXT	"11", 1100, 38, 184, 72, 12
+	CONTROL	"", 1012, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 8, 24, 12
+	LTEXT	"12", 1100, 148, 8, 72, 12
+	CONTROL	"", 1013, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 24, 24, 12
+	LTEXT	"Terrain Multibrush", 1100, 148, 24, 72, 12
+	CONTROL	"", 1014, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 40, 24, 12
+	LTEXT	"Light Multibrush", 1100, 148, 40, 72, 12
+	CONTROL	"", 1015, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 56, 24, 12
+	LTEXT	"Area Multibrush", 1100, 148, 56, 72, 12
+	CONTROL	"", 1016, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 72, 24, 12
+	LTEXT	"Object Multibrush", 1100, 148, 72, 72, 12
+	CONTROL	"", 1017, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 88, 24, 12
+	LTEXT	"Flow Selected", 1100, 148, 88, 72, 12
+	CONTROL	"", 1018, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 104, 24, 12
+	LTEXT	"Flow Multibrush", 1100, 148, 104, 72, 12
+	CONTROL	"", 1019, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 120, 24, 12
+	LTEXT	"Flow Unselected", 1100, 148, 120, 72, 12
+	CONTROL	"", 1020, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 136, 24, 12
+	LTEXT	"Room Selected", 1100, 148, 136, 72, 12
+	CONTROL	"", 1021, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 152, 24, 12
+	LTEXT	"Room Multibrush", 1100, 148, 152, 72, 12
+	CONTROL	"", 1022, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 168, 24, 12
+	LTEXT	"Room Unselected", 1100, 148, 168, 72, 12
+	CONTROL	"", 1023, "static", SS_GRAYRECT | SS_OWNERDRAW | SS_NOTIFY, 120, 184, 24, 12
+	LTEXT	"Hilighted Brush", 1100, 148, 184, 72, 12
+END
+
+1024 MENU
+BEGIN
+	POPUP "&File"
+	BEGIN
+		MENUITEM "&Open...\tCtrl+O", 1040
+		MENUITEM "&Save\tCtrl+S", 1041
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit\tAlt+X", 1042
+	END
+END
+
+1024 ACCELERATORS
+BEGIN
+	"O", 1040, CONTROL, VIRTKEY
+	"S", 1041, CONTROL, VIRTKEY
+	"X", 1042, ALT, VIRTKEY
+END
+
+STRINGTABLE
+BEGIN
+	1000	"Cannot open file"
+	1001	"There was an error while attempting to open the file for reading."
+	1002	"Cannot save file"
+	1003	"There was an error while attempting to open the file for writing."
+	1004	"Cannot read file"
+	1005	"There was an error while attempting to read the file."
+	1006	"Incorrect file"
+	1007	"This file is not a recognized version of Dromed."
+	1008	"There was an error while attempting to save the backup file."
+	1009	"There was an error while attempting to write to the file."
+END
+
+COPYRIGHT	TEXT	"COPYING"
+
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#endif
+
+// Icon
+//1		ICON		"dromcolor.ico"
+
+// Version info
+VS_VERSION_INFO	VERSIONINFO
+FILEVERSION	VERSION_MAJOR,VERSION_MINOR,0,0
+PRODUCTVERSION	VERSION_MAJOR,VERSION_MINOR,0,0
+#ifdef DEBUG
+FILEFLAGS	VS_FF_DEBUG | VS_FF_PRERELEASE
+#else
+FILEFLAGS	VS_FF_PRERELEASE
+#endif
+FILEOS		VOS__WINDOWS32
+FILETYPE	VFT_APP
+BEGIN
+	BLOCK	"StringFileInfo"
+	BEGIN
+		BLOCK "040904e4"
+		BEGIN
+			VALUE	"CompanyName",		PROGRAM_VENDOR "\0"
+			VALUE	"FileDescription",	PROGRAM_LONGNAME "\0"
+			VALUE	"FileVersion",		VERSION_STRING "\0"
+			VALUE	"InternalName",		PROGRAM_SHORTNAME "\0"
+			VALUE	"LegalCopyright",	"Copyright (C) 2002 Tom N Harris\0"
+			VALUE	"OriginalFilename",	"DromColors.exe\0"
+			VALUE	"ProductName",		PROGRAM_VENDOR " " PROGRAM_SHORTNAME "\0"
+			VALUE	"ProductVersion",	VERSION_STRING "\0"
+		END
+	END
+	BLOCK	"VarFileInfo"
+	BEGIN
+		VALUE	"Translation", 1033, 1252
+	END
+END

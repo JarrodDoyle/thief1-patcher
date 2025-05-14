@@ -1,0 +1,8 @@
+
+torso  Biped
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion rmbleapf     0  500

@@ -1,0 +1,24 @@
+Free The Objects Toolkit. Shadowspawn - 9/14/2001       rsybel@adelphia.net
+
+License agreement
+
+Sorry I have to do this, it's just the world we live in...
+
+Use of any of the components of the Free The Objects tool kit implies
+accepting this agreement.
+
+1.) These tools are meant to foster the continuing growth of the Thief
+community (and SS2, where applicable). They provide the ability to
+convert rather arcane formats into publicly accessible formats. By no means is
+this meant to weaken or change in any way the rights of the original or current
+owners of the copyright of the 3D objects or artwork. The owners of the
+copyright still retain all rights of control of their property.
+
+2.) Under no circumstances should any of these reconsituted objects be used in
+a "for profit" venture.
+
+3.) Use of these objects other than where they are currently binary compatible
+(Thief versions and SS2) requires authorization from the copyright owners.
+
+
+

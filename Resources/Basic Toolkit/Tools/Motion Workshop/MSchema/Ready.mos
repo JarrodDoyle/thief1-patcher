@@ -1,0 +1,8 @@
+
+torso  Biped
+
+schema ReadyItem 0, ItemBow 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114721     0  500

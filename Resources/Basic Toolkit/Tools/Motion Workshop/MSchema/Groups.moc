@@ -1,0 +1,16 @@
+//  This file defines the names of the main motion types.
+//  I don't know if the order of these is important in Dromed.
+
+motiongroup GroundAction
+motiongroup StandWith90s
+motiongroup GroundLocoPair
+motiongroup SwordSwing
+motiongroup SwordDirBlock
+motiongroup SwordGenBlock
+motiongroup StandWithTurns
+motiongroup GroundLocoSngle
+motiongroup PlayerBow
+motiongroup GLP180Turn
+motiongroup PlayerSword
+motiongroup PlyrBodyCarry
+motiongroup Simple

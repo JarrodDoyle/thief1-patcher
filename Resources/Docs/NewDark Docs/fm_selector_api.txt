@@ -1,0 +1,88 @@
+An FM selector is a separate library (DLL) containing a utility, usually a UI based application, that lists
+the available FMs and lets the user pick which one to run. A selector could range from a simple list box
+with the FM names to a full blown manager with extended info, last played timestamps, sorting/filtering etc.
+
+The default name for the selector is "FMSEL.DLL", but can be configured with the "fm_selector" cam_mod.ini var.
+
+
+Exports
+-------
+
+The DLL only needs to have a single symbol exported "SelectFM", which is a function in the form of:
+
+    int __cdecl SelectFM(sFMSelectorData *data);
+
+The following return values are defined:
+
+0 = 'data->sName' is expected to contain the selected FM name, if string is empty it means no FM
+1 = cancel and exit game
+
+Any other value is interpreted as cancel-and-continue, the game will start using the cam_mod.ini based
+active FM if defined, otherwise it will run without any FM.
+
+
+Data types
+----------
+
+#pragma pack(4)
+
+typedef struct sFMSelectorData
+{
+	// sizeof(sFMSelectorData)
+	int nStructSize;
+
+	// game version string as returned by AppName() (ie. in the form "Thief 2 Final 1.19")
+	const char *sGameVersion;
+
+	// supplied initial FM root path (the FM selector may change this)
+	char *sRootPath;
+	int nMaxRootLen;
+
+	// buffer to copy the selected FM name
+	char *sName;
+	int nMaxNameLen;
+
+	// set to non-zero when selector is invoked after game exit (if requested during game start)
+	int bExitedGame;
+	// FM selector should set this to non-zero if it wants to be invoked after game exits (only done for FMs)
+	int bRunAfterGame;
+
+	// optional list of paths to exclude from mod_path/uber_mod_path in + separated format and like the config
+	// vars, or if "*" all mod paths are excluded (leave buffer empty for no excludes)
+	// the specified exclude paths work as if they had a "*\" wildcard prefix
+	char *sModExcludePaths;
+	int nMaxModExcludeLen;
+
+	// language setting for FM (set by the FM selector when an FM is selected), may be empty if FM has no
+	// language specific resources
+	// when 'bForceLanguage' is 0 this is used to ensure an FM runs correctly even if it doesn't support
+	// the game's current language setting (set by the "language" config var)
+	// when 'bForceLanguage' is 1 this is used to force a language (that must be supported by the FM) other
+	// than the game's current language
+	char *sLanguage;
+	int nLanguageLen;
+	int bForceLanguage;
+} sFMSelectorData;
+
+#pragma pack()
+
+
+typedef enum eFMSelReturn
+{
+	kSelFMRet_OK		= 0,	// run selected FM 'data->sName' (0-len string to run without an FM)
+	kSelFMRet_Cancel	= -1,	// cancel FM selection and start game as-is (no FM or if defined in cam_mod.ini use that)
+	kSelFMRet_ExitGame	= 1		// abort and quit game
+} eFMSelReturn;
+
+
+typedef int (__cdecl *FMSelectorFunc)(sFMSelectorData*);
+
+
+Sample implementation
+---------------------
+
+A minimal FM selector code sample is included. It simply displays a list of directories in the FM path, that the
+user can select from.
+
+The sample is based in part on the work of the FLTK project (http://www.fltk.org).
+

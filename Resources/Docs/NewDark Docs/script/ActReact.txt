@@ -1,0 +1,25 @@
+DECLARE_SCRIPT_SERVICE(ActReact, 0xF4)
+{
+	STDMETHOD(React)(reaction_kind what, real stim_intensity, object target = 0, object agent = 0, const cMultiParm& parm1 = 0, const cMultiParm& parm2 = 0, const cMultiParm& parm3 = 0, const cMultiParm& parm4 = 0, const cMultiParm& parm5 = 0, const cMultiParm& parm6 = 0, const cMultiParm& parm7 = 0, const cMultiParm& parm8 = 0) PURE;
+#ifndef THIEF1
+	STDMETHOD(Stimulate)(object who, stimulus_kind what, real how_much, object source = object(0)) PURE;
+#else
+	STDMETHOD(StimulateLegacy)(object who, stimulus_kind what, real how_much) PURE;
+#endif
+	STDMETHOD_(integer,GetReactionNamed)(const char* name) PURE;
+	STDMETHOD_(string,GetReactionName)(long id) PURE;
+	STDMETHOD(SubscribeToStimulus)(object obj, stimulus_kind what) PURE;
+	STDMETHOD(UnsubscribeToStimulus)(object obj, stimulus_kind what) PURE;
+	STDMETHOD(BeginContact)(object source, object sensor) PURE;
+	STDMETHOD(EndContact)(object source, object sensor) PURE;
+	STDMETHOD(SetSingleSensorContact)(object source, object sensor) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+#ifdef THIEF1
+	// this should replace the old T1/G interface method and should be preferred over the legacy method in new modules
+	STDMETHOD(Stimulate)(object who, stimulus_kind what, real how_much, object source = object(0)) PURE;
+#endif
+};

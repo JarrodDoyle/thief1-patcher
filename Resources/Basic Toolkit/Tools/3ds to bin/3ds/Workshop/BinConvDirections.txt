@@ -1,0 +1,152 @@
+BintoE usage. Shadowspawn - 10/12/2001       rsybel@adelphia.net
+Version 0.75
+
+Enhancements:   Version 3
+
+BintoE can now finally handle AI meshes from Thief 1, Thief 2, and SS2!
+To do this, it requires the .cal file as well. Providing the map file
+(biped.map, playarm.map, etc) which is used in the meshbld process will also
+get all the joints named correctly for you. There is also a small tweaking
+flag to adjust the ankle joint to knee joint height, which seems to be
+consistantly small by about 0.5 units.
+
+Other minor bug fixes include the correct ordering of textures and materials,
+which in some objects was weird. Also, a minimum axle size for sliding sib-
+objects has been implemented.
+
+Enhancements:   Version 2
+
+BintoE can now handle object that have joints (axles). It will correctly
+extract the sub-objects, correctly place and orient them (that was fun!) and
+automatically generate correctly named axles.
+Still not ready to handle AI meshes.
+
+================================================================================
+
+BintoE is a command line (DOS) program which converts the Looking Glass Studios
+.bin files into their intermediate .E files. Why back to the intermediate
+format? Well, it's easy to open (it's ascii), you can read it and find the
+names of the texture files you need, and it's easy to fix minor problems with
+an editor. Besides, Eto3ds is now availble, to finish your conversion to .3ds
+format.
+
+First, I would like to thank Colourless from the TTLG forums. Most of the core of
+this is his work. I've added the ability to handle sub-objects and axles.
+Additional work on my part has finally given us the ability to convert the AI
+meshes back into .e and to .3ds format.
+
+OK, how to use BintoE. Running it without any arguments gives you the
+following;
+
+BintoE Version 1.00 by Shadowspawn
+Usage: BintoE Infile [Outfile]
+
+The Infile field is required, it's the name of the .bin file. An optional
+output filename can be specified. The default is to strip the extension
+from the input file name and append .E to form the output name.
+
+For an example, say you extracted the tower.bin file from the obj.crf file.
+The command line would be;
+
+BintoE tower.bin
+
+which will create tower.e. You can open tower.e to see the texture names
+you'll need to work on it. During the run, you should see the output from
+BintoE:
+
+BintoE Version 1.00 by Shadowspawn
+Object header version 4.
+This file contains 5 vhots.
+These will be represented as small cubes in the final objects.
+Object name xl, Type Main Object, Joint Number -1
+
+There will be 5 very small cubes, red in color, which indicate where the vhots
+are. The names of the vhots are generated to be compatible with the original
+names. Don't worry if you don't see that part, not many objects have vhots.
+
+An object that has sub-objects will output information on each subobject,
+including it's type of motion and joint number.
+
+For example, the granfather clock from T2:
+
+BintoE granfat1.bin
+
+BintoE Version 1.00 by Shadowspawn
+Object header version 4.
+Object name Box01, Type Main Object, Joint Number -1
+Object name @s02don, Type Rotating Sub-Object, Joint Number 2
+Object name @s01hou, Type Rotating Sub-Object, Joint Number 1
+Object name @s00min, Type Rotating Sub-Object, Joint Number 0
+
+This will show you the sub-object names, their types (rotating) and the joint
+numbers. You can see that object @s00min is the minute hand on the clock, and
+is controlled via tweq using joint 0. @s01hou is the hour hand, joint 1, and
+@s02don is the pendulum, joint 2.
+
+I automatically generate axles, and so far, they are in the correct
+orientation, with the correct names. Let me know if you run into trouble with
+these. Unfortunately, I've encountered trouble in Truespace with the axles.
+It won't allow only two points to exist as anything, so it strips them.
+Other 3D programs may have similar problems.
+
+I've done this with a number of objects (but by no means all of them).
+
+.bin - BintoE -> .E - Eto3ds -> .3ds    looked at object using 3d Exploration
+.3ds - n3ds2e -> .E - bsp -> .bin
+
+and then replaced the model in Thief to check that they work the same. I can
+take an object, convert it back to .3ds, and then convert it back to .bin and
+it looks and works the same. So the process is working pretty well.
+
+
+AI Mesh, it's a little different.
+---------------------------------
+
+Let's try converting something we haven't seen in 3DS before...Burricks!
+Here's how to do it;
+
+Bintoe /mburrick.map /a0.5 burrick.bin
+BintoE Version 1.00 by Shadowspawn
+
+Suddenly, you have a burrick.e file, ready to be converted by Eto3DS. Now, let
+me explain the arguments, and a hidden assumption.
+
+/m  mapfile - this is the mapfile used by the meshbld batch file. (See
+              meshscale instructions) This simply associates the joint number
+              with a name. If you don't provide this, you get joints J0, J1...
+
+/a  ankle adjust - I have no idea why this happens, but the ankle to knee
+                   distance is consistantly short. By about 0.5 units. It
+                   doesn't happen with any other extremity, just feet. So I
+                   threw in a way to adjust it. You don't need it for player
+                   arms, etc. A positive number makes the distance bigger,
+                   negative will make it smaller. If your AI looks funny with
+                   little legs, increase the number.
+
+The program also wants to open burrick.cal, so it can figure out the joint
+offsets. (Yes, that's where they were kept!). If it can't find the file, it
+will complain to you and quit. (Yes, I know carry5.bin doesn't have a .cal
+file, that's why I included it in the package).
+
+The Bad News: The reassembled 3ds files ARE NOT ready to be converted back
+into .bin files. They are missing the joint ranges, the little planes which
+are stuck all around the joints. They've been processed out of the model by
+the time it reaches the .bin file. I might be able to guess where they go,
+but you'll have a better chance placing them by eye.
+
+You'll have to try and figure out where they go, based on similar models.
+For burricks, try the T2 frog as a model, I think it's the same basic set
+of joints and limits. You may have to add a limit for the tail.
+
+
+==================================================================================
+
+Known limitations:
+
+I'm still having trouble figuring out illuminated materials. (The furnace
+opening on the robots in T2, etc). Until I figure it out, just add the
+"ILLUM 100" string to the material you need illuminated. See any of the robot
+.E files from T2 to see how it's supposed to look in the file. (robotwoa.e,
+for example).
+
+

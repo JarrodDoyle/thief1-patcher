@@ -1,0 +1,182 @@
+
+global Zombie 0
+torso  Biped
+
+schema Stand 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ111210     2  500
+motion BZ111211     2  500
+motion BZ111230     2  500
+
+schema Stand 0, Wheel 0
+MType  StandWithTurns
+TimeScale 0.7
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ111210     2  500
+motion BZ111211     2  500
+motion BZ111230     2  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BZ111010     0  0
+motion BZ111011     0  0
+
+schema Locomote 0, MeleeCombat 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion BZ111010     0  0
+motion BZ111011     0  0
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion BZ111010     0  0
+motion BZ111011     0  0
+
+schema Locomote 0, Search 0
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion BZ111o4o     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ111050     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BZ111050     0  500
+
+schema Locomote 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ111100     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 1
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BZ111100     0  500
+
+schema Locomote 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ111110     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 2
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BZ111110     0  500
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113100     0  500
+motion BZ113101     0  500
+motion BZ113102     0  500
+
+schema ReceiveWound 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113520     0  500
+
+schema ReceiveWound 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113530     0  500
+
+schema ReceiveWound 0, Direction 8
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113550     0  500
+
+schema ReceiveWound 0, Direction 7
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113520     0  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ114300     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ114000     0  500
+motion BZ114001     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 5
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ113001     0  500
+motion BZ113002     0  500
+
+schema MeleeCombat 0, Attack 0, SpecialAttack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ113001     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ113003     0  500
+motion BZ113004     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 6
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion ZOMSTD     4  500
+motion BZ113005     0  500
+motion BZ113006     0  500
+
+schema ReceiveWound 0, SevereWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113570     0  500
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113700     0  500
+motion BZ113701     0  500
+motion BZ113702     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113800     0  500
+motion BZ113801     0  500
+motion BZ113802     0  500

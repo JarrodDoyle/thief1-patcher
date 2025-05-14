@@ -1,0 +1,134 @@
+
+torso  PlayerArm
+
+schema Test 0
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+
+schema PlyrSword 0
+MType  PlayerSword
+TimeScale -4.0
+XYZScale  0
+motion camSynch     0  0
+motion ph212203     0  500
+
+schema PlyrSword 3
+MType  PlayerSword
+TimeScale 2
+XYZScale  0
+motion camSynch     0  0
+motion GBMID     0  500
+
+schema Direction 6, PlyrSword 6
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+motion GBLO     0  500
+
+schema Direction 5, PlyrSword 6
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+motion GBHI     0  500
+
+schema Direction 1, PlyrSword 6
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+motion GBLF     0  500
+
+schema Direction 2, PlyrSword 6
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+motion GBRT     0  500
+
+schema PlyrSword 1, PlyrSwordSwing 0
+MType  PlayerSword
+TimeScale 5
+XYZScale  0
+motion camSynch     0  0
+motion midwup     0  800
+
+schema PlyrSword 2, PlyrSwordSwing 0
+MType  PlayerSword
+TimeScale 0.2
+XYZScale  0
+motion camSynch     0  0
+motion GASLLSW     0  500
+
+schema Direction 1, PlyrSword 1, PlyrSwordSwing 1
+MType  PlayerSword
+TimeScale 10
+XYZScale  0
+motion camSynch     0  0
+motion lefthold     0  1000
+
+schema Direction 2, PlyrSword 1, PlyrSwordSwing 1
+MType  PlayerSword
+TimeScale 100
+XYZScale  0
+motion camSynch     0  0
+motion rtset     0  1000
+
+schema Direction 1, PlyrSword 2, PlyrSwordSwing 1
+MType  PlayerSword
+TimeScale 0.8
+XYZScale  0
+motion camSynch     0  0
+motion leftswing     0  500
+
+schema Direction 2, PlyrSword 2, PlyrSwordSwing 1
+MType  PlayerSword
+TimeScale 0.75
+XYZScale  0
+motion camSynch     0  0
+motion rtflat11     0  800
+
+schema PlyrSword 1, PlyrSwordSwing 2
+MType  PlayerSword
+TimeScale 15
+XYZScale  0
+motion camSynch     0  0
+motion highhold     0  800
+
+schema PlyrSword 2, PlyrSwordSwing 2
+MType  PlayerSword
+TimeScale 0.9
+XYZScale  0
+motion camSynch     0  0
+motion highswing     0  500
+
+schema PlyrSword 4
+MType  PlayerSword
+TimeScale 0.6
+XYZScale  0
+motion camSynch     0  0
+motion ph212202     0  500
+
+schema PlyrSword 5
+MType  PlayerSword
+TimeScale 0.6
+XYZScale  0
+motion camSynch     0  0
+motion ph212205     0  500
+
+schema PlyrSword 1, BlackJack 0, PlyrSwordSwing 0
+MType  PlayerSword
+TimeScale 5
+XYZScale  0
+motion camSynch     0  0
+motion highhold     0  800
+
+schema PlyrSword 2, BlackJack 0, PlyrSwordSwing 0
+MType  PlayerSword
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+motion highswing     0  500

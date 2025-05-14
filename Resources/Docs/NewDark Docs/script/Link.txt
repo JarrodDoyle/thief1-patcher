@@ -1,0 +1,21 @@
+DECLARE_SCRIPT_SERVICE(Link, 0xee)
+{
+	STDMETHOD_(link,Create)(linkkind kind, object from, object to) PURE;
+	STDMETHOD(Destroy)(link destroy_me) PURE;
+	STDMETHOD_(boolean,AnyExist)(linkkind kind = AnyLink, object from = AnyObject, object to = AnyObject) PURE; 
+	STDMETHOD_(linkset,GetAll)(linkkind kind = AnyLink, object from = AnyObject, object to = AnyObject) PURE; 
+	STDMETHOD_(link,GetOne)(linkkind kind = AnyLink, object from = AnyObject, object to = AnyObject) PURE; 
+	STDMETHOD(BroadcastOnAllLinks)(const object ref SelfObj, const char *Message, linkkind recipients, const cMultiParm ref linkdata) PURE;
+	STDMETHOD(BroadcastOnAllLinks)(const object ref SelfObj, const char *Message, linkkind recipients) PURE;
+	STDMETHOD(CreateMany)(linkkind kind, const string ref FromSet, const string ref ToSet) PURE;
+	STDMETHOD(DestroyMany)(linkkind kind, const string ref FromSet, const string ref ToSet) PURE;
+	STDMETHOD_(linkset,GetAllInherited)(linkkind kind = AnyLink, object from = AnyObject, object to = AnyObject) PURE; 
+	STDMETHOD_(linkset,GetAllInheritedSingle)(linkkind kind = AnyLink, object from = AnyObject, object to = AnyObject) PURE; 
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	// broadcast along links from many sources
+	STDMETHOD(BroadcastOnAllLinksMany)(const string ref FromSet, const char *Message, linkkind recipients, const cMultiParm ref linkdata = 0) PURE;
+};

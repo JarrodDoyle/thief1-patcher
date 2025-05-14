@@ -1,0 +1,98 @@
+DECLARE_SCRIPT_SERVICE(Engine, 0x229)
+{
+	// returns TRUE if config var is defined
+	STDMETHOD_(BOOL, ConfigIsDefined)(const char *name) PURE;
+
+	// get config var as int value
+	STDMETHOD_(BOOL, ConfigGetInt)(const char *name, int ref value) PURE;
+
+	// get config var as float value
+	STDMETHOD_(BOOL, ConfigGetFloat)(const char *name, real ref value) PURE;
+
+	// get config var value as raw text
+	STDMETHOD_(BOOL, ConfigGetRaw)(const char *name, string ref value) PURE;
+
+	// get bind variable as float
+	STDMETHOD_(real, BindingGetFloat)(const char *name) PURE;
+
+	// search for a file in paths defined by a path config var (like "script_module_path"), 'fullname' is
+	// set if return value is TRUE
+	STDMETHOD_(BOOL, FindFileInPath)(const char *path_config_var, const char *filename, string ref fullname) PURE;
+
+	// returns TRUE if running game in legacy DX6 mode
+	STDMETHOD_(BOOL,IsRunningDX6)() PURE;
+
+	// get display resolution (more specifically the main 2D surface, which is the only thing relevant as far as drawing concerns)
+	STDMETHOD_(void,GetCanvasSize)(int ref width, int ref height) PURE;
+
+	// aspect ratio of current display mode (w/h)
+	STDMETHOD_(real,GetAspectRatio)() PURE;
+
+	// get global fog settings (dist 0 means fog disabled)
+	STDMETHOD_(void,GetFog)(int ref r, int ref g, int ref b, float ref dist) PURE;
+	// set global fog settings (dist 0 means fog disabled)
+	STDMETHOD_(void,SetFog)(int r, int g, int b, float dist) PURE;
+
+	// get fog settings for a fog zone (iZone must be a number 1 to 8 or function silently fails)
+	STDMETHOD_(void,GetFogZone)(int iZone, int ref r, int ref g, int ref b, float ref dist) PURE;
+	// set fog settings for a fog zone (iZone must be a number 1 to 8 or function silently fails)
+	STDMETHOD_(void,SetFogZone)(int iZone, int r, int g, int b, float dist) PURE;
+
+	// get weather parameters
+	STDMETHOD_(void,GetWeather)(int ref precip_type, real ref precip_freq, real ref precip_speed, real ref vis_dist,
+				real ref rend_radius, real ref alpha, real ref brightness, real ref snow_jitter,
+				real ref rain_len, real ref splash_freq, real ref splash_radius, real ref splash_height,
+				real ref splash_duration, string ref texture, vector ref wind) PURE;
+	// set weather parameters
+	STDMETHOD_(void,SetWeather)(int precip_type, real precip_freq, real precip_speed, real vis_dist,
+				real rend_radius, real alpha, real brightness, real snow_jitter,
+				real rain_len, real splash_freq, real splash_radius, real splash_height,
+				real splash_duration, const char *texture, const vector ref wind) PURE;
+
+	// perform a raycast on the worldrep (terrain only), returns TRUE if something was hit and hit_location contains
+	// the hit location (not quite as expensive as ObjRaycast but don't use excessively)
+	STDMETHOD_(BOOL,PortalRaycast)(const vector ref from, const vector ref to, vector ref hit_location) PURE;
+
+	// perform a raycast on objects and terrain (expensive, don't use excessively)
+	//   'ShortCircuit' - if 1, the raycast will return immediately upon hitting an object, without determining if there's
+	//                    any other object hit closer to ray start
+	//                    if 2, the raycast will return immediately upon hitting any terrain or object (most efficient
+	//                    when only determining if there is a line of sight or not)
+	//   'flags'        - if bit 0 is set, the raycast will not include mesh objects (ie. characters) in the cast
+	//                    if bit 1 is set, the raycast will only include objects in the cast whose "Render Type" property
+        //                    is Normal or Unlit [new flag in T2 v1.27 / SS2 v2.48]
+	//   'ignore1'      - is an optional object to exclude from the raycast (useful when casting from the location of
+	//                    an object to avoid the cast hitting the source object)
+	//   'ignore2'      - is an optional object to exclude from the raycast (useful in combination with ignore2 when
+	//                    testing line of sight between two objects, to avoid raycast hitting source or target object)
+	// returns 0 if nothing was hit, 1 for terrain, 2 for an object, 3 for mesh object (ie. character)
+	// for return types 2 and 3 the hit object will be returned in 'hit_object'
+	STDMETHOD_(int,ObjRaycast)(const vector ref from, const vector ref to, vector ref hit_location, object ref hit_object,
+								int ShortCircuit, int flags, object ignore1, object ignore2) PURE;
+
+	//
+	// new functions in T2 v1.20 / SS2 v2.41:
+	//
+
+	// set texture for environment zone (iZone must be a number 0 to 63 or function silently fails, if texture name
+	// is empty or NULL the specified env zone map is cleared)
+	STDMETHOD_(void,SetEnvMapZone)(int iZone, const char *texture) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	// set and get tag block values
+	STDMETHOD(SetTagBlock)(const char *name, const char *field, const char *value,
+							eWhichVarFile which = kMissionVar, int index = 0) PURE;
+	STDMETHOD_(cMultiParm,GetTagBlock)(const char *name, const char *field,
+										eWhichVarFile which = kMissionVar, int index = 0) PURE;
+};
+
+enum eWhichVarFile
+{
+   kMissionVar,
+   kGameSysVar,
+   kCampaignVar,
+   kNumVarFiles,
+};

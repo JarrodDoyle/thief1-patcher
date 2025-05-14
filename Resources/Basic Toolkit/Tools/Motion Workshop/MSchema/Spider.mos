@@ -1,0 +1,191 @@
+
+torso  Spider
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BS114002     4  500
+motion BS111220     2  500
+motion BS111221     2  500
+
+schema Stand 0, Wheel 0
+MType  StandWith90s
+TimeScale 0.6
+XYZScale  0
+motion BS114002     4  500
+motion BS111220     2  500
+motion BS111221     2  500
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS113000     4  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion BS111010     0  0
+motion BS111011     0  0
+
+schema Locomote 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion BS111030     0  0
+motion BS111031     0  0
+
+schema Locomote 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion BS111211     0  0
+motion BS111210     0  0
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111010     0  0
+motion BS111011     0  0
+
+schema Locomote 0, LocoUrgent 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111030     0  0
+motion BS111031     0  0
+
+schema Locomote 0, LocoUrgent 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111211     0  0
+motion BS111210     0  0
+
+schema Locomote 0, MeleeCombat 0
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111010     0  0
+motion BS111011     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111030     0  0
+motion BS111031     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion BS111211     0  0
+motion BS111210     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BS111017     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BS111017     0  500
+
+schema MeleeCombat 0, Attack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BS113000     4  500
+motion BS113001     0  500
+motion BS113002     0  500
+motion BS113003     0  500
+motion BS141021     0  500
+
+schema MeleeCombat 0, Attack 0, SpecialAttack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BS113000     4  500
+motion BS113001     0  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS112001     0  500
+
+schema Search 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS112400     0  500
+motion BS112100     0  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS112200     0  500
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0.6
+XYZScale  0
+motion BS113700     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS113701     0  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS114208     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS131010     0  500
+motion BS141011     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS141021     0  500
+
+schema ReceiveWound 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS113501     0  500
+motion BS113502     0  500
+
+schema ReceiveWound 0, MeleeCombat 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS113502     0  500
+
+schema ReceiveWound 0, MeleeCombat 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BS113501     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion fetalspi     0  500

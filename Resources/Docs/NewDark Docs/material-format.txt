@@ -1,0 +1,627 @@
+A material file has the same name as the image file it's associated to, except it has a ".mtl" extension.
+
+Ex:
+    wall01.tga
+    wall01.mtl
+
+For animated textures only the base/root texture of the animation should have a material file.
+
+The material files need to reside in the same relative path as the image, not necessarily the same physical
+directory though. For example if the image is "FAM\skyhw\moon.pcx" it will try to find a material file
+"FAM\skyhw\moon.mtl" located in any mod/FM or registered resource path. HOWEVER, in order to be loaded, a
+material file has to be in a path that has the same or higher priority than the image file (see "doc\cam_mod.ini"
+for path priorities).
+
+Ex:
+    This is OK
+    C:\Thief2\FAM\cave\cave1.tga
+    C:\Thief2\FAM\cave\cave1.mtl
+
+    This is OK (with "C:\Thief2\MyMod" in mod_path or resname_base)
+    C:\Thief2\FAM\cave\cave1.tga
+    C:\Thief2\MyMod\FAM\cave\cave1.mtl
+
+    This is NOT
+    C:\Thief2\FAM\cave\cave1.tga
+    C:\Thief2\mods\mymod\materials\cave1.mtl
+
+    This is NOT (with mod_path "C:\Thief2\mods\A+C:\Thief2\mods\B", because the image file is in a higher
+    priority path than the material file)
+    C:\Thief2\mods\A\FAM\cave\cave1.tga
+    C:\Thief2\mods\B\FAM\cave\cave1.mtl
+
+
+The material file is a text file containing material parameters, one parameter per line unless noted otherwise.
+Comment lines can be specified with the first non-whitespace character(s) being either "#" or "//".
+
+There's a simplistic C-like preprocessor syntax for conditional blocks inside a material file. These are evaluated
+only when the material is loaded. The preprocessor commands are:
+
+    .ifdef
+    .ifndef
+    .else
+    .endif
+
+The .ifdef/.ifndef commands take an argument that's evaluated as true or false. The argument can be 'DX6', which
+evaluates to true if the game is running in DX6 mode, or a config var prefixed with '$', which evaluates to true
+if the config var exists and is not defined with a value of 0.
+
+Example that makes material define an environment reflection layer using a 2D reflection map when running DX6
+and a cubemap reflection map otherwise (i.e. when running DX9, see "modders_notes.txt" for further cubemap info):
+
+    .ifdef DX6
+    env_map 0.3 1 textures\environment_map2D
+    .else
+    env_map 0.3 1 textures\environment_mapCube
+    .endif
+
+Example that defines an environment reflection layer in the material if the config var "disable_reflections"
+is NOT defined:
+
+    .ifndef $disable_reflections
+    env_map 0.3 1 textures\environment_map
+    .endif
+
+It can also be used to disable a larger block since there's no support for multi-line comments:
+
+    .ifdef 0
+    ani_rate 125
+    force_opaque
+    illum_map 0.5 textures\glow_map
+    .endif
+
+
+
+Terminology notes:
+    When referring to "MESH meshes" it means meshes located in the MESH dir/crf, i.e. deformable meshes like
+    characters. "OBJ meshes" means meshes in the OBJ dir/crf, i.e. most regular objects.
+
+
+
+Following parameters are available:
+
+
+include <filename>
+------------------
+
+    Include another material file located in the same relative path. Useful if a whole bunch of textures have
+    the same material settings, then you can make a single file that all other files include. Makes tweaking
+    the material settings a lot easier. An include works as if the contents of the included file was inserted
+    at the position of the "include" statement. There can be multiple includes and nested includes.
+
+    Ex:
+        include generic_env.inc
+        include gears.mtl
+
+
+ani_rate <int>
+--------------
+
+    Animation rate, specified as milliseconds per frame, for animated textures. Default is 250.
+    The "Texture Anim Data" property in DromEd overrides any material setting, unless "force_ani_settings" is
+    set. If the texture isn't animated the parameter is ignored. This parameter only has an effect on objects
+    where "Texture Anim Data" would also have an effect.
+
+    Ex:
+        ani_rate 33
+
+
+ani_frames <int>
+----------------
+
+    Animation frames. Default is 0, which means the frame count is determined by the number of files found.
+    While not required it may be good practice to set this param, this avoids conflicts with other mods. For
+    example if one mod overrides the water textures and has 15 frames, then another mod has 20 frames. Without
+    setting ani_frames this can result in 15 frames from one mod being used and the last 5 frames from the other.
+    If the texture isn't animated the parameter is ignored.
+
+    Ex:
+        ani_frames 20
+
+
+ani_mode <"WRAP" | "REVERSE" | "PINGPONG">+
+-------------------------------------------
+
+    Animation mode flags, related to the "Texture Anim Data" property, one or several flags can be specified
+    separated with spaces. Default is WRAP. PINGPONG and WRAP are mutually exclusive. The "Texture Anim Data"
+    property overrides any material setting, unless "force_ani_settings" is set. If the texture isn't animated
+    the parameter is ignored. This parameter only has an effect on objects where "Texture Anim Data" would also
+    have an effect.
+
+    Ex:
+        ani_mode WRAP REVERSE
+        ani_mode PINGPONG
+
+
+force_ani_settings [<0,1>]
+--------------------------
+
+    Apply material animation rate and mode settings even if the texture has a "Texture Anim Data" property.
+
+
+terrain_scale <int> [<int>]
+---------------------------
+
+    Virtual texture dimension for terrain surfaces, can be specified as a single value for square textures
+    or as width and height. The terrain scale should always be less than or equal to the real image size and
+    a power of two (1, 2, 4, 8, 16, 32, 64, 128 etc.). This param can be used to update textures used in
+    existing missions with higher resolution ones, by specifying the original texture dimension as the
+    terrain scale. It's also useful to specify a lower resolution terrain scale when using high resolution
+    textures, in order to keep the lightmap resolution at sane levels.
+
+    Ex:
+        terrain_scale 64
+        terrain_scale 128 128
+
+
+tile_factor <int> [<int>]
+-------------------------
+
+    This option can be used when making larger replacement textures that contain multiple tiles of what the
+    original texture contains, in order to reduce visible repeating patterns. While this can also be achieved
+    by setting an adjusted "terrain_scale", that compensates for the added tiling, it's more convenient to use
+    this option. Another benefit of using this is that it'll also work with OBJ mesh textures (i.e. NOT on
+    characters meshes). Be aware that it'll scale the input UV coordinates for object meshes, which has to be
+    considered when doing UV transformations in material render passes.
+
+    Avoid using this for newly created textures that aren't replacement textures. It's intended for texture
+    upgrades/enhancements. Note that object meshes with this won't render with correct texturing in the editor's
+    solid view, when the editor is running in software rendering mode. In that case you have to go to game mode
+    to see the effect.
+
+    It's also possible to use a replacement texture with fewer tiles than the original by specifying a negative
+    tile factor. For example a tile factor of -2 means that the replacement has 1/2 (half) number of tiles of
+    the original, -3 means 1/3 (one third) etc..
+
+    Ex:
+        tile_factor 2
+        tile_factor 4 2
+
+
+force_opaque [<0,1>]
+--------------------
+
+    Force texture to always be treated as having no alpha, even if it has an alpha component (or uses palette
+    index 0 in palettized images).
+
+
+force_full_alpha [<0,1>]
+------------------------
+
+    Force texture that would normally be alpha keyed to be treated as a full alpha texture, i.e. no alpha keying.
+
+
+force_alpha_key [<0,1>]
+-----------------------
+
+    Force texture with full alpha to be treated as an alpha keyed texture.
+
+
+legacy_chroma_key [<0,1>]
+-------------------------
+
+    Enable legacy chroma keying support for texture (should normally be avoided, only provided in case
+    some old texture requires a workaround).
+
+
+chroma_key_to_alpha [<0,1>]
+---------------------------
+
+    Convert chroma keyed texture to alpha keyed texture (only relevant if "legacy_chroma_key" is enabled).
+    In the unforseen event that chroma keying has to be enabled for a texture, it's recommended to enable
+    this option as well, as there otherwise can be very noticable performance issues.
+
+
+force_local_pal
+---------------
+
+    Force use of texture's own palette when converting palette based images to 32-bit during load. While the
+    local palette is normally used, there are a few special cases where another palette may override it, such
+    as family textures using the family palette and certain UI images. When this is set on an animated texture
+    then all frames will use their local palette, even if a frame has its own material file where the option
+    is not set.
+
+
+no_mipmap [<0,1>]
+-----------------
+
+    Disable mip-mapping for this texture.
+
+
+uv_clamp [<0,1>]
+----------------
+
+    Texture coordinate addressing is normally wrapped/tiled, this option enables clamping (on the base surface
+    only, material render passes have their own "uv_clamp" parameter, see below).
+    NOTE that this option has no effect on terrain surfaces, it only works with OBJ and MESH meshes.
+
+
+edge_padding [<0,1>]
+--------------------
+
+    Edge padding is needed on alpha textures to prevent surrounding pixels from bleeding around the edges,
+    often with a purple color. Automatic edge padding can be enabled as a global game option, but a material
+    may also explicitly request or deny padding with this parameter. When creating new art content it's
+    highly recommended to create the art with edge padding in it, to save unecessary run-time processing by
+    the game.
+
+
+render_material_only [<0,1>]
+----------------------------
+
+    Supress rendering of the base surface and render material passes only. Useful if material passes will
+    completely cover the base surface so that nothing of it remains visible. This saves unecessary rendering
+    of the base surface.
+    Has no effect if material doesn't have any render passes.
+
+
+
+render_pass { ... }
+-------------------
+
+    This param block may be on multiple lines. A material can have up to 6 render passes (including render
+    pass macros like "env_map" and "illum_map"). A render pass is an additional layer rendered on top of the
+    basic surface, usually to produce some kind of special effect. Render passes are currently not supported for
+    MESH meshes.
+
+    IMPORTANT! Render pass rendering isn't terribly efficient so it should be avoided on anything that would cause
+    a large amount of simultaenously visible polys. This especially applies to objects where the material is used
+    on a large portion of the polys. This will completely break batched primitive drawing, which accounts for a
+    large portion of the updated Dark's speed improvements, and not only will it make it as bad as before the update
+    but twice as bad (or more depending on the number of passes)! A few select polys on an object having material
+    passes is ok though, like for example a high poly computer where you have a screen made of 2 polys or so, that
+    you want a material based reflection pass on. On the other hand for example 300 poly brass candle holder, where
+    the entire object has a reflection pass, is a terrible idea. It will go from 1 draw call to 600 draw calls.
+
+    Available render pass parameters:
+
+        texture <texture_name>
+        texture { <texture_name>+ }
+        texture *[_] <int> <texture_name>
+        ------------------------------------------------
+
+            Optional texture or animated texture sequence. It's recommended to place these special effect textures
+            in a separate location from terrain textures, and NOT use terrain textures, due to potential conflicts
+            with the terrain texture manager and family palettes. The conflicts might result in eventual crashes,
+            even if everything seems to initially work.
+
+            The syntax for a custom animated texture sequence is the second above. Inside a {} block should be
+            two or more space separated texture names. The sequence can use the same texture several times.
+            Example:
+
+                texture { "tex\blink01" "tex\blink02" "tex\all_leds" "tex\blink02" "tex\blink01" }
+
+            The syntax for a numeric animated texture sequence is the third above. The first value is the max
+            number of frames to use or 0 if all available frames in the numeric sequence should be loaded. The
+            texture name is the first frame of sequence. If the name ends with one or more digits, it will count
+            that number up for subsequent frames, otherwise it will append the frame number for subsequent frames.
+            If the command mode is "*_" instead of "*" it will always append an underscore and frame number even
+            if the first frame texture name ends with digits.
+            Examples:
+
+                texture * 3 "tex\blink00"        ; will only load "blink00" "blink01" "blink02"
+                texture * 0 "tex\ledsequence"    ; will load "ledsequence" "ledsequence1" "ledsequence2" etc.
+                texture *_ 0 "tex\ledsequence"   ; will load "ledsequence" "ledsequence_1" "ledsequence_2" etc.
+                texture *_ 0 "tex\ledsequence_"  ; will load "ledsequence_" "ledsequence_1" "ledsequence_2" etc.
+                texture *_ 3 "tex\blink00"       ; will only load "blink00" "blink00_1" "blink00_2"
+                texture *_ 3 "tex\blink00_"      ; will only load "blink00_" "blink00_1" "blink00_2"
+
+            Following special case texture names can also be used:
+
+                $TEXTURE  - used to reference the material's base texture
+                $LIGHTMAP - used to reference the lightmap of the current surface, if it has none the
+                            render pass will be skipped (the use of this should probably be avoided
+                            because it doesn't currently support 2X overbright lightmaps)
+
+
+        use_location_envtex [<0-2>]
+        ---------------------------
+
+        Mission defined environment texture map usage/override. Normally disabled (0), if this parameter is
+        defined without any value argument, then it's same as 1. Modes:
+
+            0 - Disabled (mission defined env maps are ignored).
+            1 - If a location based environment texture is defined in the current mission (either a globally
+                defined one or for the specific location) then that is used instead of the texture defined
+                by "texture", otherwise "texture" is used. This allows making materials with reflection passes
+                that use some default env map, that work on missions that don't have mission specific env maps
+                defined, but will make use of mission specific ones if available.
+            2 - Similar to '1' except that if no mission defined env map is available, the entire render pass
+                is skipped.
+
+
+        ani_rate <int>
+        --------------
+
+        Animation rate, specified as milliseconds per frame, for animated textures. Default is 250.
+        If the texture isn't animated the parameter is ignored.
+
+
+        ani_mode <"NORMAL" | "REVERSE" | "RAND" | "PINGPONG">+
+        ------------------------------------------------------
+
+        Animation mode. Default is NORMAL.
+        If the texture isn't animated the parameter is ignored.
+
+
+        blend <src:blend> <dst:blend>
+        -----------------------------
+
+            Alpha blend mode. Source and destination blend modes are one of: ZERO, ONE, SRC_ALPHA, INV_SRC_ALPHA,
+            SRC_COLOR, INV_SRC_COLOR, DST_ALPHA, INV_DST_ALPHA, DST_COLOR or INV_DST_COLOR.
+            The default is normal alpha blending, SRC_ALPHA INV_SRC_ALPHA.
+
+
+        shaded [<0,1>]
+        --------------
+
+            Enable shading/lighting if the base surface is shaded, otherwise it has no effect. For a terrain
+            surface that means if it has a lightmap it will also apply the lightmap to the render pass. For
+            objects it means if the surface uses RGB/RGBA vertex colors (usually vertex lighting), it will
+            multiply those with the render pass' vertex colors.
+            This is useful so that a render pass can be rendered with the same lighting as the underlying surface.
+            If the texture is a cubemap the parameter is ignored.
+
+
+        rgb <r:float> <g:float> <b:float>
+        ---------------------------------
+
+            Explicit vertex color value, default is white (1 1 1).
+
+
+        rgb func <function> <func_param>*
+        ---------------------------------
+
+            Generate vertex color based on one of the following functions:
+
+                INCIDENCE <r:float> <g:float> <b:float> <max_dist:float> <lut_texture>
+
+                    View angle to surface. The view angle between 0 and 90 degrees is used to look up the final
+                    output value in a 1D or 2D texture, where the horizontal texture axis represents the
+                    incidence angle (left is 0 and right is 90). If a 2D texture is used, the vertical texture
+                    axis represents the distance (in world units, i.e. feet) from surface to viewer, from closest
+                    distance on the top row, to "max_dist" on the bottom row. This gives the author full control
+                    to produce any kind of linear or non-linear function based on view angle and distance. The
+                    texture must be at least 2 pixels wide, or it will be discarded.
+
+                    All RGB channels from the LUT texture are used, so it's possible to have individual functions
+                    for each channel and get color changes depending on view angle.
+                    The "r" "g" "b" param is the base color value, which is multiplied with the incidence function
+                    result.
+
+                WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+
+                    Wave/curve based animated value. The result of the wave function is applied to RGB so
+                    there is no individual control over R, G and B channels.
+
+                    function
+                        All functions have an output range of [0 1]. Following functions are available:
+
+                            SINE         - sine wave
+                            ABS_SINE     - absolute sine wave .'´'.'´'.'´'.
+                            TRIANGLE     - triangle wave /\/\/\
+                            SQUARE       - square wave |¯|_|¯|
+                            SAWTOOTH     - sawtooth /|/|/|
+                            INV_SAWTOOTH - inverse sawtooth |\|\|\
+                            TURB         - turbulent noise (semi-random fluctuations)
+
+                    bias
+                       Value added to get the final result (final = function * amplitude + bias).
+
+                    amplitude
+                       Value multiplied with the result of the wave function.
+
+                    phase
+                       Fraction of a wave period to offset, value is in the range [0 1] so that 0.5 will offset
+                       half a period. For TURB this value can be in the range [0 511] and it works like a random
+                       seed that can be used to make sure that different materials don't appear to have
+                       identical/synched randomness.
+
+                    frequency
+                       Number of milliseconds per period. For TURB this defines number of milliseconds between
+                       new random values, how fast fluctuations are.
+
+                    steps
+                       Optional parameter. Make function output snap to multiples of 1/steps, aka stair-stepping.
+                       Minimum value is 2, which makes the function output values that are multiples of 1/2 (=0.5),
+                       so output can be one of [0 0.5 1]. A step size of 4 would output multiples of 1/4 (=0.25),
+                       so output could be one of [0 0.25 0.5 0.75 1]. A negative step size is a special mode where
+                       the output range is 1-exclusive, so with the above examples a step size of -2 would produce
+                       the output values [0 0.5] and step size -4 would produce [0 0.25 0.5 0.75].
+                       Stepping is applied before amplitude and bias (final = Step(function) * amplitude + bias).
+                       Has no effect on SQUARE wave function.
+
+
+        alpha <alpha:float>
+        -------------------
+
+            Explicit vertex alpha value, normally multiplied with original vertex alpha.
+
+
+        alpha func <function> <func_param>*
+        -----------------------------------
+
+            Generate vertex alpha based on one of the following functions:
+
+                INCIDENCE <alpha:float> <max_dist:float> <lut_texture>
+
+                    See "rgb func INCIDENCE" for a description of the function.
+                    Only the B channel from RGB or RGBA LUT textures is used, the rest are ignored.
+                    The "alpha" param is the alpha base value, which is multiplied with the incidence function
+                    result.
+
+                WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int>
+
+                    Wave/curve based animated value. See "rgb func" above for parameter descriptions.
+
+
+        replace_alpha [<0,1>]
+        ---------------------
+
+            Render pass alpha is normally multiplied with the original vertex alpha, this option makes the
+            render pass' alpha value replace the original vertex alpha instead.
+
+
+        uv_source <source>
+        ------------------
+
+            Specify source for texture coordinates, default is TEXTURE. Source can be one of the following:
+
+                TEXTURE     - original texture coords from the surface (default)
+                LIGHTMAP    - lightmap texture coords if the surface has a lightmap, otherwise uses TEXTURE
+                ENVIRONMENT - generate texture coords for environment mapping (reflections)
+                PROJECTION  - generate texture coords for camera projection mapping (when used with a cubemap
+                              it results in skybox behavior)
+
+
+        uv_clamp [<0,1>]
+        ----------------
+
+            Texture coordinate addressing is normally wrapped/tiled, this option enables clamping for
+            the render pass. Because clamped addressing mode will only display the texture within
+            the 0 - 1 UV coord range, it probably is of very limited or no use for terrain surfaces.
+
+
+        uv_mod <function> <func_param>*
+        -------------------------------
+
+            Modify/transform texture coordinates. Note that using rotational and scaling transforms on water
+            surface may not produce usable results due to special handling of water UV coordinates by the engine.
+            One or several of following modify/transform functions can be used:
+
+                SCALE <uscale:float> <vscale:float>
+
+                    Resize texture on the surface. A value of 1.0 will retain the original texture coordinates.
+                    A value of 2.0 would tile texture two times more than normal (texture looks zoomed out),
+                    and 0.5 would tile half of what it normally would (texture looks zoomed in).
+
+                OFFSET <uoffset:float> <voffset:float>
+
+                    Offset texture, default is 0. A value of 1.0 will translated the texture one tile.
+
+                ROTATE <float>
+
+                    Rotate texture on the surface, default is 0. Rotation is specified in degrees.
+                    For cubemaps it rotates around the vertical axis, so a rotation of 180 would swap north
+                    and south.
+
+                PIVOT <uoffset:float> <voffset:float>
+
+                    UV offset that defines the center of transforms, the point around which the texture rotates.
+                    The default is the texture center 0.5 0.5 (0 0 for cubemaps).
+
+                SCALE_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+                USCALE_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+                VSCALE_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+
+                    Wave/curve based animated scaling. See WAVE function for "rgb func" above.
+                    Mutually exclusive to SCALE.
+
+                SCROLL <uspeed:float> <vspeed:float> [<usteps:int> <vsteps:int>]
+
+                    Continuous/animated scroll of texture. Scroll speeds are in UV units per second. Optional
+                    usteps/vsteps params works like the steps param for a WAVE function (see "rgb func" above),
+                    so the scroll motion wouldn't be a continuously flowing motion, but jump from one step to
+                    the next, like lines of text scrolling on an old computer text terminal. A steps value of
+                    0 (or 1) means no stepping so "SCROLL 1 1 0 4" would do a smooth scroll on U and step on V.
+                    Mutually exclusive to OFFSET and OFFSET_WAVE.
+
+                UOFFSET_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+                VOFFSET_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+
+                    Wave/curve based animated U and V offset. See WAVE function for "rgb func" above.
+                    Mutually exclusive to OFFSET and SCROLL.
+
+                SPIN <float> [<steps:int>]
+
+                    Continuous/animated rotation of texture. Rotation speed is specified in degrees per second.
+                    Optional steps param works like the steps param for a WAVE function (see "rgb func" above),
+                    so a step value of 60 would would make it step in 60 "ticks" per rotation, like the hands on
+                    an analog watch.
+                    Mutually exclusive to ROTATE and ROTATE_WAVE.
+
+                ROTATE_WAVE <function> <bias:float> <amplitude:float> <phase:float> <frequency:int> [<steps:int>]
+
+                    Wave/curve based animated rotation. See WAVE function for "rgb func" above.
+                    The output value from the wave function is interpreted as degrees, so with an amplitude of
+                    360 it would peak at one full rotation.
+                    Mutually exclusive to ROTATE and SPIN.
+
+
+        mipmap_bias <-16-16>
+        ----------------------
+
+        Mipmap bias to apply to render pass texture, default is 0 which means Dark's global bias is used. The
+        larger the value the blurrier a texture will appear. Has no effect on textures that don't have any HW
+        mipmaps. THIS PARAM SHOULD NOT BE USED NORMALLY. It's only supplied for potential special effects by
+        experienced users that know how mipmapping works and how display modes and driver settings can affect it.
+        Haphazard use can do more harm than good.
+
+        For example it would be possible to create a cubemap (max 512 sized or the effect will break in some
+        display modes) with mipmaps where the top level mipmap contains a normal environment map and the lower
+        mipmaps contain blurred versions of the env map. ATI's/AMD's CubeMapGen tool has the ability to create such
+        special cubemaps. This cubemap can then be used by different materials to produce both clear reflections
+        and blurred reflections for rough structured surfaces. This could be useful in combination with mission
+        defined env maps ("use_location_envtex"), where you only have one set of cubemaps defined that the material
+        has no control over. If a mission provides the special cubemaps, then materials have the ability to do both
+        normal and blurred reflection (by using "mipmap_bias" for the blurred ones).
+
+
+    Ex:
+        // render pass that darkens a surface depending on view angle (incidence_map is a texture that acts
+        // as a lookup table to convert an incidence angle to the final value used for darkening)
+        render_pass
+        {
+            alpha func INCIDENCE 0.75 10.0 tex/LUTs/incidence_map
+            blend ZERO INV_SRC_ALPHA
+        }
+
+
+env_map <alpha:float> <scale:float> <texture>
+---------------------------------------------
+
+    Add a standard environment/reflection map render pass to the material. When the texture is a cubemap,
+    the scale should be set to 1.
+
+    This is a render pass macro and is the equivalent of:
+
+        render_pass
+        {
+            texture <texture>
+            alpha <intensity>
+            blend SRC_ALPHA ONE
+            uv_source ENVIRONMENT
+            uv_mod SCALE <scale> <scale>
+        }
+
+    Ex:
+        env_map 0.75 2 tex\envmaps\reflection1
+
+
+env_map <alpha:float> <scale:float> * <texture>
+-----------------------------------------------
+
+    Variant of "env_map" that also enables "use_location_envtex", to allow mission defined environment maps
+    to be used, if available, instead of the specified default texture. Optionally the texture name can be
+    omitted which enables "use_location_envtex 2" instead.
+
+    Ex:
+        env_map 0.5 1 * tex\envmaps\envcube1
+
+
+illum_map <intensity:float> <texture>
+-------------------------------------
+
+    Add a standard illumination/glow map render pass to the material.
+
+    This is a render pass macro and is the equivalent of:
+
+        render_pass
+        {
+            texture <texture>
+            alpha <intensity>
+            blend SRC_ALPHA ONE
+        }
+
+    Ex:
+        illum_map 1.0 tex\illum\led_panel_lights

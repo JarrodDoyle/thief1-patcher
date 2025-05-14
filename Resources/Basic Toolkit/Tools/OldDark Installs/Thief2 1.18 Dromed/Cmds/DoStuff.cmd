@@ -1,0 +1,5 @@
+ai_build_path_database
+rooms_build
+build_ai_room_database
+save_mission Done.mis
+play_schema camto3

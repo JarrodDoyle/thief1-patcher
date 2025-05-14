@@ -1,0 +1,26 @@
+
+torso  Biped
+
+schema Stand2Sit 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114320     0  500
+
+schema Sit2Lie 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114321     0  500
+
+schema Lie2Stand 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114322     0  500
+
+schema Sit2Stand 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion standup     0  500

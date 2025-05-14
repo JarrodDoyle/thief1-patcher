@@ -1,0 +1,836 @@
+{\rtf1\ansi \deff4\deflang1033{\fonttbl{\f1\froman\fcharset2\fprq2 Symbol;}{\f4\froman\fcharset0\fprq2 Times New Roman;}{\f11\fmodern\fcharset0\fprq1 Courier New;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;
+\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;
+\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\widctlpar \f4\fs20 \snext0 Normal;}{\*\cs10 \additive Default Paragraph Font;}{\s15\widctlpar \i\f4 \sbasedon0\snext15 Body Text;}{\s16\widctlpar \b\f4 
+\sbasedon0\snext16 Body Text 2;}{\*\cs17 \additive\ul\cf2 \sbasedon10 Hyperlink;}{\s18\widctlpar \f4 \sbasedon0\snext18 Body Text 3;}}{\info{\title Basic DromEd Tutorial}{\author duval}{\operator Daniel Todd}{\creatim\yr2000\mo4\dy17\hr22\min42}
+{\revtim\yr2000\mo4\dy24\hr22\min24}{\version2}{\edmins0}{\nofpages8}{\nofwords12993}{\nofchars74063}{\*\company  }{\vern57443}}\widowctrl\ftnbj\aendnotes\aftnstart0\hyphhotz0\aftnnar\hyphcaps0 \fet0\sectd \linex0\endnhere {\*\pnseclvl1
+\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}{\*\pnseclvl5
+\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang
+{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \s15\widctlpar \i\f4 
+[This document is the original DromEd tutorial with additions and annotations to aid new users and to wholly take account of the changes to DromEd since Thief 2.
+\par \pard\plain \widctlpar \f4\fs20 {\i\fs24 These additions and annotations are NOT written by Looking Glass Studios. They have been added
+ by an independent DromEd fan. Looking Glass Studios should not be held responsible for any errors in these additions or annotations.
+\par }\pard\plain \s16\widctlpar \b\f4 {\b0\i All additions and annotations can be identified by being enclosed in square brackets AND italicized.
+\par }\pard\plain \widctlpar \f4\fs20 {\i\fs24 Throughout, D1 refers to Thief 1 compatible DromEd. D2 refers to Thief 2 compatible DromEd (as found on the Thief 2 CDs).
+\par 
+\par Any copyright on this document claimed by Looking Glass Studios remains with them while the author of the additions and annotations claims no copyright on the additions and annotations.]
+\par }\pard \qc\widctlpar {\b\fs36 
+\par Basic DromEd Tutorial
+\par }\pard \widctlpar {\fs24 
+\par 
+\par Welcome to DromEd, Looking Glass Studios\rquote 
+ Thief: The Dark Project level editor, and the tool you need to create your own Thief missions.  This tutorial is designed to walk you through the basic functions of DromEd, by teaching you to create rooms, place o
+bjects, activate enemies, equip Garrett with some weapons, and specify objectives and difficulty levels.  It\rquote s important that you follow this tutorial from beginning to end; by skipping sections, you
+ may very well miss out on some critical information. 
+\par 
+\par Also keep in mind that DromEd has been released to the public \ldblquote as is,\rdblquote  meaning the program is unsupported by Looking Glass.  We hope we\rquote ve given you enough information to get started\'85but you\rquote 
+ll have to take it from there. }{\b\fs24\cf1 In other words, do not call Looking Glass or EIDOS asking for help with DromEd!  }{\fs24\cf1 We wish you success in designing Thief levels.
+\par }{\fs24 
+\par }{\i\fs24 [D1 and D2 note: If you are experiencing problems (and you will) head over to }{\cs17\i\ul\cf2 http://www.thief-darkproject.com/teg}{\i\fs24  for more advanced tutorials.
+\par An excellent discussion forum with many experienced Thief level editors, eager to help, exists at }{\cs17\i\ul\cf2 http://www.ttlg.com/forums}{\i\fs24  if you head into the Thief Editors\rquote  Guild.]
+\par 
+\par }{\fs24 
+\par }\pard \qc\fi-720\li720\widctlpar\tx720 {\b\fs32 I.\tab What\rquote s On The Screen
+\par }\pard \qc\widctlpar {\b\fs32 
+\par }\pard\plain \s18\widctlpar \f4 When you load up DromEd, you\rquote ll be presented with the main program interface, separated into four distinct sections:
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par }\pard \fi-360\li360\widctlpar\tx360 {\fs24 1.)\tab A menu bar at the top of the screen, as seen in any Windows-based program.
+\par 2.)\tab Four separate view windows, which allow you to examine your levels from four different perspectives.  These windows, starting in the upper left-hand corner and moving clockwise, are \ldblquote 3D View,\rdblquote  \ldblquote Top,\rdblquote  
+\ldblquote Right,\rdblquote  and \ldblquote Front.\rdblquote   You can use the bracket keys to cycle through the different windows, with the white outline indicating which is currently the \ldblquote active\rdblquote 
+ window.  For the purposes of this tutorial, don\rquote t worry about the active window or its uses.
+\par 3.)\tab Several buttons, located in the bottom left-hand section of the screen, used for a variety of functions.
+\par 4.)\tab A command line, located in the bottom right-hand section of the screen (in the small box outlined in light blue), used to enter specific DromEd commands.
+\par }\pard \widctlpar {\fs24 
+\par [}{\b\fs24 Important Note: }{\fs24 In order to properly use DromEd, your desktop must be set larger than DromEd\rquote 
+s default resolution of 640x480.  If your desktop is set to 640x480, and you run DromEd, important parts of the interface screen - like the menu bar at the top - will be cut off.]
+\par }{\f11\fs18\cf1\lang2057 
+\par }{\i\f11\fs18\cf1\lang2057 [D1 and D2 NOTE: You can customize the DromEd window size upto 1024x768.
+\par Add this line to you user.cfg file:
+\par }\pard \li80\widctlpar {\i\f11\fs18\cf1\lang2057 edit_screen_size x,y
+\par }\pard \widctlpar {\i\f11\fs18\cf1\lang2057 If your screen is 1024x768 then use x=800, y=600
+\par If your screen is 1280x960 then use x=1024 y=768]}{\f11\fs18\cf1\lang2057 
+\par }\pard \li80\widctlpar {\f11\fs18\cf1\lang2057 
+\par }\pard \widctlpar {\fs24 During the course of this tutorial, we\rquote ll explore each of these interface elements in-depth.
+\par 
+\par }\pard \qc\fi-720\li720\widctlpar\tx720 {\b\fs32 II.\tab Brushes and Portalizing
+\par }\pard \qc\widctlpar {\b\fs32 
+\par }\pard \widctlpar {\fs24 If you have no experience building levels for 3D games, the first thing you need to do is familiarize yourself with the term \ldblquote brush.\rdblquote 
+  In DromEd, anything that gets created is called a brush. Rooms are referred to as \ldblquote room brushes,\rdblquote  lights are called \ldblquote light brushes,\rdblquote  etc.  The most common brush is the \ldblquote operation brush,\rdblquote 
+ used to create terrain (hollowed-out \ldblquote rooms\rdblquote  and solid objects).  DromEd allows the user to create spaces using six different shapes of operation brush: cube, cylinder, pyramid, corner-apex pyramid, wedge, and dodecahedron. }{
+\fs24\cf1 You can think of the default Thief level as being completely solid and stretching infinitely in all directions.  In other words, before you add any brushes, the world is just an infinitely huge block of solid}{\fs24\cf6 .}{\fs24 
+ You carve away from t
+hat block to create rooms, stairs, structures, and other unique architectural features. So, to create a square room, you would use a cube-shaped operation brush, filled with air, to carve away a square in the center of the existing solid block.  If all of
+ this is a bit confusing, don\rquote t worry: everything will become clear once we start building some rooms.
+\par 
+\par As you can see by looking at the different view windows, there\rquote s already a beginning operation brush in place (a cube) and you\rquote re standing right in the m
+iddle of it, as indicated by the violet-colored icon.  Now look down at the bottom of the screen, to the small, funky-looking texture affectionately referred to as \ldblquote Jorge.\rdblquote   That\rquote 
+s the default texture for the selected brush, but we\rquote ll discuss textures later in the tutorial.  For now, look at the buttons underneath Jorge, specifically, the one that reads \ldblquote Op<Fill Air    >.\rdblquote 
+\par Click on the arrows to see the different types of brushes you can create.  After you\rquote ve seen all the choices, go back to \ldblquote Fill Air,\rdblquote  bec
+ause we want to create an air brush, which is essentially a hollowed-out room.  Remember, the existing universe is already a giant, solid block, so we need to fill a brush with air to create a room; creating a brush and then filling it in with solid will 
+have no effect, for obvious reasons.
+\par 
+\par Now that you\rquote ve set the brush selection to \ldblquote Fill Air,\rdblquote  it\rquote s time to \ldblquote portalize\rdblquote 
+ the level so the change actually takes place in the game world.  For the purposes of designing levels with DromEd, portalizing is the proce
+ss by which your brushes, which are created on the 2D grid, are transformed into 3D space.  So, go to the menu bar on the top of the screen, click \ldblquote Tools,\rdblquote  then click \ldblquote Portalize.\rdblquote 
+  Be patient as DromEd processes the brushes.  Small levels with just a few 
+brushes usually portalize in just a couple of seconds, but when your levels get larger and more complex, portalization can take a couple of minutes or more.  Look at the center of the white bar on the very bottom of the DromEd screen; when it reads 
+\ldblquote done,\rdblquote  the level has been portalized. }{\fs24\cf1 Whenever you alter the terrain in the level, using one of the 2D views, you will need to portalize to see new changes in the 3D View window and in the game itself.
+\par }{\fs24 
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 III. Viewing Brushes / Moving around in the View Windows
+\par }\pard \widctlpar {\fs24 
+\par Okay, you\rquote ve portalized the level. It may seem like nothing actually happened, but don\rquote t panic: that\rquote s just because the 3D View window defaults to a wireframe representation of the 3D world, and it\rquote 
+s tough to notice any changes.  Move the mouse cursor to the 3D View window and press and hold the right mouse button.  Doing so allows you to select from a list of options for the view you currently have the mouse cursor over.  We\rquote 
+ll discuss these options in more depth a bit later.  For now, highlight the choice that reads \ldblquote solid + selection,\rdblquote 
+ then release the right mouse button.  This will change the 3D View representation from wireframe to solid, with a white outline indicating the currently selected brush (in this case, the }{\i\fs24 only}{\fs24  brush).
+\par 
+\par Now, you may still be wondering why the 3D View hasn\rquote t changed much; right now it should look like we\rquote ve just gone from a wireframe display to a completely black display with a few white lines.  Actually, you\rquote 
+re standing in the exact center of the operation brush you just created, but the \ldblquote room\rdblquote  is shrouded in darkness so it\rquote 
+s impossible to see anything.  When you create Thief rooms using DromEd, everything is pitch black - you need to actually place light sources (either light brushes, or light-emitting objects, like torches or 
+electric lamps).  But, for the sake of simple level designing, we can take a shortcut and use the \ldblquote light_bright\rdblquote  command, which completely illuminates the level and eliminates all darkness and shadow.  [}{\b\fs24 Important Note: }{
+\fs24 While the term \ldblquote room\rdblquote  can be used to refer to operation brushes you create, it\rquote s important to know that DromEd does not yet consider them rooms.  So, even if you create a detailed banquet hall, DromEd won\rquote 
+t see the space as a room, but a large air brush.  Don\rquote t worry about that for now, though - we\rquote ll get to this issue later on in the tutorial.]
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D2 NOTE: Turning light_bright on works asa described. However, in DromEd2, with light_bright off, brushes near to the camera will be light brighted anyway. This effect cannot be disabled.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par To enter the command, either left click on the command line or press semicolon (note: you\rquote ll need to hit Shift and the \ldblquote ;\rdblquote  key).  Type \ldblquote light_bright\rdblquote  (as with all commands, do }{\b\fs24 not}{\fs24 
+ use quotation marks) and hit the \ldblquote Enter\rdblquote  key.  Now that you\rquote ve entered in the \ldblquote light_bright\rdblquote  command, you\rquote ll notice (hey, you may even be panicking) that the 3D View window still hasn\rquote 
+t changed.  That\rquote s because there needs to be some \ldblquote movement\rdblquote  in the 3D world before \ldblquote light_bright\rdblquote  activates.  In the 3D View window: the \ldblquote A\rdblquote  and \ldblquote D\rdblquote  keys a
+re used to rotate left and right; the \ldblquote W\rdblquote  and \ldblquote S\rdblquote  keys are used to move forward and backward; the \ldblquote Z\rdblquote  and \ldblquote C\rdblquote  keys are used to slide left and right; and the \ldblquote Q
+\rdblquote  and \ldblquote E\rdblquote  keys are used to move up and down.  Hit one of those keys, and the 3D View window will change - you should now be hovering in the center of a small, very ugly room.  Use the \ldblquote R\rdblquote  and \ldblquote V
+\rdblquote  keys to look up and down, and the \ldblquote F\rdblquote  key to recenter your view.  Remember how you chose the \ldblquote solid + selection\rdblquote  representation for the 3D View window, by pr
+essing and holding the right mouse button?  Move the mouse cursor over one of the 2D view windows (top, right, or front), and do the same thing.  Choose \ldblquote teleport camera\rdblquote 
+ to instantly jump to that point in the 2D display.  The selection defaults to \ldblquote teleport camera,\rdblquote 
+ so you should get into the habit of moving the mouse cursor to different spots in the 2D windows, and right clicking to instantly jump to those positions.  [}{\b\fs24 Important Note:}{\fs24  Don\rquote 
+t try this when the mouse cursor is positioned over the 3D View window.  The 3D View menu defaults to \ldblquote solo view,\rdblquote  and accidentally choosing this option will find DromEd\rquote 
+s grid sections replaced by a giant 3D view.  If this happens, just right click on the 3D View window to revert DromEd back to normal mode, and bring back the four small windows.]  Try teleporting outside the operation brush.  In the 3DView window, you
+\rquote ll be able to see the operation brush from a distance, just sort of sitting there in space.  It\rquote s important to realize, though, that during the course of creating your level, you never want to allow the player or any AIs to enter any 
+\ldblquote solid\rdblquote  part of the terrain. The player and AIs can travel through water and air, but putting them in solid is a sure way to \ldblquote break\rdblquote  your level.  
+\par 
+\par }{\i\fs24 [D1 and D2 NOTE: Actually, \ldblquote X\rdblquote  is the key to move the camera backwards.]
+\par }{\fs24 
+\par Now it\rquote s time to enter into the 3D world in \ldblquote game mode\rdblquote  and see the room as Garrett would.  Go back inside the room and hit \ldblquote Alt+G\rdblquote 
+ to enter into the game.  You are now, for all intents and purposes, in Thief.  You can hit the \ldblquote Escape\rdblquote  key to access different options, like changing video cards or reconfiguring keyboard keys.  [}{\b\fs24 Note:}{\fs24  Make sure you
+\rquote re actually inside the confines of your operation brush before you enter into game mode, or you\rquote ll run into problems.]  You may notice that some things appear to be missing - Garrett doesn\rquote 
+t have a health meter, there are no items in your inventory, and there are no sound effects.  That\rquote s because DromEd doesn\rquote t yet recognize your brush as an actual room, and you haven\rquote t ye
+t placed a Garrett character model (referred to as a \ldblquote Starting Point\rdblquote ) in the game world.  But don\rquote t worry about those things just yet; we\rquote ll come back to them later.  
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: Don\rquote t try to save or load a game when in game mode. It won\rquote t work and will crash DromEd and possibly your computer.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par When you\rquote re ready to go back to the editor hit \ldblquote Alt+E.\rdblquote   It\rquote s now time to modify the room even further, to make it more recognizable.
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 IV: Using Textures
+\par 
+\par }\pard \widctlpar {\fs24 So, we\rquote ve created a simple room\'85but it doesn\rquote t exactly look like a room.  That\rquote 
+s because the whole thing is using Jorge, the default texture.  In order to create Thief-style rooms, complete with carpeting, cobblestones, and wooden planks, we need to load in texture families.  Go to the command line, type in \ldblquote 
+add_family core_1\rdblquote  and hit \ldblquote Enter\rdblquote  to load in the \ldblquote core\rdblquote  set of Thief 2 textures.  Now, let\rquote s add another texture family, but this time use a shortcut.  Go to the command line again and type 
+\ldblquote a\rdblquote  - then hit the \ldblquote Tab\rdblquote  key to cycle alphabetically through all recognizable commands.  Use this method to select (or simply type in) the command \ldblquote add_family core_2\rdblquote 
+ to load in another core set of textures.  
+\par 
+\par To see the textures that you\rquote ve loaded in, bring up the texture palette by pressing \ldblquote Alt+T.\rdblquote   For now, we\rquote ll 
+make the whole room one texture.  Click on one of the brick textures so that its name is highlighted in violet.  At the end of the texture palette, you\rquote ll notice a few buttons; click the one that reads \ldblquote Put on Brush.\rdblquote   You
+\rquote ll see that texture instantly applied to the entire room.  Occasionally, during the course of level design, you\rquote ll need to portalize the level before you see new textures applied in the 3D View window. }{\fs24\cf1 
+When this is the case, DromEd will display a message to that effect on the bottom of yo
+ur window.  In fact, you should get used to checking the message bar on the bottom of the screen for important information.  If something goes wrong during the course of your level design, an error message can often be found in that space.}{\fs24 
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D2 NOTE: You\rquote ll probably find your texture palette is all messed up and that brushes have funny looking textures. If you do find this, then you need to add this line to your user.cfg file:
+\par \pard\plain \li80\widctlpar \f4\fs20 {\i\f11\fs18\cf1\lang2057 edit_screen_depth 16]
+\par }\pard \widctlpar {\fs24 
+\par At this point it\rquote s quite possible that something has gone wrong, and clicking the \ldblquote Put on Brush\rdblquote  button actually applied the selected texture to just one side of the room.  If that happens, it\rquote 
+s because at some point you clicked on a face of the wall, thereby selecting that as the \ldblquote active\rdblquote  face.  Using the \ldblquote Put on Brush\rdblquote  command doesn\rquote 
+t necessarily put a texture on the entire brush - it puts it on the selected face.  It just so happens that when you first start DromEd, none of the faces is selected; instead, the program starts with the brush in \ldblquote default\rdblquote  mode.  Ba
+sically, imagine the default texture as the original color of an entire room.  By adding different textures to different faces of the room (walls and ceiling), you\rquote re not replacing the default texture, but \ldblquote painting\rdblquote 
+ over it.  So, if you were to create an
+ operation brush with a default brick texture, and then chose other textures for the walls, floor, and ceiling, the default texture would still be the brick you originally chose - it would just be hidden under the other textures.
+\par 
+\par It\rquote s easy to tell which face you have selected.  If you still have the texture palette up, remove it by hitting \ldblquote Alt+T\rdblquote 
+ again.  Now, in the 3D View window, click one of the faces of the operation brush.  It will highlight in orange, indicating that it is now the selected face.  You can also cycle through the different faces by repeatedly hitting the comma (\ldblquote ,
+\rdblquote ) key on the keyboard.  If you cycle through completely, so that none of the faces is highlighted in orange and the brush is outlined in solid white, then you once again have the brush\rquote 
+s default selected.  To quickly see which face of the brush is selected, and which texture has been selected for that brush, look down to the bottom center of the screen, to the buttons that read \ldblquote Face\rdblquote  and \ldblquote Texture.
+\rdblquote   You can also use these buttons to directly apply textures to any face of the brush, including the default.  To reset the default texture of the room, cycle through the available textures using the arrows to the left and right of the 
+\ldblquote Texture\rdblquote  button.  When you\rquote ve found one you like, hit the \ldblquote Reset\rdblquote  button, found above the \ldblquote Face\rdblquote  and \ldblquote Texture\rdblquote 
+ brushes.  This will reset the default texture to the one you selected, essentially allowing you to start from scratch.
+\par 
+\par Now, hit \ldblquote Alt+T\rdblquote 
+ to bring the texture palette back up.  Click a texture so that its name is highlighted in violet, and then click a face to see the selected texture applied to that face.  Use this method to apply textures to the walls and floor.  Then, hit the 
+\ldblquote R\rdblquote  key to look up at the operation brush\rquote s \ldblquote ceiling.\rdblquote   Click the \ldblquote Sky\rdblquote 
+ button (also found at the end of the texture palette) so that its name is highlighted in violet, and then click the ceiling to place the star texture.  Hit \ldblquote Alt+T\rdblquote  again to remove the texture palette, and then press \ldblquote Alt+G
+\rdblquote  to enter to game and take a look around.  It should look as if you\rquote re standing is a tall-walled, open-air courtyard, with the starry night sky above.  It\rquote 
+s important to understand that, for level design purposes, the sky is just an illusion.  It\rquote s actually just a ceiling with a modified texture, and not an actual, limitless sky.  So, while it looks as if you could fly up to the heavens, you\rquote 
+d really smash your head against a relatively low ceiling (in this case, the room is still set to the default height - 16 feet).  When you\rquote re done admiring your craftsmanship, hit \ldblquote Alt+E\rdblquote  to enter back into DromEd.
+\par 
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 V. Resizing Brushes
+\par 
+\par }\pard \widctlpar {\fs24 Up until now, we\rquote ve simply played around with the existing, default}{\fs24\cf2  }{\fs24\cf1 operation brush}{\fs24 .  Let\rquote s modify the brush to make it a bit bigger.  Look at the lower left-hand cor
+ner of the screen and find the three buttons that read \ldblquote D,\rdblquote  \ldblquote W,\rdblquote  and \ldblquote H.\rdblquote   These stand for depth, width, and height respectively, and are measured in an approximation of feet.  You\rquote 
+ll notice, then, that the default brush is a perfect cube, measuring 16x16x16 feet.  Let\rquote 
+s leave the height at 16 feet, but modify the depth and width.  Here we have a few options.  The easiest way to change the size of a brush is to press and hold the control key, position the mouse cursor over one of the 2D windows, press and h
+old the left mouse button, and move the mouse to resize the brush.  Move the mouse cursor over the \ldblquote Top\rdblquote  view window and practice resizing the room.  Note how resizing the brush in this manner only affects the two \ldblquote visible
+\rdblquote  dimensions - width and depth.  To use this method to resize the third dimension (in this case, height), press and hold the right mouse button and move the mouse left and right.  Experiment with this method in all of the 2D view windows.
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: You will only be able to size bru
+shes in multiples of 8 feet because that is the grid size that DromEd defaults to. These multiples can be increased or decreased by changing the grid size value towards the top left of the DromEd buttons.
+\par Note that each increment/decrement of the grid size parameter doubles/halves the multiple.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par There are other methods of resizing brushes as well, particularly if you want to get more precise in your measurements.  Try left clicking on the arrows to the left and right of the measurements to resize the brush in very small increments.  It\rquote 
+s also important to know that the \ldblquote D,\rdblquote  W,\rdblquote  and \ldblquote H\rdblquote  indicators (as well as \ldblquote X,\rdblquote  \ldblquote Y,\rdblquote  \ldblquote Z,\rdblquote  \ldblquote H,\rdblquote  \ldblquote P,\rdblquote  
+\ldblquote B,\rdblquote  and others) are buttons.  Move the mouse cursor over the \ldblquote D\rdblquote  indicator and click and hold the left mouse button; notice 
+how the letter turns purple.  With the left mouse button held down, move the mouse left and right to alter the brush\rquote s depth.  You can use this method to alter any of the brush\rquote 
+s dimensions.  There is also another method for resizing a brush, especially for entering in precise measurements, and that is simply to type in the height of any given dimension.  Let\rquote 
+s use this method to make the room 24x32x16.  Click the number next to the \ldblquote D\rdblquote  button so that it highlights in purple.  Then, simply type in the desired height in feet - in this case 24 - and press \ldblquote Enter\rdblquote 
+; the depth of the brush is now 24 feet.  Use this method to change the width to 32 feet as well.  Now, portalize the level so that these changes take effect in the 3D world.
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 VI. Creating New Brushes
+\par 
+\par }\pard \widctlpar {\fs24 Now that we have an operation brush in place, let\rquote s create another operation brush from scratch and attach it to the existing one.  In the lower left-hand corner of the screen, under the heading \ldblquote Create,
+\rdblquote  are several buttons, with the \ldblquote Brush\rdblquote  button alrea
+dy highlighted.  These buttons allow you to create new elements, like brushes, lights, and objects; the option to create a brush is the default.  To create a new brush, choose the type of brush you want to create (in this case we want the default, an 
+\ldblquote air\rdblquote  
+brush).  Left click on one of the 2D view windows and keep the button held down.  Now, move the mouse to create a brush; when the brush is big enough, release the left mouse button to place the brush.  Brushes can be repositioned in much the same way they
+ can be resized.  In the lower left-hand corner of the screen are indicators for a brush\rquote s \ldblquote X,\rdblquote  \ldblquote Y,\rdblquote  and \ldblquote Z\rdblquote  coordinates; you can use these brushes to modify the brush\rquote 
+s position.  Or, press and hold the \ldblquote Shift\rdblquote  key; move the mouse cursor to one of the 2D v
+iew windows; click and hold the left mouse button; and move the mouse to reposition the brush.  Resize the brush so that its measurements are depth=8, width=8, and height=16.  Then, use the \ldblquote top\rdblquote 
+ view window to reposition the brush so that its southern wall connects to the existing brush\rquote s northern wall.  After you\rquote ve done that, move the mouse cursor over the \ldblquote Right\rdblquote  or \ldblquote Front\rdblquote 
+ view window and reposition the new brush so that its bottom side aligns with the existing brush\rquote s bottom side; this will essentially line up the new brush so that it\rquote s on the same level as the existing brush (i.e. they share the same 
+\ldblquote floor\rdblquote ).  It should now look as if you have an open-air courtyard whose northern wall connects to a corridor.  To the north of the corridor, create a r
+oom whose southern wall connects to the northern wall of the corridor.  When the brushes are lined up properly, portalize the level to see the changes reflected in the 3D View window.  Feel free to play with the textures, and hit \ldblquote Alt+G
+\rdblquote  to jump into the game and walk around the rooms as Garrett would.  If everything went smoothly, you will have created an open-air courtyard, connected to a corridor, connected to a room. 
+\par 
+\par Now, use this method to create a circular column somewhere in the northern room.  To change the shape of the brush from a cube to a cylinder, go up to the menu bar and click \ldblquote Shapes\rdblquote  then \ldblquote Cylinder.\rdblquote 
+  You can modify the number of sides in the cylinder (or in a pyramid, if you were to create one) by clicking \ldblquote Shapes,\rdblquote  then \ldblquote Sides in Base,\rdblquote  and entering in the number of sides you want (the default is 6).  Let
+\rquote s choose a cylinder with 10 sides.
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: The maximum number of sides in the base of a cylinder is 11. Entering larger values will just give a cylinder with 11 sides in base.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par Now that we\rquote ve selected a cylinder, we need to tell DromEd to create a solid brush, as opposed to the air brush we just made.  Look at the bottom center of the screen, to the button called \ldblquote Op.\rdblquote 
+  Use the arrows to the left and right of the button to cycle through the different brush types, and stop when the selection reads \ldblquote fill solid.\rdblquote  [}{\b\fs24 Note:}{\fs24  \ldblquote Fill Solid\rdblquote 
+ is actually the first choice in the list]  When this is done, create the solid brush somewhere in the northern room, using the same method you used to create the air brush.  Resize the brush so that it stretches from floor to ceiling, and ac
+tually connects to the floor and ceiling.  Portalize the level to see these changes reflected in the 3D View window, and enter into the game to see the column more closely.
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 VII. Placing Objects/Lightsourcing
+\par 
+\par }\pard \widctlpar {\fs24 You\rquote ll recall that \ldblquote light_bright\rdblquote  is still enabled, so the spaces you\rquote ve created are completely illuminated in the 3D View window and in the game itself.  Let\rquote 
+s change that by placing a torch in the game world.  
+\par 
+\par Objects in DromEd reside in an \ldblquote object hierarchy,\rdblquote  which can be accessed via the menu bar at the top of the screen.  Click \ldblquote Editors\rdblquote  then \ldblquote Object Hierarchy\rdblquote 
+ to bring up the object hierarchy.  All of the game\rquote s objects reside somewhere in this hierarchy, but for now we\rquote re only concerned with placing a torch.  Objects are located in one of five categories - \ldblquote Sound,\rdblquote  
+\ldblquote SFX,\rdblquote  \ldblquote fnord,\rdblquote  \ldblquote physical,\rdblquote  and MotArchetypes.  Click the plus sign (\ldblquote +\rdblquote ) next to \ldblquote Physical\rdblquote  to expand that tree, then expand \ldblquote Lights.\rdblquote 
+  You\rquote ll notice that \ldblquote Torches\rdblquote  can also be expanded; doing so will bring up an item called \ldblquote ConTorch.\rdblquote   Sometimes, the name next to a \ldblquote +\rdblquote 
+ sign is simply a heading, and you need to expand that tree to see the objects you can place.  In other cases, the headings are objects in themselves, as is the case with the \ldblquote Torch.\rdblquote   Click \ldblquote Torch\rdblquote  so that it
+\rquote s highlighted in blue, and then click the \ldblquote Create\rdblquote  button on the right-hand side of the object hierarchy window.  You\rquote ve basically just told DromEd to get a torch object ready for creation.  
+\par 
+\par }{\i\fs24 [D2 NOTE: You need to expand Physical>Lights>Extinguishable>Torches>torch.]
+\par }{\fs24 
+\par To place the torch in the game world, position the mouse cursor over one of the 2D windows, and click and drag to create a box, just as if you were creating a n
+ew brush.  When you release the mouse button, the object will be created in the center of the box.  Create a total of six torches - three in the southernmost room, near the west, south, and east walls, and two in the northernmost room, near the west and e
+ast walls.  Now, examine the torches in the 3D View window - you\rquote ll notice that their brackets are all facing a particular direction, south.  That\rquote s because all objects, when placed in the game world, \ldblquote face\rdblquote  southward\'85
+but we can attach the torches properly to any wall by rotating them.  }{\fs24\cf1 [}{\b\fs24\cf1 Important Note:}{\fs24\cf1  look down to the lower left-hand corner of the of the DromEd screen and find the column of buttons under the \ldblquote Create
+\rdblquote  heading.  In order to create an object, you first need to click the \ldblquote Object\rdblquote  button so that it\rquote s highlighted in violet.  It just so happens that when you select an object for creation out of the hierarchy, the 
+\ldblquote Object\rdblquote  button is automatically selected.]
+\par }{\fs24 
+\par Up until now we\rquote ve changed a brush\rquote s \ldblquote X,\rdblquote  \ldblquote Y,\rdblquote  and \ldblquote Z\rdblquote  planes and modified its depth, width, and height.  It\rquote s also possible to modify a brush\rquote 
+s heading, pitch, and bank to rotate it into a desired position.  Look at the lower left-hand corner of the screen, to the buttons marked \ldblquote H,\rdblquote  \ldblquote P,\rdblquote  and \ldblquote B.\rdblquote 
+  Use these buttons as you did the previous ones, and practice rotating one of the torches.  Or, press and hold the \ldblquote Alt\rdblquote 
+ key, press and hold the left mouse button, and then move the mouse to rotate the torch.  Rotate the torch so that its heading is 270 (but its pitch and bank are both 0), and affix it
+ to the western wall.  Use this method to rotate the remaining torches and place them on the other walls. [}{\b\fs24 Important Note:}{\fs24  Some objects are actually complex composites of several smaller objects.  The torch is a perfect example: it
+\rquote s actually made up of the torch, the flame, and the smoke.  When you move the torch, it\rquote s important that you do indeed move the }{\i\fs24 torch}{\fs24 \'85
+and not the other elements.  When you move the torch, it may seem as if the flame and smoke are left behind.  Don\rquote t worry - they\rquote ll naturally follow the object.  So, when you enter into the game by pressing \ldblquote Alt+G,\rdblquote  you
+\rquote ll notice that the torch looks just as it should.  When you return to DromEd and look at the 2D view windows, you\rquote ll see that everything is back to where it should be.]
+\par 
+\par }{\b\fs24 [Note:}{\fs24  When you move light sources around, you\rquote ll often need to use the \ldblquote Light\rdblquote  function to update the lighting. To do so, go to the menu bar and click on \ldblquote Tools,\rdblquote  and then click \ldblquote 
+Light.\rdblquote  This will update the level\rquote s light sourcing.] }{\b\fs24 
+\par }{\fs24 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: Portalizing or Optimzing your level will automatically update the lighting.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par Now that we\rquote ve placed torches on the walls, let\rquote s place a table on the floor, in the middle of the southern room.  Tables, like all objects, reside in the object hierarchy; but instead of fishing through the hierarchy tree, let\rquote 
+s take a shortcut.  If you know the name of the object, you can use the \ldblquote find_object\rdblquote  command to instantly jump to its position in the hierarchy.  Click on the command prompt, and enter in the command \ldblquote find_obj table.
+\rdblquote  (without the period, of course)  When you hit \ldblquote Enter,\rdblquote  you\rquote ll go directly to the standard table in the object hierarchy.  You can either keep this one, or choose one of the available variations, like \ldblquote 
+Cabinet Table.\rdblquote   Create the table just as you did the torches, and place it in the game world.  Chances are, the table will be hovering a few feet off the ground.  Instead of manually moving the table, you can have it automatically \ldblquote 
+grounded\rdblquote  by clicking the \ldblquote Floor Me\rdblquote  button, located at the bottom center of the screen.  [}{\b\fs24 Note: }{\fs24 \ldblquote Floor Me\rdblquote  only works if the object you wish to have grounded is hovering in the air }{
+\i\fs24 over }{\fs24 the floor you want to have it grounded to.  If, for example, you place a street lamp in the world, its base is sticking through the floor, and you want to have it aligned perfectly with the floor, you\rquote 
+ll need to first raise the street lamp into the air and then hit the \ldblquote Floor Me\rdblquote  button.  Using the \ldblquote Floor Me\rdblquote  button when an object is already sticking through a floor will have no (or worse, an undesirab
+le) effect.]
+\par 
+\par Now, using the method you just employed for creating and placing the table, we\rquote ll create and place a guard in the northern room.  [}{\b\fs24 Important Note: }{\fs24 If you try to create the default choice - \ldblquote guard\rdblquote 
+ - it actually places a white wedge in the game world.  That\rquote s because \ldblquote Guard\rdblquote  is a merely a heading in the object hieracrchy, and not an actual object.  DromEd interprets \ldblquote unknown\rdblquote  objects using white wedg
+es.  In this case, you need to click the \ldblquote +\rdblquote  sign next to the heading \ldblquote Guard\rdblquote  to expand that part of the tree, and choose a }{\i\fs24 specific }{\fs24 kind of guard.]  Find and create a \ldblquote sword guard
+\rdblquote  (under guards\\swordsmen\\grunts).  Place the sword guard in the northern room.  If you accidentally created a wedge, you can delete it by selecting it as the active object and hitting the \ldblquote Delete\rdblquote  key.  Note
+ that you can use this method to delete }{\i\fs24 any }{\fs24 kind of brush, even entire \ldblquote rooms.\rdblquote 
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D2 NOTE: You need to expand Physical>Creature>Animal>Human>Guard>Swordsman>Grunts>SwordGuard.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par Now that you\rquote re an expert with the object hierarchy, do this: place a table somewhere in the center of the northern room; place the object \ldblquote BaffordScepter\rdblquote  (the scepter from Thief\rquote 
+s Lord Bafford mission) in the room; and then rotate and move the scepter so that it\rquote s lying, horizontally, on the table.  Now you\rquote ve actually got something to steal.  
+\par 
+\par Here\rquote s a really helpful tip for creating multiple objects: instead of creating another table from the hierarchy, we can simply copy the existing table.  To copy a brush (including operation brushes, objec
+ts and lights), simply highlight the brush in question and hit the \ldblquote Insert\rdblquote 
+ key.  This will create a copy in the same exact position as the original brush, with the copy now highlighted as the active brush.  So, while it may look as if nothing happened, you\rquote ve actually made a copy of the existing brush\'85it\rquote 
+s just that the copy is in the same exact place as the original.  If you go to move the original brush, you\rquote ll actually move the copy.  So, use this method to copy the existing table and place the new table in the northern room.
+\par 
+\par You\rquote ll notice that the game world is still fully illuminated, because we\rquote ve still got the \ldblquote light-bright\rdblquote  command enabled.  Now that we\rquote ve placed some torches, we can disable this feature by typing in \ldblquote 
+light_bright\rdblquote  again and moving around in the 3D View window.  Hit \ldblquote Alt+G\rdblquote  to enter into the game to see the lighting effects more closely.
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 VIII. Bringing the Level to Life
+\par 
+\par }\pard \widctlpar {\fs24 The first thing we need to do is load in a script.  A script is a basic set of commands, used by DromEd to activ
+ate different in-game elements, like specific AI behaviors (such as the factory workers in Cragscleft Prison.)  Click on the command line and type \ldblquote script_load convict\rdblquote  to load in the ConVict (}{\b\fs24 Con}{\fs24 ditions for }{
+\b\fs24 Vict}{\fs24 ory) script.  This is the script DromEd needs to activate victory conditions (mission objectives), doors, and weapons.  If you forget to load the script, these and some other in-game elements will fail to function, so it\rquote 
+s good to get into the habit of loading in the script whenever you start a new map.  }{\fs24\cf1 The script will get saved with the level and you won\rquote 
+t ever have to load it for this particular level again.  Scripts are powerful tools, but since they are part of the game\rquote s source code, script editing isn\rquote t available to the public.  However, \ldblquote ConVict\rdblquote  
+should be perfectly adequate for your level building needs.
+\par }{\b\fs24 
+\par }\pard\plain \s15\widctlpar \i\f4 [D2 NOTE: As well as convict you also need the script file gen. Thus you must type in both:
+\par \pard\plain \widctlpar \f4\fs20 {\i\fs24 script_load convict
+\par script_load gen]
+\par }{\b\fs24 
+\par }{\fs24 By now you\rquote ll have noticed that entering into game mode doesn\rquote t quite have the desired effect: Garrett doesn\rquote 
+t have a health meter; there are no sound effects; and the guard you placed is just sort of standing there, with his arms out.  That\rquote s because DromEd recognizes the brushes you\rquote ve created and the guard object you\rquote ve placed\'85
+but doesn\rquote t yet recognize you as a player, or the brushes as rooms}{\fs24\cf1 , and the guard\rquote s AI is unable to function because the level hasn\rquote t been processed for AI\rquote s yet.}{\fs24 
+\par  
+\par The first thing we need to do is place the Starting Point, and tell Dromed to start the player model there.  To place a Starting Point, go to the object hierarchy and expand the branches under the \ldblquote fnord\rdblquote  tree until you come to 
+\ldblquote marker.\rdblquote  (Don\rquote t expand past \ldblquote marker.\rdblquote )  Place the marker object in the southernmost room, in the northwest corner, and make a note of its number, which will be located in parentheses, after the name 
+\ldblquote A Marker\rdblquote  (found at the bottom center of the screen).  When the marker is in place, look at the bottom center of the screen and find the \ldblquote Properties\rdblquote  button; click it.  This will bring up a separate \ldblquote 
+Properties\rdblquote  dialog box, with the marker\rquote s name - \ldblquote A Marker\rdblquote  - already highlighted.  Click the box\rquote s edit button and change the name to \ldblquote StartingPoint.\rdblquote 
+  When the name has been changed, click the window\rquote s \ldblquote Done\rdblquote  button to return to the main DromEd screen.  Now, click the \ldblquote Links\rdblquote  button at the bottom center of the DromEd screen, located directly below the 
+\ldblquote Properties\rdblquote  button.  This will bring up the \ldblquote Links\rdblquote  dialog box.  Click the \ldblquote Add\rdblquote  button, which in turn will bring up a small dialog box.  This dialog box will have the following fields: 
+\ldblquote Flavor,\rdblquote  \ldblquote From,\rdblquote  and \ldblquote To.\rdblquote   Click the arrow next to the \ldblquote Flavor\rdblquote  field and select \ldblquote PlayerFactory\rdblquote  from the drop-down menu.  [}{\b\fs24 Note:}{\fs24 
+ Use the \ldblquote PlayerFactory\rdblquote  }{\i\fs24 without }{\fs24 the tilde (~).]  In the \ldblquote From\rdblquote  field, enter the number of the Starting Point you created.  In the \ldblquote To\rdblquote  field, type in the name \ldblquote 
+Garrett.\rdblquote   Click the \ldblquote OK\rdblquote  button when you\rquote re done, and then click the \ldblquote Links\rdblquote  box\rquote s \ldblquote OK\rdblquote  button to return to the main DromEd screen.  Press \ldblquote Alt+G\rdblquote 
+ to enter into the game.  Notice that you now enter into the game world in the precise spot you placed the Starting Point, and Garrett now has a health meter, as indicated by the small shield icons in the lower left-hand corner of the screen.  Go back to 
+DromEd, and we\rquote ll turn the operation brushes into actual rooms, complete with sound effects.
+\par 
+\par [}{\b\fs24 Note: }{\fs24 If you get killed by the guard (or if you accomplish all your objectives, but we\rquote ll get into that later in the tutorial), you\rquote ll need to exit the program and restart DromEd.  To avoid this, place the line \ldblquote 
+no_endgame\rdblquote  (without quotation marks) in your user.cfg file.  This will allow you to stay in game mode if you get killed or complete your objectives.]
+\par 
+\par To turn a brush into a room, at least as far as DromEd is concerned, you need to encapsulate that brush in a separate room brush.  Look down at the bottom center of the DromEd screen, to the column of \ldblquote Create\rdblquote 
+ buttons.  Click the last button - \ldblquote Room\rdblquote  - so that it\rquote s highlighted in violet.  With the button active, go to one of the 2D view windows and create a violet room brush around the brushes you\rquote 
+ve already created.  Make sure you expand the brush in the other views so that it completely surrounds the existing brush (if it doesn\rquote t already do so). While it\rquote s okay to use this method for now, there\rquote 
+s a more precise method of creating room brushes.  Click on a brush in one of the 2D view windows so that it\rquote s active. Then, press and hold the \ldblquote Shift\rdblquote  key and hit the \ldblquote Insert\rdblquote 
+ key; this will create a room brush around the selected brush.  What you\rquote 
+re probably asking yourself right now is this: Why would I want to encapsulate all my individual brushes in separate room brushes, when I could just create one giant room brush around all the brushes I\rquote ve created?  Well, roo
+m brushes serve to separate the spaces realistically, particularly where Thief\rquote s sound effects are concerned.  If you created a giant area, say one equivalent to the \ldblquote Bonehoard,\rdblquote 
+ and surrounded it in one big room brush, all of the sounds in that room brush would appear to be in one big room.  By encapsulating each brush in a room brush, you\rquote re helping to channel the game\rquote 
+s sound effects in a much more natural way; sounds will appear to come from around corners; a guard at the other end of the map won\rquote t hear your footsteps; and so forth.
+\par 
+\par When you\rquote ve created a room brush around the existing brushes, you need to build a room database so DromEd can examine the room/s and calculate sound propagation, etc.  Go to the menu bar at the top of the screen and click \ldblquote Tools,
+\rdblquote  then click \ldblquote Build Room Database.\rdblquote   When this is done, hit \ldblquote Alt+G\rdblquote 
+ to enter into the game and walk around; notice that you can now hear sound effects, like the crackle of the torches and your own footsteps\'85but the guard is still standing motionless.  Enter back into DromEd and we\rquote ll remedy that.
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: Don\rquote t confuse \ldblquote Room Brushes\rdblquote  with the physical rooms in your level.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: Use \ldblquote Build Room Database\rdblquote  every time you add/remove/resize/reposition a room brush. This will keep the sound working as it should and help to avoid DromEd crashes.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par To activate AIs (guards, servants, monsters, etc.) you need to build a pathfinding database, which basically allows the AIs to find their way around the rooms you\rquote 
+ve created.  Note that you must create room brushes and build the room database before you can build a pathfinding database.  So, go back to the menu bar at the top of the screen; click \ldblquote Tools,\rdblquote  and then click \ldblquote 
+Compute Pathfinding Database.\rdblquote   When that\rquote s done, enter into the game to see the Hammerite guard come to life.  If you placed the Starting Point in the northwest corner of the southern room, and the guard in the northern room, you\rquote 
+ll be out of his field of view and therefore out of harm\rquote s way.  You way want to jump out, taunt him, and then run feebly around in circles before he bashes your brains in with that humongous warhammer. Yeah, you\rquote re right - that\rquote 
+s not much fun.  Let\rquote s give Garrett some weapons to even the odds.  Go back to DromEd, and we\rquote ll equip the player model with a default inventory.
+\par 
+\par [}{\b\fs24 Important}{\fs24  }{\b\fs24 Note:}{\fs24  As you build more in-depth levels, there may be times when AIs cease to function as you\rquote d expect: they continuously walk into walls, can\rquote 
+t climb stairs, and refuse to enter certain rooms.  If that happens, it\rquote s probably because you haven\rquote t updated the pathfinding database.  Whenever you add new terrain to your level, the AIs don\rquote t know it\rquote 
+s there unless you tell them\'85and you tell them by clicking \ldblquote Compute Pathfinding Database\rdblquote  under the \ldblquote Tools\rdblquote  section of the menu bar.  Ge
+t into the habit of updating the pathfinding database whenever you build new terrain.]
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 IX. Acoustic Settings
+\par }\pard \widctlpar {\fs24 
+\par DromEd supports environmental acoustic settings using EAX, or \ldblquote Environmental Audio Extensions.\rdblquote   This step is }{\i\fs24 optional}{\fs24 , but it will greatly enhance the game\rquote s audio effects.  EAX effects are supported in DromEd
+\rquote s \ldblquote game mode,\rdblquote  and in }{\i\fs24 Thief }{\fs24 version 1.33 or higher. Keep in mind, however, that you need and EAX-compatible sound card to benefit from these settings.
+\par DromEd allows you to set individual acoustic characteristics for every room brush.  Simply select a room brush in the editor, choose a pre-set room type from the table below, and use the hot-key indicated on the table to set the room\rquote 
+s EAX type.  That\rquote s all there is to it.
+\par The following table lists the various EAX settings; while some of the names may seem a bit arcane, you should get a general idea of what kinds of sounds each setting will produce.  The \ldblquote Small Dead\rdblquote 
+ setting, for example, would be suitable for any small room with very little reverb, such as a walk-in closet.  Pick the room type that sounds closest to the thing you want, and feel free to experiment.
+\par }\pard \widctlpar\tx4428\tx6318 {\fs24 Ctrl-F1 \tab Small Dead }{\i\fs24  }{\fs24 
+\par Ctrl-F2 \tab Small Normal\tab 
+\par Ctrl-F3 \tab Small Live
+\par Ctrl-F4 \tab Large Dead
+\par Ctrl-F5 \tab Large Normal\tab 
+\par Ctrl-F6 \tab Large Live
+\par Ctrl-F7 \tab Dead Hallway
+\par Ctrl-F8 \tab Normal Hallway
+\par Ctrl-F9 \tab Live Hallway
+\par Ctrl-F10 \tab Tunnels
+\par Ctrl-F11 \tab Caverns
+\par Ctrl-F12 \tab Sewers}
+\par \pard \widctlpar 
+\par \pard \qc\widctlpar {\b\fs32 X. Creating a Default Inventory
+\par 
+\par }\pard \widctlpar {\fs24 Creating a Starting Point basically creates an in-game representation of Garrett without any inventory.  To start a mission with a default selection of items (weapons and powerups), you need to create those items and then 
+\ldblquote link\rdblquote  them to the Starting Point.  Search through the object hierarchy or use the \ldblquote find_obj\rdblquote  command to create and place in the game world a blackjack, sword, and broadhead arrow. [}{\b\fs24 Note:  }{\fs24 
+The broadhead arrow is called simply \ldblquote broadhead.\rdblquote ]  After the objects are created, make a note of each one\rquote s object number.  
+\par 
+\par We\rquote ll start by linking the blackjack to the Starting Point.  Select the Starting Point, and click the \ldblquote Links\rdblquote  button, just as you did before.  In the \ldblquote Flavor\rdblquote  field, select \ldblquote Contains.\rdblquote 
+  In the \ldblquote From\rdblquote  field, type in the number of the Starting }{\fs24\cf1 Point (or just \ldblquote StartingPoint\rdblquote ).}{\fs24   In the \ldblquote To\rdblquote  field, type in the number of the blackjack.  Click \ldblquote OK
+\rdblquote  and then click \ldblquote OK\rdblquote  on the \ldblquote Links\rdblquote  window to return to the main DromEd screen.  You have just linked the blackjack to the player model, meaning you will start the game with that weapon.  Don\rquote 
+t worry about the blackjack appearing in the world as an actual object during the course of the game: when you create a \ldblquote contains link,\rdblquote 
+ the player contains that object in his/her inventory, and it no longer exists in the game world.  Now that you\rquote ve linked to the blackjack, use the same procedure to link to th
+e sword (make sure you use the correct object number for each object you link to).
+\par 
+\par Linking the broadhead arrow to the player is a bit more complex, because we want to give Garrett multiple arrows, and not just the one we placed in the game world.  Before w
+e link the broadhead arrow to the Starting Point, we need to modify the broadhead object so that it gives the player multiple arrows.  Click on the broadhead arrow, and then click the \ldblquote Properties\rdblquote  button to bring up the \ldblquote 
+Properties\rdblquote  window.  Then, click the \ldblquote Add\rdblquote  button to bring up a list of possible properties.  Choose \ldblquote Engine Features\rdblquote  then \ldblquote Stack Count,\rdblquote 
+ and type in the number of arrows you want to start out with.  Let\rquote s choose thirty (30) arrows.  When you\rquote ve finished changing the number of arrows, link
+ the broadhead arrow object to the Starting Point just as you did with the sword and blackjack.  Note that you don\rquote t actually have to equip Garret with a bow; once you acquire arrows, the bow is automatically available.  
+\par 
+\par Anyone\rquote s who\rquote s played Thief knows that one of the game\rquote 
+s coolest elements is the ability to extinguish torches using water arrows, to create your own beautiful, concealing darkness.  Using the methods already described, give Garrett two water arrows.  It\rquote s important to note that, for the 
+purposes of creating levels with DromEd, water arrows (and the same is true for moss arrows, fire arrows, and gas arrows.) are actually referred to as }{\i\fs24 crystals}{\fs24 , and are found in the hierarchy under Physical\\Tulz\\Crystal.
+\par 
+\par Now that you\rquote ve got an inventory, go back into the game world and show that Hammerite who\rquote s boss!
+\par 
+\par [}{\b\fs24 Note: }{\fs24 If you use your two water arrows to extinguish the two torches in the guard\rquote s room, that room will be plunged into complete darkness, as those two torches are the only sources of light!]
+\par 
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 XI. Creating AI Patrol Routes
+\par 
+\par }\pard \widctlpar {\fs24 The AIs in Thief: The Dark Project, as evidenced by the guard we placed in this tutorial level, are very intelligent: although they remain stationary when nothing\rquote 
+s going on, they can hear your footsteps, hunt you down, and even run away when threatened.  These are all behaviors that are inherent to the AIs, and you as the level designer don\rquote 
+t need to worry about controlling them.  And, while complex scripts are not available, you can modify AI behavior by assigning patrol routes.  Basically, a patrol route allows an AI, let\rquote 
+s say a guard, to walk a predefined circuit, by travelling from one marker (similar to a waypoint in a flight sim) to another, to another, and so on.
+\par 
+\par To define a patrol route, you need place a circuit of markers to indicate that route.  In the object hierarchy, go to fnord\\Marker\\TrolPt.  Place four TrolPt markers (}{\b\fs24 not }{\fs24 LookBackPt markers)}{\b\fs24  }{\fs24 
+in a square pattern around the room; these are the markers the guard will follow on his route.  Now, it\rquote s important to know that an AI will start a patrol by heading to }{\fs24\cf1 the TrolPt marker that is closest to him in 3D space}{\fs24 
+.  How do we make sure the AI starts the patrol at a particular marker? Simple: we create the first marker (or move it, if it was created somewhere else) directly inside of the selected AI.  When placing markers, it\rquote 
+s important that they always exist inside in the game world (meaning, inside an air brush), close to the floor (up to around 4 feet) where the AI will walk. 
+\par 
+\par Now that the markers have been created, we need to link them together.  Click on all the markers and make a note of their object numbers.  Then, click on the first one - it should be inside the guard - and bring up its \ldblquote Links\rdblquote  box (we
+\rquote re basically going to do something very similar to linking the default weapons to the Starting Point).  Click the \ldblquote Add\rdblquote  button to bring up the smaller dialog box.  In the \ldblquote Flavor\rdblquote 
+ field, use the drop-down menu to select \ldblquote AIPatrol.\rdblquote  [}{\b\fs24 Note:}{\fs24  Do }{\b\fs24 not}{\fs24  use \ldblquote ~AIPatrol.\rdblquote   Names with the tilde (~) in front of them are \ldblquote return\rdblquote  links, and we
+\rquote ll discuss them in just a bit.]  In the \ldblquote From\rdblquote  field, put the number of the currently selected marker.  In the \ldblquote To\rdblquote 
+ field, put the number of the next marker you want the guard to travel to.  We placed the markers in a square pattern around the room, so we want the guard to follow a square patrol route.  So, in the \ldblquote To\rdblquote 
+ field, put the number of the next marker in the square patrol route.  Use this method to link all the markers together.  Remember that we want the guard to walk in a 
+continuous loop, so, when you get to the last marker, link from it back to the first marker.  That way, when the guard gets to the last marker, he\rquote ll head back to the first marker and start his patrol all over again.
+\par 
+\par There\rquote s one more thing we need to before the guard will follow the markers, however.  When you first place an AI, it will remain stationary because that\rquote s its default position. Although you\rquote ve placed the TrolPt markers, you haven
+\rquote t told the AI to follow them.  To change this, select the guard, and then bring up his \ldblquote Properties\rdblquote  box.  Click the \ldblquote Add\rdblquote  button, and then select \ldblquote AI,\rdblquote  \ldblquote Ability Settings,
+\rdblquote  and \ldblquote Patrol: Does patrol.\rdblquote   This will bring up a small dialog box containing a small, white, unchecked selection box.  Click on the selection box to place a check mark there, and then click the \ldblquote OK\rdblquote 
+ button to close out the dialog box.  Then, click the \ldblquote Done\rdblquote  button on the \ldblquote Properties\rdblquote  box to return to the main DromEd screen.  By checking the box, you have enabled that AI\rquote s ability to go on patrol.
+
+\par 
+\par You can also enable an AI\rquote s \ldblquote random patrol,\rdblquote  command, so that instead of following the TrolPt markers in order, the AI chooses a path at random.  To do this for the guard, follow the same steps you used for enabling \ldblquote 
+Patrol: Does patrol,\rdblquote  but select \ldblquote Patrol: Random sequence.\rdblquote   This will enable the guard\rquote s ability to patrol at random.  [}{\b\fs24 Note: }{\fs24 \ldblquote Patrol: Random sequence\rdblquote 
+ is found on the list directly underneath \ldblquote Patrol: Does patrol.\rdblquote ]  It\rquote s important to note that if you do decide to activate the \ldblquote Patrol: Random sequence\rdblquote  ability, you still need to activate the \ldblquote 
+Patrol: Does patrol\rdblquote  ability so the guard knows he\rquote s supposed to patrol in the first place.
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: \ldblquote Patrol: Random Sequence\rdblquote  can produce unexpected results. If you use it, make sure you test it thoroughly.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: To watch your AI\rquote s move about without the hassle of them attacking you, type \ldblquote aiawareofplayer\rdblquote  into the command line. Type it again to turn the AI\rquote 
+s awareness of  Garrett back on.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par You may notice that when you open up a marker\rquote s \ldblquote Links\rdblquote  box and go to link from that marker to the next, there\rquote s already another link there.  It looks similar to the one you\rquote re about to create, but there\rquote 
+s a tilde (~) at the beginning of the \ldblquote Flavor\rdblquote  name, and the \ldblquote From\rdblquote  and \ldblquote To\rdblquote  links are different.  The links with the tilde are called \ldblquote return\rdblquote 
+ links.  Basically, you as the level designer create a link from one marker to the next marker.  But DromEd recognizes that one marker also links to a }{\i\fs24 previous}{\fs24  marker.  While you may create three markers, numb
+ered 23, 24, and 25, and link from one to the next, DromEd goes one step further by linking them backward as well. So, let\rquote 
+s say you create a link from marker 23 to 24.  Then, you create a link from marker 24 to 25.  You have specified that marker 24 links to 25\'85but DromEd has already linked marker 24 back to 23.  
+\par 
+\par Return links are very similar to normal links except for the following: their flavor names begin with a tilde; they point in the opposite direction; and they have the opposite meaning.  Say, for
+ example, you have a chest, and a "contains" link from the chest to a potion.  What the link means is that, "The chest contains the potion.\rdblquote 
+  The potion can't be seen in the game, but when someone opens the chest the potion goes into his or her inventory.
+  At the same time the "contains" link is created from the chest to the potion, a "~contains" link is created automatically from the potion to the chest.  This link means, "The potion is contained by the chest."  The important thing for you to remember ab
+out return links is that although you will see them frequently, their placement is a normal occurrence that gets managed automatically by DromEd.  You don't have to worry about them at all.
+\par 
+\par Now that you fully understand the concepts of linking, enter into game mode and watch as the guard patrols around the room. See if you can sneak up behind him and knock him out with the blackjack before stealing the scepter.  [}{\b\fs24 Important}{\fs24  
+}{\b\fs24 Note: }{\fs24 If you enabled the \ldblquote Patrol: Random sequence\rdblquote  ability, you may notice that at some point the guard walks into the column, and just continues walking into it, instead of trying to go around.  That\rquote 
+s because you need to update the pathfinding database, as mentioned earlier in the tutorial.] 
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 XII. Creating Mission Objectives 
+\par }\pard \widctlpar {\b\fs24 
+\par }{\fs24 If you\rquote 
+ve followed this tutorial all the way through, from beginning to end, you should now have the knowledge to make fairly detailed Thief maps.  You can create terrain, place objects, give yourself weapons, and even define patrol routes for your AIs.  
+Now we come to the most advanced (read: confusing) part of this tutorial: creating mission objectives.  If you enter into the current level, you can kill the guard and steal the scepter\'85but then you\rquote 
+re just sort of stuck there, hanging around with nothing to do.   In other words, you have to \ldblquote pretend\rdblquote  that stealing the scepter is your goal, because DromEd doesn\rquote t yet recognize that (or anything else) as an actual objective.
+
+\par 
+\par In order to assign objectives, you must specify a mission\rquote s quest data. Go to the top of the screen, to the menu bar, and click \ldblquote Editors.\rdblquote   Then, click \ldblquote Mission Quest Data.\rdblquote   Don\rquote 
+t worry - nothing is supposed to happen.  That\rquote s because you haven\rquote t yet specified any quest data. When you }{\i\fs24 have}{\fs24  specified this information, clicking \ldblquote Mission Quest Data\rdblquote  will bring up a small 
+\ldblquote Quest Data\rdblquote  dialog box, containing all the objective and difficulty information for that mission.  So, we need to enter in this information.  Understanding these concepts, at least for the purposes of level creation, is a bit tricky
+\'85but this tutorial should at least teach you the basic principles needed for the creation of real missions, with real objectives.
+\par 
+\par In order to implement objectives, you must first understand how DromEd views those objectives.  So, this section of the tutorial will first explain the concepts behind objectives and difficulty levels, and then teach you to actually implement them in your
+ missions.
+\par 
+\par First and foremost, every objective you include must be given a number, and the first objective }{\b\fs24 must }{\fs24 be given the number 0.  So, if you have three objectives, they would be numbered 0, 1, and 2.  Again, they }{\b\fs24 must }{\fs24 
+be numbered in this way.
+\par 
+\par Next, each objective has a \ldblquote state,\rdblquote  which indicates whether or not it has been completed or not.  DromEd recognizes four states for objectives: \ldblquote incomplete,\rdblquote  \ldblquote complete,\rdblquote  \ldblquote inactive,
+\rdblquote  and \ldblquote failed.\rdblquote   If you\rquote ve played Thief, you will have seen, on the \ldblquote Objectives\rdblquote  screen, visible representations of each of these states: \ldblquote incomplete\rdblquote 
+ is marked by an empty box, meaning that objective has not yet been fulfilled; \ldblquote complete\rdblquote  is marked by a green check mark, meaning that objective has been satisfied (like when you steal an objective item); \ldblquote inactive
+\rdblquote  is marked by a red circle with a line through it, meaning that objective is no longer active or applicable; and \ldblquote failed\rdblquote  is marked by a red \ldblquote x\rdblquote 
+ (though at that point, because of the failure of an objective, the mission will usually end before you can even notice this mark on the \ldblquote Objectives\rdblquote  screen). 
+\par 
+\par DromEd uses the following numbering convention for objective states:
+\par 
+\par }{\fs24\cf1 0=incomplete
+\par 1=complete
+\par 2=inactive
+\par 3=failed
+\par }{\fs24 
+\par When making Thief levels with DromEd, each objective }{\b\fs24 must }{\fs24 be marked with a 0 (zero) for \ldblquote incomplete,\rdblquote 
+ meaning that at the beginning of a mission, each objective has yet to be accomplished by the player.  These objectives will be marked either \ldblquote complete\rdblquote  or \ldblquote failed\rdblquote  according to the actions of the player.
+\par 
+\par The next thing a budding level designer needs to know is that in Thief, objectives can be either visible or invisible.  Visible objectives are those the player can see on the \ldblquote Objectives\rdblquote 
+ screen right at the start of the game; so, when starting a Thief mission with visible objectives, the player knows exactly what he or she is supposed to do.  A good example of a visible objective can be seen in Thief 2's \ldblquote Running Interference
+\rdblquote  mission, where the player has to help Basso and Jeniver elope: \ldblquote Get Basso and Jeniver out of the mansion together with you.\rdblquote   An invisible objective, on the other hand, is one the player is not aware of at the start of 
+a mission.  A good example of an invisible objective can be seen in Thief 2's \ldblquote Eavesdropping\rdblquote 
+ mission, where the player, after listening to Karras and Sheriff Truart, has to then make a copy of the Bank Safety Deposit Box Key.  The objective to copy the key is an invisible objective, because it doesn\rquote t show up on the player\rquote s 
+\ldblquote Objectives\rdblquote  list at the beginning of the mission; instead, that objective is added after the player listens to the conversation
+\par 
+\par For the purposes of designing Thief missions with DromEd, it is imperative that you realize something about mission objectives before you actually begin the creation process: the \ldblquote ConVict\rdblquote  script }{\b\fs24 only }{\fs24 
+supports visible objectives!  So, you could not create a mission with the complexity of \ldblquote Eavesdropping,\rdblquote  because all of the objectives }{\b\fs24 must }{\fs24 
+be visible to the player at the start of that mission.  So, you could easily create a mission that required the player to enter a certain building, steal a certain object, and then retreat to a certain location\'85but the player
+ would have to be aware of all of these objectives at the beginning of the mission.  You could not, however, create a mission that required the player to steal a certain object\'85
+and then gave that player a new objective after the object was actually stolen.
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D1 and D2 NOTE: Actually you can make invisible objectives and enable New Objectives during your mission. It\rquote s just rather tricky to do. Several (advanced) tutorials are available to explain how to do this.]
+
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par DromEd uses the following numbering convention for objective visibility/invisibility:
+\par 
+\par 0=invisible
+\par 1=visible
+\par 
+\par So, as stated, each objective must be numbered 1, for \ldblquote visible.\rdblquote  [}{\b\fs24 Important Note: }{\fs24 By now, you may be wondering exactly }{\i\fs24 where }{\fs24 these numbers come into play.  Don\rquote 
+t worry - that will be explained shortly.]
+\par 
+\par You now know that, for the purposes of level design with DromEd, each objective has a \ldblquote state\rdblquote  (incomplete, complete, inactive and failed) and a visibility (visible, invisible).  Well, there are obviously different }{\i\fs24 kinds}{
+\fs24  of objectives as well.  The public release of DromEd supports four different kinds of objectives, with the following numbering scheme:
+\par 
+\par 1=Steal an object
+\par 2=Kill a creature
+\par 3=Get a certain amount of loot
+\par 4=Go to a location
+\par 
+\par [}{\b\fs24 Note: }{\fs24 Objectives are covered in more detail in the \ldblquote ConVict\rdblquote  document.  There are some variations of the objectives you see here.  For example, you could easily have an objective that }{\i\fs24 prevents}{\fs24 
+ you from killing a certain creature or creature type.  Also, in order to learn how to create loot objectives (ie., steal 500 gold pieces on \ldblquote Normal\rdblquote  level), you }{\b\fs24 must}{\fs24  refer to the ConVict document!]]
+\par 
+\par }\pard\plain \s15\widctlpar \i\f4 [D2 NOTE: convict.doc is out of date for D2. Although all the information in it is valid for Thief 2, several new undocumented features have been added to the possible victory conditions.]
+\par \pard\plain \widctlpar \f4\fs20 {\fs24 
+\par You could include just one or all four of these objective types in your mission.  So, the player could be required to steal an object\'85or the player could be required to steal an object, kill a creature, get a certain amount of loot, and go
+ to a certain location.
+\par 
+\par You can even use multiple objectives of the same type, if you wish.  For example, the player could be required to steal two different objects, kill three different monsters, and then go to a certain location.
+\par 
+\par So, how do you enter all this data into DromEd?  The first thing you should do is write down on a piece of paper all the objectives you want, starting with the number 0.  Using the sample level we\rquote ve made, let\rquote 
+s have two objectives: stealing the scepter and killing the guard.  This would read as:
+\par 
+\par 0=Steal the scepter
+\par 1=Kill the guard
+\par 
+\par Now, before we can tell DromEd what the actual objectives are, we have to indicate that each one will be \ldblquote incomplete,\rdblquote  and \ldblquote visible,\rdblquote 
+ as already stated in the tutorial; each of these commands must be entered in separately. The command used for entering in objective data is \ldblquote quest_create_mis\rdblquote 
+ -- without the quotation marks, of course.  Get used to this command, because we\rquote ll be using it quite often.  
+\par 
+\par The command for entering in the \ldblquote state\rdblquote  of an objective is \ldblquote goal_state_x, 0\rdblquote  - where \ldblquote x\rdblquote  is a variable representing the number of that particular goal, and \ldblquote 0\rdblquote 
+ is the number corresponding to the state we want - incomplete. So, the entire command you would need to enter (in the command line) is exactly as follows:
+\par quest_create_mis goal_state_0, 0
+\par 
+\par [}{\b\fs24 Important Note: }{\fs24 The first number is always the number of the objective you\rquote re referring to, and the second number is always the number that corresponds to a specific DromEd command.  Always use the above forma
+t: number, comma, space, number.]
+\par 
+\par After this line is entered in, go back up to the menu; go to \ldblquote Editors,\rdblquote  and \ldblquote Mission Quest Data.\rdblquote   You\rquote ll notice that the small \ldblquote Quest Data\rdblquote  dialog box now comes up, and lists the info you
+\rquote ve entered. Click the \ldblquote Cancel\rdblquote  button to close the window.
+\par 
+\par [}{\b\fs24 Note: }{\fs24 You can use the \ldblquote Quest Data\rdblquote  window to directly edit variables you\rquote ve entered in.  Just highlight the command, click \ldblquote OK,\rdblquote  and you can change the command\rquote s \ldblquote Name
+\rdblquote  and \ldblquote Value.\rdblquote ]
+\par 
+\par Confused? Let\rquote s dissect that line to see what you\rquote re telling DromEd to do.  \ldblquote Quest_create_mis\rdblquote  is the standard command for entering in objective data.  Then, you use a space and type in the rest of the command.  
+\ldblquote Goal_state_0, 0\rdblquote  means that objective 0 (steal the scepter) is going to be marked with a 0, meaning it is incomplete.  What all this means is that when you start the mission, the objective \ldblquote Steal the scepter\rdblquote 
+ will have an unchecked box next to it on the \ldblquote Objectives\rdblquote  screen, because that objective has yet to be fulfilled.  
+\par 
+\par Of course (now things get even trickier) the objective \ldblquote Steal the Scepter\rdblquote  won\rquote t appear on the \ldblquote Objectives\rdblquote 
+ screen at all unless you mark that objective as visible, meaning the player can see it right at the beginning of the mission.  To mark our first objective as visible, use the following command exactly as you see here:
+\par 
+\par quest_create_mis goal_visible_0, 1
+\par 
+\par Hopefully, by now you are gaining an understanding of how objective data is entered into the command line.  With the above line, we told DromEd that objective 0 (steal the scepter) would be marked with a 1, meaning it is visible at the start of a mission.
+
+\par 
+\par [}{\b\fs24 Important Note: }{\fs24 So, in case you haven\rquote t already figured it out, you must enter in the \ldblquote goal_state\rdblquote  and \ldblquote goal_visible\rdblquote  commands for }{\b\fs24 every }{\fs24 objective you have, and each one }
+{\b\fs24 must }{\fs24 be made \ldblquote incomplete\rdblquote  and \ldblquote visible.\rdblquote ]
+\par 
+\par Now that we\rquote ve set the state and visibility of the first goal (steal the scepter), follow the examples above and set the state and visibility of the second goal (kill the guard).
+\par 
+\par [}{\b\fs24 Important Note: }{\fs24 If you screw something up and need to delete a comand you\rquote ve entered in, use the command \ldblquote quest_delete\rdblquote  and then the command you entered.  So, if you wanted to delete the line \ldblquote 
+quest_create_mis goal_state_0, 0\rdblquote  you would type in: 
+\par quest_delete goal_state_0
+\par 
+\par You would }{\b\fs24 not }{\fs24 use the comma and second number because you\rquote re not trying to set anything for goal 0 - you\rquote 
+re simply trying to delete goal 0.  So, you need only indicate the number of the objective (goal), which in this case is 0, for our first objective, \ldblquote Steal the scepter.\rdblquote ]
+\par 
+\par Okay, we\rquote ve told DromEd that we\rquote ve got two objectives, and that each one will be visible and marked as incomplete at the beginning of the mission\'85but we haven\rquote t yet told DromEd }{\i\fs24 what}{\fs24 
+ those objectives are.  For each objective, we must enter in two commands: one to indicate what the objective is, and one to indicate what the }{\i\fs24 subject }{\fs24 of that objective is. So, for the first objective - \ldblquote Steal the scepter
+\rdblquote  - we need to tell DromEd two things: 1.) The player needs to steal an object; 2.) The object the player needs to steal is the jeweled scepter.  To do this, we use the commands \ldblquote goal_type\rdblquote  and \ldblquote goal_target.
+\rdblquote 
+\par 
+\par Type in:
+\par quest_create_mis goal_type_0, 1
+\par 
+\par The above line tells DromEd that objective 0 will require the player to steal an item.
+\par 
+\par Now, find the scepter object you placed on the table, click it, and make a note of its number.  Then, type in:
+\par quest_create_mis goal_target_0, x (where \ldblquote x\rdblquote  is the number of the scepter)
+\par 
+\par The above line tells DromEd that the subject of objective 0 (which we just defined as \ldblquote steal an object\rdblquote ) is the scepter.
+\par 
+\par Using the examples above, let\rquote s enter in the data for the second objective - \ldblquote Kill the guard.\rdblquote   First, we would use the following command:
+\par 
+\par quest_create_mis goal_type_1, 2 
+\par 
+\par The above line tells DromEd that objective 1 will require the player to kill a creature.
+\par 
+\par Then, we would use:
+\par 
+\par quest_create_mis goal_target_1, x (where \ldblquote x\rdblquote  is the number of the guard)
+\par 
+\par The above line tells DromEd that the subject of objective 1 (which we just defined as \ldblquote kill a creature\rdblquote ) is the guard.
+\par 
+\par Before you can get the objectives enabled, there\rquote s one more thing you must do, and that is to assign the \ldblquote VictoryCheck\rdblquote  script to your Starting Point.  Click on the Starting Point to select it, and then click the \ldblquote 
+Properties\rdblquote  button to bring up the \ldblquote Properties\rdblquote  window.  The, click \ldblquote Add,\rdblquote  and choose \ldblquote S,\rdblquote  and then \ldblquote Scripts.\rdblquote   This will bring up a small \ldblquote Scripts
+\rdblquote  box with a few different fields.  In the \ldblquote Script 0\rdblquote  field, type in \ldblquote VictoryCheck\rdblquote  (one word - without the quotation marks) and then click the \ldblquote OK\rdblquote 
+ button.  Click the appropriate buttons to close out the windows and return to DromEd.
+\par 
+\par Now that you\rquote ve actually got real objectives, enter into game mode by hitting \ldblquote Alt+G.\rdblquote   Once there, hit the \ldblquote O\rdblquote  key to bring up the \ldblquote Objectives\rdblquote 
+ screen.  You should see two small, empty boxes to the left of the screen, with no text next to them.  Those ob
+jectives are, in order from top to bottom: Steal the scepter; and kill the guard. The reason there are no text descriptions of the objectives is because this information hasn\rquote t been entered in yet.  Don\rquote t worry - we\rquote 
+ll come to that a bit later.  For now, it\rquote s enough to know that we have two objectives: the first requires you to steal the scepter; the second requires you to kill the guard. Hit the \ldblquote Done\rdblquote  button on the \ldblquote Objectives
+\rdblquote  screen to return to game mode.  Then, kill the guard - either nail him with an arrow from a distance, or get behind him and backstab with the sword.  [}{\b\fs24 Note:}{\fs24  If you knock the guard out with the blackjack, he\rquote 
+ll be merely unconscious, and not dead.  To finish him off, you\rquote ll have to hack away at his unconscious body with your sword.]  When the guard is dead, return to the \ldblquote Objectives\rdblquote 
+ screen and note that there is now a green check mark in the second box.  That\rquote s because you\rquote ve completed the second objective - \ldblquote Kill the Guard.\rdblquote   Exit the \ldblquote Objectives\rdblquote 
+ screen and steal the scepter - the mission will end, meaning you also completed the first objective - \ldblquote Steal the scepter.\rdblquote   
+\par 
+\par }\pard \qc\widctlpar {\b\fs32 XIII. Creating Difficulty Levels}{\fs24 
+\par }\pard \widctlpar {\fs24 
+\par If you\rquote ve made it this far, you\rquote re to b
+e commended! Learning how to implement real objectives into your missions is the test of a true Thief level designer.  And, if you can do that, you can take the objective formula even further and incorporate difficulty levels into your missions.
+\par 
+\par The first thing you need to realize when creating different difficulty levels is that you first need to create all the objectives, as discussed in the previous section of this tutorial. So, even if you have objectives that only show up on certain difficul
+ty levels, those objectives need to be created before you do anything else.  Since we already have two objectives in place, let\rquote s use those to illustrate the differences in difficulty levels.  Right now, our objectives are: \ldblquote 
+Steal the scepter\rdblquote  and \ldblquote Kill the guard.\rdblquote   Whenever we enter the game, we must accomplish these objectives.  But let\rquote s modify things a bit, so that the \ldblquote Kill the guard\rdblquote 
+ objective is only required when we play the game on \ldblquote Expert\rdblquote  difficulty level.
+\par 
+\par DromEd recognizes three different difficulty levels, with the following numbering scheme:
+\par 
+\par 0=Normal
+\par 1=Hard
+\par 2=Expert
+\par 
+\par To tell DromEd which objectives will be available on which difficulty level, there are two different commands we can use: \ldblquote goal_min_diff\rdblquote  and \ldblquote goal_max_diff.\rdblquote   \ldblquote Goal_min_diff\rdblquote  is the }{\i\fs24 
+minimum}{\fs24  difficulty that objective would be available.  \ldblquote Goal_max_diff\rdblquote  is the }{\i\fs24 maximum}{\fs24  difficulty that objective would be available. So, let\rquote s say the \ldblquote Normal\rdblquote  and \ldblquote Hard
+\rdblquote  difficulty levels required you to steal 300 gold worth of loot, and the \ldblquote Expert\rdblquote  difficulty level required you to steal 500 gold worth of loot.  The goal \ldblquote Steal 300 gold worth of loot\rdblquote  would use the 
+\ldblquote goal_max_diff\rdblquote  command, set to the number 1, for Hard difficulty.  So, basically, this would tell Dromed that the goal \ldblquote Steal 300 gold worth of loot\rdblquote 
+ would apply to all difficulty levels, up to the maximum difficulty level of \ldblquote Hard.\rdblquote   We don\rquote t want to apply this objective beyond the \ldblquote Hard\rdblquote  difficulty level because we want the \ldblquote Expert\rdblquote 
+ level to require stealing 500 gold worth of loot.  To specify that objective, we would use the \ldblquote goal_min_diff\rdblquote  command and set the number to 2, for \ldblquote Expert\rdblquote  difficulty.  This would tell DromEd that the goal 
+\ldblquote Steal 500 gold worth of loot\rdblquote  would only apply to difficulty level of \ldblquote Expert\rdblquote  and above.  Of course, there is no difficulty level higher than \ldblquote Expert,\rdblquote  but that\rquote 
+s okay.  That just means the program will apply that difficulty level to }{\i\fs24 just}{\fs24  \ldblquote Expert,\rdblquote  which is exactly what we want.
+\par 
+\par Let\rquote s get back to our tutorial level.  Remember, we want the objective \ldblquote Steal the scepter\rdblquote  to apply on all difficulty levels, and the objective \ldblquote Kill the guard\rdblquote  to apply only on the \ldblquote Expert
+\rdblquote  difficulty level.  So, for the \ldblquote Steal the scepter\rdblquote  objective, we wouldn\rquote t need to specify any conditions.  For the \ldblquote Kill the guard\rdblquote  objective, however, 
+we would need to enter in the following command line:
+\par 
+\par quest_create_mis goal_min_diff_1, 2
+\par 
+\par The above line basically tells DromEd that objective 1 (\ldblquote Kill the guard\rdblquote ) will be applied to the minimum difficulty level of 2, which is \ldblquote Expert.\rdblquote 
+\par 
+\par [}{\b\fs24 Note: }{\fs24 Remember, \ldblquote Kill the Guard\rdblquote  is objective 1, because objective 0 is \ldblquote Steal the scepter.\rdblquote ]
+\par 
+\par Now it\rquote 
+s time to test out the difficulty levels.  Normally (and this is something that will be covered in the next section), a person playing your mission would select a difficulty level through the pre-mission screen, just as they would when playing any 
+Thief level.  But during the course of level design, you need to be able to check your work in DromEd.  You do this by using the difficulty level selection command.  To play the mission on a particular difficulty, type in:
+\par 
+\par quest_create_mis difficulty, x (where \ldblquote x\rdblquote  is the difficulty level you want to play at)
+\par 
+\par So, to play the tutorial mission on the \ldblquote Normal\rdblquote  difficulty level, type in:
+\par 
+\par quest_create_mis difficulty, 0
+\par 
+\par Now, enter into game mode and hit the \ldblquote O\rdblquote  button to bring up the \ldblquote Objectives\rdblquote  screen.  You should notice that there is now only one small box\'85meaning there is only one objective.  That\rquote s because we\rquote 
+re playing on the \ldblquote Normal\rdblquote  difficulty level, and we set the \ldblquote Kill the guard\rdblquote  objective as an \ldblquote Expert\rdblquote  difficulty level.  So, on \ldblquote Normal\rdblquote  difficulty, this objective wouldn
+\rquote t even be available.  If we had wanted to play the mission on the \ldblquote Expert\rdblquote  difficulty level, thereby enabling that second objective, we would have used the command:
+\par 
+\par quest_create_mis difficulty, 2
+\par 
+\par You should only use the \ldblquote set difficulty\rdblquote  command to test out a particular difficulty level through DromEd.  If you set a particular difficulty level, and then save the file, the mission will be \ldblquote stuck\rdblquote  on that leve
+l, even if the player chooses another difficulty level on the pre-game screen.  So, if we set the tutorial mission to \ldblquote Expert\rdblquote  difficulty and then saved the mission, anyone who played the mission would be forced to do so at the 
+\ldblquote Expert\rdblquote  level.  If you }{\i\fs24 do }{\fs24 save the mission while it\rquote 
+s set to a particular difficulty level, you must delete the difficulty command and resave in order for the mission to operate correctly.  So, you would use this command:
+\par 
+\par quest_delete difficulty
+\par }{\b\fs32 
+\par }{\fs24 
+\par }\pard \qc\widctlpar {\b\fs32 XIV. Other Helpful Commands and Tips
+\par 
+\par }\pard \widctlpar {\fs24 If you\rquote ve followed this tutorial from beginning to end, you should now have the ability to build basic Thief 2 maps.  By experimenting with DromEd, you can discover the program\rquote 
+s full capabilities.  But here are a few helpful commands and tips to get you started.
+\par 
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24\cf1 
+To learn more, remember that you can load up Thief levels with DromEd and poke around to see how some complicated things were created.  You can probably learn a lot, but remember a few things: 
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24\cf1 You might not have the right tools available to d
+o the all of the things that were done in the game.  Try not to beat your head against the wall.
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}It\rquote s not necessarily true that everything in all Thief levels was done perfectly and optimally.  Some examples may be better than others.
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 When you design Thief missions, it often helps to disable the game\rquote s gravity so you can \ldblquote fly\rdblquote 
+ around the game world and examine your work more closely.  Hit \ldblquote Shift+Q\rdblquote  to disable gravity, and \ldblquote P\rdblquote  to turn gravity back on. 
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D2 NOTE: Shift+Q = fly up. Shift+E = fly down. In game mode, press shift+; to bring up the command line and type \ldblquote unfly\rdblquote  to turn fly mode off.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Similarly, you can toggle the ability of AIs to see you with the command \ldblquote aiawareofplayer,\rdblquote 
+ (again, no quotation marks or comma) and toggle player collision detection with the command \ldblquote physics.\rdblquote  With regard to toggling \ldblquote physics\rdblquote  on and off, remember that 
+even though you can now fly through solid space, doing so can lead to weird errors (although it is unlikely to fatally corrupt your work, format your hard drive, or anything permanent like that).
+\par {\pntext\pard\plain\f1 \'b7\tab}Use the \ldblquote show_stats\rdblquote 
+ command to enable in-game statistics, like frame rate and polygon count.  When creating Thief levels, you want to keep the polygon count low - shoot for 250 or below - to maximize game speed.
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }{\i\fs24 [D1 and D2 NOTE: Try to keep the probability of any action away from areas with high polygon counts.]
+\par 
+\par [D1 NOTE: If you exceed approx 1000 polygons in view, Thief will produce weird graphical effects. If you massively exceed 1000 polygons in view Thief will crash.]
+\par 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [
+D2 NOTE: This polygon count still applies. However, as the average speed of cpus/gfx boards has increase and as Looking Glass have improved the engine, you can push this limit a bit more. Thief 2 can handle polygon counts in excess of 1000 but for the ave
+rage user the game will become unplayable.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 To start DromEd with different default settings, you can place the following lines in your user.cfg directory: :
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 \ldblquote edit_screen_size 800,600\rdblquote  - This will start DromEd in 800x600 mode.
+\par {\pntext\pard\plain\f1 \'b7\tab}\ldblquote editorcam_from_game - When you place the Starting Point, you will start the mission at this point every time you enter into the game.  With the \ldblquote editorcam_from_game\rdblquote 
+ command, you can enter into the game at the same point you were at in DromEd.
+\par }\pard \widctlpar\tx720{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx720{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: Actually the command that does what is described is \ldblquote persistant_player_pos\rdblquote .]
+\par \pard\plain \widctlpar\tx720{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 \ldblquote no_endgame\rdblquote  - This allows you to continue playing if you\rquote 
+re killed in the game world or complete all your objectives.
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 When you first start DromEd, the program defaults to a grid size of 16.  16 is fi
+ne for creating large brushes like rooms, but in order to make smaller brushes, you\rquote 
+ll need a smaller grid. Find the grid field in the lower left-hand corner of the DromEd screen - try using a size 11 grid for smaller brushes, like creating small columns and solid details.
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}On the menu bar, choose \ldblquote Tools\rdblquote  and then \ldblquote Optimize\rdblquote  to optimize the level.  This essentially \ldblquote tightens\rdblquote 
+ things up, by reducing your polygon count and making things run more smoothly. }{\fs24\cf1 Keep in mind, however, that \ldblquote Optimizing\rdblquote  takes longer than \ldblquote Portalizing.\rdblquote 
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24\cf1 
+\par }{\i\fs24\cf1 [D1 and D2 NOTE: Optimizing can massively reduce polygon counts. Always use it before assessing high polygon areas.]
+\par }{\fs24\cf1 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 While you, as Garrett, can \ldblquote mantle\rdblquote  up ledges and walls, AIs have much more restricted movement}{\fs24\cf1 
+; they cannot climb up terrain obstacles that are much higher than a foot or two.}{\fs24   This is most important to remember when building stairs.  To make sure AIs can climb stairs, the stairs should be 1ft. deep by \'be foot high.   
+\par {\pntext\pard\plain\f1 \'b7\tab}Get into the habit of saving your work regularly.  On the menu bar, choose \ldblquote Save Mission\rdblquote  to save your level in progress. }{\fs24\cf1 
+DromEd may crash on you, and it may not always be your fault.  Saving helps to avoid frustration.}{\fs24  
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: Use more than one save file for your mission and rotate through them. It\rquote s not unheard of (though rare) for DromEd to trash a saved mission file.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 If, during the course of level creation, something seems wrong, try:
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24\cf1 Portalizing
+\par {\pntext\pard\plain\f1\cf1 \'b7\tab}Building the Pathfinding Database
+\par {\pntext\pard\plain\f1 \'b7\tab}Lighting}{\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 DromEd does some automatic color-coding to help you tell which brushes are closest to the camera.  If you don\rquote 
+t like it (because you can\rquote t see the lines very well), try pressing \ldblquote Ctrl+7\rdblquote  to disable it.
+\par {\pntext\pard\plain\f1 \'b7\tab}Normally your camera and the 2-D grids are synchronized such that the camera is always in the center of the grid.  The menus you get when you right click on one of the 2-D view screens include the option \ldblquote 
+asynch all,\rdblquote  which desynchronizes this.  To resynch, select \ldblquote synch all\rdblquote  from the same menu.
+\par {\pntext\pard\plain\f1 \'b7\tab}The command \ldblquote cam_to_brush\rdblquote  will teleport your camera to the currently selected brush.  This works well in conjunction with \ldblquote find_obj x\rdblquote  where \ldblquote x\rdblquote  is the object
+\rquote s name or number.
+\par {\pntext\pard\plain\f1 \'b7\tab}The full list of texture families is: dungeon, city, church, cave, catacomb, concastle, bafford, sewer, rescore, temple, mine, ruined, metals, core, ancient, maw, ramirez, lostcty, newcity, keeper, mech, newkeep, basement
+
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D2 NOTE: The list for D2 is:ancient, artdeco, artdmisc, artdout, buttons, catacomb, cave, ceilpain, church, city, civicb2, civicbui, core_1, core_2, core_3, keeper, lostcty, maw
+, mbfloor, mech, mine, newcity, newkeep, newmech, newmetal, numbers, outtakes, ramirez, rescor_1, rescor_2, ruined, sky, skyhw, stainglass, tower2, vicm01, vicm012, vicm04, vicm07, vicm09, vicwood, vmaw, vmaw2, vmawtb, vmawwin, vrescor1, vwater, water, wa
+terhw, wdfloor.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Lighting - There are three lighting modes: Quick, Raycast, and Objcast.  You can choose between them by selecting \ldblquote Tools
+\rdblquote  on the menu bar.  Quick lighting is the default.  Raycast lighting is more realistic but takes longer.  With Objcast 
+lighting, some stationary objects will cast shadows.  Note that DromEd also supports ambient lighting. Initially, the ambient light is set to 0, so unlit areas are completely dark.  To set it to a higher value (say, 20), use the command \ldblquote 
+ambient 20.\rdblquote 
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D2 NOTE: With coloured lighting in Thief 2, you need to specify red green and blue values for your ambient value. So use ambient 20 20 20.
+\par The consensus is that 20 is the best value for the ambient light, given the wide variety of gfx boards/configurations that may run your mission.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Properties and Links - As you can see by looking at the \ldblquote Properties\rdblquote  dialog box and \ldblquote Links\rdblquote 
+ dialog box, there are lots of links and properties in DromEd.  These are one way in which a designer can get interesting and complicated things to happen in missio
+ns.  However, some properties and links may seem to have redundant effects, or no effects at all.  Furthermore, some of them are intended for use by the designer while others are intended to be managed automatically during the gam
+e (and thus could be very problematic if set by the designer).  We can\rquote t cover these in any detail here, but as always you are encouraged to check out Thief missions for examples.  Below are brief descriptions of some useful properties.
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Game::Damage Model::Hit Points - Determines how much damage an AI (and some objects) can take before dying.
+\par {\pntext\pard\plain\f1 \'b7\tab}Engine Features::Locked - When placed on a door or chest and set to \ldblquote true,\rdblquote  this makes the object locked.
+\par {\pntext\pard\plain\f1 \'b7\tab}Engine Features::Key Src - When placed on a key, this specifies which lock (or locks) the key opens.
+\par {\pntext\pard\plain\f1 \'b7\tab}Engine Features::Key Dst - When placed on a locked object, this specifies which keys fit the lock.
+\par {\pntext\pard\plain\f1 \'b7\tab}Dark Gamesys::Pick Cfg - This is how you specify that (and how) a locked door can be lockpicked open.
+\par {\pntext\pard\plain\f1 \'b7\tab}AI::AI Ability Settings::Combat:Non-hostile - Controls whether the AI is hostile to the player.
+\par {\pntext\pard\plain\f1 \'b7\tab}AI::AI Ability Setting::Flee: Conditions for Flee - Controls when the AI will flee and when he will fight.
+\par {\pntext\pard\plain\f1 \'b7\tab}AI::AI Core::Alertness Cap - Can be used to make an AI frozen at a particular alertness level or range thereof.
+\par {\pntext\pard\plain\f1 \'b7\tab}AI::Utility::Flee Point - When placed on a marker object, it specifies that location as a good one for AIs to flee to.  The value ranks the location from 0 to 100.
+\par {\pntext\pard\plain\f1 \'b7\tab}
+Difficulty::Destroy - Putting this on an object and selecting 0, 1, and/or 2 will cause the object to disappear for all selected difficulty levels.  Note: This only happens when you enter the mission normally through the pre-mission screens.  Optionally, 
+you can run the command \ldblquote process_difficulty\rdblquote , but only do this when you are in the game, not the editor!
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 
+Timing terrain creation - During Portalization, operation brushes are processed in a specific sequential order.  Press Tab to cycle between all of the brushes in your level, and look at the lower-left corner of the editor to a field called \ldblquote 
+Time.\rdblquote   Time starts at 0 and goes to the last brush in your level.  Note that \ldblquote fill\rdblquote  operations (such as \ldblquote fill water\rdblquote 
+) replace all other terrain within their brush dimensions.  Therefore, if you make a neat statue out of \ldblquote fill solid\rdblquote  brushes stacked like building blocks, then place a \ldblquote fill air\rdblquote 
+ brush such that it covers the whole statue, the statue will disappear when you portalize.  This is because the \ldblquote fill air\rdblquote  operation is processed later in time than the many \ldblquote fill solid\rdblquote 
+ operations that make up the statue.  To fix it, you could move the \ldblquote fill air\rdblquote  brush to earlier in time, before any of the \ldblquote fill solid\rdblquote 
+ brushes take place.  You can do so by clicking in the time value box and typing in the new number, or pressing the \ldblquote <\rdblquote  and \ldblquote >\rdblquote 
+ buttons next to it.  If you are having trouble making the shapes of terrain that you want, pay attention to what sequential order the operation brushes are processed in.  Lastly, note that the conversion brushes (such as \ldblquote water->solid
+\rdblquote ) do not necessarily effect all terrain within their brush dimensions.
+\par {\pntext\pard\plain\f1 \'b7\tab}Always using a grid of size 11 or larger will help to prevent a large variety of potential problems caused by irregular sizes, shapes, and rotations of terrain.  The grid is \ldblquote on\rdblquote  when the \ldblquote Use
+\rdblquote  button (found below the grid number) is purple (not gray).  If you ever get weird error messages and/or crashes from the renderer (which you may recognize because they mention things like \ldblquote polyhedrons,\rdblquote  \ldblquote portals,
+\rdblquote  \ldblquote planes,\rdblquote  etc.), try reducing the complexity of your mission\rquote 
+s terrain by using operation brushes that are more regularly shaped.  Go through and grid-snap all of your brushes by moving them slightly when the grid is on.  Furthermore, remember that very high poly counts can lead to problems, so don\rquote 
+t let your lines-of-sight get too long or too detailed. In addition to causing renderer problems, complex terrain can potentially get the player stuck and confuse the AI.
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: No matter how tempting, NEVER turn off grid snapping. This can introduce problems into your level that won\rquote 
+t become apparent until DromEd starts crashing days later. Turning off grid snapping is the single biggest cause of DromEd crahses.]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Filtering - To the lower right of the \ldblquote Create\rdblquote  button is a \ldblquote Filter\rdblquote  button.
+  Sometimes DromEd\rquote s 2D windows get crowded and you want to look at only objects, or only terrain, etc.  When you press \ldblquote Filter\rdblquote 
+ you are presented with a number of buttons you can use to toggle on and off various types of brushes (\ldblquote Terr\rdblquote , \ldblquote Light\rdblquote , etc.).  Remember to toggle them all back on before portalizing, lighting, etc.
+\par {\pntext\pard\plain\f1 \'b7\tab}Area brushes - Area brushes are another way to do filtering, this time by proximity rather than type.  Area brushes are cubic brushes that you can create by selecting them on the \ldblquote Create\rdblquote 
+ menu, then dragging in a 2D window.  When an area brush is the current brush, you can use it to filter.  Press \ldblquote Me Only\rdblquote  to show only those brushes that are inside the area brush.  Press \ldblquote Not Me Only\rdblquote 
+ to disable that filtering.  You can also name area brushes, select them by name (with the \ldblquote Search\rdblquote 
+ button), and activate some area brushes and not others.  Among other things, area brushes are useful for speeding up portalization when you are focusing your work on a small area, such as a single room.  Again
+, make sure you shut off all filtering before trying to portalize, light, etc., the whole level.
+\par {\pntext\pard\plain\f1 \'b7\tab}
+Multibrushes - Multibrushes are a good tool for cutting-and-pasting brush groups.  So, for example, if you make a row of pillars on one side of a room and you want to have the same exact row of pillars on the opposite side of the room, you could multibrus
+h them, press Insert to make a copy of the multibrush, then move the new multibrush to the other side of the room.  To add brushes to a multibrush, hold down \ldblquote Shift\rdblquote 
+ while selecting a brush. Remove brushes from a multibrush in the same way.  You will note that when you are in multibrush mode, the word \ldblquote multibrush\rdblquote 
+ appears where the textures normally appear, at the bottom of the DromEd screen.  To get out of multibrush mode, select a brush that is not in the multibrush while \ldblquote Shift\rdblquote  is }{\i\fs24 not }{\fs24 pressed.  The \ldblquote Multibrush
+\rdblquote  menu gives you other multibrush functionality, such as saving and loading multibrushes, which is especially useful for porting multibrushes between two
+ different missions.  Lastly, multibrushes were primarily designed with terrain brushes (i.e. operation brushes) in mind, but also work to a degree with other brush types.
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx360{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: Multibrushed brushes won\rquote t snap to grid. You must manually ensure that their position parameters are multiples of at least 0.25]
+\par \pard\plain \widctlpar\tx360{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Room Brushing - Room brushes are your way, as the designer, to specify the \ldblquote general shape and form\rdblquote 
+ of your 3D terrain for DromEd.  A hallway may have a carpet running down the middle, skyligh
+ts above, columns along the sides, and some decorative trim along the top that sticks out a little.  All of these things may change the 3D shape in small ways, but with regard to sound propagation, you want to specify the \ldblquote general shape and form
+\rdblquote  as an elongated cubic shape with the same location and dimensions of the hallway.  The easiest way to so is as follows.  When you made the hallway, you probably started with a long \ldblquote fill air\rdblquote 
+ brush and then added other brushes for the details.  Select that first \ldblquote fill air\rdblquote  brush, then hold down \ldblquote Shift\rdblquote  and press \ldblquote Insert.\rdblquote 
+  DromEd will make a room brush that is just like the original brush, but slightly bigger.  Another useful tool is the \ldblquote show sel\rdblquote  button, which will draw lines to show you how the currently selecte
+d room brush is connected (for the purposes of sound propagation) to adjacent rooms.  Be warned that good room brushing can take a lot of time and effort, but can make the sound in your levels much better.  Here is the list of room brushing rules.
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li720\widctlpar\tx720{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 All air a
+nd water space in your levels must be contained within at least one room brush.  This is particularly important for the planes of the floor, from which all footstep sounds originate.
+\par {\pntext\pard\plain\f1 \'b7\tab}Room brushes are allowed to contain solid space (this is only for convenience of placing room brushes; remember that no sounds can actually originate inside solid space).
+\par {\pntext\pard\plain\f1 \'b7\tab}When two room brushes overlap, sound will propagate between them.  Use the \ldblquote show sel\rdblquote  button to confirm that two room brushes intersect.
+\par {\pntext\pard\plain\f1 \'b7\tab}Room brushes that are rotated or that intersect with other room brushes in strange ways may not propagate sound correctly.  Use the \ldblquote show sel\rdblquote 
+ button to see if an intersection problem has occurred.  You will know there\rquote s a problem if the room brushes intersect in 3D space but do not have a line between them when you press \ldblquote show_sel.\rdblquote 
+ If so, try changing the shapes, positions, and rotations of your room brushes.  Use more room brushes if necessary.
+\par {\pntext\pard\plain\f1 \'b7\tab}The center of a room brush must never be contained within another room brush.
+\par {\pntext\pard\plain\f1 \'b7\tab}Don\rquote t forget to \ldblquote Build Room Database\rdblquote  to process your room brushes.
+\par {\pntext\pard\plain\f1 \'b7\tab}If you include \ldblquote check_rooms\rdblquote 
+ in your user.cfg, some useful diagnostics may happen when you build the room database.  The first thing it will do is highlight in yellow all room brushes whose center is inside another room brush.  You should fix all of these
+ room brushes.  If no such room brushes occur, the command will highlight in yellow all room brushes that intersect with other room brushes inside solid space.  These are not technical problem
+s, but you might want to check to make sure you really meant for those room brushes to intersect.
+\par }\pard \widctlpar\tx720{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar\tx720{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: \ldblquote check_rooms\rdblquote 
+ will sometimes highlight in yellow room brushes which have no obvious problems. Usually, you can just ignore this, but be sure to double check the brushes first!]
+\par \pard\plain \widctlpar\tx720{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Water brushes - To create water, try using the \ldblquote fill water\rdblquote  and \ldblquote flood\rdblquote 
+ brushes.  Two things you need to know: 1.) Water brushes are like air brushes, except that they fill the entire brush with water. This water will 
+erase any solid you may have already created there. 2.) Flood brushes fill an existing air brush with water, but do }{\i\fs24 not}{\fs24 
+ delete any solids that are already there.  To get the water to look like water, you will need to make sure it is flow brushed (see below).
+\par }\pard \widctlpar{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }\pard\plain \s15\widctlpar{\*\pn \pnlvlcont\pndec }\i\f4 [D1 and D2 NOTE: Flood is a bit buggy. If you have no choice but to use it, be prepared for a but of experimenting. Try and get away with fill_water or if you can.]
+\par \pard\plain \widctlpar{\*\pn \pnlvlcont\pndec }\f4\fs20 {\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Flow brushes - Flow brushes are how you make water in a Thief level move, look, and be
+have like water.  They are fairly complicated, so they will only be touched on here.  A flow brush applies to the water space that the center of the flow brush is in and sometimes water space adjacent to that as well. The boundaries of the flow brush shou
+ld contain the surface of the water.  Each flow brush is belongs to a \ldblquote group.\rdblquote  To edit the properties for a group of flow brushes, click on the flow brush to select it, and then look down to the bottom center of the screen.  Click the 
+\ldblquote Edit Group\rdblquote  button to bring up the properties box for that group.  Different flow brush \ldblquote groups\rdblquote  have different flowing properties, such as \ldblquote x change/ sec\rdblquote 
+ which specifies how fast the water flows along the X axis.  In order to use water textures, the \ldblquote texture name\rdblquote  field for a flow brush group should be one of the following: \ldblquote bl\rdblquote  or \ldblquote gr\rdblquote  (
+\ldblquote bl\rdblquote  if you want blue water, \ldblquote gr\rdblquote  if you want green water).  The easiest way to get basic water flow is the shotgun method - lots of large flow brushes.  Make sure you press \ldblquote update in world\rdblquote 
+ and/or reportalize.
+\par }\pard \widctlpar\tx360{\*\pn \pnlvlcont\pndec }{\fs24 
+\par }{\i\fs24 [D1 and D2 NOTE: If you get a jorge texture on your water there are 2 likely causes:
+\par You have exceeded the maximum texture palette size of 255. Solution: Remove some unused textures.
+\par There is a non-water brush inside your flow brush. Solution use multiple flow brushes that go round the the offending brush.]
+\par }{\fs24 
+\par {\pntext\pard\plain\f1 \'b7\tab}}\pard \fi-360\li360\widctlpar\tx360{\*\pn \pnlvlblt\pnf1\pnindent360 {\pntxtb \'b7}}{\fs24 Don\rquote 
+t cross the beams.  If you get hurt, remember that we warned you.  We wish you luck, but remember: DromEd is unsupported. You asked for it.
+\par }\pard \widctlpar {\fs24 
+\par 
+\par }}

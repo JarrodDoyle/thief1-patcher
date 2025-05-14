@@ -1,0 +1,157 @@
+New commands
+------------
+
+Most commands are only available in DromEd. Some of the commands have further
+info about usage in the other documentation.
+
+toggle_lighting          : render fullbright
+fog_color                : fog color, give this three values 0-255: [r g b]
+show_edge_verts          : show verts in 'show_poly_edges' mode
+show_cell_flow           : show cells assigned to the specified flow group index in pink (0 = disable)
+set_fov                  : set FOV (degrees)
+center_cell_teleport     : move editor cam to the geometric center of given cell
+where_am_i               : display current cell number of editor cam
+clear_objshadow_cache    : clear object shadow cache
+wr_dump                  : dump worldrep to text file, <filename>
+wr_export_obj            : export worldrep as an OBJ(+MTL) file
+synch_to_playcam         : move editor cam to current player cam pos
+lm32_params              : calculation params for 32-bit lightmaps, [atten_exponent [sat_factor]]
+toggle_bad_cret          : toggle bad cret warnings
+scroll_warp              : warp viewport scroll to mouse loc
+combo_warp               : does scroll_warp in solo otherwise cam_warp
+toggle_wire_zbuffer      : toggle z-buffer for wireframes in solid+wire 3D view (d3d disp provider)
+set_bg_image             : set viewport BG image (d3d disp provider): [<axis> '<image>' <width> <height> <x> <y> <z> <rot> <alpha> <nofilt> <enabled>]
+reset_bg_images          : reset viewport BG image settings (d3d disp provider)
+show_bg_images           : globally enabled/disable drawing of viewport BG images, -1 toggles (d3d disp provider)
+rooms_compile            : Convert rooms to internal rep and update cells
+hilight_rooms            : Hilight room brushes that use the specified room type
+list_rooms               : List room brushes that use the specified room type
+reconstruct_rooms        : Reconstruct room brushes from internal rep
+reconstruct_lights       : Reconstruct light brushes from internal rep
+set_room_arch            : Assign room archetype to the current brush or multibrush. 0 to use the current type, -1 to open archetyp dialog for selection or specify (concrete) archetype obj ID.
+ifeq                     : exec a command if a config variable is defined and equal to value: ifeq <var> <val>, <cmd>
+ifneq                    : exec a command if a config variable is not defined or is not equal to value: ifeq <var> <val>, <cmd>
+toggle                   : Toggle a config variable: unset <var> <value>
+link_objs_ex             : link_objs src dst flavor and edit data if available
+dattach_link             : create/update detail attachment link between src dst retaining current relative pos
+list_obj_type            : list all instances of an archetype, including descendants
+list_obj_name            : list all objects whose names contains specified string
+qlink_add                : add object to quick-link queue
+qlink_del                : remove object from quick-link queue (last entry if added multiple times)
+qlink_insert             : qlink_insert <obj>: insert selected object before object 'obj' in quick-link queue (last entry of 'obj' if added multiple times)
+qlink_reset              : cancel any in-progress quick-link operation
+qlink_create             : qlink_create <flavor> [<flags>]: complete quick-link operation by creating a link chain between queued objects
+edit_scriptdata          : open script-state data editor/inspector
+spew_relations           : toggle debug info to mono when relations are added/removed during game mode
+spew_metaprops           : toggle debug info to mono when metaproperties are added/removed during game mode
+spew_stimulations        : toggle debug info to mono for stimulation events during game mode
+spew_script_msg          : toggle debug info to mono when dispatching messages to script instances
+run_sys                  : run system commands in file
+load_patched_mis         : Load .MIS and .DIF if available
+load_terrain             : Load only the terrain portion from a .MIS/.COW, will prompt for separate gamesys load
+load_world_gam           : Load .COW but force gamesys to load from different file, will prompt for separate gamesys load
+dump_tagblocks           : Dump TagBlock list to taglist.txt
+dump_tagblocks_full      : Dump TagBlock list with all value defs to taglist.txt
+dump_tagblocks_vals      : Dump TagBlock list with current values to taglist_vals.txt
+dump_props               : Dump ObjProp list to proplist.txt
+dump_props_full          : Dump ObjProp list with all value defs to proplist.txt
+dump_type                : Dump a datatype definition to type_*.txt
+dbmod_load               : Load dbmod (.DML) file
+toggle_dbmod_remap       : toggle object/link id remapping when loading dbmod (.DML) file
+all_tree                 : Object Hierarchy editor with only the [All] category
+fpos                     : output an object-position pair in DML fingerprint format, <obj id>
+script_reorder           : edit order(/priority) of script modules
+script_reload            : reload all script modules
+script_spy_obj           : Spy on script messages from an object
+script_unspy_obj         : Stop spying on script messages from an object
+script_alias             : Alias a script module to load another instead
+script_unalias           : Remove a script module alias
+script_unalias_all       : Remove all script module aliases
+check_scripts            : Make sure scripts are unique for each object
+script_ping              : Send a 'ping' message to all descendents or a concrete object
+show_sfx                 : display sfx info
+log_player_pos           : dump current player pos to log (optionally supply comment)
+song_dumpmono            : Dump info about current song to mono
+songschema_dumpmono      : Dump song schema to mono, <song>
+dump_motion_schemas      : save out schema declarations for currently loaded motion database
+reload_motion_info       : reload the .mi file for the specified motion name, to update loaded info that is cached from motiondb.bin
+ai_rehint_objects        : rehint all objects (update cache for which ai cell is closest to each object)
+collapse_family          : convert family textures into single-loaded from family or <all>
+dump_tex_pal             : dump list with texture palette entries
+spew_bad_room_obj_assigns: List objects that have incorrect room indexing or assignments
+toggle_new_mantle        : Toggle new mantle
+unstick_player           : Attempt to free player when stuck
+goto_mission             : Go to another mission
+use_obj                  : Use an object by name
+inv_reset                : Reset and reinitialize the inventory UI
+hpbar_clear_timer        : Clear the HP bar timeout and show it now
+set_map_decal_scheme     : set map decal shading scheme
+test_book                : test_book <text>,<art>
+test_book_ex             : reload string resource before displaying, test_book_ex <text>,<art>
+toggle_book_autoreload   : toggle automatic reload of book string resource before displaying
+test_message             : reload string resource and display as a book on-screen message, test_message <text>[,<duration>]
+toggle_object_render     : toggle object rendering
+set_2d_tex_filter        : enable/disable texture filtering with HW 2D driver, -1 toggles (d3d disp provider)
+toggle_2d_zbuffer        : toggle zbuffering with HW 2D driver (d3d disp provider)
+toggle_unlit_water       : toggle lightmapped water rendering
+editor_water_alpha       : set editor water alpha when using HW 2D driver (d3d disp provider)
+set_obj_zbias            : set object rendering z bias (in bits)
+toggle_alpha_test        : toggle alpha test
+set_alpha_test           : enable/disable alpha test
+set_tex_filter           : set texture filtering mode: 0 point, 1 linear, 2- aniso
+set_trilinear            : enable/disable trilinear texture filtering
+allow_lm_aniso           : enable/disable support for anisotropic lightmap filtering
+set_mipmap_bias          : set mipmap lod bias (-3.0 to 3.0)
+toggle_square_parts      : toggle square particles as disks
+toggle_pixel_parts       : toggle pixel particles as (small) disks
+toggle_alpha_test_opaque : toggle treating alpha test objects as opaque
+set_extended_plr_lighting: set extended player lighting mode
+set_postprocess          : set post process enable/disable, if originally enabled in cfg (d3d disp provider)
+set_bloomscale           : set bloom amount (d3d disp provider)
+set_bloomprescale        : set bloom scale/amplification applied before blurring (d3d disp provider)
+set_bloom_threshold      : set bloom threshold (d3d disp provider)
+set_bloom_range          : set bloom range (d3d disp provider)
+set_bloom_saturation     : set bloom saturation (d3d disp provider)
+set_saturation           : overall saturation while in-game (with d3d_disp_sw_cc)
+set_brightness           : overall brightness while in-game (with d3d_disp_sw_cc)
+set_contrast             : overall contrast while in-game (with d3d_disp_sw_cc)
+set_colorfilter          : overall color filter while in-game (with d3d_disp_sw_cc)
+set_overlay_alpha        : set 2D overlay alpha (d3d disp provider)
+toggle_wr_zcomp          : toggle z-compare for worldrep rendering
+dump_binquest            : dump_binquest
+load_group_ex            : load group with preserved textures
+dissolve_unnamed_groups  : dissolve all unnamed vBrushes
+dissolve_all_groups      : dissolve all named and unnamed vBrushes
+remove_empty_groups      : delete entries for named vBrushes that are empty
+align_object             : align object to nearest surface in the direction of the editor cam
+get_grid_enabled         : get grid from brush if grid enabled
+fixup_brush_grids        : process all brushes and correct invalid grid settings
+brush_centers            : draw brush centers (1=cur brush, 2=all, 0=disabled, -1=cycle modes)
+set_brush_def_tx         : set brush default texture
+cam_to_obj               : move camera to brush of specified object id
+brush_to_cam             : move cur brush to camera (0=default, 1=never snap, 2=preserve fractional pos)
+cam_marker               : create a marker object that matches cam transform
+prim_cylinder            : set prim type to cylinder and # of sides
+prim_pyramid             : set prim type to pyramid and # of sides
+prim_cpyramid            : set prim type to center-pyramid and # of sides
+desaturate_all_lights    : clear hue/saturation on all light brushes
+uvmap_cylinder           : cylinder map brush sides using cur side's tex, [<u_tile> [<v_tile> [<rot90> [<u_off> [<v_off> [<faces>]]]]]]
+build_dlg                : build front-end
+rebuild                  : build with the last used settings from build_dlg (without displaying the dialog)
+lcolor_picker            : dialog based light color picker, outputs hue saturation to mono, [<hue> <sat> [<brightness>]]
+edit_lcolor              : edit light color of currently selected light or object brush, using dialog based color picker, [<no_prompt_mode>]
+pcolor_picker            : dialog based global palette color picker, outputs closest matching pal idx to mono, [<color index>]
+envbox                   : make environment box textures: [size] name
+quad_lighting_cweight    : center sample weight used in quad_lighting modes 2, 3, 5 and 6
+set_lighting_depth       : Set lighting bit depth (16, 32, 64 for 32-bit 2X)
+set_lighting_scale       : Set lighting resolution scale (2 for double res, -2 for half)
+set_lightmapped_water    : Enable/Disable lightmapped water
+set_animlight_cutoff     : Set anim light cutoff (0 - 15), default is 15
+set_ignore_filters       : ignore filters when portalizing/processing
+world_size               : set world extents (default 1000)
+force_wr_up2date         : force WR to be flagged as unmodified (use only with stripped missions)
+hilight_by_name          : hilight all objects whose names contains specified string
+rotspeed_fac             : set rotation speed factor of camera rotation in editor
+cam_reset                : level, unroll and snap rotation of current camera
+show_texres              : [<mode>]: mode 1: visualize over-/under-sized textures, mode 2: visualize max on-screen texture resolution
+show_vhots               : show vhots on objects

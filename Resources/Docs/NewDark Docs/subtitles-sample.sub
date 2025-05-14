@@ -1,0 +1,230 @@
+SUB1
+
+// a subtitle file must always start with above SUB1 header at the very beginning (no empty space in front) and
+// it must be all uppercase
+
+
+// this is a single line comment
+
+/*
+   this is a multi-line
+   comment
+*/
+
+
+// Subtitles files:
+//
+// Subtitle files are loaded from "subtitles\" sub-directories in all resource and mod/FM
+// paths. Language sub-directories should be used, so english subtitle files should be located
+// in "subtitles\english\", spanish in "subtitles\spanish\" and so on. All *.SUB files from
+// the relevant directories will be loaded, so splitting subtitles into several files is no
+// problem.
+//
+// If a specific subtitle entry is found multiple times within the same file, then only the
+// first entry will get used. If a specific entry is found in multiple SUB files within the
+// same directory, then it's undefined which of the entries will end up getting used. Otherwise
+// path priorities apply as expected.
+
+
+
+// A subtitle file may contain an arbitrary number of { .. } blocks, all subtitles in a block
+// share a common Type and Descr parameter. It's however possible to have multiple blocks with
+// the same Type and Descr which can make the file cleaner by being able to group subtitles for
+// certain sounds together. Below are some examples, some also have variations in formatting to
+// roughly demonstrate some of what's allowed.
+
+{
+	// The "Type" defines type or category of subtitle. Users may enable/disable subtitles
+	// of certain types and define custom colors for each type. For example an experienced
+	// player that isn't hearing impaired may only be interested in subtitles for conversations
+	// but not for recurring barks and sound effects. Types:
+	//
+	// "player"
+	//     Player character (mostly Garrett mumbling to himself).
+	//
+	// "convo"
+	//     Any longer or shorter NPC utterances that are unique one-time events. Usually triggered scripted
+	//     conversations or utterances. This is NOT for generic repeatable barks or sounds that are triggered
+	//     programatically by the AI code.
+	//
+	// "bark"
+	//     Programatically triggered utterances/sounds, canned lines of dialog. Ranging from a guard saying
+	//     "Must have been rats" to an idling NPC coughing or randomly mumbling to themselves.
+	//
+	// "urgent"
+	//     Urgent variant of "bark" for utterances/sounds of hightened attention directly relating to NPCs
+	//     reacting to the player, such as discover or attack. Keeping these as a separate type allows the
+	//     subtitles to have a different color to regular barks, which could help the hearing impaired to
+	//     more quickly identify that sound has hightened importance. For example guard saying "Who goes
+	//     there?", yelling "Intruder!" or "(Security camera chirps suspiciously)".
+	//
+	// "fx"
+	//     Sound effects. It doesn't make sense to have subtitles for many effects because it would just be a
+	//     confusing flood of subtitles on the screen, but if there are any more unique effects that it makes
+	//     sense for then this would be the type to use.
+	//
+	// "movie"
+	//     Movie/cutscene subtitles. A movie only has one subtitle entry so normally "MultiSub" would be used
+	//     for subtitling an entire movie. The "Descr" parameter should be omitted for movies.
+	//
+	// "email"
+	//     (SS2 only) Emails and logs. They're already available as text so subtitles are somewhat redundant
+	//     but maybe someone wants subtitles too. The native text can't be used as is for subtitles though
+	//     because they're just one long string, but for subtitles they have to be subdivided into nicely paced
+	//     MultiSub subs.
+
+	Type	"convo"
+
+	// The "Descr" (description) is an optional short description for the sound that will be prefixed to the
+	// subtitle text if the user has display of descriptions enabled. The descriptions are mainly intended
+	// as an extended hint for hearing impaired. For example a sound where a woman says something you would
+	// add a description "Woman". When the subtitle "Damn torches, always sputtering out." is displayed, and
+	// the user has descriptions enabled, s/he would see "Woman: Damn torches, always sputtering out.".
+	// Some other examples could be "Woman yelling", "Man", "Man whispering", "Garrett to himself".
+	// For non-verbal sounds it might even be desireable to sometime have a subtitle without any "Text"
+	// and only a "Descr". This could give users with descriptions enabled a subtitle like for example
+	// "(Man coughs)" while other users wouldn't see any subtitle at all.
+
+	Descr	"Woman"
+	
+	// "Singleton" is an optional flag that indicates that the subtitles will only be displayed once at a time.
+	// Meaning that if a sound is played multiple times at once, or started while a previous instance of the
+	// the same sound is still playing, the subtitles will only display for one sound.
+	// This flag should only be used in rare cases, for example if some sounds are played through a PA system,
+	// where the game will start playing the sound in multiple locations simultaneously. Normally this flag
+	// shouldn't be specified.
+
+	Singleton
+
+	// "OnlySoundType" is an optional flag to indicate that the subtitles should only be displayed if the
+	// the sound is played in either 2D (like a voiceover) or 3D (positional sound in the world) mode. By
+	// default subtitles are displayed for both 2D and 3D sounds.
+	// This flag is only useful in rare cases, normally it shouldn't be specified.
+
+	// To display subtitles only if sound is played in 2D mode
+	OnlySoundType 2D
+	// To display subtitles only if sound is played in 3D mode
+	OnlySoundType 3D
+
+	// "NoVolume" is an optional flag that forces the subtitles for 3D sounds to be displayed without any
+	// volume/distance information. Note that enabling the volume/distance indicators is a user option,
+	// primarily intended for the hearing impaired. The "NoVolume" should only be used in rare cases, like
+	// for example a PA system sound that is played all over the level, but it's played using several 3D sounds.
+	// To ensure that you get proper subtitles for that, you can use "Singleton" and "NoVolume". That will
+	// make the subtitles display only once, and it will have no volume/distance indicator since the sound
+	// is audible from all over.
+
+	NoVolume
+
+	// IMPORTANT: "Type" and "Descr" must be defined prior to any "Sub"/"MultiSub" declarations in a block.
+	//            If they are defined after they will be ignored.
+
+	// Remaining declarations can be any number of subtitles using "Sub" and/or "MultiSub" declarations.
+	// "Sub" is a single text subtitle that is associated with a sound file. "MultiSub" is for longer
+	// speeches or movies that require a sequence of subtitles for a single sound/movie file.
+	// "Sub"/"MultiSub" is followed by an ID tag string that consist of the the sound filename the subtitle
+	// is intended for. Note that the filename is without path so sound files with the same name but in
+	// different paths should be avoided. After a "Sub <filename>" declaration is a sub-block { .. } that
+	// may contain following parameters:
+	//
+	// Text
+	//     The actual subtitle text (in quotes). If the subtitle text has to contain quote characters then
+	//     they need to be written as \" just like with books/readables. Subtitle texts follows the same
+	//     character set rules as books/readables, this especially important for non-english localizations.
+	//
+	// Time
+	//     Parameter to specify a custom start time offset from when the sound/movie starts, in milliseconds.
+	//     1000 is 1 second, 1500 is 1.5 seconds etc.. Default is 0 which is when the sound starts. It's
+	//     optional for "Sub" declarations, as they normally want the subtitles to start when the sound starts,
+	//     but required for "MultiSub" entries.
+	//
+	// Length
+	//     Length of subtitle in milliseconds. If no length is specified for a "Sub" the game will try to
+	//     determine the length based on the sound length. However it's required for movie subtitles and
+	//     "MultiSub". It's recommended to always specify the length manually (based on the length of the
+	//     sound) though, because the engine may not always be able to reliably determine the length from
+	//     the sound. Especially for streaming sounds, but under some circumstances also other sounds.
+
+	Sub "sg60103A" { Text "Damn torches, always sputtering out." }
+	Sub "sg60103C" { Text "I lost my tinderbox, why don't you do it." Length 4000 }
+}
+
+{
+	Type	"bark"
+	Descr	"Man"
+	Sub "sg1bak_7"
+	{
+		Text "Nothing here now."
+	}
+}
+
+{
+	Type	"bark"
+	Descr	"Man yelling"
+	Sub "sg1chgw6" { Text "After him!" }
+	Sub "sg1chgw7" {Text "Take him!"}
+}
+
+{
+ type "convo"
+ descr "Man with cold"
+
+ // A multisub "MultiSub" declaration is followed by an ID tag just like "Sub" declarations and a
+ // sub-block { .. }. Inside the sub-block can by any number of additional sub-blocks which have
+ // identical specifications as for "Sub". In the example below there is a MultiSub for sound file
+ // "Sg11101E". It will display two subtitles, the first at time 0, which is when the sound starts,
+ // and the second subtitle 3.8 seconds into the sound playback.
+
+ MultiSub "Sg11101E"
+ {
+   { Time 0 Length 3000 Text "Not too bad, just catching a cold." }
+   { Time 3800 Length 1200 Text "ACHOO!" }
+ }
+ sub "sg11201D" { text "We're guards, that's what we do." }
+}
+
+// This is an example for a subtitle that has no text, only a description. Users may enable
+// or disable display of descriptions, and if descriptions are disabled this subtitle wouldn't
+// be displayed at all. User that have descriptions enabled would see a "(Man humming)" subtitle
+// which for example would be desirable for the hearing impaired.
+{
+	Type	"bark"
+	Descr	"(Man humming)"
+	Sub "sg1a0hu4" {}
+}
+
+{
+	TYPE	"player"
+	DESCR	"Garrett to himself"
+	SUB	"gar0101" { TEXT "Better check my map." }
+}
+
+// This example is for movie subtitles. The "Type" for those is "movie" and they should have no "Descr".
+// Each movie can only have a single subtitle, which normally means you want a "MultiSub". The subtitle
+// ID tag for a movie consists of "movie/" followed by the movie filename without extension (note that
+// "movie/" is not a path, it's just a prefix used to identify movies).
+{
+	Type		"movie"
+
+	MultiSub	"movie/intro"
+	{
+		{ Time 0 Length 2500 Text "- In a world, where darkness..." }
+		// example with quote characters
+		{ Time 2000 Length 2000 Text "- No! Not \"in a world\"." }
+		// example with new-line character to display two lines of subtitle text
+		{ Time 4500 Length 2000 Text "- One man..\n- No!" }
+		{ Time 7000 Length 1500 Text "- When everything you know..." }
+		{ Time 8500 Length 1000 Text "- No!" }
+	}
+}
+
+// Instead of using a "MultiSub" to define longer sequences of subtitles it's also possible to
+// reference an external subtitle file using the standard SRT subtitle file format. The entire
+// SRT file will be loaded as if it were a single "MultiSub". The "SrtSub" declaration has a third
+// parameter the specifies the filename (without path) of the SRT file to load.
+// IMPORTANT: The SRT file must be located in the same directory as the .SUB file referencing it
+//            or the file will not be found.
+{
+	Type "movie"
+	SrtSub	"movie/b01" "movie_b01.srt"
+}

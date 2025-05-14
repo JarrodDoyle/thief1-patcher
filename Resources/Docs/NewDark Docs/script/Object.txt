@@ -1,0 +1,92 @@
+DECLARE_SCRIPT_SERVICE(Object, 0xdf)
+{
+	STDMETHOD_(object,BeginCreate)(object archetype_or_clone) PURE;
+	STDMETHOD(EndCreate)(object obj) PURE;
+	STDMETHOD_(object,Create)(object archetype_or_clone) PURE;
+	STDMETHOD(Destroy)(object obj) PURE;
+	STDMETHOD_(boolean,Exists)(object obj) PURE;
+	STDMETHOD(SetName)(object obj, const char* name) PURE;
+	STDMETHOD_(string,GetName)(object obj) PURE;
+	STDMETHOD_(object,Named)(const char* name) PURE;
+	STDMETHOD(AddMetaProperty)(object obj, object metaprop) PURE;
+	STDMETHOD(RemoveMetaProperty)(object obj, object metaprop) PURE;
+	STDMETHOD_(boolean,HasMetaProperty)(object obj, object metaprop) PURE;
+	STDMETHOD_(boolean,InheritsFrom)(object obj, object archetype_or_metaprop) PURE;
+	STDMETHOD_(boolean,IsTransient)(object obj) PURE;
+	STDMETHOD(SetTransience)(object obj, boolean is_transient) PURE;
+	STDMETHOD_(vector,Position)(object obj) PURE;
+	STDMETHOD_(vector,Facing)(object obj) PURE;
+	STDMETHOD(Teleport)(object obj, const vector ref position, const vector ref facing, object ref_frame = 0) PURE;
+#ifndef THIEF1
+	STDMETHOD_(boolean,IsPositionValid)(object obj) PURE;
+#ifndef SHOCK
+	STDMETHOD_(object,FindClosestObjectNamed)(ObjID objId, const char* name) PURE;
+#endif
+#endif
+	STDMETHOD_(integer, AddMetaPropertyToMany)(object metaprop, const string ref ToSet) PURE;
+	STDMETHOD_(integer, RemoveMetaPropertyFromMany)(object metaprop, const string ref ToSet) PURE;
+	STDMETHOD_(boolean, RenderedThisFrame)(object scr_obj) PURE;
+
+	//
+	// new functions in T2 v1.19 / SS2 v2.4:
+	//
+
+#ifdef SHOCK
+	STDMETHOD_(object,FindClosestObjectNamed)(ObjID objId, const char* name) PURE;
+#endif
+
+	// transform a pos from object space to world space, ObjectToWorld(vector(0,0,0)) would be the same as Position()
+	STDMETHOD_(vector,ObjectToWorld)(object obj, const vector ref obj_pos) PURE;
+
+	//
+	// new functions in T2 v1.23 / SS2 v2.44:
+	//
+
+	// transform a pos from world space to object space, WorldToObject(Position()) would be the same as vector(0,0,0)
+	STDMETHOD_(vector,WorldToObject)(object obj, const vector ref world_pos) PURE;
+
+	// calculate the relative transform between two objects, returning the relative transform for the hypothetical child object
+	// rel_type is a RelTransformType value and selects what on the parent the child should be relative to
+	// for joint/vhot/subobj/submodel types the sub_or_vhot_or_joint value has to be set to the desired joint/vhot/subobj/submodel index
+	STDMETHOD_(boolean,CalcRelTransform)(object parent_obj, object child_obj, vector ref rel_pos, vector ref rel_facing, int rel_type, int sub_or_vhot_or_joint) PURE;
+
+	//
+	// new functions in T2 v1.24 / SS2 v2.45:
+	//
+
+	// get the archetype of an object
+	STDMETHOD_(object, Archetype)(object scr_obj) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+#ifdef THIEF1
+	STDMETHOD_(boolean,IsPositionValid)(object obj) PURE;
+	STDMETHOD_(object,FindClosestObjectNamed)(ObjID objId, const char* name) PURE;
+#endif
+
+	// set the archetype of an object
+	STDMETHOD(SetArchetype)(object obj, object arch) PURE;
+   
+	// get descendents of an archetype spatially related to another object
+	STDMETHOD_(objset, FindDescendentsSpatial)(object obj, object arch, float radius, int number = 1, BOOL closest = TRUE, BOOL inside = TRUE, BOOL cylindrical = FALSE) PURE;
+
+	STDMETHOD_(ObjID, FindScriptDonor)(ObjID objID, string name) PURE;
+
+	// query objects to iterable sets, similar to what can be done with links
+	STDMETHOD_(boolean, AnyExist)(object obj, eTraitQueryType type = kTraitQueryDescendents) PURE;
+	STDMETHOD_(objset, GetAll)(object obj, eTraitQueryType type = kTraitQueryDescendents) PURE;
+	STDMETHOD_(object, GetOne)(object obj, eTraitQueryType type = kTraitQueryDescendents) PURE;
+};
+
+
+// Transform types for CalcRelTransform
+enum RelTransformType
+{
+   RelObject,		// relative to parent object (sub_or_vhot_or_joint ignored, set 0)
+   RelJoint,		// relative to a joint on parent (sub_or_vhot_or_joint is joint index)
+   RelVHot,		// relative to a vhot on parent (sub_or_vhot_or_joint is vhot index)
+   RelSubObject,	// relative to a sub-object on parent (sub_or_vhot_or_joint is sub-object index)
+   RelSubPhysModel	// relative to a physics sub-model on parent (sub_or_vhot_or_joint is physics sub-model index)
+};

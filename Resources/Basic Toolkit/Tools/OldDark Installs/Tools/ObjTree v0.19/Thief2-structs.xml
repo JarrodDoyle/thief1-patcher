@@ -1,0 +1,3575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ -    Thief2-structs.xml
+ -
+ -    This file is part of DarkUtils
+ -    Copyright (C) 2004 Tom N Harris <telliamed@whoopdedo.org>
+ -
+ -    This program is free software; you can redistribute it and/or modify
+ -    it under the terms of the GNU General Public License as published by
+ -    the Free Software Foundation; either version 2 of the License, or
+ -    (at your option) any later version.
+ -
+ -    This program is distributed in the hope that it will be useful,
+ -    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ -    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ -    GNU General Public License for more details.
+ -
+ -    You should have received a copy of the GNU General Public License
+ -    along with this program; if not, write to the Free Software
+ -    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ -
+ -->
+<structinfo>
+
+<!-- Various (all) symbols used throughout -->
+
+<enum name="aiawarenessflags" type="bitfield">
+  <symbol name="Seen" value="0x01" />
+  <symbol name="Heard" value="0x02" />
+  <symbol name="Can Raycast" value="0x04" />
+  <symbol name="Line of Sight" value="0x08" />
+  <symbol name="Blind" value="0x10" />
+  <symbol name="Deaf" value="0x20" />
+  <symbol name="Highest" value="0x40" />
+  <symbol name="First Hand" value="0x80" />
+</enum>
+
+<enum name="aifleecondition" type="unsigned">
+  <symbol name="Never" value="0" />
+  <symbol name="Alert 1" value="1" />
+  <symbol name="Alert 2" value="2" />
+  <symbol name="Alert 3" value="3" />
+  <symbol name="Damage" value="4" />
+  <symbol name="Threat" value="5" />
+  <symbol name="Frustrated" value="6" />
+</enum>
+
+<enum name="aimode" type="unsigned">
+  <symbol name="Asleep" value="0" />
+  <symbol name="Super efficient" value="1" />
+  <symbol name="Efficient" value="2" />
+  <symbol name="Normal" value="3" />
+  <symbol name="Combat" value="4" />
+  <symbol name="Dead" value="5" />
+</enum>
+
+<enum name="ainonhostile" type="unsigned">
+  <symbol name="Never" value="0" />
+  <symbol name="To Player" value="1" />
+  <symbol name="To Player Until Damaged" value="2" />
+  <symbol name="To Player Until Threatened" value="3" />
+  <symbol name="Until Damaged" value="4" />
+  <symbol name="Until Threatened" value="5" />
+  <symbol name="Always" value="6" />
+</enum>
+
+<enum name="aiobjectavoidflags" type="bitfield">
+  <symbol name="Block Pathfind" value="1" />
+  <symbol name="Repel" value="2" />
+</enum>
+
+<enum name="aipriority" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="VeryLow" value="1" />
+  <symbol name="Low" value="2" />
+  <symbol name="Normal" value="3" />
+  <symbol name="High" value="4" />
+  <symbol name="VeryHigh" value="5" />
+  <symbol name="Absolute" value="6" />
+</enum>
+
+<enum name="airating" type="unsigned">
+  <symbol name="Null" value="0" />
+  <symbol name="Well Below Average" value="1" />
+  <symbol name="Below Average" value="2" />
+  <symbol name="Average" value="3" />
+  <symbol name="Above Average" value="4" />
+  <symbol name="Well Above Average" value="5" />
+</enum>
+
+<enum name="aircapplicable" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Minimum" value="1" />
+  <symbol name="VeryLow" value="2" />
+  <symbol name="Low" value="3" />
+  <symbol name="Normal" value="4" />
+  <symbol name="High" value="5" />
+  <symbol name="VeryHigh" value="6" />
+</enum>
+
+<enum name="aircconstraint" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Nearby AI" value="1" />
+  <symbol name="Misses" value="2" />
+</enum>
+
+<enum name="aircfrequency" type="unsigned">
+  <symbol name="Never" value="0" />
+  <symbol name="Very Rarely" value="1" />
+  <symbol name="Rarely" value="2" />
+  <symbol name="Sometimes" value="3" />
+  <symbol name="Often" value="4" />
+  <symbol name="Very Often" value="5" />
+</enum>
+
+<enum name="aircmethod" type="unsigned">
+  <symbol name="Straight Line" value="0" />
+  <symbol name="Arcing" value="1" />
+  <symbol name="Reflecting" value="2" />
+  <symbol name="Overhead" value="3" />
+</enum>
+
+<enum name="aircpriority" type="unsigned">
+  <symbol name="Very Low" value="0" />
+  <symbol name="Low" value="1" />
+  <symbol name="Moderate" value="2" />
+  <symbol name="High" value="3" />
+  <symbol name="Very High" value="4" />
+</enum>
+
+<enum name="aisoundtype" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Inform" value="1" />
+  <symbol name="Minor anomaly" value="2" />
+  <symbol name="Major anomaly" value="3" />
+  <symbol name="Non-combat high" value="4" />
+  <symbol name="Combat high" value="5" />
+</enum>
+
+<enum name="aispeed" type="unsigned">
+  <symbol name="Stopped" value="0" />
+  <symbol name="Very Slow" value="1" />
+  <symbol name="Slow" value="2" />
+  <symbol name="Normal" value="3" />
+  <symbol name="Fast" value="4" />
+  <symbol name="Very Fast" value="5" />
+</enum>
+
+<enum name="aiteam" type="unsigned">
+  <symbol name="Good" value="0" />
+  <symbol name="Neutral" value="1" />
+  <symbol name="Bad" value="2" />
+</enum>
+
+<enum name="aithreat" type="unsigned">
+  <symbol name="Raised Weapon" value="0" />
+  <symbol name="Threat" value="1" />
+</enum>
+
+<enum name="aivisionflags" type="bitfield">
+  <symbol name="Active" value="0x01" />
+  <symbol name="No Alert 0" value="0x02" />
+  <symbol name="No Alert 1" value="0x04" />
+  <symbol name="No Alert 2" value="0x08" />
+  <symbol name="No Alert 3" value="0x10" />
+  <symbol name="Peripheral" value="0x20" />
+  <symbol name="Omni" value="0x40" />
+  <symbol name="Night Vision" value="0x80" />
+  <symbol name="Behind" value="0x100" />
+</enum>
+
+<enum name="aiwatchkillcondition" type="unsigned">
+  <symbol name="Never" value="0" />
+  <symbol name="After Trigger" value="1" />
+  <symbol name="After Completion" value="2" />
+</enum>
+
+<enum name="aiwatchvisibility" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Line of Sight" value="1" />
+  <symbol name="Raycast" value="2" />
+</enum>
+
+<enum name="alertlevel" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Low" value="1" />
+  <symbol name="Moderate" value="2" />
+  <symbol name="High" value="3" />
+</enum>
+
+<enum name="ambienthackedflags" type="bitfield">
+  <symbol name="Environmental" value="0x01" />
+  <symbol name="No Sharp Curve" value="0x02" />
+  <symbol name="Turned Off" value="0x04" />
+  <symbol name="Once Only" value="0x08" />
+  <symbol name="Music" value="0x10" />
+  <symbol name="Synch" value="0x20" />
+  <symbol name="No Fade" value="0x40" />
+  <symbol name="Destroy Object" value="0x80" />
+  <symbol name="Auto Off" value="0x100" />
+</enum>
+
+<enum name="animlightmode" type="unsigned">
+  <symbol name="Alternate" value="0" />
+  <symbol name="Alternate Smoothly" value="1" />
+  <symbol name="Random" value="2" />
+  <symbol name="Min Brightness" value="3" />
+  <symbol name="Max Brightness" value="4" />
+  <symbol name="Zero Brightness" value="5" />
+  <symbol name="Brighten Smoothly" value="6" />
+  <symbol name="Dim Smoothly" value="7" />
+  <symbol name="Semi-Random" value="8" />
+  <symbol name="Flicker" value="9" />
+</enum>
+
+<enum name="animtextureflags" type="bitfield">
+  <symbol name="Wrap" value="1" />
+  <symbol name="Randing" value="2" />
+  <symbol name="Reverse" value="4" />
+  <symbol name="Portal" value="8" />
+</enum>
+
+<enum name="bitmapanimationflags" type="bitfield">
+  <symbol name="Kill On Completion" value="1" />
+</enum>
+
+<enum name="broadcastschema2" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Sleeping" value="1" />
+  <symbol name="Alert 0" value="2" />
+  <symbol name="Alert 1" value="3" />
+  <symbol name="Alert 2" value="4" />
+  <symbol name="Alert 3" value="5" />
+  <symbol name="Alert to 1" value="6" />
+  <symbol name="Alert to 2" value="7" />
+  <symbol name="Alert to 3" value="8" />
+  <symbol name="Spot Player" value="9" />
+  <symbol name="Alert Down" value="10" />
+  <symbol name="Lost Contact" value="11" />
+  <symbol name="Charge" value="12" />
+  <symbol name="Shoot" value="13" />
+  <symbol name="Flee" value="14" />
+  <symbol name="Friend" value="15" />
+  <symbol name="Alarm" value="16" />
+  <symbol name="Get Bowman" value="17" />
+  <symbol name="Attack" value="18" />
+  <symbol name="Attack Hit" value="19" />
+  <symbol name="Block" value="20" />
+  <symbol name="Block Attempt" value="21" />
+  <symbol name="Blocked" value="22" />
+  <symbol name="Hit-No Damage" value="23" />
+  <symbol name="Hit-High Damage" value="24" />
+  <symbol name="Hit-Low Damage" value="25" />
+  <symbol name="Ambush" value="26" />
+  <symbol name="Die Loud" value="27" />
+  <symbol name="Die Soft" value="28" />
+  <symbol name="Body" value="29" />
+  <symbol name="Mising" value="30" />
+  <symbol name="Security" value="31" />
+  <symbol name="Anomaly Small" value="32" />
+  <symbol name="Anomaly Large" value="33" />
+  <symbol name="Robot" value="34" />
+  <symbol name="Intruder" value="35" />
+  <symbol name="Body Seen" value="36" />
+  <symbol name="Missing Seen" value="37" />
+  <symbol name="Anomaly Seen" value="38" />
+  <symbol name="Robot Seen" value="39" />
+  <symbol name="Frustrated" value="40" />
+</enum>
+
+<enum name="broadcasttype" type="unsigned">
+  <symbol name="Normal" value="0" />
+  <symbol name="None" value="1" />
+  <symbol name="Custom" value="2" />
+</enum>
+
+<enum name="containtype" type="integer">
+  <symbol name="Default" value="0" />
+  <symbol name="Belt" value="-1" />
+  <symbol name="Hand" value="-2" />
+  <symbol name="Alternate" value="-3" />
+</enum>
+
+<enum name="convactor" type="integer">
+  <symbol name="Unused" value="-1" />
+</enum>
+
+<enum name="creaturetype" type="unsigned">
+  <symbol name="Humanoid" value="0" />
+  <symbol name="PlayerArm" value="1" />
+  <symbol name="PlayerBowArm" value="2" />
+  <symbol name="Burrick" value="3" />
+  <symbol name="Spider" value="4" />
+  <symbol name="BugBeast" value="5" />
+  <symbol name="Crayman" value="6" />
+  <symbol name="Constantine" value="7" />
+  <symbol name="Apparition" value="8" />
+  <symbol name="Sweel" value="9" />
+  <symbol name="Rope" value="10" />
+  <symbol name="Zombie" value="11" />
+  <symbol name="Small Spider" value="12" />
+  <symbol name="Frog" value="13" />
+  <symbol name="Cutty" value="14" />
+  <symbol name="Avatar" value="15" />
+  <symbol name="Robot" value="16" />
+  <symbol name="Small Robot" value="17" />
+  <symbol name="Spider Bot" value="18" />
+</enum>
+
+<enum name="cretposetype" type="unsigned">
+  <symbol name="Tags" value="0" />
+  <symbol name="Motion" value="1" />
+</enum>
+
+<enum name="darkstatflags" type="bitfield">
+  <symbol name="Innocent" value="0x01" />
+  <symbol name="Enemy" value="0x02" />
+  <symbol name="Hidden" value="0x04" />
+  <symbol name="FoundBody" value="0x08" />
+  <symbol name="Robot" value="0x10" />
+</enum>
+
+<enum name="difficultylevels" type="bitfield">
+  <symbol name="0 (Normal)" value="0x01" />
+  <symbol name="1 (Hard)" value="0x02" />
+  <symbol name="2 (Expert)" value="0x04" />
+</enum>
+
+<enum name="doorstate" type="unsigned">
+  <symbol name="Closed" value="0" />
+  <symbol name="Open" value="1" />
+  <symbol name="Closing" value="2" />
+  <symbol name="Opening" value="3" />
+  <symbol name="Halted" value="4" />
+</enum>
+
+<enum name="eaxtype" type="unsigned">
+  <symbol name="Generic" value="0" />
+  <symbol name="PaddedCell" value="1" />
+  <symbol name="Room" value="2" />
+  <symbol name="Bathroom" value="3" />
+  <symbol name="LivingRoom" value="4" />
+  <symbol name="StoneRoom" value="5" />
+  <symbol name="Auditorium" value="6" />
+  <symbol name="ConcertHall" value="7" />
+  <symbol name="Cave" value="8" />
+  <symbol name="Arena" value="9" />
+  <symbol name="Hangar" value="10" />
+  <symbol name="CarpetedHallway" value="11" />
+  <symbol name="Hallway" value="12" />
+  <symbol name="StoneCorridor" value="13" />
+  <symbol name="Alley" value="14" />
+  <symbol name="Forest" value="15" />
+  <symbol name="City" value="16" />
+  <symbol name="Mountains" value="17" />
+  <symbol name="Quarry" value="18" />
+  <symbol name="Plain" value="19" />
+  <symbol name="ParkingLot" value="20" />
+  <symbol name="SewerPipe" value="21" />
+  <symbol name="UnderWater" value="22" />
+  <symbol name="Drugged" value="23" />
+  <symbol name="Dizzy" value="24" />
+  <symbol name="Psychotic" value="25" />
+</enum>
+
+<enum name="facevisage" type="unsigned">
+  <symbol name="Neutral" value="0" />
+  <symbol name="Smile" value="1" />
+  <symbol name="Wince" value="2" />
+  <symbol name="Surprise" value="3" />
+  <symbol name="Stunned" value="4" />
+</enum>
+
+<enum name="frobaction" type="bitfield">
+  <symbol name="Move" value="0x01" />
+  <symbol name="Script" value="0x02" />
+  <symbol name="Delete" value="0x04" />
+  <symbol name="Ignore" value="0x08" />
+  <symbol name="FocusScript" value="0x10" />
+  <symbol name="Tool Cursor" value="0x20" />
+  <symbol name="Use Ammo" value="0x40" />
+  <symbol name="Default" value="0x80" />
+  <symbol name="Deselect" value="0x100" />
+</enum>
+
+<enum name="frobproxyflags" type="bitfield">
+  <symbol name="Do Inv" value="0x01" />
+  <symbol name="No World" value="0x02" />
+  <symbol name="Do ToolSrc" value="0x04" />
+  <symbol name="No ToolDst" value="0x08" />
+  <symbol name="Allow Direct" value="0x10" />
+</enum>
+
+<enum name="gunflashflags" type="bitfield">
+  <symbol name="Attach Projectile" value="1" />
+  <symbol name="Random Bank" value="2" />
+</enum>
+
+<enum name="inventoryrendertype" type="unsigned">
+  <symbol name="Default" value="0" />
+  <symbol name="Alt Model" value="1" />
+  <symbol name="Alt Bitmap" value="2" />
+</enum>
+
+<enum name="inventorytype" type="unsigned">
+  <symbol name="Junk" value="0" />
+  <symbol name="Item" value="1" />
+  <symbol name="Weapon" value="2" />
+</enum>
+
+<enum name="investigatekind" type="unsigned">
+  <symbol name="Normal" value="0" />
+  <symbol name="Don't Investigate" value="1" />
+</enum>
+
+<enum name="meshjoint" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Head" value="1" />
+  <symbol name="Neck" value="2" />
+  <symbol name="Abdomen" value="3" />
+  <symbol name="Butt" value="4" />
+  <symbol name="LeftShoulder" value="5" />
+  <symbol name="RightShoulder" value="6" />
+  <symbol name="LeftElbow" value="7" />
+  <symbol name="RightElbow" value="8" />
+  <symbol name="LeftWrist" value="9" />
+  <symbol name="RightWrist" value="10" />
+  <symbol name="LeftFingers" value="11" />
+  <symbol name="RightFingers" value="12" />
+  <symbol name="LeftHip" value="13" />
+  <symbol name="RightHip" value="14" />
+  <symbol name="LeftKnee" value="15" />
+  <symbol name="RightKnee" value="16" />
+  <symbol name="LeftAnkle" value="17" />
+  <symbol name="RightAnkle" value="18" />
+  <symbol name="LeftToe" value="19" />
+  <symbol name="RightToe" value="20" />
+  <symbol name="Tail" value="21" />
+</enum>
+
+<enum name="motorcontrollertype" type="unsigned">
+  <symbol name="GroundLocomotion" value="0" />
+  <symbol name="Combat" value="1" />
+  <symbol name="GroundAction" value="2" />
+  <symbol name="PlayerArm" value="3" />
+  <symbol name="PlayerBow" value="4" />
+  <symbol name="Single" value="5" />
+</enum>
+
+<enum name="networkcategorytype" type="unsigned">
+  <symbol name="Local Only" value="0" />
+  <symbol name="Hosted" value="1" />
+  <symbol name="Obsolete" value="2" />
+</enum>
+
+<enum name="networkhandler" type="unsigned">
+  <symbol name="Host" value="0" />
+  <symbol name="Local Only" value="1" />
+  <symbol name="All Machines" value="2" />
+</enum>
+
+<enum name="objectrendertype" type="unsigned">
+  <symbol name="Normal" value="0" />
+  <symbol name="Not Rendered" value="1" />
+  <symbol name="No Lightmap" value="2" />
+  <symbol name="Editor Only" value="3" />
+</enum>
+
+<enum name="particleattachtype" type="unsigned">
+  <symbol name="Object" value="0" />
+  <symbol name="VHot" value="1" />
+  <symbol name="Joint" value="2" />
+  <symbol name="Submodel" value="3" />
+</enum>
+
+<enum name="particlegrouptype" type="unsigned">
+  <symbol name="Single-Colored Pixels" value="0" />
+  <symbol name="Multi-Colored Pixels" value="1" />
+  <symbol name="Single-Colored Squares" value="2" />
+  <symbol name="Multi-Colored Squares" value="3" />
+  <symbol name="Single-Colored Disk" value="4" />
+  <symbol name="Scaled Bitmap" value="5" />
+</enum>
+
+<enum name="particlegroupanimation" type="unsigned">
+  <symbol name="Launch Once" value="0" />
+  <symbol name="Launch Continually" value="1" />
+  <symbol name="Rotating Hollow Sphere" value="2" />
+  <symbol name="Rotating Sphere" value="3" />
+  <symbol name="Rotating Hollow Cube" value="4" />
+  <symbol name="Rotating Cube" value="5" />
+  <symbol name="Rotating Disk" value="6" />
+  <symbol name="Rotating Circle" value="7" />
+  <symbol name="Rotating Pyramid" value="8" />
+</enum>
+
+<enum name="particlegroupmotion" type="unsigned">
+  <symbol name="Immobile" value="0" />
+  <symbol name="Follow Velocity" value="1" />
+  <symbol name="Follow Velocity%26Gravity" value="2" />
+  <symbol name="Trailing Object" value="3" />
+  <symbol name="Attached to Object" value="4" />
+  <symbol name="Fire and Forget" value="5" />
+</enum>
+
+<enum name="particlelaunchtype" type="unsigned">
+  <symbol name="Cube" value="0" />
+  <symbol name="Sphere" value="1" />
+  <symbol name="Cylinder" value="2" />
+</enum>
+
+<enum name="physcollisionresult" type="bitfield">
+  <symbol name="Bounce" value="0x01" />
+  <symbol name="Destroy" value="0x02" />
+  <symbol name="Slay" value="0x04" />
+  <symbol name="No Collision Sound" value="0x08" />
+  <symbol name="No Result" value="0x10" />
+  <symbol name="Full Collision Sound" value="0x20" />
+</enum>
+
+<enum name="physaxistype" type="integer">
+  <symbol name="X-Axis" value="0" />
+  <symbol name="Y-Axis" value="1" />
+  <symbol name="Z-Axis" value="2" />
+</enum>
+
+<enum name="physaxisflags" type="bitfield">
+  <symbol name="X-Axis" value="1" />
+  <symbol name="Y-Axis" value="2" />
+  <symbol name="Z-Axis" value="4" />
+</enum>
+
+<enum name="physorientationflags" type="bitfield">
+  <symbol name="+X-Axis" value="1" />
+  <symbol name="+Y-Axis" value="2" />
+  <symbol name="+Z-Axis" value="4" />
+  <symbol name="-X-Axis" value="8" />
+  <symbol name="-Y-Axis" value="16" />
+  <symbol name="-Z-Axis" value="32" />
+</enum>
+
+<enum name="physcontrolflags" type="bitfield">
+  <symbol name="Axis Velocity" value="1" />
+  <symbol name="Velocity" value="2" />
+  <symbol name="Rotational Velocity" value="4" />
+  <symbol name="Location" value="8" />
+  <symbol name="Rotation" value="16" />
+</enum>
+
+<enum name="physmodeltype" type="unsigned">
+  <symbol name="BoundingBox" value="0" />
+  <symbol name="Sphere" value="1" />
+  <symbol name="SphereHat" value="2" />
+  <symbol name="None" value="3" />
+</enum>
+
+<enum name="pickcfgflags" type="bitfield">
+  <symbol name="Reset On Fail" value="1" />
+  <symbol name="Randomize Time" value="2" />
+</enum>
+
+<enum name="pscriptaction" type="unsigned">
+  <symbol name="Nothing" value="0" />
+  <symbol name="ScrMessage" value="1" />
+  <symbol name="PlaySchema%2FMotion" value="2" />
+  <symbol name="Alert" value="3" />
+  <symbol name="BeHostile" value="4" />
+  <symbol name="Investigate" value="5" />
+  <symbol name="GotoObject" value="6" />
+  <symbol name="FrobObject" value="7" />
+  <symbol name="Wait" value="8" />
+  <symbol name="MPrint" value="9" />
+  <symbol name="Add%2FRemoveMetaprop" value="10" />
+  <symbol name="AddLink" value="11" />
+  <symbol name="RemoveLink" value="12" />
+  <symbol name="Face" value="13" />
+  <symbol name="Signal" value="14" />
+  <symbol name="DestScrMessage" value="15" />
+</enum>
+
+<enum name="schemaaudioclass" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Noise" value="1" />
+  <symbol name="Speech" value="2" />
+  <symbol name="Ambient" value="3" />
+  <symbol name="Music" value="4" />
+  <symbol name="MetaUI" value="5" />
+  <symbol name="Player Feet" value="6" />
+  <symbol name="Other Feet" value="7" />
+  <symbol name="Collisions" value="8" />
+  <symbol name="Weapons" value="9" />
+  <symbol name="Monsters" value="10" />
+</enum>
+
+<enum name="schemaloopflags" type="bitfield">
+  <symbol name="Poly" value="0x001" />
+  <symbol name="Auto-Halt" value="0x002" />
+</enum>
+
+<enum name="schemaplayflags" type="bitfield">
+  <symbol name="Retrigger" value="0x001" />
+  <symbol name="Pan Position" value="0x002" />
+  <symbol name="Pan Range" value="0x004" />
+  <symbol name="No Repeat" value="0x008" />
+  <symbol name="No Cache" value="0x010" />
+  <symbol name="Stream" value="0x020" />
+  <symbol name="Play Once" value="0x040" />
+  <symbol name="No Combat" value="0x080" />
+  <symbol name="Net Ambient" value="0x100" />
+  <symbol name="Local Spatial" value="0x200" />
+</enum>
+
+<enum name="slayresulttype" type="unsigned">
+  <symbol name="Normal" value="0" />
+  <symbol name="Nothing" value="1" />
+  <symbol name="Terminate" value="2" />
+  <symbol name="Destroy" value="3" />
+</enum>
+
+<enum name="swordactiontype" type="unsigned">
+  <symbol name="Swing" value="0" />
+  <symbol name="Block" value="1" />
+  <symbol name="Block Directed" value="2" />
+</enum>
+
+<enum name="terrainattachtype" type="bitfield">
+  <symbol name="Rope" value="1" />
+  <symbol name="Vine" value="2" />
+</enum>
+
+<enum name="trapcontrolflags" type="bitfield">
+  <symbol name="Once" value="1" />
+  <symbol name="Invert" value="2" />
+  <symbol name="NoOn" value="4" />
+  <symbol name="NoOff" value="8" />
+</enum>
+
+<enum name="tweqanimflags" type="bitfield">
+  <symbol name="NoLimit" value="0x01" />
+  <symbol name="Sim" value="0x02" />
+  <symbol name="Wrap" value="0x04" />
+  <symbol name="OneBounce" value="0x08" />
+  <symbol name="SimSmallRadius" value="0x10" />
+  <symbol name="SimLargeRadius" value="0x20" />
+  <symbol name="Offscreen" value="0x40" />
+</enum>
+
+<enum name="tweqcurveflags" type="bitfield">
+  <symbol name="JitterLow" value="0x01" />
+  <symbol name="JitterHigh" value="0x02" />
+  <symbol name="JitterMul" value="0x04" />
+</enum>
+
+<enum name="tweqhaltcfg" type="unsigned">
+  <symbol name="DestroyObj" value="0" />
+  <symbol name="RemoveProp" value="1" />
+  <symbol name="StopTweq" value="2" />
+  <symbol name="Continue" value="3" />
+  <symbol name="SlayObj" value="4" />
+</enum>
+
+<enum name="tweqmiscflags" type="bitfield">
+  <symbol name="Anchor" value="0x001" />
+  <symbol name="Scripts" value="0x002" />
+  <symbol name="Random" value="0x004" />
+  <symbol name="Gravity" value="0x008" />
+  <symbol name="ZeroVelocity" value="0x010" />
+  <symbol name="TellAI" value="0x020" />
+  <symbol name="PushOut" value="0x040" />
+  <symbol name="NegativeLogic" value="0x080" />
+  <symbol name="RelativeVelocity" value="0x100" />
+  <symbol name="NoPhysics" value="0x200" />
+  <symbol name="AnchorVHot" value="0x400" />
+  <symbol name="HostOnly" value="0x800" />
+</enum>
+
+<enum name="tweqstateflags" type="bitfield">
+  <symbol name="On" value="0x01" />
+  <symbol name="Reverse" value="0x02" />
+  <symbol name="ReSynch" value="0x04" />
+  <symbol name="GoEdge" value="0x08" />
+  <symbol name="LapOne" value="0x10" />
+</enum>
+
+<enum name="tweqnullflags" type="bitfield">
+  <symbol name="Null" value="0x01" />
+</enum>
+
+<enum name="voiceoverflags" type="bitfield">
+  <symbol name="World Hilight" value="0x01" />
+  <symbol name="Pick Up" value="0x02" />
+</enum>
+
+<enum name="weaponmode" type="bitfield">
+  <symbol name="Block" value="0x01" />
+  <symbol name="Melee" value="0x02" />
+  <symbol name="Ranged" value="0x04" />
+  <symbol name="Idle" value="0x08" />
+</enum>
+
+<!-- A few generic structures. -->
+
+<struct name="vector" size="12">
+  <field name="x" label="X" type="float" offset="0" size="4" />
+  <field name="y" label="Y" type="float" offset="4" size="4" />
+  <field name="z" label="Z" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="int-vector" size="12">
+  <field name="x" label="X" type="integer" offset="0" size="4" />
+  <field name="y" label="Y" type="integer" offset="4" size="4" />
+  <field name="z" label="Z" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="short-vector" size="6">
+  <field name="x" label="X" type="integer" offset="0" size="2" />
+  <field name="y" label="Y" type="integer" offset="2" size="2" />
+  <field name="z" label="Z" type="integer" offset="4" size="2" />
+</struct>
+
+<struct name="var-string" size="-1" minsize="5">
+  <field name="length" type="unsigned" offset="0" size="4" />
+  <field name="name" type="string" offset="4" size="-1" minsize="1" />
+</struct>
+
+<struct name="color" size="12">
+  <field name="r" label="Red" type="float" offset="0" size="4" />
+  <field name="g" label="Green" type="float" offset="4" size="4" />
+  <field name="b" label="Blue" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="pseudoscript" size="260">
+  <field name="action" label="Action" type="unsigned" offset="0" size="4" enum="pscriptaction" />
+  <array name="args" label="Arguments" offset="4" size="256" count="4">
+    <field type="string" size="64" />
+  </array>
+</struct>
+
+<struct name="aiaptitude" size="4">
+  <field name="rating" type="unsigned" size="4" value="3" enum="airating" />
+</struct>
+
+<struct name="cfgtweqsimple" size="8">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="rate" label="Rate" type="unsigned" offset="6" size="2" />
+</struct>
+
+<struct name="sttweqsimple" size="8">
+  <field name="anim" label="Anim" type="bitfield" offset="0" size="2" enum="tweqstateflags" />
+  <field name="misc" label="Misc" type="bitfield" offset="2" size="2" enum="tweqnullflags" />
+  <field name="time" label="Time" type="unsigned" offset="4" size="2" />
+  <field name="frame" label="Frame" type="unsigned" offset="6" size="2" />
+</struct>
+
+
+<!-- Property defs -->
+<class name="properties">
+
+<struct name="Acoustics" label="Acoustics" size="12">
+  <field name="eax" label="EAX type" type="unsigned" offset="0" size="4" enum="eaxtype" />
+  <field name="dampening" label="Dampening" type="integer" offset="4" size="4" />
+  <field name="height" label="Height Overide" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AdvPickSo" label="AdvPickSoundCfg" size="648">
+  <array name="stage" label="Pick Stage" offset="0" size="648" count="9">
+    <struct size="72">
+      <field name="pick1" label="Pick 1 Sound" type="string" offset="0" size="24" />
+      <field name="pick2" label="Pick 2 Sound" type="string" offset="24" size="24" />
+      <field name="pick3" label="Pick 3 Sound" type="string" offset="48" size="24" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="AdvPickSt" label="AdvPickStateCfg" size="52">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="source1" label="Pick 1 Source" type="bitfield" offset="4" size="4" />
+  <field name="source2" label="Pick 2 Source" type="bitfield" offset="8" size="4" />
+  <field name="source3" label="Pick 3 Source" type="bitfield" offset="12" size="4" />
+  <array name="time" label="Stage Time" offset="16" size="36" count="9">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="AdvPickTr" label="AdvPickTransCfg" size="108">
+  <array name="stage" label="Pick Stage" offset="0" size="108" count="9">
+    <struct size="12">
+      <field name="pick1" label="Pick 1 to Stage" type="integer" offset="0" size="4" />
+      <field name="pick2" label="Pick 2 to Stage" type="integer" offset="4" size="4" />
+      <field name="pick3" label="Pick 3 to Stage" type="integer" offset="8" size="4" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="AI" label="AI" size="32">
+  <field name="behaviorset" type="string" size="32" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Aggres" label="AIAggression" />
+
+<struct name="AI_AlertC" label="AIAlertCap" size="12">
+  <field name="maxlevel" label="Max. Level" type="unsigned" offset="0" size="4" value="3" enum="alertlevel" />
+  <field name="minlevel" label="Min. Level" type="unsigned" offset="4" size="4" enum="alertlevel" />
+  <field name="minrelax" label="Min. after Relax" type="unsigned" offset="8" size="4" enum="alertlevel" />
+</struct>
+
+<struct name="AI_Alertn" label="AIAlertness" size="8">
+  <field name="level" label="Level" type="unsigned" offset="0" size="4" enum="alertlevel" />
+  <field name="peak" label="Peak" type="unsigned" offset="4" size="4" enum="alertlevel" />
+</struct>
+
+<struct name="AI_AlrtRs" label="AIAlertResponse" size="4184">
+  <field name="level" label="Level" type="unsigned" offset="0" size="4" enum="alertlevel" />
+  <field name="priority" label="Priority" type="unsigned" offset="4" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="8" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="24" count="6">
+    <struct ref="pseudoscript" />
+  </array>
+  <array name="extra" label="Extra" offset="1584" count="10">
+    <struct ref="pseudoscript" />
+  </array>
+</struct>
+
+<struct name="AI_AlSnMu" label="AIAlertSenseMultiplier" size="68">
+  <array name="level" label="Alert Level" offset="0" size="64" count="4">
+    <struct size="16">
+      <field name="hangle" label="H-angle" type="float" offset="0" size="4" />
+      <field name="vangle" label="V-angle" type="float" offset="4" size="4" />
+      <field name="range" label="Range" type="float" offset="8" size="4" />
+      <field name="knowledge" label="Knowledge" type="float" offset="12" size="4" />
+    </struct>
+  </array>
+  <field name="combat" label="Combat" type="float" offset="64" size="4" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Aptitu" label="AIAptitude" />
+
+<struct name="AI_AwareC" label="AIAwarenessCapacitor" size="16">
+  <array name="discharge" label="Discharge Time" offset="0" size="12" count="3">
+    <field type="float" size="4" />
+  </array>
+  <field name="unknown" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="AI_AwrDel" label="AIAwarenessDelay" size="20">
+  <field name="time_to_two" label="Time to Level 2" type="integer" offset="0" size="4" />
+  <field name="time_to_three" label="Time to Level 3" type="integer" offset="4" size="4" />
+  <field name="retrigger_two" label="Level 2 Retrigger" type="integer" offset="8" size="4" />
+  <field name="retrigger_three" label="Level 3 Retrigger" type="integer" offset="12" size="4" />
+  <field name="ignore_range" label="Ignore Delay Range" type="integer" offset="16" size="4" />
+</struct>
+
+<struct name="AI_BcstSe" label="AIBroadcastSettings" size="708">
+  <field name="disable" label="Disable" type="boolean" offset="0" size="4" />
+  <array name="state" label="State" offset="4" size="704" count="8">
+    <struct size="88">
+      <field name="schema" label="Schema" type="unsigned" offset="0" size="4" enum="broadcastschema2" />
+      <field name="type" label="Type" type="unsigned" offset="4" size="4" enum="broadcasttype" />
+      <field name="custom" label="Custom Concept" type="string" offset="8" size="16" />
+      <field name="tags" label="Schema Tags" type="string" offset="24" size="64" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="AI_BlkVis" label="AIBlocksVision" size="4">
+  <field name="blockvision" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_BodyRs" label="AIBodyResponse" size="4180">
+  <field name="priority" label="Priority" type="unsigned" offset="0" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="4" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="20" count="6">
+    <struct ref="pseudoscript" />
+  </array>
+  <array name="extra" label="Extra" offset="1580" count="10">
+    <struct ref="pseudoscript" />
+  </array>
+</struct>
+
+<struct name="AI_Camera" label="AICamera" size="12">
+  <field name="minangle" label="Min. Angle" type="float" offset="0" size="4" />
+  <field name="maxangle" label="Max. Angle" type="float" offset="4" size="4" />
+  <field name="scanspeed" label="Scan Speed" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="AI_CbtRsp" label="AICombatResponse" size="4180">
+  <field name="priority" label="Priority (?)" type="unsigned" offset="0" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="4" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="20" count="6">
+    <struct ref="pseudoscript" />
+  </array>
+  <array name="extra" label="Extra" offset="1580" count="10">
+    <struct ref="pseudoscript" />
+  </array>
+</struct>
+
+<struct name="AI_CbtTim" label="AICombatTiming" size="16">
+  <field name="createtime" label="Create Contact Time" type="integer" offset="0" size="4" />
+  <field name="droptime" label="Drop Contact Time" type="integer" offset="4" size="4" />
+  <field name="mindelay" label="Min. Delay" type="integer" offset="8" size="4" />
+  <field name="maxdelay" label="Max. Delay" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="AI_Conver" label="AIConversation" size="19332">
+  <array name="unknown1" label="Unknown" offset="0" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <field name="abort_level" label="Abort Level" type="unsigned" offset="16" size="4" enum="alertlevel" />
+  <field name="abort_priority" label="Abort Priority" type="unsigned" offset="20" size="4" enum="aipriority" />
+  <array name="unknown2" label="Unknown" offset="24" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="36" size="1608" count="6">
+    <struct size="268">
+      <field name="actor" label="Actor" type="integer" offset="0" size="4" enum="convactor" value="-1" />
+      <field name="noblock" label="Don't Block" type="boolean" offset="4" size="4" />
+      <struct ref="pseudoscript" name="action" label="Action" offset="8" />
+    </struct>
+  </array>
+  <array name="extra" label="Extra Steps" offset="1644" size="17688" count="66">
+    <struct ref="AI_Conver/step/step" size="268" />
+  </array>
+</struct>
+
+<struct name="AICoverPt" label="AICoverPoint" size="12">
+  <field name="value" label="Value" type="integer" offset="0" size="4" />
+  <field name="decayspeed" label="Decay Speed" type="float" offset="4" size="4" />
+  <field name="canduck" label="Can Duck" type="boolean" offset="8" size="4" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Defens" label="AIDefensiveness" />
+
+<struct name="AI_Device" label="AIDevice" size="28">
+  <field name="joint" label="Activate Joint" type="integer" offset="0" size="4" />
+  <field name="inactive" label="Inactive Pos." type="float" offset="4" size="4" />
+  <field name="active" label="Active Pos." type="float" offset="8" size="4" />
+  <field name="speed" label="Speed" type="float" offset="12" size="4" />
+  <field name="rotation_joint" label="Rotate Joint" type="integer" offset="16" size="4" />
+  <field name="facing" label="Facing Epsilon" type="float" offset="20" size="4" />
+  <field name="rotate_on" label="Rotate Activation" type="boolean" offset="24" size="4" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Dodgin" label="AIDodginess" />
+
+<struct name="AI_Effici" label="AIEfficiency" size="36">
+  <field name="enabled" label="Enabled" type="boolean" offset="0" size="4" />
+  <struct name="normal" label="Normal Efficiency" offset="20" size="16">
+    <field name="entry" label="Entry Distance (squared)" type="float" offset="0" size="4" />
+    <field name="entry_height" label="Entry Height" type="float" offset="4" size="4" />
+    <field name="exit" label="Exit Distance (squared)" type="float" offset="8" size="4" />
+    <field name="exit_height" label="Exit Height" type="float" offset="12" size="4" />
+  </struct>
+  <struct ref="AI_Effici/normal" name="super" label="Super Efficient" offset="4" size="16" />
+</struct>
+
+<struct name="AI_Fidget" label="AIFidget" size="4">
+  <field name="fidget" type="boolean" size="4" />
+</struct>
+
+<struct name="AIFiresTh" label="AIFiresThrough" size="4">
+  <field name="firethrough" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_FleeAw" label="AIFleeAware" size="4">
+  <field name="fleeaware" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_FleeCo" label="AIFleeCondition" size="12">
+  <field name="condition" label="Condition" type="unsigned" offset="0" size="4" enum="aifleecondition" />
+  <field name="hp_percent" label="HP %25" type="integer" offset="4" size="4" />
+  <field name="friends" label="Max. Friends" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AI_FleePo" label="AIFleePoint" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="AI_FreeKn" label="AIFreeSenseKnowledge" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="AI_Frozen" label="AIFrozen" size="8">
+  <field name="start" label="Start" type="integer" offset="0" size="4" />
+  <field name="duration" label="Duration" type="integer" offset="4" size="4" />
+</struct>
+
+<struct name="AI_Frustr" label="AIFrustrated" size="12">
+  <field name="source" label="Source" type="integer" offset="0" size="4" />
+  <field name="dest" label="Dest" type="integer" offset="4" size="4" />
+  <field name="unknown" label="Unknown" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AIGunDesc" label="AIGunDescription" size="30">
+  <field name="maxrange" label="Max. Range" type="float" offset="0" size="4" />
+  <struct ref="vector" name="fireoffset" label="Fire Offset" offset="4" size="12" />
+  <field name="startlag" label="Start Lag" type="integer" offset="16" size="4" />
+  <field name="burstlag" label="Burst Lag" type="integer" offset="20" size="4" />
+  <field name="endlag" label="End Lag" type="integer" offset="24" size="4" />
+  <field name="aimerror" label="Aim Error" type="integer" offset="28" size="2" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Hearin" label="AIHearing" />
+
+<struct name="AI_IdleDi" label="AIIdleDirections" size="40">
+  <field name="mintime" label="Min. Time" type="integer" offset="0" size="4" />
+  <field name="maxtime" label="Max. Time" type="integer" offset="4" size="4" />
+  <array name="direction" label="Direction" offset="8" size="32" count="4">
+    <struct size="8">
+      <field name="facing" label="Facing" type="integer" offset="0" size="4" />
+      <field name="weight" label="Weight" type="integer" offset="4" size="4" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="AI_IdleOr" label="AIIdleOrigin" size="16">
+  <struct ref="vector" name="position" label="Position" offset="0" />
+  <field name="facing" label="Facing" type="float" offset="12" size="4" />
+</struct>
+
+<struct name="AI_IdlRet" label="AIIdleReturnToOrigin" size="4">
+  <field name="returnorigin" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_IgCam" label="AIIgnoreCameras" size="4">
+  <field name="ignorecamera" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_InfDly" label="AIInformDelay" size="4">
+  <field name="delay" type="integer" size="4" />
+</struct>
+
+<struct name="AI_InfDst" label="AIInformDistance" size="4">
+  <field name="distance" type="integer" size="4" />
+</struct>
+
+<struct name="AI_InfExp" label="AIInformExpiration" size="4">
+  <field name="time" type="integer" size="4" />
+</struct>
+
+<struct name="AI_InfFrm" label="AIInformFromLastSeen" size="4">
+  <field name="inform" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_InfMxP" label="AIInformMaxPasses" size="4">
+  <field name="passes" type="integer" size="4" />
+</struct>
+
+<struct name="AI_InfNow" label="AIInformNow" size="4">
+  <field name="inform" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_InfOtr" label="AIInformOthers" size="4">
+  <field name="inform" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_InfRsp" label="AIInformResponse" size="2108">
+  <field name="disable" label="Disable" type="boolean" offset="0" size="4" />
+  <field name="nodefault" label="Don't Investigate" type="boolean" offset="4" size="4" />
+  <array name="unknown" label="Unknown" offset="8" size="20" count="5">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="28" count="2">
+    <struct ref="pseudoscript" />
+  </array>
+  <array name="extra" label="Extra" offset="548" count="6">
+    <struct ref="pseudoscript" />
+  </array>
+</struct>
+
+<struct name="AI_InvKnd" label="AIInvestigationKind" size="4">
+  <field name="type" type="unsigned" size="4" enum="investigatekind" />
+</struct>
+
+<struct name="AI_IsBig" label="AIIsBig" size="4">
+  <field name="isbig" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_IsProx" label="AIIsProxy" size="4">
+  <field name="isproxy" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_IsSmal" label="AIIsSmall" size="4">
+  <field name="issmall" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_Launch" label="AILaunchVisible" size="4">
+  <field name="isvisible" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_Mode" label="AIMode" size="4">
+  <field name="mode" type="unsigned" size="4" enum="aimode" />
+</struct>
+
+<alias ref="var-string" name="AI_MotTag" label="AIMotionTags" />
+
+<struct name="AI_MoveSp" label="AIMoveSpeed" size="4">
+  <field name="speed" type="float" size="4" />
+</struct>
+
+<struct name="AI_MoveZO" label="AIMoveZOffset" size="4">
+  <field name="height" type="float" size="4" />
+</struct>
+
+<struct name="AI_NCDmgR" label="AINonCombatDamageResponse" size="12">
+  <field name="woundthreshold" label="Wound Threshold" type="integer" offset="0" size="4" />
+  <field name="severethreshold" label="Severe Threshold" type="integer" offset="4" size="4" />
+  <field name="responsechance" label="Response Chance" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AI_NCDmRs" label="AINonCombatRespondToDamage" size="4">
+  <field name="respond" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_NGOBB" label="AIPathExactOBB" size="4">
+  <field name="pathexact" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_NoGhos" label="AINoGhost" size="4">
+  <field name="noghost" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_NoHand" label="AINoHandoff" size="4">
+  <field name="nohandoff" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_NonHst" label="AINonHostile" size="4">
+  <field name="condition" type="unsigned" size="4" enum="ainonhostile" />
+</struct>
+
+<struct name="AI_Notice" label="AINoticeDamage" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_NtcBod" label="AINoticeBodies" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_ObjAvo" label="AIObjectAvoid" size="8">
+  <field name="zero" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="aiobjectavoidflags" />
+</struct>
+
+<struct name="AI_ObjPat" label="AIObjectPathable" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_OnlyPl" label="AIOnlyNoticePlayer" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_Patrol" label="AIPatrol" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_PtrlRn" label="AIPatrolRandom" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AIRCProp" label="AIRangedCombatParams" size="28">
+  <field name="mindistance" label="Min. Distance" type="integer" offset="0" size="4" />
+  <field name="idealdistance" label="Ideal Distance" type="integer" offset="4" size="4" />
+  <field name="firingdelay" label="Firing Delay" type="float" offset="8" size="4" />
+  <field name="coverdesire" label="Cover Desire" type="unsigned" offset="12" size="4" value="2" enum="aircpriority" />
+  <field name="decayspeed" label="Decay Speed" type="float" offset="16" size="4" />
+  <field name="firewhilemoving" label="Fire While Moving" type="unsigned" offset="20" size="4" value="3" enum="aircfrequency" />
+  <field name="containprojectile" label="Contain Projectile" type="boolean" offset="24" size="4" />
+</struct>
+
+<struct name="AIRCRange" label="AIRangedCombatRanges" size="16">
+  <field name="mindistance" label="Min. Distance" type="float" offset="0" size="4" />
+  <field name="shortdistance" label="Short Distance" type="float" offset="4" size="4" />
+  <field name="longdistance" label="Long Distance" type="float" offset="8" size="4" />
+  <field name="maxdistance" label="Max. Distance" type="float" offset="12" size="4" />
+</struct>
+
+<struct name="AIRCWndSn" label="AIRangedCombatWoundSound" size="12">
+  <field name="woundthreshold" label="Wound Threshold" type="integer" offset="0" size="4" />
+  <field name="severethreshold" label="Severe Threshold" type="integer" offset="4" size="4" />
+  <field name="responsechance" label="Response Chance" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AIRCWound" label="AIRangedCombatWoundMotion" size="12">
+  <field name="woundthreshold" label="Wound Threshold" type="integer" offset="0" size="4" />
+  <field name="severethreshold" label="Severe Threshold" type="integer" offset="4" size="4" />
+  <field name="responsechance" label="Response Chance" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AI_RngApp" label="AIRangedApplicabilities" size="36">
+  <field name="idle" label="Idle" type="unsigned" offset="0" size="4" value="4" enum="aircapplicable" />
+  <field name="zero1" label="Unknown" type="unsigned" offset="4" size="4" value="0" enum="aircapplicable" />
+  <field name="close" label="Close" type="unsigned" offset="8" size="4" value="4" enum="aircapplicable" />
+  <field name="backup" label="Backup" type="unsigned" offset="12" size="4" value="4" enum="aircapplicable" />
+  <field name="wound" label="Wound" type="unsigned" offset="16" size="4" value="4" enum="aircapplicable" />
+  <field name="vantage" label="Vantage" type="unsigned" offset="20" size="4" value="4" enum="aircapplicable" />
+  <field name="left" label="Left" type="unsigned" offset="24" size="4" value="4" enum="aircapplicable" />
+  <field name="right" label="Right" type="unsigned" offset="28" size="4" value="4" enum="aircapplicable" />
+  <field name="zero2" label="Unknown" type="unsigned" offset="32" size="4" value="0" enum="aircapplicable" />
+</struct>
+
+<struct name="AI_RngFle" label="AIRangedFleeParams" size="24">
+  <field name="veryshortpriority" label="Very Short" type="unsigned" offset="0" size="4" enum="aircapplicable" />
+  <field name="shortpriority" label="Short" type="unsigned" offset="4" size="4" value="4" enum="aircapplicable" />
+  <field name="anglerange" label="Angle Range" type="float" offset="8" size="4" />
+  <field name="numpoints" label="Num. Points" type="integer" offset="12" size="4" />
+  <field name="distance" label="Distance" type="float" offset="16" size="4" />
+  <field name="clearance" label="Clearance" type="float" offset="20" size="4" />
+</struct>
+
+<struct name="AI_RngSho" label="AIRangedShootParams" size="44">
+  <field name="veryshortpriority" label="Very Short" type="unsigned" offset="0" size="4" value="4" enum="aircapplicable" />
+  <field name="shortpriority" label="Short" type="unsigned" offset="4" size="4" value="4" enum="aircapplicable" />
+  <field name="idealpriority" label="Ideal" type="unsigned" offset="8" size="4" value="4" enum="aircapplicable" />
+  <field name="longpriority" label="Long" type="unsigned" offset="12" size="4" value="4" enum="aircapplicable" />
+  <field name="verylongpriority" label="Very Long" type="unsigned" offset="16" size="4" value="4" enum="aircapplicable" />
+  <field name="confirmrange" label="Confirm Range" type="boolean" offset="20" size="4" />
+  <field name="confirmlof" label="Confirm LOF" type="boolean" offset="24" size="4" />
+  <field name="rotationspeed" label="Rotation Speed" type="integer" offset="28" size="4" />
+  <struct ref="vector" name="launchoffset" label="Launch Offset" offset="32" size="12" />
+</struct>
+
+<struct name="AI_SaveCo" label="AISaveConversation" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_SeesPr" label="AISeesProjectiles" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_SigRsp" label="AISignalResponse" size="4212">
+  <field name="signal" label="Signal" type="string" offset="0" size="32" />
+  <field name="priority" label="Priority" type="unsigned" offset="32" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="36" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="52" size="1560" count="6">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+  <array name="extra" label="Extra" offset="1612" size="2600" count="10">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+</struct>
+
+<alias ref="aiaptitude" name="AI_Sloth" label="AISloth" />
+
+<alias ref="var-string" name="AI_SndTag" label="AISoundTags" />
+
+<struct name="AI_SndTyp" label="AISoundType" size="40">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" enum="aisoundtype" />
+  <field name="signal" label="Signal" type="string" offset="4" size="32" />
+  <field name="zero" label="Unknown" type="integer" offset="36" size="4" />
+</struct>
+
+<alias ref="var-string" name="AI_StandT" label="AIStandingTags" />
+
+<struct name="AISuprise" label="AISurprise" size="12">
+  <field name="zero" label="Zero (?)" type="float" offset="0" size="4" />
+  <field name="one" label="One (?)" type="float" offset="4" size="4" />
+  <field name="radius" label="Radius" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="AI_SuspRs" label="AISuspiciousResponse" size="4180">
+  <field name="priority" label="Priority" type="unsigned" offset="0" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="4" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="20" size="1560" count="6">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+  <array name="extra" label="Extra" offset="1580" size="2600" count="10">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+</struct>
+
+<struct name="AI_Team" label="AITeam" size="4">
+  <field name="team" type="unsigned" size="4" enum="aiteam" />
+</struct>
+
+<struct name="AI_ThrtRs" label="AIThreatResponse" size="4184">
+  <field name="threat" label="Threat" type="unsigned" offset="0" size="4" enum="aithreat" />
+  <field name="priority" label="Priority" type="unsigned" offset="4" size="4" enum="aipriority" />
+  <array name="unknown" label="Unknown" offset="8" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+  <array name="step" label="Step" offset="24" size="1560" count="6">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+  <array name="extra" label="Extra" offset="1584" size="2600" count="10">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+</struct>
+
+<struct name="AI_TrackM" label="AITrackMedium" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_TurnRa" label="AITurnRate" size="4">
+  <field name="speed" type="float" size="4" />
+</struct>
+
+<struct name="AI_Turret" label="AITurret" size="16">
+  <field name="fireepsilon" label="Fire Epsilon" type="float" offset="0" size="4" />
+  <field name="firepause" label="Fire Pause" type="integer" offset="4" size="4" />
+  <field name="pitchepsilon" label="Pitch Epsilon" type="float" offset="8" size="4" />
+  <field name="range" label="Max. Range" type="float" offset="12" size="4" />
+</struct>
+
+<struct name="AI_UsesDo" label="AIUsesDoors" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AI_UseWat" label="AIPathWater" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="AIVantage" label="AIVantagePoint" size="8">
+  <field name="value" label="Value" type="integer" offset="0" size="4" />
+  <field name="decayspeed" label="Decay Speed" type="float" offset="4" size="4" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Verbos" label="AIVerbosity" />
+
+<struct name="AI_VisCtr" label="AIVisibilityControl" size="48">
+  <field name="lowlight" label="Low Light" type="integer" offset="0" size="4" />
+  <field name="midlight" label="Mid Light" type="integer" offset="4" size="4" />
+  <field name="highlight" label="High Light" type="integer" offset="8" size="4" />
+  <field name="slow" label="Slow" type="float" offset="12" size="4" />
+  <field name="fast" label="Fast" type="float" offset="16" size="4" />
+  <field name="slowmod" label="Slow Mod" type="integer" offset="20" size="4" />
+  <field name="normalmod" label="Normal Mod" type="integer" offset="24" size="4" />
+  <field name="fastmod" label="Fast Mod" type="integer" offset="28" size="4" />
+  <field name="walldist" label="Wall Dist" type="float" offset="32" size="4" />
+  <field name="crouchmod" label="Crouch Mod" type="integer" offset="36" size="4" />
+  <field name="wallmod" label="Wall Mod" type="integer" offset="40" size="4" />
+  <field name="cornerleanmod" label="Corner Lean Mod" type="float" offset="44" size="4" />
+</struct>
+
+<struct name="AI_VisDes" label="AIVisionDescription" size="236">
+  <array name="unknown" label="Unknown" offset="0" size="32" count="8">
+    <field type="integer" size="4" />
+  </array>
+  <array name="viscone" label="Vision Cone" offset="32" size="200" count="10">
+    <struct size="20">
+      <field name="flags" label="Flags" type="bitfield" offset="0" size="4" enum="aivisionflags" />
+      <field name="angle" label="Angle" type="integer" offset="4" size="4" />
+      <field name="zangle" label="Z-Angle" type="integer" offset="8" size="4" />
+      <field name="range" label="Range" type="integer" offset="12" size="4" />
+      <field name="acuity" label="Acuity" type="integer" offset="16" size="4" />
+    </struct>
+  </array>
+  <field name="zoffset" label="Z-Offset" type="float" offset="232" size="4" />
+</struct>
+
+<struct name="AI_Visibi" label="AIVisibility" size="20">
+  <field name="level" label="Level" type="integer" offset="0" size="4" />
+  <field name="light" label="Light" type="integer" offset="4" size="4" />
+  <field name="movement" label="Movement" type="integer" offset="8" size="4" />
+  <field name="exposure" label="Exposure" type="integer" offset="12" size="4" />
+  <field name="lastupdate" label="Last Update" type="integer" offset="16" size="4" />
+</struct>
+
+<alias ref="aiaptitude" name="AI_Vision" label="AIVision" />
+
+<struct name="AI_VisJoi" label="AIVisionJoint" size="4">
+  <field name="joint" type="unsigned" size="4" enum="meshjoint" />
+</struct>
+
+<struct name="AI_VisMod" label="AIVisibilityModifier" size="24">
+  <array name="vistype" label="Vis Type" offset="0" size="24" count="6">
+    <field type="float" size="4" />
+  </array>
+</struct>
+
+<struct name="AI_VisType" label="AIVisionType" size="4">
+  <field name="type" type="unsigned" size="4" />
+</struct>
+
+<struct name="AI_WtchPn" label="AIWatchPoint" size="4276">
+  <array name="unknown1" label="Unknown" offset="0" size="60" count="15">
+    <field type="integer" size="4" />
+  </array>
+  <field name="trigger" label="Trigger" type="unsigned" offset="60" size="4" />
+  <field name="awareness" label="Awareness" type="unsigned" offset="64" size="4" enum="alertlevel" />
+  <field name="visibility" label="Visibility" type="unsigned" offset="68" size="4" enum="aiwatchvisibility" />
+  <field name="unknown2" label="Unknown" type="integer" offset="72" size="4" />
+  <field name="killcondition" label="Link Kill Condition" type="unsigned" offset="76" size="4" enum="aiwatchkillcondition" />
+  <field name="killlikelinks" label="Kill Like Links" type="boolean" offset="80" size="4" />
+  <field name="onceonly" label="Once Only" type="boolean" offset="84" size="4" />
+  <field name="reusetime" label="Reuse Time" type="integer" offset="88" size="4" />
+  <field name="resettime" label="Reset Time" type="integer" offset="92" size="4" />
+  <field name="minalertness" label="Min. Alert Level" type="unsigned" offset="96" size="4" enum="alertlevel" />
+  <field name="maxalertness" label="Max. Alert Level" type="unsigned" offset="100" size="4" enum="alertlevel" />
+  <field name="priority" label="Priority" type="unsigned" offset="104" size="4" enum="aipriority" />
+  <field name="radius" label="Radius" type="integer" offset="108" size="4" />
+  <field name="height" label="Height" type="integer" offset="112" size="4" />
+  <array name="step" label="Step" offset="116" size="1820" count="7">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+  <array name="extra" label="Extra" offset="1936" size="2340" count="9">
+    <struct ref="pseudoscript" size="260" />
+  </array>
+</struct>
+
+<struct name="AirSupply" label="AirSupply" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="AltLink" label="AltLinkLocation" size="28">
+  <field name="joint" label="Joint" type="unsigned" offset="0" size="4" enum="meshjoint" />
+  <struct ref="int-vector" name="rotation" label="Rotation" offset="4" size="12" />
+  <struct ref="vector" name="offset" label="Offset" offset="16" size="12" />
+</struct>
+
+<struct name="Ambient" label="AmbientRoom" size="68">
+  <field name="name" label="Schema" type="string" offset="0" size="64" />
+  <field name="volume" label="Volume" type="integer" offset="64" size="4" />
+</struct>
+
+<struct name="AmbientHa" label="AmbientSound" size="60">
+  <field name="radius" label="Radius" type="integer" offset="0" size="4" />
+  <field name="volume" label="Volume" type="integer" offset="4" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="8" size="4" enum="ambienthackedflags" />
+  <field name="schema" label="Schema" type="string" offset="12" size="16" />
+  <array name="aux" label="Aux. Schemas" offset="28" size="32" count="2">
+    <field type="string" size="16" />
+  </array>
+</struct>
+
+<struct name="AngleLimi" label="AIAngleLimits" size="8">
+  <field name="start" label="Start" type="float" offset="0" size="4" />
+  <field name="end" label="End" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="AnimLight" label="AnimLight" size="76">
+  <field name="unk1" label="Unknown" type="integer" offset="0" size="4" />
+  <struct ref="vector" name="offset" label="Offset" offset="4" size="12" />
+  <field name="unk2" label="Unknown" type="integer" offset="16" size="4" value="1" />
+  <field name="cellindex" label="Cell Reference" type="integer" offset="20" size="2" />
+  <field name="hitcells" label="Affected Cell Count" type="integer" offset="22" size="2" />
+  <field name="lightnum" label="Light Num." type="integer" offset="24" size="2" value="-1" />
+  <field name="mode" label="Mode" type="unsigned" offset="26" size="2" value="4" enum="animlightmode" />
+  <field name="brightentime" label="Turn On Time" type="integer" offset="28" size="4" />
+  <field name="dimtime" label="Turn Off Time" type="integer" offset="32" size="4" />
+  <field name="minbrightness" label="Min. Brightness" type="float" offset="36" size="4" />
+  <field name="maxbrightness" label="Max. Brightness" type="float" offset="40" size="4" />
+  <field name="unk4" label="Unknown" type="integer" offset="44" size="4" />
+  <field name="rising" label="Currently Rising" type="boolean" offset="48" size="4" />
+  <field name="countdown" label="Countdown" type="integer" offset="52" size="4" />
+  <field name="inactive" label="Inactive" type="boolean" offset="56" size="4" />
+  <field name="radius" label="Radius" type="float" offset="60" size="4" />
+  <field name="unk5" label="Unknown" type="integer" offset="64" size="4" />
+  <field name="quadlit" label="Quad Lit" type="boolean" offset="68" size="4" />
+  <field name="innerradius" label="Inner Radius" type="float" offset="72" size="4" />
+</struct>
+
+<struct name="AnimTex" label="AnimTexture" size="8">
+  <field name="speed" label="Speed" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="animtextureflags" />
+</struct>
+
+<struct name="arSrcScal" label="ARSourceScale" size="4">
+  <field name="scale" type="float" size="4" />
+</struct>
+
+<struct name="Automap" label="Automap" size="8">
+  <field name="page" label="Page" type="integer" offset="0" size="4" />
+  <field name="location" label="Location" type="integer" offset="4" size="4" />
+</struct>
+
+<struct name="AutoVBR" label="AutoMultibrush" size="16">
+  <field name="vbrname" type="string" size="16" />
+</struct>
+
+<struct name="AvatarZOf" label="AvatarZOffset" size="4">
+  <field name="height" type="float" size="4" />
+</struct>
+
+<struct name="BaseGunDe" label="BaseGunDescription" size="136">
+  <array name="setting" label="Setting" offset="0" size="120" count="3">
+    <struct size="40">
+      <field name="burst" label="Burst" type="integer" offset="0" size="4" />
+      <field name="clip" label="Clip Size" type="integer" offset="4" size="4" />
+      <field name="spray" label="Spray" type="integer" offset="8" size="4" />
+      <field name="stimmult" label="Stim Multiplier" type="float" offset="12" size="4" />
+      <field name="bursttime" label="Burst Time" type="integer" offset="16" size="4" />
+      <field name="shottime" label="Shot Time" type="integer" offset="20" size="4" />
+      <field name="ammousage" label="Ammo Usage" type="integer" offset="24" size="4" />
+      <field name="speedmult" label="Speed Multiplier" type="float" offset="28" size="4" />
+      <field name="reloadtime" label="Reload Time" type="integer" offset="32" size="4" />
+      <field name="zero" label="Unknown" type="integer" offset="36" size="4" />
+    </struct>
+  </array>
+  <field name="numsettings" label="Num. Settings" type="integer" offset="120" size="4" />
+  <array name="zoomfactor" label="Zoom Factor" offset="124" size="12" count="3">
+    <field type="float" size="4" />
+  </array>
+</struct>
+
+<struct name="BaseWpnDm" label="BaseWeaponDamage" size="4">
+  <field name="damage" type="integer" size="4" />
+</struct>
+
+<struct name="BashFacto" label="BashFactor" size="4">
+  <field name="value" type="float" size="4" />
+</struct>
+
+<struct name="BashParam" label="BashParams" size="8">
+  <field name="threshold" label="Threshold" type="float" offset="0" size="4" />
+  <field name="coefficient" label="Coefficient" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="BeltLink" label="BeltLinkLocation" size="28">
+  <field name="joint" label="Joint" type="unsigned" offset="0" size="4" enum="meshjoint" />
+  <struct ref="int-vector" name="rotation" label="Rotation" offset="4" size="12" />
+  <struct ref="vector" name="offset" label="Offset" offset="16" size="12" />
+</struct>
+
+<struct name="BitmapAni" label="BitmapAnimation" size="4">
+  <field name="flags" type="bitfield" size="4" enum="bitmapanimationflags" />
+</struct>
+
+<struct name="BitmapWor" label="BitmapWorldSpace" size="240">
+  <struct name="size" label="Size" offset="0" size="8">
+    <field name="x" label="X" type="float" offset="0" size="4" />
+    <field name="y" label="Y" type="float" offset="4" size="4" />
+  </struct>
+  <struct ref="BitmapWor/size" name="feetpertile" label="Feet Per Tile" offset="8" size="8" />
+</struct>
+
+<struct name="Blood" label="Blood" size="4">
+  <field name="isblood" type="boolean" size="4" />
+</struct>
+
+<struct name="BloodCaus" label="BloodCause" size="4">
+  <field name="causeblood" type="boolean" size="4" />
+</struct>
+
+<struct name="BloodMaxD" label="BloodMaxDamage" size="4">
+  <field name="damage" type="integer" size="4" />
+</struct>
+
+<alias ref="var-string" name="BloodType" label="BloodType" />
+
+<alias ref="var-string" name="Book" label="BookText" />
+
+<alias ref="var-string" name="BookArt" label="BookArt" />
+
+<struct name="Borrowed" label="Borrowed" size="4">
+  <field name="borrowed" type="boolean" size="4" />
+</struct>
+
+<struct name="Borrowing" label="Borrowing" size="4">
+  <field name="borrowing" type="boolean" size="4" />
+</struct>
+
+<struct name="BreathCon" label="BreathConfig" size="16">
+  <field name="maxair" label="Max. Air" type="integer" offset="0" size="4" />
+  <field name="drownfreq" label="Drown Frequency" type="integer" offset="4" size="4" />
+  <field name="drowndamage" label="Drown Damage" type="integer" offset="8" size="4" />
+  <field name="recoverrate" label="Recover Rate" type="float" offset="12" size="4" />
+</struct>
+
+<struct name="Bump Map" label="BumpMap" size="4">
+  <field name="isbumpmap" type="boolean" size="4" />
+</struct>
+
+<struct name="CanAttach" label="CanAttach" size="4">
+  <field name="type" type="bitfield" size="4" enum="terrainattachtype" />
+</struct>
+
+<alias ref="cfgtweqsimple" name="CfgTweqBl" label="TweqFlickerConfig" />
+<alias ref="cfgtweqsimple" name="CfgTweqDe" label="TweqDeleteConfig" />
+
+<struct name="CfgTweqEm" label="TweqEmitterConfig" size="52">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="rate" label="Rate" type="unsigned" offset="6" size="2" />
+  <field name="maxframes" label="Max. Frames" type="integer" offset="8" size="4" />
+  <field name="objectname" label="Name" type="string" offset="12" size="16" />
+  <struct ref="vector" name="velocity" label="Velocity" offset="28" size="12" />
+  <struct ref="vector" name="anglerandom" label="Angle Random" offset="40" size="12" />
+</struct>
+
+<alias ref="CfgTweqEm" name="CfgTweq2E" label="TweqEmitter2Config" />
+<alias ref="CfgTweqEm" name="CfgTweq3E" label="TweqEmitter3Config" />
+<alias ref="CfgTweqEm" name="CfgTweq4E" label="TweqEmitter4Config" />
+<alias ref="CfgTweqEm" name="CfgTweq5E" label="TweqEmitter5Config" />
+
+<struct name="CfgTweqJo" label="TweqJointsConfig" size="132">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="zero" label="Zero" type="unsigned" offset="6" size="2" />
+  <array name="joint" label="Joint" offset="8" size="120" count="6">
+    <struct size="20">
+      <field name="unk1" label="Unknown" type="unsigned" offset="0" size="1" />
+      <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+      <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+      <array name="zero" label="Zero" offset="3" size="5" count="5">
+        <field type="unsigned" size="1" />
+      </array>
+      <field name="rate" label="Rate" type="float" offset="8" size="4" />
+      <field name="low" label="Low" type="float" offset="12" size="4" />
+      <field name="high" label="" type="float" offset="16" size="4" />
+    </struct>
+  </array>
+  <field name="primary" label="Primary Joint" type="integer" offset="128" size="1" />
+  <array name="unused" label="Unused" offset="129" size="3" count="3">
+    <field type="unsigned" size="1" />
+  </array>
+</struct>
+
+<struct name="CfgTweqLo" label="TweqLockConfig" size="32">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="zero" label="Zero" type="unsigned" offset="6" size="2" />
+  <array name="zero2" label="Unknown" offset="8" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+  <field name="rate" label="Rate" type="float" offset="16" size="4" />
+  <field name="low" label="Low" type="float" offset="20" size="4" />
+  <field name="high" label="High" type="float" offset="24" size="4" />
+  <field name="joint" label="Joint" type="integer" offset="28" size="1" />
+  <array name="zero3" label="Unused" offset="29" size="3" count="3">
+    <field type="unsigned" size="1" />
+  </array>
+</struct>
+
+<struct name="CfgTweqMo" label="TweqModelsConfig" size="104">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="rate" label="Rate" type="unsigned" offset="6" size="2" />
+  <array name="modelname" label="Model" offset="8" size="96" count="6">
+    <field type="string" size="16" />
+  </array>
+</struct>
+
+<struct name="CfgTweqRo" label="TweqRotateConfig" size="48">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="zero" label="Zero" type="unsigned" offset="6" size="2" />
+  <struct name="x" label="X-Axis" offset="8" size="12">
+    <field name="rate" label="Rate" type="float" offset="0" size="4" />
+    <field name="low" label="Low" type="float" offset="4" size="4" />
+    <field name="high" label="High" type="float" offset="8" size="4" />
+  </struct>
+  <struct ref="CfgTweqRo/x" name="y" label="Y-Axis" offset="20" size="12" />
+  <struct ref="CfgTweqRo/x" name="z" label="Z-Axis" offset="32" size="12" />
+  <field name="primary" label="Primary Axis" type="integer" offset="44" size="4" enum="physaxistype" />
+</struct>
+
+<struct name="CfgTweqSc" label="TweqScaleConfig" size="48">
+  <field name="unknown" label="Unknown" type="unsigned" offset="0" size="1" />
+  <field name="curve" label="Curve" type="bitfield" offset="1" size="1" enum="tweqcurveflags" />
+  <field name="anim" label="Anim" type="bitfield" offset="2" size="1" enum="tweqanimflags" />
+  <field name="halt" label="Halt" type="unsigned" offset="3" size="1" enum="tweqhaltcfg" />
+  <field name="misc" label="Misc" type="bitfield" offset="4" size="2" enum="tweqmiscflags" />
+  <field name="zero" label="Zero" type="unsigned" offset="6" size="2" />
+  <struct name="x" label="X-Scale" offset="8" size="12">
+    <field name="rate" label="Rate" type="float" offset="0" size="4" />
+    <field name="low" label="Low" type="float" offset="4" size="4" />
+    <field name="high" label="High" type="float" offset="8" size="4" />
+  </struct>
+  <struct ref="CfgTweqRo/x" name="y" label="Y-Scale" offset="20" size="12" />
+  <struct ref="CfgTweqRo/x" name="z" label="Z-Scale" offset="32" size="12" />
+  <field name="primary" label="Primary Axis" type="integer" offset="44" size="4" enum="physaxistype" />
+</struct>
+
+<struct name="Class Tag" label="ClassTags" size="256">
+  <field name="value" label="Handle (?)" type="unsigned" offset="0" size="4" />
+  <field name="tags" label="Tags" type="string" offset="4" size="252" />
+</struct>
+
+<struct name="Climbabil" label="Climbability" size="4">
+  <field name="factor" type="float" size="4" />
+</struct>
+
+<struct name="Collision" label="CollisionType" size="4">
+  <field name="flags" type="bitfield" size="4" enum="physcollisionresult" />
+</struct>
+
+<struct name="CombineTy" label="CombineType" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="ContainIn" label="ContainInherit" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="ConveyorV" label="ConveyorVelocity" size="12">
+  <field name="x" label="X-Axis" type="float" offset="0" size="4" />
+  <field name="y" label="Y-Axis" type="float" offset="4" size="4" />
+  <field name="z" label="Z-Axis" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="Corona" label="Corona" size="52">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <struct ref="vector" name="position" label="Position" offset="4" size="12" />
+  <field name="alpha" label="Alpha" type="float" offset="16" size="4" />
+  <field name="maxsize" label="Max. Size" type="float" offset="20" size="4" />
+  <field name="maxdist" label="Max. Distance" type="float" offset="24" size="4" />
+  <field name="minsize" label="Min. Size" type="float" offset="28" size="4" />
+  <field name="bitmap" label="Bitmap Name" type="string" offset="32" size="16" />
+  <field name="unknown5" label="Unknown" type="integer" offset="48" size="4" />
+</struct>
+
+<struct name="Creature" label="CreatureType" size="4">
+  <field name="type" type="unsigned" size="4" enum="creaturetype" />
+</struct>
+
+<struct name="CretPose" label="CreaturePose" size="96">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" enum="cretposetype" />
+  <field name="name" label="Name" type="string" offset="4" size="80" />
+  <field name="fraction" label="Fraction" type="float" offset="84" size="4" />
+  <field name="scale" label="Scale" type="float" offset="88" size="4" />
+  <field name="isballistic" label="Is Ballistic" type="boolean" offset="92" size="4" />
+</struct>
+
+<struct name="CSArrow" label="CollisionSoundArrow" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="CSProject" label="CollisionSoundProjectile" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="CSPropert" label="CollisionSoundProperty" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="Culpable" label="Culpable" size="4">
+  <field name="isculpable" type="boolean" size="4" />
+</struct>
+
+<struct name="CurWpnDmg" label="CurrentWeaponDamage" size="4">
+  <field name="damage" type="integer" size="4" />
+</struct>
+
+<struct name="DAI_FrogE" label="AIFrogExplodeRange" size="4">
+  <field name="distance" type="float" size="4" />
+</struct>
+
+<struct name="DarkStat" label="DarkStats" size="4">
+  <field name="flags" type="bitfield" size="4" enum="darkstatflags" />
+</struct>
+
+<struct name="DeathStag" label="DeathStage" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<alias ref="var-string" name="DesignNot" label="DesignNote" />
+
+<struct name="DiffPermi" label="DiffPermit" size="4">
+  <field name="levels" type="bitfield" size="4" enum="difficultylevels" />
+</struct>
+<alias ref="DiffPermi" name="DiffClose" label="DiffClose/OpenDoor" />
+<alias ref="DiffPermi" name="DiffDestr" label="DiffDestroy" />
+<alias ref="DiffPermi" name="DiffLock" label="DiffLock/Unlock" />
+<alias ref="DiffPermi" name="DiffScript" label="DiffScript" />
+<alias ref="DiffPermi" name="DiffTurnO" label="DiffTurnOn/Off" />
+
+<struct name="DistinctA" label="DistinctAvatar" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="DonorType" label="DonorType" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="Elasticit" label="Elasticity" size="4">
+  <field name="elasticity" type="float" size="4" />
+</struct>
+
+<struct name="ExtraLigh" label="ExtraLight" size="8">
+  <field name="factor" label="Amount" type="float" offset="0" size="4" />
+  <field name="isadditive" label="Is Additive" type="boolean" offset="4" size="4" />
+</struct>
+
+<struct name="Face" label="FaceTextures" size="224">
+  <field name="original" label="Original" type="string" offset="0" size="16" />
+  <field name="neutral" label="Neutral" type="string" offset="16" size="16" />
+  <field name="smile" label="Smile" type="string" offset="32" size="16" />
+  <field name="wince" label="Wince" type="string" offset="48" size="16" />
+  <field name="surprise" label="Surprise" type="string" offset="64" size="16" />
+  <field name="stunned" label="Stunned" type="string" offset="80" size="16" />
+  <array name="extra" label="Unused" offset="96" size="128" count="8" >
+    <field type="string" size="16" />
+  </array>
+</struct>
+
+<struct name="Face Pos" label="FaceMotions" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="Face Stat" label="FaceState" size="28">
+  <field name="istalking" label="Is Talking" type="boolean" offset="0" size="4" />
+  <array name="unknown" label="Unknown" offset="4" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+  <field name="currentvisage" label="Visage" type="unsigned" offset="16" size="4" enum="facevisage" />
+  <field name="priority" label="Priority" type="integer" offset="20" size="4" />
+  <field name="endtime" label="End Time" type="integer" offset="24" size="4" />
+</struct>
+
+<struct name="Firer" label="Firer" size="4">
+  <field name="objectid" type="integer" size="4" />
+</struct>
+
+<struct name="Fixture" label="Fixture" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="FlowColor" label="FlowColorIndex" size="4">
+  <field name="index" type="integer" size="4" />
+</struct>
+
+<struct name="FlowGroup" label="FlowGroup" size="4">
+  <field name="group" type="integer" size="4" />
+</struct>
+
+<struct name="FrameAniC" label="FrameAnimationConfig" size="8">
+  <field name="fps" label="Speed" type="float" offset="0" size="4" />
+  <field name="oneshot" label="OneShot" type="boolean" offset="4" size="1" />
+  <field name="bounce" label="Bounce" type="boolean" offset="5" size="1" />
+  <field name="limit" label="Frame Limit" type="boolean" offset="6" size="1" />
+  <field name="killfinish" label="Kill on Completion" type="boolean" offset="7" size="1" />
+</struct>
+
+<struct name="FrameAniS" label="FrameAnimationState" size="16">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="unknown2" label="Unknown" type="integer" offset="4" size="4" />
+  <field name="current" label="Current Frame" type="integer" offset="8" size="4" />
+  <field name="unknown3" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="Friction" label="Friction" size="4">
+  <field name="friction" type="float" size="4" />
+</struct>
+
+<struct name="FrobHandl" label="FrobHandler" size="4">
+  <field name="type" type="unsigned" size="4" enum="networkhandler" />
+</struct>
+
+<struct name="FrobInfo" label="FrobInfo" size="16">
+  <field name="world" label="World Action" type="bitfield" offset="0" size="4" enum="frobaction" />
+  <field name="inventory" label="Inventory Action" type="bitfield" offset="4" size="4" enum="frobaction" />
+  <field name="tool" label="Tool Action" type="bitfield" offset="8" size="4" enum="frobaction" />
+  <field name="zero" label="Unused" type="bitfield" offset="12" size="4" />
+</struct>
+
+<struct name="FromBrief" label="FromBriefcase" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="Fungus" label="Fungus" size="4">
+  <field name="isfungus" type="boolean" size="4" />
+</struct>
+
+<alias ref="var-string" name="GameDesc" label="LongDescription" />
+
+<alias ref="var-string" name="GameName" label="ObjectName" />
+
+<struct name="GunState" label="GunState" size="20">
+  <field name="ammo" label="Ammo" type="integer" offset="0" size="4" />
+  <field name="condition" label="Condition" type="float" offset="4" size="4" />
+  <field name="setting" label="Setting" type="integer" offset="8" size="4" />
+  <field name="mods" label="Mods" type="integer" offset="12" size="4" />
+  <field name="silencing" label="Silencing" type="float" offset="16" size="4" />
+</struct>
+
+<struct name="HandoffNu" label="HandoffNumber" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="HasBrush" label="HasBrush" size="4">
+  <field name="hasbrush" type="boolean" size="4" />
+</struct>
+
+<struct name="HasRefs" label="HasRefs" size="4">
+  <field name="hasrefs" type="boolean" size="4" />
+</struct>
+
+<struct name="Heartbeat" label="Heartbeat" size="4">
+  <field name="time" type="integer" size="4" />
+</struct>
+
+<struct name="HeatDisks" label="HeatDisks" size="52">
+  <struct ref="vector" name="start" label="Start Offset" offset="0" size="12" />
+  <struct ref="vector" name="end" label="End Offset" offset="12" size="12" />
+  <field name="startradius" label="Start Radius" type="float" offset="24" size="4" />
+  <field name="endradius" label="End Radius" type="float" offset="28" size="4" />
+  <field name="bottomjitter" label="Bottom Jitter" type="float" offset="32" size="4" />
+  <field name="topjitter" label="Top Jitter" type="float" offset="36" size="4" />
+  <field name="height" label="Height" type="float" offset="40" size="4" />
+  <field name="blobs" label="Num. Blobs" type="integer" offset="44" size="4" />
+  <field name="maxdisks" label="Max. Disks/Blob" type="integer" offset="48" size="4" />
+</struct>
+
+<struct name="HitPoints" label="HitPoints" size="4">
+  <field name="hp" type="integer" size="4" />
+</struct>
+
+<struct name="HTHAudioR" label="HtHAudioResponse" size="12">
+  <field name="low" label="Low" type="float" offset="0" size="4" />
+  <field name="high" label="High" type="float" offset="4" size="4" />
+  <field name="speed" label="Speed (?)" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="HTHCombat" label="HtHCombatDistances" size="12">
+  <field name="low" label="Low" type="float" offset="0" size="4" />
+  <field name="mid" label="Medium" type="float" offset="4" size="4" />
+  <field name="high" label="High" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="HTHGruntA" label="HtHGruntAlways" size="4">
+  <field name="gruntalways" type="boolean" size="4" />
+</struct>
+
+<struct name="HTHModeOv" label="HtHModeOverride" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="HTHMotion" label="HtHMotionResponse" size="12">
+  <field name="low" label="Low" type="float" offset="0" size="4" />
+  <field name="high" label="High" type="float" offset="4" size="4" />
+  <field name="speed" label="Speed (?)" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="Immobile" label="Immobile" size="4">
+  <field name="isimmobile" type="boolean" size="4" />
+</struct>
+
+<struct name="InvBeingT" label="InventoryBeingTaken" size="4">
+  <field name="istaken" type="boolean" size="4" />
+</struct>
+
+<alias ref="var-string" name="InvCycleO" label="InventoryCycleOrder" />
+
+<struct name="InvLimbMo" label="InventoryLimbModel" size="16">
+  <field name="name" type="string" size="16" />
+</struct>
+
+<struct name="InvRendTy" label="InventoryRenderType" size="20">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" enum="inventoryrendertype" />
+  <field name="name" label="Name" type="string" offset="4" size="16" />
+</struct>
+
+<struct name="InvType" label="InventoryType" size="4">
+  <field name="type" type="unsigned" size="4" enum="inventorytype" />
+</struct>
+
+<struct name="INVISIBLE" label="Invisible" size="4">
+  <field name="visibility" type="integer" size="4" />
+</struct>
+
+<struct name="ItemStore" label="ItemStore" size="4">
+  <field name="isstore" type="boolean" size="4" />
+</struct>
+
+<struct name="JointPos" label="JointPositions" size="24">
+  <array name="position" label="Joint" offset="0" size="24" count="6">
+    <field type="float" size="4" />
+  </array>
+</struct>
+
+<struct name="KeyDst" label="KeyDest" size="6">
+  <field name="master" label="Master" type="boolean" offset="0" size="1" />
+  <field name="regions" label="Region Mask" type="bitfield" offset="1" size="4" />
+  <field name="lockid" label="Lock ID" type="unsigned" offset="5" size="1" />
+</struct>
+<alias ref="KeyDst" name="KeySrc" label="KeySource" />
+
+<struct name="LauncherM" label="LauncherMass" size="4">
+  <field name="mass" type="float" size="4" />
+</struct>
+
+<struct name="Light" label="Light" size="28">
+  <field name="brightness" label="Brightness" type="float" offset="0" size="4" />
+  <struct ref="vector" name="offset" label="Offset" offset="4" size="12" />
+  <field name="radius" label="Radius" type="float" offset="16" size="4" />
+  <field name="quadlight" label="Quad Lit" type="boolean" offset="20" size="4" />
+  <field name="inner" label="Inner Radius" type="float" offset="24" size="4" />
+</struct>
+
+<struct name="LightColo" label="LightColor" size="8">
+  <field name="hue" label="Hue" type="float" offset="0" size="4" />
+  <field name="saturation" label="Saturation" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="LocalCopy" label="LocalCopy" size="4">
+  <field name="islocal" type="boolean" size="4" />
+</struct>
+
+<struct name="LockCnt" label="LockCount (?)" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="Locked" label="Locked" size="4">
+  <field name="islocked" type="boolean" size="4" />
+</struct>
+
+<struct name="Loot" label="Loot" size="16">
+  <field name="gold" label="Gold" type="integer" offset="0" size="4" />
+  <field name="gems" label="Gems" type="integer" offset="4" size="4" />
+  <field name="art" label="Art" type="integer" offset="8" size="4" />
+  <field name="special" label="Special" type="bitfield" offset="12" size="4" />
+</struct>
+
+<struct name="LoudRoom" label="LoudRoom" size="4">
+  <field name="value" type="float" size="4" />
+</struct>
+
+<alias ref="Class Tag" name="Material " label="MaterialTags" />
+
+<struct name="MAX_HP" label="MaxHitPoints" size="4">
+  <field name="hp" type="integer" size="4" />
+</struct>
+
+<struct name="MaxSpchPa" label="MaxSpeechPause" size="4">
+  <field name="time" type="integer" size="4" />
+</struct>
+
+<struct name="MeshAttac" label="MeshAttach" size="120">
+  <field name="custom" label="Private Data" type="unsigned" offset="0" size="4" />
+  <field name="accessory" label="Accessory" type="unsigned" offset="4" size="4" />
+  <array name="attachment" label="Attachment" offset="8" size="112" count="4">
+    <struct size="28">
+      <field name="object" label="Object" type="integer" offset="0" size="4" />
+      <field name="joint" label="Joint" type="unsigned" offset="4" size="4" enum="meshjoint" />
+      <struct ref="short-vector" name="angle" label="Angle" offset="8" size="6" />
+      <field name="zero" label="Unused" type="unsigned" offset="14" size="2" />
+      <struct ref="vector" name="offset" label="Offset" offset="16" size="12" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="MeshTex" label="MeshTextures" size="396">
+  <array name="texture" label="Texture" offset="0" size="384" count="12">
+    <struct size="32">
+      <field name="original" label="Original" type="string" offset="0" size="16" />
+      <field name="replacement" label="Replacement" type="string" offset="16" size="16" />
+    </struct>
+  </array>
+  <field name="zero" label="Unused" type="string" offset="384" size="12" />
+</struct>
+
+<struct name="MinSpchPa" label="MinSpeechPause" size="4">
+  <field name="time" type="integer" size="4" />
+</struct>
+
+<alias ref="var-string" name="ModeChang" label="ModeChangeMetaproperty" />
+
+<struct name="ModelName" label="ModelName" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<alias ref="var-string" name="ModeUnchn" label="ModeUnchangeMetaproperty" />
+
+<struct name="MotActorT" label="MotionActorTags" size="800">
+  <field name="tags" type="string" size="800" />
+</struct>
+
+<struct name="MotGaitDe" label="MotionGaitDescription" size="72">
+  <field name="offsetleft" label="Left Offset" type="integer" offset="0" size="4" />
+  <field name="offsetright" label="Right Offset" type="integer" offset="4" size="4" />
+  <field name="ascend" label="Ascend" type="float" offset="8" size="4" />
+  <field name="descend" label="Descend" type="float" offset="12" size="4" />
+  <field name="timewarp" label="Time Warp" type="float" offset="16" size="4" />
+  <field name="stretch" label="Stretch" type="float" offset="20" size="4" />
+  <field name="anglevelocity" label="Angle Velocity" type="integer" offset="24" size="4" />
+  <field name="turntolerance" label="Turn Tolerance" type="integer" offset="28" size="4" />
+  <field name="maxvelocity" label="Max. Velocity" type="float" offset="32" size="4" />
+  <field name="minvelocity" label="Min. Velocity" type="float" offset="36" size="4" />
+  <field name="numturns" label="Num. Turns" type="integer" offset="40" size="4" />
+  <array name="turn" label="Turn" offset="44" size="24" count="3">
+    <struct size="8">
+      <field name="angle" label="Angle" type="integer" offset="0" size="4" />
+      <field name="offset" label="Offset" type="integer" offset="4" size="4" />
+    </struct>
+  </array>
+  <field name="noise" label="Noise" type="float" offset="68" size="4" />
+</struct>
+
+<struct name="MotorCont" label="MotorController" size="4">
+  <field name="type" type="unsigned" size="4" enum="motorcontrollertype" />
+</struct>
+
+<struct name="MotPhysLi" label="MotionPhysLimits" size="8">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="unknown2" label="Unknown" type="integer" offset="4" size="4" />
+</struct>
+
+<struct name="MotPlyrLi" label="MotionPlayerLimbOffset" size="24">
+  <struct ref="vector" name="position" label="Position" offset="0" size="12" />
+  <struct ref="vector" name="angle" label="Angle" offset="12" size="12" />
+</struct>
+
+<struct name="MovingTer" label="MovingTerrain" size="8">
+  <field name="active" label="Active" type="boolean" offset="0" size="4" />
+  <field name="unknown" label="Unknown" type="integer" offset="4" size="4" />
+</struct>
+
+<struct name="NetworkCa" label="NetworkCategory" size="4">
+  <field name="type" type="unsigned" size="4" enum="networkcategorytype" />
+</struct>
+
+<struct name="NoBorrow" label="NoBorrow" size="4">
+  <field name="disallow" type="boolean" size="4" />
+</struct>
+
+<struct name="NoDrop" label="NoDrop" size="4">
+  <field name="disallow" type="boolean" size="4" />
+</struct>
+
+<struct name="NoFlash" label="FlashInvulnerable" size="4">
+  <field name="noflash" type="boolean" size="4" />
+</struct>
+
+<struct name="NonPhysCr" label="NonPhysicalCreature" size="4">
+  <field name="nophys" type="boolean" size="4" />
+</struct>
+
+<struct name="ObjShad" label="ObjectShadow" size="4">
+  <field name="hasshadow" type="boolean" size="4" />
+</struct>
+
+<alias ref="var-string" name="OTxtRepr0" label="TextureReplace0" />
+<alias ref="var-string" name="OTxtRepr1" label="TextureReplace1" />
+<alias ref="var-string" name="OTxtRepr2" label="TextureReplace2" />
+<alias ref="var-string" name="OTxtRepr3" label="TextureReplace3" />
+
+<struct name="Particle" label="Particle" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="ParticleG" label="ParticleGroup" size="328">
+  <array name="unknown1" label="Unknown" offset="0" size="40" count="10">
+    <field type="integer" size="4" />
+  </array>
+  <field name="type" label="Render Type" type="unsigned" offset="40" size="4" value="4" enum="particlegrouptype" />
+  <field name="motion" label="Group Motion" type="unsigned" offset="44" size="4" value="4" enum="particlegroupmotion" />
+  <field name="animation" label="Animation" type="unsigned" offset="48" size="4" value="1" enum="particlegroupanimation" />
+  <array name="unknown2" label="Unknown" offset="52" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+  <field name="numparticles" label="Num. Particles" type="integer" offset="60" size="4" />
+  <array name="unknown3" label="Unknown" offset="64" size="24" count="6">
+    <field type="integer" size="4" />
+  </array>
+  <struct ref="vector" name="velocity" label="Velocity" offset="88" size="12" />
+  <struct ref="vector" name="gravity" label="Gravity" offset="100" size="12" />
+  <array name="colors" label="Color Index" offset="112" size="3" count="3">
+    <field type="unsigned" size="1" />
+  </array>
+  <field name="alpha" label="Alpha" type="unsigned" offset="115" size="1" />
+  <field name="simalways" label="Sim Always" type="boolean" offset="116" size="1" />
+  <field name="simgroup" label="Sim Group Always" type="boolean" offset="117" size="1" />
+  <field name="zero1" label="Unused" type="unsigned" offset="118" size="1" />
+  <field name="sortparticles" label="Sort Particles" type="boolean" offset="119" size="1" />
+  <field name="zero2" label="Unused" type="unsigned" offset="120" size="2" />
+  <field name="ignorerefs" label="Ignore Refs" type="boolean" offset="122" size="1" />
+  <array name="zero3" label="Unknown" offset="123" size="5" count="5">
+    <field type="unsigned" size="1" />
+  </array>
+  <struct ref="vector" name="spinspeed" label="Spin Speed" offset="128" size="12" />
+  <field name="pulsecycle" label="Pulse Time" type="integer" offset="140" size="4" />
+  <field name="pulsesize" label="Pulse Size" type="float" offset="144" size="4" />
+  <field name="radius" label="Radius" type="float" offset="148" size="4" />
+  <field name="startlaunched" label="Start Launched" type="boolean" offset="152" size="1" />
+  <field name="spinandpulse" label="Spin/Pulse" type="boolean" offset="153" size="1" />
+  <field name="subpixelalpha" label="Sub-pixel Alpha" type="boolean" offset="154" size="1" />
+  <field name="subpixelskip" label="Skip Sub-pixels" type="boolean" offset="155" size="1" />
+  <array name="zero4" label="Unused" offset="156" size="3" count="3">
+    <field type="unsigned" size="1" />
+  </array>
+  <field name="active" label="Active" type="boolean" offset="159" size="1" />
+  <field name="animtimeoffset" label="Anim. Offset Time" type="integer" offset="160" size="4" />
+  <field name="particlesize" label="Particle Size" type="float" offset="164" size="4" />
+  <array name="unknown4" label="Unknown" offset="168" size="20" count="5">
+    <field type="integer" size="4" />
+  </array>
+  <field name="scalespeed" label="Scale Speed" type="float" offset="188" size="4" />
+  <array name="unknown5" label="Unknown" offset="192" size="60" count="15">
+    <field type="integer" size="4" />
+  </array>
+  <field name="launchtime" label="Launch Time" type="integer" offset="252" size="4" />
+  <field name="bitmap" label="Bitmap Name" type="string" offset="256" size="16" />
+  <field name="unknown6" label="Unknown" type="integer" offset="272" size="4" />
+  <field name="fadetime" label="Fade Time" type="integer" offset="276" size="4" />
+  <array name="unknown7" label="Unknown (lots)" offset="280" size="44" count="11">
+    <field type="integer" size="4" />
+  </array>
+  <field name="matchunrefs" label="Match Un-Refs" type="boolean" offset="324" size="4" />
+</struct>
+
+<alias ref="var-string" name="ParticleT" label="ParticleType" />
+
+<struct name="PGLaunchI" label="ParticleGroupLaunchInfo" size="140">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" enum="particlelaunchtype" />
+  <struct ref="vector" name="boxmin" label="Min. Bounds" offset="4" size="12" />
+  <struct ref="vector" name="boxmax" label="Max. Bounds" offset="16" size="12" />
+  <struct ref="vector" name="velocitymin" label="Min. Velocity" offset="28" size="12" />
+  <struct ref="vector" name="velocitymax" label="Max. Velocity" offset="40" size="12" />
+  <field name="radiusmin" label="Min. Radius" type="float" offset="52" size="4" />
+  <field name="radiusmax" label="Max. Radius" type="float" offset="56" size="4" />
+  <field name="timemin" label="Min. Time" type="float" offset="60" size="4" />
+  <field name="timemax" label="Max. Time" type="float" offset="64" size="4" />
+  <field name="worldvelocity" label="Absolute Velocity" type="boolean" offset="68" size="4" />
+  <field name="worldlocation" label="Absolute Location" type="boolean" offset="72" size="4" />
+  <array name="unknown" label="Unknown" offset="76" size="64" count="16">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="PhysAICol" label="PhysAICollidesWith" size="4">
+  <field name="collideswith" type="boolean" size="4" />
+</struct>
+
+<struct name="PhysAttr" label="PhysicsModelAttributes" size="52">
+  <field name="gravity" label="Gravity" type="float" offset="0" size="4" />
+  <field name="mass" label="Mass" type="float" offset="4" size="4" />
+  <field name="density" label="Density" type="float" offset="8" size="4" />
+  <field name="elasticity" label="Elasticity" type="float" offset="12" size="4" />
+  <field name="friction" label="Friction" type="float" offset="16" size="4" />
+  <struct ref="vector" name="cog" label="Center of Gravity" offset="20" size="12" />
+  <field name="rotationaxes" label="Rotation Axes" type="bitfield" offset="32" size="4" enum="physaxisflags" />
+  <field name="restaxes" label="Rest Axes" type="bitfield" offset="36" size="4" enum="physorientationflags" />
+  <field name="climbable" label="Climbable Sides" type="bitfield" offset="40" size="4" enum="physorientationflags" />
+  <field name="edgetrigger" label="Edge Trigger" type="boolean" offset="44" size="4" />
+  <field name="poresize" label="Pore Size" type="float" offset="48" size="4" />
+</struct>
+
+<struct name="PhysCanMa" label="PhysicsModelCanMantle" size="4">
+  <field name="mantleable" type="boolean" size="4" />
+</struct>
+
+<struct name="PhysContr" label="PhysicsModelControls" size="40">
+  <field name="flags" label="Flags" type="bitfield" offset="0" size="4" enum="physcontrolflags" />
+  <struct ref="vector" name="translation" label="Axis Velocity" offset="4" size="12" />
+  <struct ref="vector" name="velocity" label="Velocity" offset="16" size="12" />
+  <struct ref="vector" name="rotation" label="Rotational Velocity" offset="28" size="12" />
+</struct>
+
+<struct name="PhysDims" label="PhysicsModelDimensions" size="52">
+  <array name="radius" label="Sphere Radius" offset="0" size="8" count="2">
+    <field type="float" size="4" />
+  </array>
+  <array name="offset" label="Sphere Offset" offset="8" size="8" count="2">
+    <struct ref="vector" size="12" />
+  </array>
+  <struct ref="vector" name="size" label="Bounding-Box Size" offset="32" size="12" />
+  <field name="pointterrain" label="Pt vs Terrain" type="boolean" offset="44" size="4" />
+  <field name="pointspecial" label="Pt vs Special" type="boolean" offset="48" size="4" />
+</struct>
+
+<struct name="PhysExplo" label="PhysProjectileExplosion" size="8">
+  <field name="magnitude" label="Magnitude" type="integer" offset="0" size="4" />
+  <field name="radius" label="Radius" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="PhysFaceV" label="PhysProjectileFacesVelocity" size="4">
+  <field name="facevelocity" type="boolean" size="4" />
+</struct>
+
+<struct name="PhysInitV" label="PhysProjectileInitialVelocity" size="12">
+  <field name="x" label="X" type="float" offset="0" size="4" />
+  <field name="y" label="Y" type="float" offset="4" size="4" />
+  <field name="z" label="Z" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="PhysPPlat" label="PhysicsPressurePlate" size="28">
+  <field name="weight" label="Trigger Weight" type="float" offset="0" size="4" />
+  <field name="travel" label="Distance" type="float" offset="4" size="4" />
+  <field name="speed" label="Speed" type="float" offset="8" size="4" />
+  <field name="pause" label="Pause Time" type="float" offset="12" size="4" />
+  <field name="blockvision" label="Blocks Vision" type="boolean" offset="16" size="4" />
+  <array name="zero" label="Unused" offset="20" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="PhysRope" label="PhysRope" size="12">
+  <field name="length" label="Length" type="float" offset="0" size="4" />
+  <field name="deployed" label="Deployed" type="boolean" offset="4" size="4" />
+  <field name="desiredlength" label="Desired Length" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="PhysState" label="PhysicsModelState" size="48">
+  <struct ref="vector" name="location" label="Location" offset="0" size="12" />
+  <struct ref="vector" name="facing" label="Rotation" offset="12" size="12" />
+  <struct ref="vector" name="velocity" label="Velocity" offset="24" size="12" />
+  <struct ref="vector" name="rotvelocity" label="Rotational Velocity" offset="36" size="12" />
+</struct>
+
+<struct name="PhysType" label="PhysicsModelType" size="16">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" value="0" enum="physmodeltype" />
+  <field name="submodels" label="Submodels" type="integer" offset="4" size="4" value="6" />
+  <field name="removeonsleep" label="Remove on Sleep" type="boolean" offset="8" size="4" />
+  <field name="special" label="Special" type="boolean" offset="12" size="4" />
+</struct>
+
+<struct name="PickBias" label="PickBias" size="4">
+  <field name="value" type="float" size="4" />
+</struct>
+
+<struct name="PickCfg" label="PickDestConfig" size="36">
+  <array name="stage" label="Stage" offset="0" size="36" count="3">
+    <struct size="12">
+      <field name="lockbits" label="Bits" type="bitfield" offset="0" size="4" />
+      <field name="pins" label="Pins" type="integer" offset="4" size="2" />
+      <field name="percent" label="Time %25" type="integer" offset="6" size="2" />
+      <field name="flags" label="Flags" type="bitfield" offset="8" size="4" enum="pickcfgflags" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="PickDist" label="PickDistance" size="4">
+  <field name="distance" type="float" size="4" />
+</struct>
+
+<struct name="PickSrc" label="PickSourceConfig" size="4">
+  <field name="bits" label="Bits" type="bitfield" offset="0" size="4" />
+</struct>
+
+<struct name="PickState" label="PickState" size="16">
+  <field name="tumbler" label="Cur. Tumbler" type="unsigned" offset="0" size="1" />
+  <field name="pin" label="Cur. Pin" type="unsigned" offset="1" size="1" />
+  <field name="done" label="Done" type="boolean" offset="2" size="1" />
+  <field name="randtime" label="Randomized Time" type="unsigned" offset="3" size="1" />
+  <field name="totaltime" label="Total Time" type="unsigned" offset="4" size="4" />
+  <field name="stagetime" label="Stage Time" type="unsigned" offset="8" size="4" />
+  <field name="picker" label="Picker" type="bitfield" offset="12" size="4" />
+</struct>
+
+<struct name="Position" label="Position" size="22">
+  <struct ref="vector" name="position" label="Location" offset="0" size="12" />
+  <field name="cell" label="Cell" type="integer" offset="12" size="2" value="-1" />
+  <field name="zero" label="Unused" type="integer" offset="14" size="2" value="-1" />
+  <struct ref="short-vector" name="facing" label="Rotation" offset="16" size="6" />
+</struct>
+
+<struct name="Preload" label="Preload" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<alias ref="var-string" name="PrjSound" label="ProjectileSound" />
+
+<struct name="Projectil" label="ProjectileDescription" size="6">
+  <field name="spray" label="Spray" type="integer" offset="0" size="4" />
+  <field name="spread" label="Spread" type="integer" offset="4" size="2" />
+</struct>
+
+<struct name="Puppet" label="Puppet" size="16">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="object" label="Object" type="integer" offset="4" size="4" />
+  <field name="zero" label="Unused (?)" type="integer" offset="8" size="4" />
+  <field name="unknown2" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="RangedAud" label="AIRangedCombatAudioResponse" size="12">
+  <field name="low" label="Low" type="float" offset="0" size="4" />
+  <field name="high" label="High" type="float" offset="4" size="4" />
+  <field name="rate" label="Speed (?)" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="RenderAlp" label="RenderAlpha" size="4">
+  <field name="alpha" type="float" size="4" />
+</struct>
+
+<struct name="RenderFla" label="RenderFlash" size="28">
+  <struct name="color" label="Color" offset="0" size="3">
+    <field name="red" label="Red" type="unsigned" offset="0" size="1" />
+    <field name="green" label="Green" type="unsigned" offset="1" size="1" />
+    <field name="blue" label="Blue" type="unsigned" offset="2" size="1" />
+  </struct>
+  <field name="active" label="Active" type="boolean" offset="3" size="1" />
+  <field name="worldduration" label="World Duration" type="integer" offset="4" size="4" />
+  <field name="screenduration" label="Screen Duration" type="integer" offset="8" size="4" />
+  <field name="effectduration" label="After-Effect Duration" type="integer" offset="12" size="4" />
+  <field name="overalltime" label="Total Time" type="float" offset="16" size="4" />
+  <field name="range" label="Distance" type="float" offset="20" size="4" />
+  <field name="startframe" label="Start Frame Time" type="unsigned" offset="24" size="4" />
+</struct>
+
+<struct name="RenderTyp" label="RenderType" size="4">
+  <field name="mode" type="unsigned" size="4" enum="objectrendertype" />
+</struct>
+
+<struct name="RngdGrunt" label="AIRangedCombatGruntAlways" size="4">
+  <field name="gruntalways" type="boolean" size="4" />
+</struct>
+
+<struct name="RoomGrav" label="RoomGravity" size="4">
+  <field name="gravity" type="integer" size="4" />
+</struct>
+
+<struct name="RotDoor" label="RotatingDoor" size="110">
+  <field name="zero" label="Unused" type="integer" offset="0" size="4" />
+  <field name="closedangle" label="Closed Angle" type="float" offset="4" size="4" />
+  <field name="openangle" label="Open Angle" type="float" offset="8" size="4" />
+  <field name="speed" label="Speed" type="float" offset="12" size="4" />
+  <field name="axis" label="Axis" type="integer" offset="16" size="4" enum="physaxistype" />
+  <field name="state" label="State" type="unsigned" offset="20" size="4" enum="doorstate" />
+  <field name="hardlimits" label="Hard Limits" type="boolean" offset="24" size="4" />
+  <field name="blocksound" label="Sound Blocking" type="float" offset="28" size="4" />
+  <field name="blockvision" label="Blocks Vision" type="boolean" offset="32" size="4" />
+  <field name="pushmass" label="Push Mass" type="float" offset="36" size="4" />
+  <struct ref="vector" name="closedposition" label="Closed Position" offset="40" size="12" />
+  <struct ref="vector" name="openposition" label="Open Position" offset="52" size="12" />
+  <struct ref="vector" name="startposition" label="Start Position" offset="64" size="12" />
+  <struct ref="short-vector" name="startfacing" label="Start Rotation" offset="76" size="6" />
+  <field name="unknown" label="Unknown" type="float" offset="82" size="4" />
+  <array name="room" label="Room" offset="86" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+  <field name="clockwise" label="Clockwise" type="boolean" offset="94" size="4" />
+  <struct name="haltclose" label="Closed Rotation" ref="short-vector" offset="98" size="6" />
+  <struct name="haltopen" label="Open Rotation" ref="short-vector" offset="104" size="6" />
+</struct>
+
+<struct name="SalePrice" label="SalePrice" size="4">
+  <field name="price" type="integer" size="4" />
+</struct>
+
+<struct name="Scale" label="ModelScale" size="12">
+  <field name="x" label="X-Scale" type="float" offset="0" size="4" />
+  <field name="y" label="Y-Scale" type="float" offset="4" size="4" />
+  <field name="z" label="Z-Scale" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="SchAction" label="SchemaActionSound" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="SchAttFac" label="SchemaAttenuationFactor" size="4">
+  <field name="attenuation" type="float" size="4" />
+</struct>
+
+<struct name="SchLastSa" label="SchemaLastSample" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="SchLoopPa" label="SchemaLoopParams" size="8">
+  <field name="flags" label="Flags" type="bitfield" offset="0" size="1" enum="schemaloopflags" />
+  <field name="maxsamples" label="Max. Samples" type="unsigned" offset="1" size="1" />
+  <field name="loopcount" label="Loop Count" type="integer" offset="2" size="2" />
+  <field name="mininterval" label="Min. Interval" type="integer" offset="4" size="2" />
+  <field name="maxinterval" label="Max. Interval" type="integer" offset="6" size="2" />
+</struct>
+
+<struct name="SchMsg" label="SchemaMessage" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="SchPlayPa" label="SchemaPlayParams" size="20">
+  <field name="flags" label="Flags" type="bitfield" offset="0" size="2" enum="schemaplayflags" value="0x7F00" />
+  <field name="class" label="Class" type="unsigned" offset="2" size="2" enum="schemaaudioclass" />
+  <field name="volume" label="Volume" type="integer" offset="4" size="4" value="-1" />
+  <field name="pan" label="Pan" type="integer" offset="8" size="4" />
+  <field name="delay" label="Delay" type="unsigned" offset="12" size="4" />
+  <field name="fade" label="Fade" type="integer" offset="16" size="4" />
+</struct>
+
+<struct name="SchPriori" label="SchemaPriority" size="4">
+  <field name="priority" type="integer" size="4" />
+</struct>
+
+<struct name="Scripts" label="Scripts" size="132">
+  <array name="scripts" label="Scripts" offset="0" size="128" count="4">
+    <field type="string" size="32" />
+  </array>
+  <field name="dontinherit" label="Don't Inherit" type="boolean" offset="128" size="4" />
+</struct>
+
+<struct name="ScriptTim" label="ScriptTiming" size="4">
+  <field name="timing" type="integer" size="4" />
+</struct>
+
+<struct name="SelfIllum" label="SelfIllumination" size="4">
+  <field name="brightness" type="float" size="4" />
+</struct>
+
+<struct name="SelfLit" label="DynamicLight" size="4">
+  <field name="brightness" type="integer" size="4" />
+</struct>
+
+<struct name="Shadow" label="Shadow" size="4">
+  <field name="intensity" type="integer" size="4" />
+</struct>
+
+<struct name="SlayResul" label="SlayResult" size="4">
+  <field name="mode" type="unsigned" size="4" enum="slayresulttype" />
+</struct>
+
+<struct name="Spark" label="SFXSpark" size="40">
+  <field name="flags" label="Flags" type="bitfield" offset="0" size="4" />
+  <field name="color" label="Color" type="unsigned" offset="4" size="2" />
+  <field name="anglejitter" label="Angle Jitter" type="unsigned" offset="6" size="2" />
+  <array name="angle" label="Angle Offset" offset="8" size="6" count="3">
+    <field type="unsigned" size="2" />
+  </array>
+  <field name="zero" label="Unused" type="unsigned" offset="14" size="2" />
+  <array name="size" label="Size" offset="16" size="12" count="3">
+    <field type="float" size="4" />
+  </array>
+  <field name="sizejitter" label="Size Jitter" type="float" offset="28" size="4" />
+  <field name="light" label="Light" type="float" offset="32" size="4" />
+  <field name="lightjitter" label="Light Jitter" type="float" offset="36" size="4" />
+</struct>
+
+<struct name="SpchNextP" label="SpeechLastPlayed" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="SpchVoice" label="SpeechVoice" size="16">
+  <field name="label" type="string" size="16" />
+</struct>
+
+<struct name="Speech" label="CurrentSpeech" size="24">
+  <field name="flags" label="Flags" type="bitfield" offset="0" size="4" />
+  <field name="time" label="Time" type="integer" offset="4" size="4" />
+  <field name="schema" label="Schema" type="integer" offset="8" size="4" />
+  <field name="concept" label="Concept" type="integer" offset="12" size="4" />
+  <field name="unknown" label="Unknown" type="integer" offset="16" size="4" />
+  <field name="handle" label="Handle" type="unsigned" offset="20" size="4" />
+</struct>
+
+<struct name="SpotAmb" label="SpotlightAmbient" size="12">
+  <field name="inner" label="Inner Radius" type="float" offset="0" size="4" />
+  <field name="outer" label="Outer Radius" type="float" offset="4" size="4" />
+  <field name="ambient" label="Ambient" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="Spotlight" label="Spotlight" size="12">
+  <field name="inner" label="Inner Radius" type="float" offset="0" size="4" />
+  <field name="outer" label="Outer Radius" type="float" offset="4" size="4" />
+  <field name="distance" label="Distance" type="float" offset="8" size="4" />
+</struct>
+
+<struct name="StackCoun" label="StackCount" size="4">
+  <field name="count" type="integer" size="4" />
+</struct>
+
+<struct name="StimKO" label="StimIsKnockout" size="4">
+  <field name="isknockout" type="boolean" size="4" />
+</struct>
+
+<alias ref="sttweqsimple" name="StTweqBli" label="TweqFlickerState" />
+
+<alias ref="sttweqsimple" name="StTweqDel" label="TweqDeleteState" />
+
+<alias ref="sttweqsimple" name="StTweqEmi" label="TweqEmitterState" />
+<alias ref="sttweqsimple" name="StTweq2Em" label="TweqEmitter2State" />
+<alias ref="sttweqsimple" name="StTweq3Em" label="TweqEmitter3State" />
+<alias ref="sttweqsimple" name="StTweq4Em" label="TweqEmitter4State" />
+<alias ref="sttweqsimple" name="StTweq5Em" label="TweqEmitter5State" />
+
+<struct name="StTweqJoi" label="TweqJointsState" size="28">
+  <field name="anim" label="Anim" type="bitfield" offset="0" size="2" enum="tweqstateflags" />
+  <field name="misc" label="Misc" type="bitfield" offset="2" size="2" enum="tweqnullflags" />
+  <array name="joint" label="JointAnim" offset="4" size="24" count="6">
+    <field type="bitfield" size="4" enum="tweqstateflags" />
+  </array>
+</struct>
+
+<struct name="StTweqLoc" label="TweqLockState" size="12">
+  <field name="anim" label="Anim" type="bitfield" offset="0" size="2" enum="tweqstateflags" />
+  <field name="misc" label="Misc" type="bitfield" offset="2" size="2" enum="tweqnullflags" />
+  <field name="angle" label="Target" type="float" offset="4" size="4" />
+  <field name="stage" label="Stage" type="unsigned" offset="8" size="4" />
+</struct>
+
+<alias ref="sttweqsimple" name="StTweqMod" label="TweqModelsState" />
+
+<struct name="StTweqRot" label="TweqRotateState" size="16">
+  <field name="anim" label="Anim" type="bitfield" offset="0" size="2" enum="tweqstateflags" />
+  <field name="misc" label="Misc" type="bitfield" offset="2" size="2" enum="tweqnullflags" />
+  <field name="x" label="X-Axis" type="bitfield" offset="4" size="4" enum="tweqstateflags" />
+  <field name="y" label="Y-Axis" type="bitfield" offset="8" size="4" enum="tweqstateflags" />
+  <field name="z" label="Z-Axis" type="bitfield" offset="12" size="4" enum="tweqstateflags" />
+</struct>
+
+<struct name="StTweqSca" label="TweqScaleState" size="16">
+  <field name="anim" label="Anim" type="bitfield" offset="0" size="2" enum="tweqstateflags" />
+  <field name="misc" label="Misc" type="bitfield" offset="2" size="2" enum="tweqnullflags" />
+  <field name="x" label="X-Axis" type="bitfield" offset="4" size="4" enum="tweqstateflags" />
+  <field name="y" label="Y-Axis" type="bitfield" offset="8" size="4" enum="tweqstateflags" />
+  <field name="z" label="Z-Axis" type="bitfield" offset="12" size="4" enum="tweqstateflags" />
+</struct>
+
+<struct name="SuspObj" label="SuspiciousObject" size="37">
+  <field name="issuspicious" label="Suspicious?" type="boolean" offset="0" size="1" />
+  <field name="type" label="Type" type="string" offset="1" size="32" />
+  <field name="minlight" label="Min. Light" type="float" offset="33" size="4" />
+</struct>
+
+<struct name="SwingExpo" label="SwingExposure" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="SwordActi" label="SwordActionType" size="4">
+  <field name="mode" type="unsigned" size="4" enum="swordactiontype" />
+</struct>
+
+<alias ref="var-string" name="SymName" label="SymbolicName" />
+
+<alias ref="var-string" name="TerrRepOn" label="TerrainReplaceOn" />
+<alias ref="var-string" name="TerrRepOf" label="TerrainReplaceOff" />
+<alias ref="var-string" name="TerrRepDe" label="TerrainReplaceDestroy" />
+
+<struct name="TextureID" label="TextureIndex" size="4">
+  <field name="index" type="integer" size="4" />
+</struct>
+
+<struct name="TextureRa" label="RetextureRadius" size="4">
+  <field name="distance" type="float" size="4" />
+</struct>
+
+<struct name="TimeWarp" label="CreatureTimeWarp" size="4">
+  <field name="factor" type="float" size="4" />
+</struct>
+
+<struct name="ToolReach" label="InventoryToolReach" size="4">
+  <field name="distance" type="float" size="4" />
+</struct>
+
+<struct name="TransDoor" label="TranslatingDoor" size="94">
+  <field name="zero" label="Unused" type="integer" offset="0" size="4" />
+  <field name="closed" label="Closed" type="float" offset="4" size="4" />
+  <field name="open" label="Open" type="float" offset="8" size="4" />
+  <field name="speed" label="Speed" type="float" offset="12" size="4" />
+  <field name="axis" label="Axis" type="integer" offset="16" size="4" enum="physaxistype" />
+  <field name="state" label="State" type="unsigned" offset="20" size="4" enum="doorstate" />
+  <field name="hardlimits" label="Hard Limits" type="boolean" offset="24" size="4" />
+  <field name="blocksound" label="Sound Blocking" type="float" offset="28" size="4" />
+  <field name="blockvision" label="Blocks Vision" type="boolean" offset="32" size="4" />
+  <field name="pushmass" label="Push Mass" type="float" offset="36" size="4" />
+  <struct ref="vector" name="closedposition" label="Closed Position" offset="40" size="12" />
+  <struct ref="vector" name="openposition" label="Open Position" offset="52" size="12" />
+  <struct ref="vector" name="startposition" label="Start Position" offset="64" size="12" />
+  <struct ref="short-vector" name="startfacing" label="Start Rotation" offset="76" size="6" />
+  <field name="unknown" label="Unknown" type="float" offset="82" size="4" />
+  <array name="room" label="Room" offset="86" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="Transient" label="Transient" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="TrapFlags" label="TrapControlFlags" size="4">
+  <field name="flags" type="bitfield" size="4" enum="trapcontrolflags" />
+</struct>
+
+<alias ref="var-string" name="TrapQVar" label="TrapQuestVariable" />
+
+<struct name="VoiceIdx" label="VoiceIndex" size="4">
+  <field name="voice" type="integer" size="4" />
+</struct>
+
+<struct name="WaterColo" label="WaterColor" size="8">
+  <field name="red" label="Red" type="unsigned" offset="0" size="1" />
+  <field name="green" label="Green" type="unsigned" offset="1" size="1" />
+  <field name="blue" label="Blue" type="unsigned" offset="2" size="1" />
+  <field name="zero" label="Unused" type="unsigned" offset="3" size="1" />
+  <field name="alpha" label="Alpha" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="WeaponDam" label="WeaponDamage" size="4">
+  <field name="damage" type="integer" size="4" />
+</struct>
+
+<struct name="WeaponTyp" label="WeaponType" size="4">
+  <field name="type" type="integer" size="4" />
+</struct>
+
+<struct name="Weather" label="LocalWeather" size="16">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="precipitation" label="Precipitation" type="boolean" offset="8" size="4" />
+  <field name="unknown2" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="WpnExposu" label="WeaponExposure" size="4">
+  <field name="value" type="integer" size="4" />
+</struct>
+
+<struct name="WpnTerrCo" label="WeaponCollidesWithTerrain" size="4">
+  <field name="value" type="boolean" size="4" />
+</struct>
+
+<struct name="Z-Bias" label="RendererZBias" size="4">
+  <field name="bias" type="integer" size="4" />
+</struct>
+
+</class>
+
+<!-- Link data defs -->
+
+<class name="links">
+
+<struct name="AIAttack" label="AIAttack" size="4">
+  <field name="priority" label="Priority" type="unsigned" size="4" value="3" enum="aipriority" />
+</struct>
+
+<struct name="AIAwareness" label="AIAwareness" size="68">
+  <field name="unknown1" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="aiawarenessflags" />
+  <field name="level" label="Level" type="unsigned" offset="8" size="4" enum="alertlevel" />
+  <field name="peaklevel" label="Peak Level" type="unsigned" offset="12" size="4" enum="alertlevel" />
+  <field name="levelenter" label="Level Time" type="integer" offset="16" size="4" />
+  <field name="lastcontact" label="Last Contact Time" type="integer" offset="20" size="4" />
+  <struct ref="vector" name="lastposition" label="Last Position" offset="24" size="12" />
+  <field name="unknown2" label="Unknown" type="integer" offset="36" size="4" />
+  <field name="visioncone" label="Vision Cone" type="integer" offset="40" size="4" />
+  <field name="lastupdate" label="Last Update Time" type="integer" offset="44" size="4" />
+  <field name="lastseen" label="Last Seen" type="integer" offset="48" size="4" />
+  <field name="unknown3" label="Unknown" type="integer" offset="52" size="4" />
+  <field name="lastfirsthand" label="Last First Hand Contact" type="integer" offset="56" size="4" />
+  <field name="freshness" label="Freshness" type="integer" offset="60" size="4" />
+  <field name="unknown4" label="Unknown" type="integer" offset="64" size="4" />
+</struct>
+
+<!-- The property is "AI_Camera" ... totally different -->
+<struct name="AICamera" label="AICamera" size="128">
+  <field name="message" label="Message" type="string" offset="0" size="32" />
+  <array name="data" label="Data" offset="32" size="96" count="3">
+    <field type="string" size="32" />
+  </array>
+</struct>
+
+<struct name="AIConversationActor" label="AIConversationActor" size="4">
+  <field name="actor" label="Actor" type="integer" size="4" />
+</struct>
+
+<struct name="AIDefendObj" label="AIDefendObject" size="236">
+  <array name="unknown1" label="Unknown" offset="0" size="56" count="14">
+    <field type="integer" size="4" />
+  </array>
+  <field name="returnspeed" label="Return Speed" type="unsigned" offset="56" size="4" value="3" enum="aispeed" />
+  <array name="unknown2" label="Unknown" offset="60" size="80" count="20">
+    <field type="integer" size="4" />
+  </array>
+  <array name="range" label="Range" offset="140" size="96" count="3">
+    <struct size="32">
+      <field name="radius" label="Radius" type="integer" offset="0" size="4" />
+      <field name="height" label="Height" type="integer" offset="4" size="4" />
+      <field name="minalertness" label="Min. Level" type="unsigned" offset="8" size="4" enum="alertlevel" />
+      <field name="maxalertness" label="Max. Level" type="unsigned" offset="12" size="4" enum="alertlevel" />
+      <array name="unknown3" label="Unknown" offset="16" size="16" count="4">
+        <field type="integer" size="4" />
+      </array>
+    </struct>
+  </array>
+</struct>
+
+<struct name="AIDoor" label="AIDoor" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="AIFleeDest" label="AIFleeDest" size="12">
+  <field name="unknown" label="Unknown" type="integer" offset="0" size="4" />
+  <field name="reached" label="Reached" type="boolean" offset="4" size="4" />
+  <field name="expiration" label="Expiration" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="AIFollowObj" label="AIFollowObject" size="40">
+  <array name="unknown1" label="Unknown" offset="0" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+  <struct name="x" label="X-Vector" offset="8" size="8">
+    <field name="angle" label="Angle" type="float" offset="0" size="4" />
+    <field name="distance" label="Distance" type="integer" offset="4" size="4" />
+  </struct>
+  <struct ref="AIFollowObj/x" name="y" label="Y-Vector" offset="16" size="8" />
+  <struct ref="AIFollowObj/x" name="z" label="Z-Vector" offset="24" size="8" />
+  <array name="unknown2" label="Unknown" offset="32" size="8" count="2">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="AINoFlee" label="AINoFlee" size="4">
+  <field name="expiration" label="Expiration" type="integer" size="4" />
+</struct>
+
+<struct name="AIProjectile" label="AIProjectile" size="52">
+  <field name="constraint" label="Constraint" type="unsigned" offset="0" size="4" enum="aircconstraint" />
+  <field name="data" label="Constraint Data" type="integer" offset="4" size="4" />
+  <field name="method" label="Targetting Method" type="unsigned" offset="8" size="4" value="1" enum="aircmethod" />
+  <field name="priority" label="Priority" type="unsigned" offset="12" size="4" value="2" enum="aircpriority" />
+  <field name="delay" label="Delay" type="float" offset="16" size="4" />
+  <field name="leading" label="Lead Target" type="boolean" offset="20" size="4" />
+  <field name="ammo" label="Ammo" type="integer" offset="24" size="4" />
+  <field name="burst" label="Burst" type="integer" offset="28" size="4" />
+  <field name="accuracy" label="Accuracy" type="unsigned" offset="32" size="4" value="2" enum="aircpriority" />
+  <field name="joint" label="Joint" type="unsigned" offset="36" size="4" enum="meshjoint" />
+  <array name="unknown" label="Unknown" offset="40" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="AISuspiciousLink" label="AISuspicious" size="4">
+  <field name="timeseen" label="Last Contact Time" type="integer" size="4" />
+</struct>
+
+<alias name="AIWatchObj" label="AIWatchObject" ref="AI_WtchPn" />
+
+<struct name="arSrc" label="ARSourceLink" size="12">
+  <field name="sourcelink" label="Source Link ID" type="integer" offset="0" size="4" />
+  <field name="starttime" label="Start Time" type="integer" offset="4" size="4" />
+  <field name="count" label="Count" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="Contains" label="Contains" size="4">
+  <field name="location" label="Location" type="integer" size="4" enum="containtype" />
+</struct>
+
+<struct name="Corpse" label="Corpse" size="4">
+  <field name="propagatestim" label="Propagate Stim" type="boolean" size="4" />
+</struct>
+
+<struct name="CreatureAttachment" label="CreatureAttachment" size="64">
+  <field name="joint" label="Joint" type="unsigned" offset="0" size="4" enum="meshjoint" />
+  <field name="isweapon" label="Is Weapon" type="boolean" offset="8" size="4" />
+  <field name="unknown1" label="Unknown" type="float" offset="12" size="4" />
+  <array name="unknown2" label="Unknown" offset="16" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+  <field name="unknown3" label="Unknown" type="float" offset="28" size="4" />
+  <array name="unknown4" label="Unknown" offset="32" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+  <field name="unknown5" label="Unknown" type="float" offset="44" size="4" />
+  <array name="unknown6" label="Unknown (enough already)" offset="48" size="12" count="3">
+    <field type="integer" size="4" />
+  </array>
+  <field name="unknown7" label="Unknown" type="integer" offset="60" size="4" />
+</struct>
+
+<struct name="CurWeapon" label="CurrentWeapon" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="Flinderize" label="Flinderize" size="24">
+  <field name="count" label="Count" type="integer" offset="0" size="4" />
+  <field name="impulse" label="Impulse" type="float" offset="4" size="4" />
+  <field name="scatter" label="Scatter" type="boolean" offset="8" size="4" />
+  <struct ref="vector" name="offset" label="Offset" offset="12" size="12" />
+</struct>
+
+<struct name="FlowContact" label="FlowContact" size="16">
+  <array name="unknown" label="Unknown" offset="0" size="16" count="4">
+    <field type="integer" size="4" />
+  </array>
+</struct>
+
+<struct name="FrobProxy" label="FrobProxy" size="4">
+  <field name="flags" label="Flags" type="bitfield" size="4" enum="frobproxyflags" />
+</struct>
+
+<struct name="GunFlash" label="GunFlash" size="8">
+  <field name="vhot" label="VHot" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="gunflashflags" />
+</struct>
+
+<struct name="HostObj" label="HostObject" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="Lock" label="Lock" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="MetaProp" label="Metaproperty" size="4">
+  <field name="priority" label="Priority" type="integer" size="4" value="1024" />
+</struct>
+
+<struct name="NowPicking" label="NowPicking" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="ParticleAttachement" label="ParticleAttachment" size="16">
+  <field name="type" label="Location" type="unsigned" offset="0" size="4" enum="particleattachtype" />
+  <field name="vhot" label="VHot" type="integer" offset="4" size="4" />
+  <field name="joint" label="Joint" type="unsigned" offset="8" size="4" />
+  <field name="submodel" label="Submodel" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="PhysAttach" label="PhysAttachment" size="12">
+  <struct ref="vector" name="offset" label="Offset" offset="0" size="12" />
+</struct>
+
+<struct name="PlayerFactory" label="PlayerFactory" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+<struct name="Projectile" label="Projectile" size="8">
+  <field name="order" label="Order" type="integer" offset="0" size="4" />
+  <field name="setting" label="Setting" type="integer" offset="4" size="4" />
+</struct>
+
+<struct name="ReactParam" label="ReactParam" size="4">
+  <field name="receptron" label="Receptron ID" type="integer" offset="0" size="4" />
+</struct>
+
+<alias name="ScriptContact" label="ScriptContact" ref="FlowContact" />
+
+<struct name="ScriptParams" label="ScriptParams" size="16">
+  <field name="label" label="params" type="string" size="16" />
+</struct>
+
+<struct name="StimSensor" label="StimSensor" size="4">
+  <field name="sensorcount" label="Count" type="integer" size="4" />
+</struct>
+
+<struct name="TPath" label="TerrainPath" size="16">
+  <field name="speed" label="Speed" type="float" offset="0" size="4" />
+  <field name="pausetime" label="Pause Time" type="integer" offset="4" size="4" />
+  <field name="pathlimit" label="Hard Limits" type="boolean" offset="8" size="4" />
+  <field name="zero" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="VoiceOver" label="VoiceOver" size="4">
+  <field name="flags" label="Events" type="bitfield" size="4" enum="voiceoverflags" />
+</struct>
+
+<struct name="WeaponOffset" label="WeaponOffset" size="56">
+  <field name="modes" label="Modes" type="bitfield" offset="0" size="4" enum="weaponmode" />
+  <array name="transform" label="Transform" offset="4" size="48" count="4">
+    <struct ref="vector" size="12" />
+  </array>
+  <field name="joint" label="Joint" type="unsigned" offset="52" size="4" enum="meshjoint" />
+</struct>
+
+<struct name="WHBlock" label="WeaponHaloBlock" size="4">
+  <field name="unknown" label="Unknown" type="integer" size="4" />
+</struct>
+
+</class>
+
+<class name="stimsource">
+
+<!-- Stim Source description -->
+<!-- A bit tricky. The shapecontact and shaperadius fields overlap -->
+
+<enum name="arsourcetype" type="integer">
+  <symbol name="None" value="0" />
+  <symbol name="Contact" value="1" />
+  <symbol name="Radius" value="2" />
+  <symbol name="Flow" value="3" />
+  <symbol name="Script" value="4" />
+</enum>
+
+<enum name="arsourcename" type="string">
+  <symbol name="None" value="None" />
+  <symbol name="Contact" value="Contact" />
+  <symbol name="Radius" value="Radius" />
+  <symbol name="Flow" value="Flow" />
+  <symbol name="Script" value="Script" />
+</enum>
+
+<enum name="arsourcefieldflags" type="bitfield">
+  <symbol name="Shape" value="1" />
+  <symbol name="Lifecycle" value="2" />
+</enum>
+
+<enum name="arlifecycleflags" type="bitfield">
+  <symbol name="No Max" value="1" />
+  <symbol name="Destroy On Completion" value="2" />
+</enum>
+
+<enum name="arcontactflags" type="bitfield">
+  <symbol name="Collision" value="0x001" />
+  <symbol name="WorldFrob" value="0x002" />
+  <symbol name="InvFrob" value="0x004" />
+  <symbol name="InvFrob" value="0x008" />
+  <symbol name="ToolFrob Inv%2FWorld" value="0x010" />
+  <symbol name="ToolFrob Inv%2FInv" value="0x020" />
+  <symbol name="ToolFrob World%2FWorld" value="0x040" />
+  <symbol name="ToolFrob World%2FInv" value="0x080" />
+  <symbol name="Weapon Low" value="0x800" />
+  <symbol name="Weapon Med" value="0x100" />
+  <symbol name="Weapon High" value="0x200" />
+  <symbol name="Weapon Block" value="0x400" />
+</enum>
+
+<enum name="arradiusflags" type="bitfield">
+  <symbol name="Line of Sight" value="1" />
+</enum>
+
+<enum name="arradiustype" type="unsigned">
+  <symbol name="None" value="0" />
+  <symbol name="Linear" value="1" />
+  <symbol name="Inverse Square" value="2" />
+</enum>
+
+<struct name="arSrcDesc" label="ARSourceDescription" size="108">
+  <field name="sourcetype" label="Source Type" type="integer" offset="0" size="4" enum="arsourcetype" />
+  <field name="intensity" label="Intensity" type="float" offset="4" size="4" />
+  <field name="validfields" label="Valid Fields" type="bitfield" offset="8" size="4" enum="arsourcefieldflags" />
+  <struct name="shapecontact" label="Shape (Contact)" offset="12" size="32">
+    <field name="types" label="Type" type="bitfield" offset="0" size="4" enum="arcontactflags" />
+    <field name="velocitycoeff" label="Velocity Coeff." type="float" offset="4" size="4" />
+    <field name="frobtimecoeff" label="Frob Time Coeff." type="float" offset="8" size="4" />
+    <array name="zero" label="Unused" offset="12" size="20" count="5">
+      <field type="integer" size="4" />
+    </array>
+  </struct>
+  <struct name="shaperadius" label="Shape (Radius)" offset="12" size="32">
+    <field name="distance" label="Distance" type="float" offset="0" size="4" />
+    <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="arradiusflags" />
+    <field name="dispersion" label="Dispersion" type="unsigned" offset="8" size="4" enum="arradiustype" />
+    <array name="zero" label="Unused" offset="12" size="20" count="5">
+      <field type="integer" size="4" />
+    </array>
+  </struct>
+  <struct name="lifecycle" label="Lifecycle" offset="44" size="32">
+    <field name="flags" label="Flags" type="bitfield" offset="0" size="4" enum="arlifecycleflags" />
+    <field name="period" label="Period" type="integer" offset="4" size="4" />
+    <field name="maxfirings" label="Max. Firings" type="integer" offset="8" size="4" />
+    <field name="slope" label="Slope" type="float" offset="12" size="4" />
+    <array name="zero" label="Unused" offset="16" size="16" count="4">
+      <field type="integer" size="4" />
+    </array>
+  </struct>
+  <field name="typename" label="Type Name" type="string" offset="76" size="32" enum="arsourcename" />
+</struct>
+
+</class>
+
+<class name="reactions">
+
+<enum name="receptronflags" type="bitfield">
+  <symbol name="No Min" value="1" />
+  <symbol name="No Max" value="2" />
+</enum>
+
+<enum name="receptroneffects" type="string">
+<!-- "None" will crash Dromed... but I'm hoping only in the Receptron editor -->
+  <symbol name="None" value="None" />
+  <symbol name="Abort" value="Abort" />
+  <symbol name="Amplify" value="Amplify" />
+  <symbol name="Weak Point" value="WeakPoint" />
+  <symbol name="Stimulate" value="stimulate" />
+  <symbol name="Script Message" value="stim_script_msg" />
+  <symbol name="Tweq Control" value="tweq_control" />
+  <symbol name="Set Quest Var" value="SetQvar" />
+  <symbol name="Impact Result" value="impact_result" />
+  <symbol name="Permeate" value="permeate" />
+  <symbol name="Add Property" value="add_prop" />
+  <symbol name="Remove Property" value="rem_prop" />
+  <symbol name="Clone Properties" value="clone_props" />
+  <symbol name="Add Metaproperty" value="add_metaprop" />
+  <symbol name="Remove Metaproperty" value="rem_metaprop" />
+  <symbol name="Change Model" value="set_model" />
+  <symbol name="Create Object" value="create_obj" />
+  <symbol name="Move Object" value="move_obj" />
+  <symbol name="Frob Object" value="frob_obj" />
+  <symbol name="Destroy Object" value="destroy_obj" />
+  <symbol name="Slay Object" value="slay" />
+  <symbol name="Damage" value="damage" />
+  <symbol name="Spoof Damage" value="spoofdamage" />
+  <symbol name="Knockout" value="Knockout" />
+  <symbol name="Freeze" value="Freeze" />
+  <symbol name="Weapon Hit" value="weapon_hit" />
+  <symbol name="Weapon Block" value="weapon_block" />
+  <symbol name="Awareness Filter" value="AwareFilter" />
+  <symbol name="Env Sound" value="EnvSound" />
+</enum>
+
+<struct name="Receptron" label="Receptron" size="88">
+  <field name="ordinal" label="Order" type="integer" offset="0" size="4" />
+  <field name="minintensity" label="Min. Intensity" type="float" offset="4" size="4" />
+  <field name="maxintensity" label="Max. Intensity" type="float" offset="8" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="12" size="4" enum="receptronflags" />
+  <field name="effect" label="Reaction" type="string" offset="16" size="32" enum="receptroneffects" />
+  <field name="target" label="Target" type="integer" offset="48" size="4" />
+  <field name="agent" label="Agent" type="integer" offset="52" size="4" />
+  <!-- Effect data ... let's use a seperate set of structs -->
+</struct>
+
+<!-- Reaction names are flattened to lower-case. I don't trust Dromed enough -->
+<struct name="Reaction:amplify" label="Amplify Stimulus" size="32">
+  <field name="multiply" label="Multiply (first)" type="float" offset="0" size="4" />
+  <field name="add" label="Add (second)" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="Reaction:weakpoint" label="Weak Point" size="32">
+  <field name="multiply" label="Multiply (first)" type="float" offset="0" size="4" />
+  <field name="add" label="Add (second)" type="float" offset="4" size="4" />
+  <struct ref="vector" name="offset" label="Offset" offset="8" size="12" />
+  <field name="radius" label="Radius" type="float" offset="20" size="4" />
+</struct>
+
+<struct name="Reaction:stimulate" label="Stimulate Other" size="32">
+  <field name="name" label="Stimulus" type="string" offset="0" size="16" />
+  <field name="add" label="Add (second)" type="float" offset="16" size="4" />
+  <field name="multiply" label="Multiply (first)" type="float" offset="20" size="4" />
+</struct>
+
+<struct name="Reaction:stim_script_msg" label="Script Message" size="32">
+  <field name="refcount" label="Reference Count" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="unsigned" offset="4" size="4" />
+</struct>
+
+<struct name="Reaction:tweq_control" label="Tweq Control" size="32">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" />
+  <field name="action" label="Action" type="unsigned" offset="4" size="4" />
+  <field name="anim" label="Anim Flags" type="bitfield" offset="8" size="4" enum="tweqanimflags" />
+  <field name="zero" label="Unknown" type="integer" offset="12" size="4" />
+</struct>
+
+<struct name="Reaction:setqvar" label="Set Quest Variable" size="32">
+  <field name="name" label="Name" type="string" offset="0" size="28" />
+  <field name="operation" label="Operation" type="unsigned" offset="28" size="2" />
+  <field name="value" label="Value" type="integer" offset="30" size="2" />
+</struct>
+
+<enum name="reactionimpactresult" type="unsigned">
+  <symbol name="Bounce" value="2" />
+  <symbol name="Stick" value="3" />
+  <symbol name="Slay" value="4" />
+</enum>
+
+<struct name="Reaction:impact_result" label="Impact Result" size="32">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" enum="reactionimpactresult" />
+</struct>
+
+<struct name="Reaction:permeate" label="Permeate Into Container" size="32">
+  <field name="coefficient" label="Coefficient" type="float" offset="0" size="4" />
+  <field name="magnitude" label="Magnitude" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="Reaction:add_prop" label="Add Property" size="32">
+  <field name="name" label="Name" type="string" offset="0" size="16" />
+</struct>
+
+<struct name="Reaction:rem_prop" label="Remove Property" size="32">
+  <field name="name" label="Name" type="string" offset="0" size="16" />
+</struct>
+
+<struct name="Reaction:create_obj" label="Create Object" size="32">
+  <struct ref="vector" name="position" label="Position" offset="0" size="12" />
+  <field name="heading" label="Heading" type="float" offset="12" size="4" />
+  <field name="pitch" label="Pitch" type="float" offset="16" size="4" />
+  <field name="bank" label="Bank" type="float" offset="20" size="4" />
+</struct>
+
+<struct name="Reaction:move_obj" label="Move Object" size="32">
+  <struct ref="vector" name="position" label="Position" offset="0" size="12" />
+  <field name="heading" label="Heading" type="float" offset="12" size="4" />
+  <field name="pitch" label="Pitch" type="float" offset="16" size="4" />
+  <field name="bank" label="Bank" type="float" offset="20" size="4" />
+</struct>
+
+<struct name="Reaction:damage" label="Damage" size="32">
+  <field name="add" label="Add (second)" type="integer" offset="0" size="4" />
+  <field name="type" label="Type" type="integer" offset="4" size="4" />
+  <field name="multiply" label="Multiply (first)" type="float" offset="8" size="4" />
+  <field name="stimtype" label="Stimulus is Type" type="boolean" offset="12" size="4" />
+</struct>
+
+<struct name="Reaction:spoofdamage" label="Spoof Damage" size="32">
+  <field name="add" label="Add (second)" type="integer" offset="0" size="4" />
+  <field name="type" label="Type" type="integer" offset="4" size="4" />
+  <field name="multiply" label="Multiply (first)" type="float" offset="8" size="4" />
+  <field name="stimtype" label="Stimulus is Type" type="boolean" offset="12" size="4" />
+</struct>
+
+<struct name="Reaction:set_model" label="Change Model" size="32">
+  <field name="name" label="Name" type="string" offset="0" size="16" />
+</struct>
+
+<enum name="reactionawarenessflags" type="bitfield">
+  <symbol name="Can't See" value="1" />
+  <symbol name="Can't Hear" value="2" />
+  <symbol name="Stunned" value="4" />
+  <symbol name="Not an AI" value="8" />
+</enum>
+
+<struct name="Reaction:awarefilter" label="Awareness Filter" size="32">
+  <field name="abortflags" label="Abort Unless" type="bitfield" offset="0" size="4" enum="reactionawarenessflags" />
+</struct>
+
+<struct name="Reaction:freeze" label="Freeze" size="32">
+  <field name="duration" label="Duration" type="integer" offset="0" size="4" />
+</struct>
+
+<struct name="Reaction:envsound" label="Environmental Sound" size="32">
+  <field name="tags" label="Tags" type="string" offset="0" size="32" />
+</struct>
+
+<struct name="Reaction:none" label="Null Reaction" size="32">
+</struct>
+<alias ref="Reaction:none" name="Reaction:abort" label="Abort" />
+<alias ref="Reaction:none" name="Reaction:add_metaprop" label="Add Metaproperty" />
+<alias ref="Reaction:none" name="Reaction:rem_metaprop" label="Remove Metaproperty" />
+<alias ref="Reaction:none" name="Reaction:destroy_obj" label="Destroy Object" />
+<alias ref="Reaction:none" name="Reaction:frob_obj" label="Frob Object" />
+<alias ref="Reaction:none" name="Reaction:slay" label="Slay Object" />
+<alias ref="Reaction:none" name="Reaction:clone_props" label="Clone Properties" />
+<alias ref="Reaction:none" name="Reaction:knockout" label="Knockout" />
+<alias ref="Reaction:none" name="Reaction:weapon_hit" label="Weapon Hit" />
+<alias ref="Reaction:none" name="Reaction:weapon_block" label="Weapon Block" />
+
+</class>
+
+<class name="chunks">
+
+<!-- GAM chunks -->
+
+<struct name="AIACS" label="AIAcuitySet" size="72">
+  <struct name="normal" label="Normal" offset="0" size="12">
+    <field name="lighting" label="Lighting" type="float" offset="0" size="4" />
+    <field name="movement" label="Movement" type="float" offset="4" size="4" />
+    <field name="exposure" label="Exposure" type="float" offset="8" size="4" />
+  </struct>
+  <struct ref="AIACS/normal" name="peripheral" label="Peripheral" offset="12" size="12" />
+  <struct ref="AIACS/normal" name="omni" label="Omni" offset="24" size="12" />
+  <struct ref="AIACS/normal" name="lightonly" label="Light Only" offset="36" size="12" />
+  <struct ref="AIACS/normal" name="moveonly" label="Movement Only" offset="48" size="12" />
+  <struct ref="AIACS/normal" name="lowlight" label="Low Light" offset="60" size="12" />
+</struct>
+
+<struct name="AICRTSZ" label="AICreatureSizes" size="64">
+  <array name="type" label="Type" offset="0" size="64" count="8">
+    <struct size="8">
+      <field name="width" label="Width" type="float" offset="0" size="4" />
+      <field name="height" label="Height" type="float" offset="4" size="4" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="AIGPTHVAR" label="AIGamesysPathOption" size="4">
+  <field name="largedoorsize" label="Large Door Size" type="float" size="4" />
+</struct>
+
+<struct name="AIHearStat" label="AIHearingStats" size="48">
+  <struct name="multiply" label="Multiply (first)" size="24">
+    <field name="null" label="Null" type="float" offset="0" size="4" />
+    <field name="verylow" label="Very Low" type="float" offset="4" size="4" />
+    <field name="low" label="Low" type="float" offset="8" size="4" />
+    <field name="normal" label="Normal" type="float" offset="12" size="4" />
+    <field name="high" label="High" type="float" offset="16" size="4" />
+    <field name="veryhigh" label="Very High" type="float" offset="20" size="4" />
+  </struct>
+  <struct name="add" label="Add (second)" size="24">
+    <field name="null" label="Null" type="integer" offset="0" size="4" />
+    <field name="verylow" label="Very Low" type="integer" offset="4" size="4" />
+    <field name="low" label="Low" type="integer" offset="8" size="4" />
+    <field name="normal" label="Normal" type="integer" offset="12" size="4" />
+    <field name="high" label="High" type="integer" offset="16" size="4" />
+    <field name="veryhigh" label="Very High" type="integer" offset="20" size="4" />
+  </struct>
+</struct>
+
+<struct name="AISNDTWK" label="AISoundTweaks" size="24">
+  <field name="untyped" label="Untyped Range" type="integer" offset="0" size="4" />
+  <field name="inform" label="Inform Range" type="integer" offset="4" size="4" />
+  <field name="minor" label="Minor Range" type="integer" offset="8" size="4" />
+  <field name="major" label="Major Range" type="integer" offset="12" size="4" />
+  <field name="noncombat" label="Non-Combat Range" type="integer" offset="16" size="4" />
+  <field name="combat" label="Combat Range" type="integer" offset="20" size="4" />
+</struct>
+
+<struct name="BASH" label="BashVelocityVars" size="8">
+  <field name="threshold" label="Threshold" type="float" offset="0" size="4" />
+  <field name="coefficient" label="Coefficient" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="DARKCOMBAT" label="DarkCombatVars" size="8">
+  <field name="backstab" label="Backstab Bonus" type="integer" offset="0" size="4" />
+  <field name="mindistance" label="Min. Distance" type="float" offset="4" size="4" />
+</struct>
+
+<struct name="GameSysEAX" label="GamesysEAXDefaults" size="12">
+  <field name="eax" label="EAX Type" type="unsigned" offset="0" size="4" enum="eaxtype" />
+  <field name="dampening" label="Dampening Factor" type="integer" offset="4" size="4" />
+  <field name="heightoverride" label="Height Override" type="integer" offset="8" size="4" />
+</struct>
+
+<struct name="MAP_FILE" label="MapFile">
+  <field name="name" label="Name" type="string" size="256" />
+</struct>
+
+<!-- MIS,SAV chunks -->
+
+<struct name="AIPATHVAR" label="AIPathOption" size="4">
+  <field name="pathwater" label="Pathable Water" type="boolean" size="4" />
+</struct>
+
+<struct name="AMBIENT" label="Ambient" size="4">
+  <field name="unknown" label="unknown" type="integer" size="4" />
+</struct>
+
+<struct name="BRHEAD" label="BrushHeader" size="120">
+  <field name="creator" label="Created By" type="string" offset="0" size="16" />
+  <field name="lastsave" label="Last Save By" type="string" offset="16" size="16" />
+  <array name="unknown1" label="Unknown" offset="32" size="64" count="16">
+    <field type="unsigned" size="4" />
+  </array>
+  <field name="gridsize" label="Grid Size" type="integer" offset="96" size="4" />
+  <field name="showgrid" label="Show Grid" type="boolean" offset="100" size="4" />
+  <field name="shading" label="Brush Shading" type="unsigned" offset="104" size="4" />
+  <field name="unknown2" label="Unknown" type="unsigned" offset="108" size="4" />
+  <field name="usegrid" label="Use Grid" type="boolean" offset="112" size="4" />
+  <field name="time" label="Editing Time" type="unsigned" offset="116" size="4" />
+</struct>
+
+<struct name="DARKMISS" label="DarkMissionDescription" size="13">
+  <field name="number" label="Number" type="integer" offset="0" size="4" />
+  <field name="path" label="Path" type="string" offset="4" size="9" />
+</struct>
+
+<struct name="MAPISRC" label="AutomapParams" size="8">
+  <field name="sourcemission" label="Mission Number" type="integer" offset="0" size="4" />
+  <field name="compassoffset" label="Compass Offset" type="float" offset="4" size="4" />
+</struct>
+
+<enum name="missloopflags" type="bitfield">
+  <symbol name="Skip" value="0x01" />
+  <symbol name="NoBriefing" value="0x02" />
+  <symbol name="NoLoadout" value="0x04" />
+  <symbol name="Cutscene" value="0x08" />
+  <symbol name="End" value="0x10" />
+</enum>
+<enum name="missloopmode" type="unsigned">
+  <symbol name="Null" value="0" />
+  <symbol name="AppStart" value="1" />
+  <symbol name="MainMenu" value="2" />
+  <symbol name="NewGame" value="3" />
+  <symbol name="MetaGame" value="4" />
+  <symbol name="MissFlag" value="5" />
+  <symbol name="Briefing" value="6" />
+  <symbol name="Loading" value="7" />
+  <symbol name="StartMission" value="8" />
+  <symbol name="Loadout" value="9" />
+  <symbol name="StartSim" value="10" />
+  <symbol name="EndSim" value="11" />
+  <symbol name="EndMission" value="12" />
+  <symbol name="Debrief" value="13" />
+  <symbol name="MissionComplete" value="19" />
+  <symbol name="Cutscene" value="14" />
+  <symbol name="EndGame" value="15" />
+  <symbol name="Default" value="16" />
+  <symbol name="Restart" value="17" />
+  <symbol name="Restore" value="18" />
+</enum>
+<struct name="MISSLOOP" label="MissionLoop" size="20">
+  <field name="current_mission" label="Current Mission" type="integer" offset="0" size="4" />
+  <field name="flags" label="Flags" type="bitfield" offset="4" size="4" enum="missloopflags" />
+  <field name="current_mode" label="Current Mode" type="unsigned" offset="8" size="4" enum="missloopmode" />
+  <field name="next_mode" label="Next Mode" type="unsigned" offset="12" size="4" enum="missloopmode" />
+  <field name="next_mission" label="Next Mission" type="integer" offset="16" size="4" />
+</struct>
+
+<alias ref="GameSysEAX" name="MissionEAX" label="MissionEAXDefaults" />
+
+<struct name="WATERBANKS" label="WaterColors" size="32">
+  <array name="color" label="Color" size="32" count="4">
+    <struct size="8">
+  <field name="red" label="Red" type="integer" offset="0" size="1" />
+  <field name="green" label="Green" type="integer" offset="1" size="1" />
+  <field name="blue" label="Blue" type="integer" offset="2" size="1" />
+  <field name="zero" label="Unused" type="integer" offset="3" size="1" />
+  <field name="alpha" label="Alpha" type="float" offset="4" size="4" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="FLOW_TEX" label="FlowTextureColors" size="8192">
+  <array name="flow" label="Flow Color" size="8192" count="256">
+    <struct size="32">
+      <field name="in_texture" label="In" type="integer" offset="0" size="2" />
+      <field name="out_texture" label="Out" type="integer" offset="2" size="2" />
+      <field name="name" label="Name" type="string" offset="4" size="28" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="CELL_MOTION" label="CellMotion" size="11008">
+  <array name="anchor" label="Anchor" offset="0" size="6400" count="256">
+    <struct size="25">
+  <struct ref="vector" name="position" label="Position" offset="0" size="12" />
+  <struct ref="short-vector" name="rotation" label="Rotation" offset="12" size="6" />
+  <field name="flags" label="Flags" type="bitfield" offset="18" size="4" />
+  <field name="axis" label="Surface" type="integer" offset="22" size="2" enum="physaxistype" />
+  <field name="zero" label="Unknown" type="integer" offset="24" size="1" />
+    </struct>
+  </array>
+  <array name="delta" label="Flow" offset="6400" size="4608" count="256">
+    <struct size="18">
+  <struct ref="vector" name="position" label="Position" offset="0" size="12" />
+  <struct ref="short-vector" name="rotation" label="Rotation" offset="12" size="6" />
+    </struct>
+  </array>
+</struct>
+
+<struct name="FOG" label="Fog" size="16">
+  <field name="red" label="Red" type="integer" offset="0" size="4" />
+  <field name="green" label="Green" type="integer" offset="4" size="4" />
+  <field name="blue" label="Blue" type="integer" offset="8" size="4" />
+  <field name="distance" label="Distance" type="float" offset="12" size="4" />
+</struct>
+
+<struct name="PLAYERCAM" label="PlayerCamera" size="36">
+  <field name="attachment" label="Attachment" type="unsigned" offset="0" size="4" />
+  <field name="fov" label="Field of View" type="float" offset="4" size="4" />
+  <struct ref="vector" name="position" label="Position" offset="8" size="12" />
+  <struct ref="short-vector" name="rotation" label="Rotation" offset="20" size="6" />
+  <array name="unknown" label="Unknown" offset="26" size="6" count="3">
+    <field type="integer" size="2" />
+  </array>
+  <field name="attached_id" label="Attached Object" type="integer" offset="32" size="4" />
+</struct>
+
+<struct name="RENDPARAMS" label="RenderParams" size="84">
+  <field name="paletteres" label="Palette" type="string" offset="0" size="16" />
+  <struct ref="color" name="ambient" label="Ambient Light" offset="16" size="12" />
+  <field name="usesunlight" label="Use Sunlight" type="boolean" offset="28" size="4" />
+  <field name="quadsunlight" label="Quad Sunlight" type="boolean" offset="32" size="4" />
+  <struct ref="vector" name="sundirection" label="Sunlight Direction" offset="36" size="12" />
+  <field name="sunhue" label="Sunlight Hue" type="float" offset="48" size="4" />
+  <field name="sunsaturation" label="Sunlight Saturation" type="float" offset="52" size="4" />
+  <field name="sunbrightness" label="Sunlight Brightness" type="float" offset="56" size="4" />
+  <array name="unknown" label="Unknown" offset="60" size="24" count="5">
+    <field type="float" size="4" />
+  </array>
+</struct>
+
+<struct name="SONGPARAMS" label="BackgroundMusic" size="32">
+  <field name="name" label="Name" type="string" size="32" />
+</struct>
+
+<struct name="SKYMODE" label="SkyRenderMode" size="4">
+  <field name="type" label="Type" type="unsigned" size="4" />
+</struct>
+
+<struct name="STAROBJVAR" label="NewSky:Stars" size="20">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="density" label="Density" type="float" offset="8" size="4" />
+  <field name="offset" label="Offset" type="float" offset="12" size="4" />
+  <field name="intensity" label="Intensity" type="float" offset="16" size="4" />
+</struct>
+
+<struct name="SKYOBJVAR" label="NewSky:Sky" size="124">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="atmosphere" label="Atmosphere Radius" type="float" offset="8" size="4" />
+  <field name="earth" label="Earth Radius" type="float" offset="12" size="4" />
+  <field name="latitudecount" label="# Latitude Points" type="integer" offset="16" size="4" />
+  <field name="longitudecount" label="# Longitude Points" type="integer" offset="20" size="4" />
+  <field name="dip" label="Dip Angle" type="float" offset="24" size="4" />
+  <struct ref="color" name="polecolor" label="Pole Color" offset="28" size="12" />
+  <struct ref="color" name="fortyfivecolor" label="45 Color" offset="40" size="12" />
+  <struct ref="color" name="seventycolor" label="70 Color" offset="52" size="12" />
+  <struct ref="color" name="horizoncolor" label="Horizon Color" offset="64" size="12" />
+  <struct ref="color" name="dipcolor" label="Dip Color" offset="76" size="12" />
+  <struct ref="color" name="glowcolor" label="Glow Color" offset="88" size="12" />
+  <field name="glowlatitude" label="Glow Latitude" type="float" offset="100" size="4" />
+  <field name="glowlongitude" label="Glow Longitude" type="float" offset="104" size="4" />
+  <field name="glowangle" label="Glow Angle" type="float" offset="108" size="4" />
+  <field name="glowscale" label="Glow Scale" type="float" offset="112" size="4" />
+  <field name="glowmethod" label="Glow Method" type="float" offset="116" size="4" />
+  <field name="cliplatitude" label="Clip Latitude" type="float" offset="120" size="4" />
+</struct>
+
+<struct name="CELOBJVAR" label="NewSky:CelestialObject" size="304">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="isalpha" label="Texture is Alpha" type="boolean" offset="8" size="4" />
+  <field name="texture" label="Texture Name" type="string" offset="12" size="256" />
+  <field name="alpha" label="Alpha" type="float" offset="268" size="4" />
+  <field name="distance" label="Distance" type="float" offset="272" size="4" />
+  <field name="size" label="Size" type="float" offset="276" size="4" />
+  <field name="latitude" label="Latitude" type="float" offset="280" size="4" />
+  <field name="longitude" label="Longitude" type="float" offset="284" size="4" />
+  <field name="rotation" label="Rotation" type="float" offset="288" size="4" />
+  <struct ref="color" name="color" label="Color" offset="292" size="12" />
+</struct>
+
+<struct name="CLOUDOBJVAR" label="NewSky:CloudDeck" size="396">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="isalpha" label="Texture is Alpha" type="boolean" offset="8" size="4" />
+  <field name="texture" label="Texture Name" type="string" offset="12" size="256" />
+  <field name="alpha" label="Alpha" type="float" offset="268" size="4" />
+  <field name="Height" label="Height" type="float" offset="272" size="4" />
+  <field name="tilesize" label="Tile Size" type="float" offset="276" size="4" />
+  <field name="tilesperside" label="Tiles/Side" type="integer" offset="280" size="4" />
+  <field name="subtiles" label="# of Subtiles" type="integer" offset="284" size="4" />
+  <struct ref="vector" name="wind" label="Wind Speed" offset="288" size="12" />
+  <struct ref="color" name="color" label="Color" offset="300" size="12" />
+  <struct ref="color" name="eastcolor" label="East Color" offset="312" size="12" />
+  <field name="eastmethod" label="East Method" type="unsigned" offset="324" size="4" />
+  <field name="eastscale" label="East Scale" type="float" offset="328" size="4" />
+  <struct ref="color" name="westcolor" label="West Color" offset="332" size="12" />
+  <field name="westmethod" label="West Method" type="unsigned" offset="344" size="4" />
+  <field name="westscale" label="West Scale" type="float" offset="348" size="4" />
+  <field name="rotation" label="Rotation" type="float" offset="352" size="4" />
+  <field name="subtilealpha" label="Subtile Alpha Start" type="integer" offset="356" size="4" />
+  <struct ref="color" name="glowcolor" label="Glow Color" offset="360" size="12" />
+  <field name="glowmethod" label="Glow Method" type="unsigned" offset="372" size="4" />
+  <field name="glowscale" label="Glow Scale" type="float" offset="376" size="4" />
+  <field name="glowlatitude" label="Glow Latitude" type="float" offset="380" size="4" />
+  <field name="glowlongitude" label="Glow Longitude" type="float" offset="384" size="4" />
+  <field name="glowangle" label="Glow Angle" type="float" offset="388" size="4" />
+  <field name="glowtiles" label="Glow Tiles" type="integer" offset="392" size="4" />
+</struct>
+
+<struct name="DISTOBJVAR" label="NewSky:DistantObject" size="556">
+  <field name="enable" label="Enable" type="boolean" offset="0" size="4" />
+  <field name="fog" label="Fog" type="boolean" offset="4" size="4" />
+  <field name="bitmap1" label="Bitmap 1" type="string" offset="8" size="256" />
+  <field name="bitmap2" label="Bitmap 2" type="string" offset="264" size="256" />
+  <struct ref="color" name="color" label="Color" offset="520" size="12" />
+  <field name="distance" label="Distance" type="float" offset="532" size="4" />
+  <field name="top" label="Top Latitude" type="float" offset="536" size="4" />
+  <field name="bottom" label="Bottom Latitude" type="float" offset="540" size="4" />
+  <field name="panels" label="# Panels" type="integer" offset="544" size="4" />
+  <field name="panelspertexture" label="Panels/Texture" type="integer" offset="548" size="4" />
+  <field name="alpha" label="Alpha" type="float" offset="552" size="4" />
+</struct>
+
+<struct name="WEATHERVAR" label="Weather" size="96">
+  <field name="type" label="Type" type="unsigned" offset="0" size="4" />
+  <field name="frequency" label="Drops/sec" type="float" offset="4" size="4" />
+  <field name="velocity" label="Feet/sec" type="float" offset="8" size="4" />
+  <field name="distance" label="Visible Distance" type="float" offset="12" size="4" />
+  <field name="radius" label="Radius" type="float" offset="16" size="4" />
+  <field name="alpha" label="Alpha" type="float" offset="20" size="4" />
+  <field name="brightness" label="Brightness" type="float" offset="24" size="4" />
+  <field name="jitter" label="Jitter (snow)" type="float" offset="28" size="4" />
+  <field name="length" label="Length (rain)" type="float" offset="32" size="4" />
+  <field name="splashfrequency" label="Splash Frequency" type="float" offset="36" size="4" />
+  <field name="splashradius" label="Splash Radius" type="float" offset="40" size="4" />
+  <field name="splashheight" label="Splash Height" type="float" offset="44" size="4" />
+  <field name="splashtime" label="Splash Duration" type="float" offset="48" size="4" />
+  <field name="texture" label="Bitmap" type="string" offset="52" size="32" />
+  <struct ref="vector" name="wind" label="Wind Speed" offset="84" size="12" />
+</struct>
+
+<struct name="SAVEDESC" label="SaveDescription" size="1028">
+  <field name="description" label="Description" type="string" offset="0" size="1024" />
+  <field name="extra" label="Extra" type="integer" offset="1024" size="4" />
+</struct>
+
+</class>
+
+</structinfo>

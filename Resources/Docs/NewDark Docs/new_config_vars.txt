@@ -1,0 +1,991 @@
+New config vars
+---------------
+
+(These config vars are typically added to cam_ext.cfg as needed, with the exception of DromEd specific vars which
+are usually added to DromEd.cfg.)
+
+
+use_d3d_display
+    use Direct3D 9 display system instead of the legacy DirectX 6 DirectDraw one.
+    Enabling this will automatically also enable "force_32bit".
+
+force_windowed
+    always run in windowed mode (bit depth will be based on windows desktop bit depth)
+
+force_32bit
+    use 32bit rendering for both 2D (UI) and 3D (in fullscreen, in windowed the desktop bit depth is used)
+
+single_display_mode [<1 - 3>]
+    run game in a single resolution for both 2D (UI) and 3D, the optional parameter specifies the buffer config,
+    default is 1.
+    1: blit based buffer updates (same method that's used in windowed mode is used for fullscreen too)
+    2: double buffering with buffer flipping (in fullscreen mode), the usual mode for games
+    3: triple buffering with buffer flipping (in fullscreen mode)
+
+ui_scale_mode <0 - 2>
+    only has any effect in combination with "single_display_mode", determines how UI (/2D mode) will be scaled to
+    the current display resolution, default mode is 0.
+     0: scale UI to fit screen using basic method, result may or may not be filtered depending on graphics driver
+     1: scale UI only an even multiple to maintain pixel perfectness
+     2: scale UI to fit using 3D HW, result will be filtered
+    When "use_3d_display" is enabled 3D HW is always used and the modes have following (almost same) meaning:
+     0: scale UI to fit screen, result is filtered unless an it happens to be an even multiple which can maintain
+        pixel perfectness (defining "d3d_disp_scaled_2d_overlay" will force it to always filter)
+     1: scale UI only an even multiple to maintain pixel perfectness, no filtering is applied unless
+        "d3d_disp_force_filter_scale2d" is enabled
+     2: same as 0
+
+d3d_disp_scaled_2d_overlay <val> [<val2>]
+    only works in combination with "use_d3d_display", enables scaling of the in-game 2D overlay (HUD).
+    * In the first form with only one value, in the range 2 to 64. The game will try to magnify the overlay the
+      specified amount of times, if that isn't possible it will find nearest scale factor below that can be
+      applied. It will always maintain pixel perfectness so it will choose a scale that results in en even
+      multiple of pixel of the base resolution 640x480. For example any resolution that's at least twice the
+      size of 640x480 can have an overlay scaling of 2. If you want the game to always choose the largest possible
+      scale then set the value really high, i.e. 64, but if you never want it more than double on any resolution
+      then set it to 2.
+    * In the second form it takes two values specifying a virtual resolution for the 2D overlay. The overlay
+      is scaled to fit the current display resolution which may result in slightly blurry results if the scale
+      isn't an even pixel multiple, due to filtering. The specified virtual resolution must be at least
+      640 480 and less than the actual display resolution. The aspect ratio of the virtual resolution will
+      automatically adjusted to match the actual resolution.
+    NOTE: Using scaling will actually improve performance (to some degree), in particular at high resolutions.
+
+d3d_disp_force_filter_scale2d
+    only works in combination with "use_d3d_display", forces scaled 2D (menus and overlay) to always use bilinear
+    filtering. Normally no filtering is applied when the scale is detected to be an even pixel multiple of the
+    original size, in order to get sharper pixel perfect results.
+
+d3d_disp_2d_overlay_alpha <0.0 - 1.0>
+    only works in combination with "use_d3d_display", sets the alpha/transparency of the 2D overlay, default is
+    1.0 (opaque).
+    NOTE: This affects everything that's drawn in 2D while in-game, including the command console.
+
+d3d_disp_2d_surf_mode <0 - 3>
+    only works in combination with "use_d3d_display", sets the method in which the 2D overlay (HUD) is handled,
+    default is 3 (hardware based 2D rendering and 3D rendering in editor). Using the default HW method should
+    significantly increase performance related to 2D/HUD drawing, especially at higher resolutions. If there are
+    problems with garbled HUD texts and "d3d_disp_force_rgba_atex" doesn't help, then it may be solved by changing
+    this to mode 0, 1 or 2.
+     0: software rendering (normal method for SW rendering)
+     1: software rendering (alternative method which probably ends up doing the same thing as 0)
+     2: software rendering (alternative method using lockable dynamic vidmem texture)
+     3: HW rendering (recommended/default)
+
+d3d_disp_hw2d_cachesize <8 - 2047>
+    max vidmem usage (in MB) to try to keep below for vidmem textures related to HW 2D overlay (HUD) rendering,
+    default is 16. Normally nothing that needs to touched, but might be useful for cards with limited memory.
+
+d3d_disp_hw2d_cachesize_editor <8 - 2047>
+    same as "d3d_disp_hw2d_cachesize" except this applies to all HW rendering while in edit mode, default is 64.
+
+d3d_disp_force_rgba_atex
+    only works in combination with "use_d3d_display" and 2D overlay (HUD) in HW mode (see "d3d_disp_2d_surf_mode"),
+    forces the use of RGBA texture format for alpha-only textures in HW 2D rendering, HUD texts in particular,
+    the default uses the best suitable alpha-only format supported by the GPU (which should always work ok, this
+    option is just provided in case some old cards are having problems)
+
+d3d_disp_allow_a8l8_atex
+    only works in combination with "use_d3d_display" and 2D overlay (HUD) in HW mode (see "d3d_disp_2d_surf_mode"),
+    enables support for using A8L8 texture format for alpha-only textures, as a fallback when A8 isn't supported
+    (by default the fallback format is 32-bit RGBA)
+
+movie_sw_scale_quality <0 - 6>
+    quality of software scaling filter (used during internal processing, not the same as the ui_scale_mode),
+    default is 4 (bicubic). Lowest quality with best performance is 0 (point filter).
+
+scale_movie_to_ui
+    only has any effect in combination with "single_display_mode", will play movies within the UI area only
+    when "scale_ui_even_pixels" is set, instead of scaling it to fit the current resolution
+
+crop_movies [<left> <top> <width> <height>]
+    only has any effect in combination with "single_display_mode" and not "scale_movie_to_ui", enable cropping
+    of movies so they can fill more area on a widescreen display. The original Shock cutscenes all have a
+    built-in letterbox so this option works good there, for Thief it would cut off the upper and bottom parts
+    of the movies. Optionally the crop rect can be specified in 640x480 coords, regardless of movie resolution.
+    The default crop rect, when not supplying a custom one, is optimized for SS2 and is 0 70 640 340.
+
+movie_crop_exclude
+    only has any effect with "crop_movies", a '+' separated list of movie filenames to exclude from cropping.
+    For example: movie_crop_exclude credits.avi+success.avi+death.avi
+
+movie_disable
+    a '+' separated list of movie filenames to that should not be played.
+    For example: movie_disable intro.avi+death.avi
+
+no_unload_ffmpeg
+    keep ffmpeg.dll loaded, otherwise it's loaded and unloaded each time a movie is played.
+    This may or may not be helpful when there are problems with movies initially playing but then fail to play
+    at a later time (which produces log messages about ffmpeg.dll failing to load)
+
+ffmpeg_force_intern_indeo5
+    force the use of ffmpeg's internal indeo5 codec even if ir50_32.dll is present
+
+widescreen_lock_hfov
+    use the same horizontal FOV as in 4:3 mode, this is generally disliked by widescreen users, but the option
+    is included as that is how the code works natively
+
+fov <val>
+    set (horizontal) FOV in degrees, default is 90. the FOV is specified for the reference 4:3 aspect ratio,
+    the effective FOV in widescreen will automatically be larger (unless "widescreen_lock_hfov" is specified)
+
+vsync_mode <val>
+    synchronize screen updates with display refresh, default mode is 3.
+    The mode val is the sum of one or several of following values or 0 to disable all:
+       1: enable vertical synch in 3D mode (in-game)
+       2: enable vertical synch in 2D mode (menus)
+       and optionally _one_ of these for non-standard flip interval in vsync:ed fullscreen modes
+        4: flip every second refresh
+        8: flip every third refresh
+       12: flip every fourth refresh
+    Graphics driver settings may override or not support some settings.
+    For example: to enable synch in both 2D and 3D (=1+2) "vsync_mode 3", to disable all synch "vsync_mode 0"
+    console command: set_vsync <val>
+
+d3d_disp_limit_gpu_frames <0 - 3> [<0 - 3>]
+    only has any effect in combination with "use_d3d_display", limits the number of frames that can get buffered
+    in the GPU command buffer, default is 0 0 (limit disabled).
+    The first value defines the buffer limit in 2D mode (menu screens), the second optional value defines the
+    limit in 3D mode (in-game).
+    The GPU command buffer can hold render commands for several frames. When rendering something simple with
+    vsync enabled, like for example menu screens, the buffer easily gets filled. This results in noticeable input
+    lag especially in menus, since there can be several frames between mouse movement and visual response. By
+    limiting the number of frames that can get buffered the input lag can be reduced. It's not recommended to
+    enable the options if no lag is experienced.
+    May not have any effect on older graphics cards.
+    IMPORTANT: Enabling limiting in-game should be used with care on multi-GPU setups, since it can result in
+               performance loss caused by not giving all GPUs enough work.
+
+d3d_disp_refreshrate <rate_hz>
+    only has any effect in combination with "use_d3d_display" and running in fullscreen mode, sets a custom
+    desired display refresh rate. The custom refresh rate will only be used if DirectX reports it as a supported
+    rate for the current display mode. If the requested rate is not available, then the game will attempt to set
+    it to the closest rate below. For example if the requested rate is 85 but DX only reports 72 and 60 as being
+    supported, then it will use 72 instead.
+
+framerate_cap <val>
+    only has any effect in combination with "single_display_mode", enable software based framerate limiter to
+    the specified framerate, default is 0 (disabled)
+
+user_mode<1 - 8> <width> <height> [<bpp> [<aspect_x> <aspect_y>]]
+    up to 8 user defined display modes. If only width and height is supplied the mode is assumed to be 32-bit
+    with an automagic aspect ratio (assuming square pixels). Aspect ratio is defined in x:y form, so for 16:9
+    it would be "16 9".
+    For example: user_mode1 1280 720 32 16 9
+
+gamma_ui <val>
+    setting this enables UI display modes to have its own gamma setting, instead of using the "gamma" option
+    for everything. This can be useful if you play in the dark and get blinded when opening the map or a
+    a readable in Thief.
+
+gamma_movie <val>
+    gamma setting for movie playback, by default the game uses 1.0 for movies
+
+force_32bit_textures
+    load all textures as 32-bit, preserving original quality, as well as enabling 32-bit textures for various
+    subsystems. Only works if "force_32bit" is also specified.
+
+disable_alpha_test
+    disable (newly added) alpha test support, when disabled, some objects like for example the plants in
+    SS2 hydroponics, may exhibit rendering artifacts when other transparent objects are behind them.
+    Alpha testing (aka alpha keying) is similar to chroma keyeing, which skips rendering of pixels that are meant
+    to be transparent. This can create more pixely edges, but it perfectly solves alpha sorting issues.
+    console command: toggle_alpha_test
+    console command: set_alpha_test <0 , 1>
+
+alpha_test_as_opaque
+    treat objects with 1-bit alpha (chroma key) textures as opaque. Requires alpha test to also be enabled.
+    The advantage is that these objects don't have to be depth sorted and it avoids sorting errors where
+    other parts or objects get incorrectly drawn on top. The disadvantage is that in some cases overlapping
+    decal objects may exhibit z-fighting.
+    console command: toggle_alpha_test_opaque
+
+default_alphatest_ref <1 - 255>
+    alpha test alpha threshold value, default is 127.
+
+d3d_disp_enable_atoc [<0 - 2>]
+    only has any effect in combination with "use_d3d_display", enables alpha-to-coverage (ATOC) functionality
+    for alpha tested rendering. This option requires multisampling to be enabled, and only works if the graphics
+    card and driver supports alpha-to-coverage.
+    Mode 2 is a special mode for nVidia cards that support supersampled transparency (SSAA). SSAA may be more
+    expensive in return for bit better quality. If the card doesn't support SSAA but supports ATOC it will
+    fall back to ATOC.
+    ATOC/SSAA makes the edges of alpha tested surfaces look smoother and less aliased.
+    This option may look better when combined with lower alpha threshold like "default_alphatest_ref 1", but
+    "tex_edge_padding" should also be enabled or there may be ugly outlines.
+
+disable_table_fog
+    disable support for table fog, will fallback to vertex fog if supported or none
+
+fog_mode_exp
+    use exponential fog table mode instead of the default linear
+
+tex_filter_mode <0 - 16> [<0 - 16>]
+    set texture filtering mode: 0 no filtering, 1 linear, 2,4,8,16 anisotropic (number is sample size)
+    The optional second parameter is for the minification filter if it should be distinct from the maxification
+    filter.
+    console command: set_tex_filter <0 - 16> [<0 - 16>]
+
+tex_filter_trilinear
+    enable trilinear texture filtering (smooth transition between mipmap levels), only has any effect if
+    mipmap_mode is set to non-zero
+    console command: set_trilinear <0 , 1>
+
+lm_filter_mode <0 - 16> [<0 - 16>]
+    set lightmap (the second texture stage) filtering mode, same modes as "tex_filter_mode" above
+    if this config var isn't defined then lightmaps will have get same filtering as "tex_filter_mode"
+    The optional second parameter is for the minification filter if it should be distinct from the maxification
+    filter.
+    console command: set_lm_filter <0 - 16> [<0 - 16>]
+
+disable_lightmap_aniso
+    (DEPRECATED) use "lm_filter_mode", this config var is entirely ignored if "lm_filter_mode" is also defined
+    prevents the use of anisotropic filtering on lightmaps (the second texture stage)
+
+mipmap_mode <0 - 2>
+    enable mipmap generation for textures: 0 disabled, 1 fastest (quality depends on HW features), 2 software
+    bilinear filtered. When "use_d3d_display" is enabled there may be little or no difference between 1 or 2.
+
+lm_mipmap_mode <0 - 2>
+    mipmap generation mode for lightmaps, this is ignored if "mipmap_mode" is 0. Disabling it may be helpful
+    if there are performance issues or when experiencing visual artifacts (that look like light bleeding), then
+    again it could also make the latter worse or have no effect at all.
+    0 disabled, 1 fastest (quality depends on HW features), 2 use same quality as "mipmap_mode" (default)
+
+lm_init_texmem <0 - 2>
+    when initializing a texture for HW lightmap usage, clear surface memory to make sure there's no random data,
+    default is 0 (disabled). Enabling this should reduce filtering artifacts (light bleeding) on lightmap edges.
+    0 disabled, 1 clear when creating surface, 2 clear when creating and when flushing cached LMs from surface
+    NOTE: Although option 2 should work without problems, it hasn't been tested quite as much. If there are any
+          issues like lightmaps/surfaces suddenly turning black, then change this option to 1.
+
+lm_filter_margin <pixels>
+    only has any effect if "lm_init_texmem 2", pixel spacing to use between cached lightmaps in a lightmap texture,
+    default is 0. Adding some spacing between lightmaps will help avoid/reduce light bleeding artifacts on lightmap
+    edges, at the expense of being able to fit less lightmaps per HW lightmap texture.
+
+mipmap_bias <-16.0 - 16.0>
+    adjust mipmap LOD bias, only has any effect if "mipmap_mode" is non-zero. The bias adjusts the GPU selected
+    mipmap level so with a value of 1.0 it would use one mipmap level smaller than it normally would.
+    console command: set_mipmap_bias <-16.0 - 16.0>
+
+tex_edge_padding <0 - 2>
+    enable edge padding for alpha textures: 0 disabled, 1 1-bit alpha textures upconverted at load-time from
+    palette based image formats, 2 all alpha textures.
+    When enabled only textures that are larger than 4x4 and no larger than 256 are processed. The processing
+    is done when textures are loaded (normally during mission load), so depending on the amount of textures and
+    their sizes there may or may not be a bit longer load times.
+    Edge padding increases the visual quality of mipmaps, as it fixed surrounding colors (often purple) bleeding
+    into the edge areas. Padding should normally be done in the original image, but it was not possible with
+    the old 8-bit textures the game used.
+
+tex_max_edge_padding <1 - 999>
+    set the max number pixels to expand edges, if edge padding is enabled through "tex_edge_padding" or material
+    option. The default is 8. Increasing it will increase quality of the lower/smaller mipmap levels at the
+    expense of more processing time.
+
+texel_center_adjust <-1.0 - 1.0> <-1.0 - 1.0>
+    texel/pixel center adjustment, default is 0.5 0.5. If the offset is incorrect textures from 2D components
+    like UI and HUD icons will look blurrier than they should, and when multisampling is enabled you may see
+    a pixel line at the edges of the screen. The default value should cover most somewhat modern setups.
+
+multisampletype <2 - 16>
+    only has any effect in combination with "use_d3d_display", sets the multisample (anti-aliasing) amount
+
+precache_d3d_textures
+    pre-cache all terrain textures to video memory before entering game mode. This will add a little delay (may
+    or may not be noticable depending on amount of textures and system performance) when entering in-game after
+    loading a mission or returning from menus to in-game. It may help reduce framerate stuttering caused by
+    uploading of textures and mipmap creation, when viewing areas for the first time in a mission. Should be used
+    with caution with missions whose texture usage might exceed available video memory. If any problems are noticed
+    as a result of enabling this option, then disable it again.
+    Specifying "precache_d3d_textures 2" will also pre-cache material textures that are used by any terrain.
+
+max_hw_textures <1024 ->
+    max number of vidmem texture slots, default is 4096 (used to be 1024 in older versions). If you have a card
+    with not so much video memory and you get texture creation errors due to running out of local vidmem, then
+    you could try lowering this. If lowering this does not help and "use_d3d_display" is enabled, you could look
+    into "d3d_disp_managed_textures".
+
+d3d_disp_managed_textures
+    only has any effect in combination with "use_d3d_display", when enabled D3D managed texture memory is used,
+    which may or may not affect performance a tiny bit (negatively or positively) or solve potential texture
+    memory issues if such occur at the expense of increased system memory usage (as a memory copy of every
+    texture is kept by D3D).
+
+d3d_disp_forcevalid
+    only has any effect in combination with "use_d3d_display", forces D3D initialization to succeed. Can be useful
+    if Dark fails to init D3D due to ValidateDevice failing although it technically shouldn't, either caused by
+    some issue in Dark that slipped through the cracks or a driver bug.
+
+d3d_disp_enable_hdr [32]
+    only has any effect in combination with "use_d3d_display", enables 16-bit (or optionally 32-bit) floating point
+    render buffer (if supported), for increased quality in particular with postprocessing and software color/gamma
+    processing. Enabling it will result in more video memory usage and some performance loss.
+
+d3d_disp_sw_cc
+    only has any effect in combination with "use_d3d_display", enables software gamma and color processing. The
+    benefit of doing gamma in (shader) software rather than HW gamma, is that there is less quality loss
+    because it can be applied on the higher precision floating point or 10-bit render data, before getting
+    down converted to a displayable format. Whereas HW gamma is applied on the already downconverted displayable
+    format. Another benefit is that gamma works in windowed mode, where HW gamma doesn't work.
+    Enabling color processing comes with some performance loss.
+    It's possible to override the CC shaders with custom ones. Either to customize the gamma or color processing,
+    or to add additional processing like noise/dithering. When there's additional processing in the shaders, that
+    should be done regardless of gamma/color processing being active or not, then define "d3d_disp_sw_cc 2". It
+    will make sure the CC shaders are always used.
+    For further details and example shaders see the "doc/sw_cc" directory.
+
+d3d_disp_sw_cc_bright <val>
+    brightness level when "d3d_disp_sw_cc" is enabled, default is 0. A value of 1 would make everything white.
+    This option is only provided for completeness, it's more appropriate to adjust gamma.
+    Does not affect menu screens.
+
+d3d_disp_sw_cc_contr <0.0 - >
+    contrast level when "d3d_disp_sw_cc" is enabled, default is 1. This option is only provided for completeness,
+    it's more appropriate to adjust gamma.
+    Does not affect menu screens.
+
+d3d_disp_sw_cc_sat <0.0 - >
+    saturation level when "d3d_disp_sw_cc" is enabled, default is 1. A value of 0 is completely desaturated (b&w).
+    Does not affect menu screens.
+
+d3d_disp_sw_cc_rgbfilter <0.0 - 1.0> <0.0 - 1.0> <0.0 - 1.0>
+    RGB color filter when "d3d_disp_sw_cc" is enabled, default is 1 1 1 (white). For example to get a old photo
+    type of look (sepia) you could do "d3d_disp_sw_cc_sat 0.25" and "d3d_disp_sw_cc_rgbfilter 1 0.7 0.3".
+    Does not affect menu screens.
+
+d3d_disp_sw_cc_hwgamma
+    only has any effect in combination with "d3d_disp_sw_cc", forces gamma to be applied by display HW like it
+    does when "d3d_disp_sw_cc" is disabled, but other color control like saturation and color filter are still
+    applied. This _might_ help reduce any performance hit (induced by "d3d_disp_sw_cc") slightly, at the expense
+    of gamma not working in windowed mode and potential minor quality loss. Another potential issue is that
+    contrast/brightness calculations are normally applied after gamma, with this option enabled gamma is applied
+    after brightness/contrast (if brightness/contrast isn't used, i.e. set to default, this is of no concern).
+
+postprocess <0, 1>
+    only has any effect in combination with "use_d3d_display", enable postprocessing effect (bloom)
+
+bloomprescale <0.0 - >
+    bloom intensity multiplier applied before blurring is applied, default is 1
+
+bloomscale <0.0 - >
+    bloom intensity multiplier, default is 5
+
+bloom_range <0.0 - 100.0>
+    bloom(/"glow") radius defined as percentage of the screen's diagonal, default is 2. The larger the value the
+    more GPU processing is required.
+
+bloom_saturation <0.0 - 1.0>
+    bloom saturation, default is 0.7. Complete desaturation (black and white) is 0.
+
+bloom_threshold <0.0 - 1.0>
+    min value required (for R, G and B) in order for a pixel to be included in bloom processing, default is 0.6.
+    A high value means only the brightest surfaces will glow.
+
+force_filtered_aol
+    Force texture use of texture filtering on alpha overlays, e.g. SS2 radiation indicator, in situations where
+    it otherwise would disable filtering for pixel perfectness.
+
+enhanced_precip_trace
+    enable more elaborate/expensive tracing for rain/snow impacts so it also hits more things than just terrain.
+
+enhanced_corona_trace
+    enable more elaborate/expensive tracing for corona visibility so it also hits more things than just terrain,
+    fixes the issue where coronas are drawn on top of objects/characters.
+
+enhanced_aifootstep_trace
+    enable more elaborate/expensive tracing for AI footstep sounds so it also hits more things than just terrain.
+
+enhanced_aidetect_trace
+    enable more elaborate/expensive tracing for AI body and suspicious obj detection so it also hits more things
+    than just terrain. Enabling this will for example prevent AIs from seeing bodies through closed doors (that
+    block vision) or other objects that block AI vision.
+
+model_lod_dist_factor <factor>
+    modify object LOD (level-of-detail) distances to balance quality vs. perfomance. Default is 1.0. This only
+    affects objects that have LOD support. Increasing the factor above 1.0 will make LOD changes happen farther
+    away (higher quality), and decreasing it below 1.0 will make LOD changes happen closer to the viewer (higher
+    performance).
+
+model_lod_force_low
+    disable the highest LOD (level-of-detail) of objects that have LOD support. This option could be useful if
+    you have performance issues with missions that use a lot of high-poly objects (and that have LODs defined),
+    where lowering "model_lod_dist_factor" doesn't help enough.
+
+screenshot_format <type>
+    select file format for screenshots, default is BMP.
+    Available types: BMP, PCX, PNG
+
+screenshot_timestamp
+    use timestamp based numbering for screenshot names. Makes it easier to merge multiple screenshot sets
+    and also to maintain sequence order even if some files have been deleted.
+
+bob_factor <0.0 - 1.0>
+    set a float scale factor for player head bob, 1 is normal and 0 completely disabled
+
+shock_gun_bob_factor <0.0 - 1.0>
+    (Shock only) set a float scale factor for player weapon bob, 1 is normal and 0 completely disabled
+
+SlowFrameUI <ms>
+    cap framerate when in UI mode (or game is paused) by setting this value to the minimum frame time.
+    Setting it to 10 would cap the UI framerate to 100 FPS, and avoids the graphics card running unnecessary
+    hot. If this is not set (or -1) then the original "SlowFrame" is used for both UI and in-game (which is
+    disabled/uncapped by default).
+
+phys_freq <30 - 120>
+    set physics updates to a fixed frequency, this avoids variable movement speeds when playing without
+    V-sync or can be used to lock physics at a lower frequency to play as the game originally was likely
+    intended (60Hz). The default value is 0 which disables fixed frequency updates. It's always preferable
+    to run with V-sync for the best experience.
+    To get any useful effect of this at higher framerates the var "min_frame_time" should be set to
+    something low like 1.
+
+use_hi_res_timer
+    use higher precision  timer functions, instead of the old 1ms standard resolution. Better precision provides
+    a smoother experience, but some older OS versions (some XP versions and older) may not properly support
+    hi-res timers due to implementing them with RDTSC or other reasons, which can lead to movement speeds going
+    crazy and more.
+
+snd_oal_device
+    when using the OpenAL sound driver it normally uses the default AL device, if another device is preferred
+    then specify the name with this config var, for example to use the device "DirectSound Default":
+
+         snd_oal_device DirectSound Default
+
+disable_oal_eax_reverb
+    when using a EAX capable OpenAL device and reverb is enable (EAX option in options menu), the sound driver
+    will use EAX reverb instead of AL's EFX reverb. Specifying this option will suppress the usage of EAX
+    reverb and only use EFX reverb.
+    NOTE: the menu option EAX does not specifically mean EAX, it only means reverb in general
+
+snd_decompress_on_load <val>
+    decompress sounds that use compressed formats when they are loaded, default mode is 1. Decompressing
+    will use more memory and may cause a little hickup when the sound is first loaded, but may on the other
+    hand provide smoother framerate during subsequent playbacks.
+    The mode value can be one of following:
+        0: Don't decompress any sounds on load (decompression is done during playback).
+        1: Decompress OGG sounds on load.
+        2: Decompress both OGG and ADPCM sounds on load.
+
+snd_speaker_config <val>
+    set a non-default speaker configuration (not all devices supports this, especially with OpenAL only the
+    "OpenAL Soft" (soft_oal) device driver currently supports it.
+    The supported configurations are:
+         0: Default
+         2: Stereo
+         4: Quadraphonic
+         5: Surround
+         6: 5.1 Surround
+         7: 6.1 Surround
+         8: 7.1 Surround
+         9: 5.1 Surround (Side)
+        10: 7.1 Surround (Center L+R)
+
+pixel_parts_as_disks
+    when defined pixel particles are rendered as (small) disks instead
+    console command: toggle_pixel_parts
+
+square_parts_as_disks
+    when defined square particles are rendered as disks instead
+    console command: toggle_square_parts
+
+fixed_star_size <val>
+    set a resolution independent star size (for NewSky stars), the default behavior is to render stars as 3x3
+    pixel large polys regardless of resolution, which will make them look smaller or larger depending on
+    resolution. The fixed star size is defined as a scale factor based on the size the stars normally have at
+    1280x960 resolution, so with a size of 1.0 the stars will pretty much look like they do at 1280x960 in any
+    resolution. With a size of 0.5 they will look half the size of what they do at 1280x960, in any resolution.
+
+disable_star_mipmaps
+    disable mipmapping for (NewSky) star texture (only has any effect if mipmap_mode isn't 0)
+
+d3d_disp_enable_distortionfx
+    only has any effect in combination with "use_d3d_display", enables screen distortion effects like seen when
+    looking through scouting orb or heat distortion from fire arrows.
+
+enable_sw_heatdisks
+    enable heat distortion effect, mainly from fire arrows, when game is running in DX6 mode (i.e. when
+    "use_d3d_display" is NOT defined)
+    WARNING: The performance is not good enough for real usage, this option is for reference and those curious
+    about how it looked in Thief 1 with the software renderer.
+
+indexed_mm_render <0, 1>
+    enable/disable the use of indexed primitive rendering for character/deformable meshes, default is enabled in
+    DX6 and disabled in DX9. Changing the default will have a performance degrading effect in DX6 and may have so
+    in DX9 (except maybe on very slow CPUs, but that's a big maybe), and additionally some DX9 drivers have issues
+    when it's enabled.
+
+wr_render_zcomp
+    enable z-compares for worldrep rendering (normally it only does z-write because it renders worldrep polys
+    back to front). Enabling z-compare can slightly improve rendering efficiency because polygons may be
+    batched more, due to rendering not being order dependent.
+
+dark_zcomp_arm
+    (Thief only) when defined the player arm/weapon is rendered with Z-compare enabled, to get rid of
+    sword and blackjack being rendered on top of the hand. This does currently not affect arrow rendering
+    due to their pos/rot diverging too much from the bow's.
+
+scaled_inv_bitmaps
+    enable (up-)scaling of bitmap based inventory icons, like Thief's body carry icon, at higher screen
+    resolutions.
+
+dark_map_decal_scheme <method> [<method_params>*]
+    (Thief only) select and configure the way visited and current map locations are shaded/colored.
+    Method 0: original, has no params (default)
+    Method 1: dodge/burn, to customize this method supply either 2 params where the first is a monochrome factor
+              for visited areas and the second for current area, or supply 6 parameters where the first 3 is an
+              RGB triplet for visited areas and the last 3 for current area.
+              The param values are floating point values, a positive value works like a Photoshop/GIMP dodge,
+              a negative value like burn. "-0.3 -0.3 1.1  1.3 1.3 0.2" would look similar to the original,
+              default when not supplying any params is "-0.5 0.8"
+    console command: set_map_decal_scheme <method> [<method_params>*]
+
+dark_map_lalign_notes
+    (Thief only) left align map notes instead of centering them
+
+dark_map_remember_last
+    (Thief only) open last viewed map page if no automap location is found for current player location
+
+loadout_buy_autoadvance
+    (Thief only) auto-advance item in loadout screen after buying all available units of the current selected one,
+    like it did in Thief1
+
+vismeter_hide <0, 1>
+    (Thief only) hide light gem. This config var is monitored continously so custom scripts could change it on the
+    fly to show/hide the light gem during a mission. However if a script does that it's recommended that it checks
+    the initial value and honors that, so that if a player has globally disabled the gem, it stays disabled.
+
+hide_maxed_hpbar
+    (Thief only) hide health bar when player has full health
+
+ai_death_keep_phys <0, 1>
+    (Thief only) enable/disable that AIs keep their physics shape after they die or are KOd, default for T2 is 0
+    and 1 in T1 mode
+
+dark1
+    (Thief only) added to cam.cfg to tell game to run in Thief1 "mode". It also requires a couple of extra
+    patch resources to make the menu system fully usable.
+
+legacy_force_match_unrefs 0
+    default value for "force matching unrefs" in particles, when loading SS2/T1 particle data created with previous
+    game versions. The "force matching unrefs" parameter was added for T2 and defaults to disabled there, in SS2
+    and T1 the engine behaved as if this option was enabled. To match original behavior it defaults to that when
+    loading old data. It may however not be desired behavior because there are issues involved when enabling the
+    option. It was required to so particle effects on weapons (i.e. fire arrows) were rendered, but it's now possible
+    to enable that with "render_weapon_particles".
+
+render_weapon_particles
+    render particles attached to weapons (while held in hand) when they they have "force matching unrefs" disabled.
+    In T2 this will make fire arrow particles visible (before they're fired). In T1 when combined with
+    "legacy_force_match_unrefs 0" it will make the fire arrow particles work better.
+
+analog_mwheel_bind
+    mouse wheel now binds up and down events as separate button events by default, i.e. you bind mouse_wheel_up
+    to Next Weapon and mouse_wheel_down to Prev Weapon. If the original behavior is desired, where the
+    mouse_wheel control sends its analog value as a command parameter, then define this config var.
+    Note that if a bind file still has a mouse_wheel only bind, that will still work regardless of this config
+    var, it only affects the binding behavior in the options menu.
+
+shock_single_bind_set
+    (Shock only) when defined shock only uses "user.bnd" and disregards "user2.bnd"
+	
+shock_quicksave_slot <0 - 14>
+    (Shock only) use a save slot for quicksaves, instead of the original behaviour of simply saving to the default
+    autosave/current slot.
+    Specify 0-14 to use a regular save slot, or -1 for the default behaviour of using the autosave/current slot.
+    A value of 14 will use the lowermost regular save slot.
+
+shock_autosave_slot <0 - 14>
+    (Shock only) use a save slot for autosaves, instead of the original behaviour of simply saving to the default
+    autosave/current slot.
+    Specify 0-14 to use a regular save slot, or -1 for the default behaviour of using the autosave/current slot.
+    A value of 14 will use the lowermost regular save slot.
+
+shock_old_hud3d_order
+    (Shock only) restore old drawing order for (spinning) 3D objects in HUD elements. This should never be needed
+    and is only provided as a precaution in case some unexpected issue pops up.
+
+shock_disable_escape_abort_load
+    (Shock only) disable ability to abort level load by hitting ESC key.
+
+force_underwater_reverb [<reverb preset>]
+    always use the UnderWater reverb environment when the player is under water. This is useful if maps
+    haven't explicitly set the reverb type for underwater areas so it ends up with some default. Optionally
+    a specific (0-based) reverb preset index can be set, by default it's 22. The preset numbering is based
+    on the "EAX Reverb Code" list in DromEd (which is the standard EAX preset list). 21 might be of interest
+    for a more pronounced effect.
+
+submerged_sound_occlusion <min blocking factor> [<distance penalty factor> [<reverb mix>]]
+    when the player is under water sound distances are by default artificially increased to achieve a bit less
+    direct hearing of sounds. This effect is negligible when EAX is enabled, making sounds very direct.
+    Introducing a minimum blocking factor (occlusion / low pass filter), adjusting the distance penalty
+    and reverb mix may give a better underwater experience. The reverb mix will be ignored if it's less than
+    the normal reverb mix, which is 0.6 by default (or changed with "sfx_source_reverb_mix").
+    The defaults are -1000000.0 1.0 -1.0 (which results in using the original method).
+
+new_mantle
+    enable new improved (hopefully) mantling code. The new mantling code should have a lower failure rate, so it
+    doesn't start a mantle only to fail midways through as much as the standard mantle code, and/or requiring as
+    many retries at different approach angles until successful. This means that it can sometimes be easier to get
+    to places in a map that weren't intended to be reached, but then again a motivated/stubborn player might also
+    manage to do so with standard mantle. New mantle however has the ability to mantle into crouch spaces, which
+    standard mantle doesn't have.
+
+force_correct_rope_lengths
+    force all ropes/vines to calculate the rope lengths correctly so that their physical length matches their
+    numerical length. The old way of calulcating the physical rope lengths is incorrect and results in ropes
+    that are a certain percentage shorter than what they're supposed to be. The correct length calculation isn't
+    enabled by default to ensure that placed ropes in existing missions retain their original lengths. It can
+    however be helpful to enable this when running in Thief 1 mode, because handling of placed ropes in T1 was
+    a bit different than in T2 so ropes can end up too short otherwise. Mission authors can also enable correct
+    length calculcations directly on rope objects. Such rope objects will have correct lengths even when
+    "force_correct_rope_lengths" isn't enabled.
+
+rope_ground_margin <1.0 - 6.0>
+    distance above ground where ropes/vines end when "force_correct_rope_lengths" is enabled or the rope objects
+    have "Calc Correct Len" set in the Rope property. Default is 4.5.
+
+extended_player_lighting [<0 - 2>]
+    extended player lighting mode, if no additional numeric param is specified it assumes 1.
+    Default calculations only sample lighting at one point in the player, with extended player lighting
+    more sample points are added. Extended mode is disabled by default.
+    Modes: 0 = disabled, 1 = normal weighted average, 2 = only uses the weighted average if result is brighter
+    console command: set_extended_plr_lighting <0 - 2>
+
+dynamic_light_obj_radius_scale <0, 1 - >
+    radius scale factor for dynamic lights when calculating object lighting, default is 1.0. This does NOT affect
+    the radius for how dynamic lights light up lightmaps(/terrain). A value of 0 restores original behavior where
+    dynamic lights have an infinite radius with regard to objects.
+
+sun_runtime_obj_shadows
+    enable sun light to be obstructed by objects with the "Runtime Object Shadow" property, just like the property
+    affects other lights.
+
+frob_mode <0 - 2>
+    frob line of sight mode, default is 0. This allows enabling of a more strict obstruction check for a potential
+    frob target, to prevent frobbing through walls scenarios. That does however mean that sometimes objects which
+    are only partially visible won't be frobbable, like an object on a shelf (made of terrain polys) above head
+    height, unless you jump or climb onto something, or an object around a corner that's only partially visible.
+    Use at your own risk, it could potentially break missions that placed "hidden" frobbable objects in such way
+    that the player can never see more than a small fraction.
+    Modes: 0 = standard (only objects marked as blocking will obstruct)
+           1 = all terrain and objects marked as blocking will obstruct
+           2 = (Shock only) like mode 1 but prevents HUD brackets/info to appear on obstructed objects, unlike
+               mode 1 where the brackets/info will appear the same way as they do in mode 0, even if the object
+               can't actually be interacted with. For Shock this mode is recommended over 1 because it's less
+               confusing. (In Thief this mode is the same as 1.)
+
+disable_headtracking
+    disable head tracking (head looking at the player) of NPCs
+
+ext_kb_country_check
+    extended keyboard language detection. By default the game can under certain circumstances fail to correctly
+    identify the keyboard language, it also does not identify UK or French Canadian layouts. This option solves
+    those issues, but it does not add support for more layouts than already available in the game, which are:
+    English-US, French, German, English-UK, French Canadian, Italian, Spanish.
+
+skip_writeaccess_check
+    skip write access test of game dir on startup
+
+swim_chest_offset <0.0 - 1.15>
+    customize the point of the player that needs to be submerged in water to classify the player as swimming.
+    Default is 0 which uses the standard swim point which is at the "body" physics shape origin. When setting
+    a custom (non-zero) value, the value is defined as height units below the "head" physics shape origin.
+    Something around 0.6 would be recommended for a custom offset, which puts the point at chest height.
+
+new_mantle_fwd <0.5 - 1.0>
+    only has any effect in combination with "new_mantle". Minimum distance the player needs to be able to move
+    forward during a mantle motion in order to accept the mantle as valid, default is 0.5. Increasing the value
+    will reduce the ability to mantle narrow ledge situations (if you feel that the default is too "effective").
+
+jump_speed_boost <1.0 - >
+    speed boost factor when jumping, should not be altered as it will break missions that have locations carefully
+    crafted based on the game's default jump distance. Default is 1.05 (or 1.4 when running in Thief 1 mode).
+
+no_cretpose_in_sim
+    disable fix that allows the creature "Current Pose" property to be applied to creatures that are created (i.e.
+    spawned) during sim. Previously "Current Pose" only applied to creatures that were pre-placed in the mission.
+    This config var is only provided as a safety precaution, just in case the fix causes any problems.
+
+small_portal_repel
+    this reduces the safety distance margin between the player camera and portals during rendering. Maintaining
+    the safety margin is what can cause the small "jitter" that you can sometimes experience when crossing portals,
+    such as walking across a door opening (portals are however everywhere and not just doors). By enabling this
+    option, a smaller margin is used and the visible jitter is reduced or often eliminated.
+    Although no problems are expected, in the unforeseen event that you experience issues like the screen
+    flickering black when crossing portals, then disable this option again.
+
+phys_deactivate_outofworld_ai
+    restore original behavior that deactivates physics on AIs if they are partially (or completely) out of world
+    after loading a savegame or mission. The new default mode of operation is to keep physics active if the AI is
+    deemed to only be slightly out of world and hope it will recover. The original behavior would sometimes cause
+    AIs to lose physics after loading a savegame or a level transition, so you couldn't damage them directly or
+    collide with them. In case there are any unforeseen problems with the new behavior, this config var will
+    restore the original way of doing it.
+
+disable_32bit_fampal
+    disable use of family palette (full.pcx) when load-converting palette-based (indexed) textures to 32-bit
+    (see "force_32bit_textures"), instead use each texture file's own palette. Default behavior is to use the
+    family palette.
+
+legacy_32bit_txtpal
+    enable use of the global game palette when load-converting palette-based (indexed) object textures, from
+    the "txt\" directory, to 32-bit (see "force_32bit_textures"). Default behavior is to use each texture
+    file's own palette.
+
+incremental_save_dir <dir>
+    (DromEd only) enable incremental saving when overwriting existing MIS/COW/GAM file. Default is disabled.
+    When enabled, DromEd will make a backup copy of the file about to be overwritten, to the directory specified
+    by this config var. The directory must exist, DromEd will not create it for you. It may also be an absolute
+    path like for example "C:\Temp\DromEd_bak". The backup files will have a timestamp in their names of when
+    the backup copy was made. Not to be confused with time when the file was last modified.
+    Be aware that DromEd will not limit the number of backups, so you may occasionally want to delete older
+    backups if you want to keep disk usage at bay.
+
+brush_centers <0 - 2>
+    (DromEd only) draw brush centers, 1 draws only the current brush, 2 draws it for all brushes
+    console command: brush_centers <0 - 2>
+                     or "brush_centers -1" to cycle between the three modes
+
+validate_spot_cones
+    (DromEd only) when defined it will validate spotlight cone angles during lighting and output invalid
+    settings to mono.
+
+validate_models [2]
+    (DromEd only) when defined it will validate MD models when they're loaded to make sure that polygon
+    data is correct and print warnings to mono otherwise. If the var value is 2 then invalid models will
+    fail to load, otherwise load will succeed and a crash is likely to follow.
+
+enable_32bit_lightmaps [<1 , 2>]
+    (DromEd only) when defined DromEd will default to 32-bit lightmaps instead of the normal 16-bit lightmaps
+    for new map. Setting a value of 2 will default to 32-bit 2X modulate mode. 2X mode allows for overbrightening
+    at the expense of reducing precision to 1/128 (from 1/256), which is still 4 times better than 16-bit maps.
+    Overbrightening gives lights a little more "oomph!", a cheap man's HDR-like effect on lightmaps. With regular
+    16 and 32-bit lightmaps that maximum brightness a surface can achieve is that the texture is seen fullbright.
+    With overbrightening the texture can be up two twice as bright as the fullbright texture.
+    When loading an existing map the editor sets the current setting to match that, so re-lighting/re-portalizing
+    will generate the same type of lightmaps as the mission already had.
+    Note that generating regular 32-bit lightmaps for Thief 1/G missions, without improved shadow softness settings
+    or added colored lighting, isn't worth while. The original T1 lightmaps already have 8 bits per channel
+    precision just like 32-bit, the only difference is that they only have 1 channel (monochrome).
+    The active mode can be changed with the "set_lighting_depth" command. Preferably the "Tools" menu should have
+    commands to switch mode (see reference MENUS.CFG), but for manual use the command takes following values:
+       16: original 16-bit lightmaps
+       32: 32-bit lightmaps
+       64: 32-bit lightmaps in 2X mode
+
+lm32_params <atten> [<sat>]
+    (DromEd only) customize the initial 32-bit lightmap calculation parameters. These parameters are saved in
+    mission files, and are restored when loading a mission file. Be aware of that loading a mission and then
+    New:ing DromEd without a restart will not reset the parameters, instead the parameters of the last loaded
+    mission will be remain active. The 'atten' parameter is an exponent that allows controlling the attenuation
+    curve, pow(org_atten_val, <atten>). A value of 1.0 results in unmodified attenuation. The 'sat' parameter is a
+    color saturation factor, where 1.0 results in unmodified colors. The defaults are 1.0 and 1.0 except when when
+    loading older missions where they are 1.07 and 1.4. The latter values are an attempt to get 32-bit lightmaps
+    to look slightly closer to 16-bit lightmaps when loading original T2/SS2 maps and re-lighting them. This can
+    in some places come at the cost of some smoothness/quality. They will never look identical to the 16-bit
+    lightmaps though, due to mathematical differences with the much lower precision 16-bit maps.
+    Note that when running in Thief 1 "mode", the defaults are always 1.0 and 1.0 because 32-bit lightmaps will
+    look identical to the original 8-bit lightmaps (as both formats have a precision of 8 bits per channel).
+    console command: lm32_params [<atten> [<sat>]]
+
+editor_water_alpha <alpha>
+    (DromEd only) alpha value to use when rendering water surfaces in editor solid view, when hardware 2D is
+    enabled, default is 0.5. The editor doesn't render water with the actual transparency as seen in-game because
+    for editing it's more useful to be able to see all geometry, and opaque liquids like lava would prevent that.
+    console command: editor_water_alpha <alpha>
+
+show_mouse_xyz
+    (DromEd only) show XYZ info for the current mouse cursor position in a 2D viewport
+
+show_camera_xyz
+    (DromEd only) show current camera coordinates
+
+vm_rot_speedfactor <float>
+    (DromEd only) speed factor (or rather step size) at which the camera rotates in editor, when factor is a
+    negative value the rotation will be independent of current viewport scale so it always rotates at the same
+    speed regardless of viewport scale (default is 1)
+
+mono_console [<cols> <rows> [<xpos> <ypos> [<buffer_rows> [<use_colors>]]]]
+    (DromEd only) enable built-in mono console window. By default WARNING and ERROR messages will be colored
+    yellow and red, to disable coloring set "use_colors" to 0.
+
+mono_quickedit
+    (DromEd only) enable QuickEdit in mono console window (allows text to be selected without opening the window
+    menu), however be warned that while in selection mode the entire application is paused until the mode is ended,
+    so with QuickEdit enabled, accidentally clicking in the console window could pause the entire editor without
+    being noticed.
+
+disable_cycle_mwheel
+    (DromEd only) disable mouse wheel support for cycle controls (the controls that have < > buttons)
+
+return_to_listwindow
+    (DromEd only) make list dialog for Conversation edit and Mission/Quest/Gamesys parameters persistent until
+    closed, so after closing the edit window after editing one of the list items, it returns back to the list.
+
+fam_search_missing <fam list>
+    (DromEd only) enables editor to search for missing family textures in other families, listed by this config
+    var. This config var should only be defined temporarily to load a mission where family textures have been
+    reorganized, and then save the mission with the updated textures and exit dromed again and remove this config
+    var. Note that replaced textures will end up as single loaded (same as "load_a_texture" command) unless the
+    new family already happend to be added originally.
+    For example: fam_search_missing wood+mech_new+stone+walls
+
+allow_wr_tex_assign
+    (DromEd only) enable hack to assign textures in solid view directly to WR faces, i.e. emergency fixing of
+    stripped missions. It works the same way as regular texture assignment in solid view, except you have to
+    hold down ALT. Do NOT use this functionality for editing unstripped missions.
+
+sdesc_decimals <2 - 8>
+    number of decimals to use when formatting sdesc based float values, default is 2. Sdesc based values are
+    the ones seen in many editor dialogs, like object properties, or values exported with export function in
+    the object hierarchy dialog or commands such as "dump_tagblocks_vals".
+
+mouse_smoothing <0 - 30>
+    enable mouse smoothing for mouselook. Default is 0 (smoothing disabled).
+    The value specifies the number of frames over which smoothing averaged, 0 or 1 results in smoothing
+    disabled. A good starting point is 10 frames.
+
+mouse_smoothing_weight <0.0 - 1.0>
+    specify the weight factor used for weighted average calculations for mouse smoothing. Default is 0.5.
+    A value of 0 results in no smoothing, 1.0 in unweighted average (i.e. input samples of all frames are
+    equally weighted). The lower the weight factor is, the more the lag effect is reduced, allowing you to
+    balance between lag and smoothness. The number of frames specified with "mouse_smoothing" of course
+    also affects the lag amount.
+
+use_raw_mouse_input
+    use Windows raw input functionality to get mouse input, instead of the standard Windows input. The raw input
+    is only used for mouse look and not for cursor movement. This can be useful to get full precision input from
+    high resolution mice.
+
+raw_mouse_sens_scale <xscale> [<yscale>]
+    specify custom raw mouse input sensitivity base scale when "use_raw_mouse_input" is enabled. Default is 1.0.
+    If only xscale is specified then yscale will be set to the same value. The game's regular mouse sensitivity
+    settings, that can be configured in the options menu etc., still apply to raw mouse input, but if the mouse
+    resolution is high you may want to set the raw input base sensitivity to something lower, so that the game's
+    sensitivity range is more usable. You'll have to try different values, but a starting point is the formula
+    400/mouse_dpi. For example if you have an 800 dpi mouse, you can try a sensitivity scale of 0.5 (= 400/800).
+
+ui_scale_keep_ar
+    do not correct the aspect ratio when scaling UI. The UI will be stretched to fit the screen.
+    The default is 1 (enabled).
+
+script_aliases <list>
+    specify script aliases to act as substitues when loading script modules
+    These should take the form of "script:substitute" and are separated by "+", as is done with paths.
+
+player_camera_limit_x <x_angle, y_angle, z_angle>, player_camera_limit_y <x_angle, y_angle, z_angle>,
+player_camera_limit_z <x_angle, y_angle, z_angle>
+    specify the player camera's angle limits
+
+allow_physics_toggle
+    allow use of the "physics" command in the standard game executable
+
+allow_fly
+    allow use of the "fly" and "flytoggle" commands in the standard game executable
+
+no_auto_relight
+    (DromEd only) do not automatically relight the level during level processing
+    The default is 0 (disabled).
+
+edit_status_invert
+    (DromEd only) invert the colors on the editor's status bar
+
+edit_color_select <red>,<green>,<blue>
+    (DromEd) specify a custom DromEd "selection" color
+
+dark_map_style <0, 1>
+    (Thief only) specify whether the new (T2-style) or old (T1-style) automap style should be used, default for
+    T2 is 1 and 0 in T1 mode
+
+dark_menu_training <0, 1>
+    (Thief only) specify whether the training button should be displayed in the new game menu, default for T2 is
+    0 and 1 in T2 mode
+
+debrief_font_stats <fontname>
+    (Thief only) specify a custom font for the statistics panel in the debriefing screen
+
+text_message_font <fontname>
+    (Thief only) specify a custom font for showing text messages
+
+text_message_alignment <0 - 3> <0 - 3> <0 - 3>
+    (Thief only) specify a custom alignment for showing text messages
+    The first argument is the horizontal alignment, the second argument is the vertical alignment, and the third
+    argument is the internal text alignment.
+     0: default alignment
+     1: left/top alignment
+     2: center alignment
+     3: right/bottom alignment
+
+highlight_color <red> <green> <blue>
+    (Thief only) specify the color to be used for the currently highlighted object
+
+hpbar_timeout <float>
+    (Thief only) specify the time after which the HP bar should be hidden
+    The default is no timeout.
+
+inv_status_top <0 - 3>
+    (Thief only) specify whether the HUD status information should be aligned to top of the screen instead of
+    the bottom
+    The default 0 (disabled).
+     0: disabled
+     1: place status bars on top of screen
+     2: place weapon and item displays at top of screen
+     3: place status bars and weapon and item displays at top of screen
+
+inv_status_mirror <0 - 3>
+    (Thief only) specify whether the HUD status information should be mirrored horizontally
+    The default 0 (disabled).
+     0: disabled
+     1: mirror status bars
+     2: mirror weapon and item displays
+     3: mirror status bars and weapon and item displays
+
+inv_obj_margin <margin>
+    (Thief only) specify the margin between the edge of the screen and the weapon and item objects in the HUD
+    Default is 0.
+
+inv_weap_spin <0, 1>
+    (Thief only) specify whether the weapon object in the HUD should spin
+    Default is 1 (enabled).
+
+inv_item_spin <0, 1>
+    (Thief only) specify whether the item object in the HUD should spin
+    Default is 1 (enabled).
+
+inv_weap_ang <x_angle> <y_angle> <z_angle>
+    (Thief only) specify the angle at which the weapon object in the HUD should be positioned
+
+inv_item_ang <x_angle> <y_angle> <z_angle>
+    (Thief only) specify the angle at which the item object in the HUD should be positioned
+
+dark_no_script_save
+    (Thief only) do not allow scripts to make saved games
+    The default is 0 (disabled).
+
+shock_no_script_save
+    (Shock only) do not allow scripts to make saved games
+    The default is 0 (disabled).
+
+
+mouse_sensitivity_use_aspect
+    this is actually a bind var ("user.bnd") and not a .cfg var. It allows to turn on/off the old behavior
+    where the screen's aspect ratio affects the horizontal mouse sensitivity (making it differ from vertical
+    mouse sensitivity).
+    The default is 0 (disabled).
+
+mouse_sensitivity_y_scale
+    this is actually a bind var ("user.bnd") and not a .cfg var. It's a scale factor, applied on top of the
+    general mouse sensitivity, for vertical mouse movement (mouse_sensitivity * mouse_sensitivity_y_scale).
+    The default is 1.0.
+
+crouch_unmount
+    this is actually a bind var ("user.bnd") and not a .cfg var. It allows to turn on/off the new alternate
+    action of the crouch and crouch hold keys that aborts climbing, so it's possible to drop off a ladder or
+    rope without jumping.
+    The default is 1 (enabled).
+
+flytoggle
+    this is actually a bind var ("user.bnd") and not a .cfg var. It can be bound to toggle whether the player
+    is currently flying, so the player does not need to get stuck in fly mode.

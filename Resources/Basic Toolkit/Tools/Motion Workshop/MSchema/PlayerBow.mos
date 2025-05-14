@@ -1,0 +1,48 @@
+
+torso  PlayerBow
+
+schema Test 0
+MType  PlayerBow
+TimeScale 0
+XYZScale  0
+motion bowFlex     0  0
+
+schema PlyrBow 0
+MType  PlayerBow
+TimeScale -4.0
+XYZScale  0
+motion bowFlex     0  0
+motion d99bdown     0  500
+
+schema PlyrBow 1
+MType  PlayerBow
+TimeScale 0.5
+XYZScale  0
+motion bowFlex     0  0
+motion GABaim     0  0
+
+schema PlyrBow 4
+MType  PlayerBow
+TimeScale 0.5
+XYZScale  0
+motion bowFlex     0  0
+motion d99brelx     0  500
+
+schema PlyrBow 5
+MType  PlayerBow
+TimeScale 0
+XYZScale  0
+motion bowFlex     0  0
+motion d99bbegn     0  0
+
+schema PlyrBow 6
+MType  PlayerBow
+TimeScale -0.8
+XYZScale  0
+motion bowFlex     0  0
+
+schema PlyrBow 7
+MType  PlayerBow
+TimeScale -1.0
+XYZScale  0
+motion bowFlex     0  0

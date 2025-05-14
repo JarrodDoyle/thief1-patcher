@@ -1,0 +1,8 @@
+compress_br_ids
+clear_surface_cache
+set_lighting_mode 0
+portalize
+set_lighting_mode 2
+relight_level
+rooms_build
+play_schema new_obj

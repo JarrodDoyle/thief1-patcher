@@ -1,0 +1,2001 @@
+Misc notes for modders / content creators
+=========================================
+
+Table of contents
+-----------------
+
+    * Changed Limits/Limitations
+    * Notable Unchanged Limitations
+    * Image Type Priorities
+    * Image Alpha
+    * LG.INI
+    * BND.INI
+    * Materials
+    * Game Strings
+    * Gamesys and Mission DML Patching/Modding
+    * Cubemaps
+    * DXT Texture Compression
+    * 8-bit Anti-Aliased Fonts
+    * Texture Resolution/Mipmap Visualization
+    * Additions to Books/Readables (T2)
+    * Script Service Updates
+    * New Script Messages
+    * Script-state Data Editor/Inspector
+    * OSM Author Notes
+    * FM Author Notes
+    * General DromEd Notes
+    * HW Rendering in DromEd
+    * Viewport BG Images in DromEd
+    * Updates to DARKDLGS.DLL
+    * DromEd Texture Palette
+    * Build Dialog
+    * Loading Textured Group (.vbr)
+    * Exporting Terrain Mesh
+    * Fog Zones
+    * Ambient Light Zones
+    * Max View Distance
+    * New Texture Align Mode "AlignExt"
+    * UV Mapping a Cylinder
+    * Quick-linking
+    * CAMOVL.TXT
+    * Stripped Mission Reconstruction
+    * Changed Edit Flow Group Dialog
+    * Changed Prop: Script->"Trap Control Flags"
+    * Changed Prop: Script->"Trap Control Flags" (SS2)
+    * Changed Prop: Weather->"Local Weather"
+    * Changed Prop: Renderer->"Bitmap Worldspace"
+    * Changed Prop: Renderer->"Anim Light"
+    * Changed Prop: Renderer->"Corona"
+    * Changed Prop: Renderer->"Render Type"
+    * Changed Prop: Physics->Misc->"Rope"
+    * Changed Prop: Physics->Model->"Attributes" (OBB)
+    * Changed Prop: Door->"Rotating"
+    * Changed Prop: Door->"Translating"
+    * Changed Prop: Receptron Effect "Poke Object"
+    * Changed Prop: SFX->"Particles"
+    * Changed Prop: SFX->"Heat Disks"
+    * Changed Prop: AI->"Efficiency settings"
+    * Changed Prop: Tweq
+    * Changed Link: "CreatureAttachment"
+    * Changed Propagator: "Radius"
+    * New Prop: Renderer->"Alpha Blend Mode"
+    * New Prop: Renderer->"Alpha Test Threshold"
+    * New Prop: Renderer->"Render Order"
+    * New Prop: Renderer->"Camera Overlay"
+    * New Prop: Renderer->"Light-based transparency"
+    * New Prop: Renderer->"Force Static Shadow"
+    * New Prop: Renderer->"Distance Alpha"
+    * New Prop: Renderer->"Bitmap Color"
+    * New Prop: Renderer->"Never Block Coronas"
+    * New Prop: Renderer->"Face Strings"
+    * New Prop: Door->"Static Light Pos"
+    * New Prop: Creature->"Creature Scale"
+    * New Prop: Creature->"Disable Head Track"
+    * New Prop: Inventory->"Block Frob?" (T2)
+    * New Prop: Difficulty->"Remove Properties"
+    * New Prop: Room->"Render Options"
+    * New Prop: Editor->"Design Note" (SS2)
+    * New Prop: Editor->"Editor Comments"
+    * New Prop: Shape->"Model LOD"
+    * New Link: "DetailAttachement"
+    * New Link: "Script"
+    * New Reaction: "Push MetaProperty"
+    * Changed Var: Mission Variables->"Dark Mission Description"
+    * Changed Var: Mission Variables->"Rendering Parameters"
+    * Changed Var: Mission Variables->"NewSky:Stars"
+    * New Var: Mission Variables->"Fog Zones"
+    * New Var: Mission Variables->"Environment Maps"
+    * Changed Var: GameSys Variables->"Overload Params" (SS2)
+    * New Var: GameSys Variables->"Misc Dark Settings"
+    * New QVar: "DISABLE_EYE_ZOOM" (T2)
+    * New QVar: "HIDE_UI_ELEMENTS" (T2)
+
+
+Changed Limits/Limitations
+--------------------------
+
+Note that not all limits imply that it's possible to push as far as the limit suggests, because other parts of the
+engine might hit another limit first. For example the max brush limit might be hit before the max regions limit,
+or vice versa. Also note that the increased limits do not imply that the game will run at playable framerates up
+to those limits, or even close.
+
+Max concrete object IDs: 8192 (from 4096)
+Max visible objects: 1280 (from 128)
+Max texture dimension: 4096 (from 1024)
+Max texture animation frames: 99 (from 20)
+Max drawn terrain polys: 20480 (from 1024)
+Max ambient sound objects: 1024 (from 256)
+Max cells for bounding sphere spatial queries: 1024 (from 512)
+Max cells a dynamic light can reach: 1024 (from 512)
+Max portal clip regions: 20480 (from 2048)
+Max characters per cfg-file line: 8192 (from 80)
+Max display resolution: <unlimited>x4800 (actual limit depends on HW) DX9 / 2048x2048 DX6 (from 1024x768)
+
+Max brushes: 16384 (from 7068)
+Max regions (/ worldrep (WR) cells): 32760 (from 28672)
+Max active regions: 20480 (from 768)
+Max rooms: 4096 (from 1024)
+Max AI path cells: 131070 (from 65534)
+Max texture families: 32 (from 16)
+Max family textures: 1024-ish (from 256-ish)
+Max application data handles: 4096 (from 2048)
+Max model handles: 2048 (from 1024)
+Max static lights: 2016 (from 736)
+Max cells a static/anim light can reach: 32760 (from 512)
+Max anim light to cell pairings: 49152 (from 16384)
+Max brush faces/sides: 28 (from 12)
+Max decals per page on Thief maps: 256 (from 64)
+Max pages per mission on Thief maps: 32 (from 8) [where visited area functionality works correctly]
+Max world size: configurable up to +/-2000 (from +/-1000) [only increase if absolutely necessary]
+MAX_TJOINT_EDGES: 131072 (from 65536) [internal processing buffer]
+MAX_TJOINT_DIRS: 32768 (from 16384) [internal processing buffer]
+MAX_GLOBAL_RENDER: 32000 (from 8000) [internal processing buffer]
+MAX_GLOBAL_PLANES: 65536 (from 16384) [internal processing buffer]
+MAX_GLOBAL_POINTS: 256k (from 128k) [internal processing buffer]
+
+New image formats: PNG, DDS, PCX 32-bit, BMP 24/32-bit, BMP RLE, TGA RLE
+
+Full 32-bit rendering pipeline support, from 32-bit textures to 32-bit render surfaces.
+
+
+Notable Unchanged Limitations
+-----------------------------
+
+Polygon limits for objects have NOT changed, those limits are due to format constraints (the use of 16-bit
+data offsets in object data).
+
+Texture size limitations have NOT changed, they have to be power-of-two (POT) sized, i.e. 1, 2, 4, 8, 16, 32,
+64, 128, 256, 512, 1024, 2048, 4096.
+
+Family palettes are still used for indexed (/palette based) family textures. Only true color image formats (16-/
+24-/32-bit) can ignore family palettes.
+
+Max sunlight ray length remains 1000 units.
+
+This is nothing new, it has always been this way but it may not have been known or widely enough known.
+All filenames and directory names for files used by Dark must be 30 characters or less (excluding extension).
+FMs/mods containing files or directories with longer names may have worked, but they may as well only appeared
+to have worked and causing not immediately noticeable problems under the hood. While there some exceptions for
+certain types of files, it wouldn't be helpful or wise to go into what those are, instead the rule should simply
+be to NEVER use names longer than 30 characters.
+
+
+Image Type Priorities
+---------------------
+
+Aside from the new image formats, the priority (which type can override another) has been slightly adjusted.
+The priority order is as follows, where the first has the highest override priority:
+
+    .DDS
+    .PNG
+    .TGA
+    .BMP
+    .PCX
+    .GIF
+    .CEL
+
+Another change, to make texture overrides work seamlessly with objects and meshes, is that the image type specified
+in the object/mesh files is disregarded. For example if object ARROW.BIN uses a texture named ARROW.GIF, the game
+will search for any image named ARROW, starting with ARROW.DDS, then ARROW.PNG etc. until it finds an existing
+file. Consequently it's a bad idea to create another object (usually for an FM), that uses a different image with
+the same name but different image type. For example if you create a new object that uses an image called ARROW.PNG,
+then the original arrow object will use that image too instead of ARROW.GIF.
+
+Note that you should NEVER have two image files with the same name but different image types in the same family
+directory. That will cause a lot of headache. For example you should never have:
+
+    C:\Thief2\Res\fam\wood\wdoor1.pcx
+    C:\Thief2\Res\fam\wood\wdoor1.png
+
+It's however ok to override a fam texture with a different image format in another mod/FM (or resname_base) path,
+like for example:
+
+    C:\Thief2\Res\fam\wood\wdoor1.pcx
+    C:\Thief2\mods\texpack1\fam\wood\wdoor1.png
+
+
+Image Alpha
+-----------
+
+There are two types of alpha that Dark deals with. The first is 1-bit (on/off) alpha which is rendered with alpha
+testing/keying, unless alpha testing has been disabled. This works similar to chroma keying, where a pixel is
+drawn or not depending on the alpha. The benefit of that is that when it's combined with "alpha_test_as_opaque"
+(enabled by default), alpha tested transparent objects will always render with correct z-sorting. That's especially
+beneficial for vegetation that has a lot of intersecting polygons, but can solve sorting issues in other situations
+as well. The only potential downside are the sharper edges, which can be softened a bit with "d3d_disp_enable_atoc"
+for cards that support that.
+
+The second alpha type is full alpha, which is the classic type where pixels can have varying degrees of transparency.
+
+The typical 1-bit alpha images are palette based images that use index 0 for transparent pixels. However it's also
+possible to make 32-bit images that Dark will identify as 1-bit alpha by either making sure the alpha channel only
+contains 0 and 255 alpha values, or by specifying "force_alpha_key" in a material file. Conversely images which
+Dark would normally identify as 1-bit alpha, can be forced to identify as full alpha images by specifying
+"force_full_alpha" in a material file. It's also possible to force an image to be treated as a non-alpha image by
+specifying "force_opaque".
+
+
+LG.INI
+------
+
+The optional LG.INI file, for low level configuration, must now be located in the installation directory (usually
+the same as where the EXE file is located). Any .INI file located in the Windows directory will NOT be read.
+
+
+BND.INI
+-------
+
+This is a new configuration file for specifying supplemental bindings beyond those present in the localized strings.
+Each command is specified in brackets following the format "[CMD=command]". This should be followed by the localized
+names that should appear in the bindings menu for the appropriate language of the form "language: "Description"".
+For example:
+
+    [CMD=debrief]
+    english: "View Game Statistics"
+    default: "View Game Statistics"
+
+
+Materials
+---------
+
+Terrain and object textures can have a material file associated with them, that can control various render settings
+and add effects for the texture. See separate material documentation "material-format.txt" for more information.
+
+
+Game Strings
+------------
+
+Game Strings properties now allow specifying a custom strings table rather than necessarily relying on a particular
+table. The new format is "<string>@<table>:<default>", though the table can be omitted and the new format is fully
+compatible with the old format.
+
+
+Gamesys and Mission DML Patching/Modding
+----------------------------------------
+
+It's possible to mod/patch object and archetype properties or mission parameters in a non-permanent fashion by
+using the added dbmod system. This is done through DML files, which are text based "scripts" to modify properties
+and parameter values without requiring the .mis or .gam files to be permanently modified. See separate dbmod
+documentation "dbmod-sample.dml" for more information.
+
+
+Cubemaps
+--------
+
+Cubemaps are supported through DDS files and require the game to run in DX9 mode, otherwise it will only load
+the X+ cubemap face and treat it as a regular 2D texture.
+
+Cubemaps can currently only be used for environment mapped material layers. Attempting to use them in any other
+place will either result in only the X+ face being used as a regular 2D texture, artifacts or possibly a crash.
+Mipmaps will not be automatically generated for cubemaps, the DDS file must contain them if they are desired.
+
+It's possible to generate a cubemap of a location in a mission, using the command "envbox" in DromEd's game mode.
+This works like the old "skybox" command, except it renders the entire scene from the player's current position,
+instead of only the sky. The 6 resulting textures are the same as for "skybox", in fact the textures could be
+used as an old sky. Before using the "envbox" and "skybox" commands, you should first disable HUD sclaing (see
+"d3d_disp_scaled_2d_overlay" config var). Otherwise some or all of the saved out box images may be incorrect.
+
+When creating a DDS cubemap from the 6 files (north, south, east, west, top and bottom), the sides map as follows:
+
+    cube
+    face  envbox/skybox side
+    ---------------------------
+    X+    West
+    X-    East
+    Y+    Top, rotate 90 CW
+    Y-    Bottom, rotate 90 CCW
+    Z+    South
+    Z-    North
+
+With the nVidia DDS saver plugin for Photoshop you would create an image that has all 6 faces side by side like
+this:
+
+    +-------+-------+-------+-------+-------+-------+
+    |   W   |   E   |   T   |   B   |   S   |   N   |
+    |       |       |  90°  |  90°  |       |       |
+    |       |       |  CW   |  CCW  |       |       |
+    +-------+-------+-------+-------+-------+-------+
+
+For Direct3D documentation see http://msdn.microsoft.com/en-us/library/windows/desktop/bb204881%28v=vs.85%29.aspx
+
+
+DXT Texture Compression
+-----------------------
+
+DXT textures can NOT be used for any components that are rendered/drawn in software, such as menu/UI/HUD graphics
+or object textures that can appear in Thief's loadout screen. Automatic mipmap generation and edge padding for
+transparent textures does not work with DXT textures. If necessary, edge padding must be applied offline, on the
+original texture, and the DDS should always contain mipmaps.
+
+DXT1 textures are treated as opaque, unless material parameter "force_full_alpha" or "force_alpha_key" is set.
+
+When running DromEd all DXT textures are decompressed to 32-bit RGB textures on load, because certain editor
+elements use software rendering/drawing functions which can't handle DXT.
+
+
+8-bit Anti-Aliased Fonts
+------------------------
+
+A font format, that uses the full 8 bits (for 256 shades), for anti-aliased fonts was added. For better quality,
+especially with 32-bit rendering, where the old 16 shades might be too limited. The file format/type value is 2,
+otherwise they work like format/type 1 AA fonts.
+
+
+Texture Resolution/Mipmap Visualization
+---------------------------------------
+
+The command "show_texres" can be used in DromEd game mode to visualize mipmap levels with red/blue color gradients.
+The visualization works such that if a textured object or terrain surface has a texture resolution that is higher
+than what can be displayed at that particular location on the screen (at the current screen resolution) then the
+surface will get colored red to some degree. The more red it is, the more over-sized the texture is. If a texture
+is under-sized it will instead get a blue tint.
+
+Because it actually is a mipmap visualization it should not be taken an absolute indicator if something is over-
+or under-sized. For example surfaces at a distance will always fade into red eventually, because lower mipmaps are
+(correctly) used for things further away. What it can help with is for instance if there are objects close to the
+player that are noticeably red, even when you get very close to them. That means the texture is higher resolution
+than what will be displayed on the screen. Such a texture could be downsized without any, or very little, visual
+impact.
+
+The colors and alpha amounts used for the visualization mipmaps can be changed/tweaked with the "texres_mip_colors"
+config var (see doc/dromed.cfg).
+
+The "show_texres" command needs the "mipmap_mode" config var to be enabled in order to work properly. "mipmap_mode"
+is enabled by default in cam_ext.cfg, so this should normally not be an issue. The mipmap visualization is useless
+if "show_lightmap" is enabled, or for Jorge surfaces.
+
+The command has an alternative mode "show_texres 2", which displays the maximum texture resolution that could be
+displayed on the screen for surfaces. This mode is less useful, it (usually) shows what texture resolution would
+result in 1:1 texture to screen pixel resolution. Which is a good deal higher than what's need for things to look
+good. For non-square textures, the displayed size relates to the largest dimension of the texture.
+
+Important to note is that since these visualizations rely on mipmapping and screen resolution, the results are
+affected by mipmap bias/quality settings in the game and video driver, at what resolution the game runs
+at and customized FOV setting. If you would run at 640x480, a lot more texture would appear over-sized than at
+1600x1200 for example, so visualization is probably best done at some resolution (very) roughly around an average
+gaming resolution.
+
+
+Additions to Books/Readables (T2)
+---------------------------------
+
+Books can now have images on specific pages and locations, up to 32 images (aka decals) per page. The decals are
+specified in the same .STR files as the book text, using the format:
+
+    page_<pnum>_decal_<dnum>: "<over text> <X> <Y> <image name>"
+
+    <pnum>       - page number, same as the one used for page text
+    <dnum>       - decal number, starts at 0 up to 31 (all decals on a page must use consecutive numbers, no gaps)
+    <over text>  - 0 = text will be visible over the decal, 1 = decal will cover any text under it
+    <X>          - X position of top-left corner of image (the entire book screen is 640x480)
+    <Y>          - X position of top-left corner of image
+    <image name> - name of image file, must be located in "Books\" or a sub-directory of it (backslash characters
+                   must be written as double backslash "\\" because "\" is an escape character)
+
+For example to display a decal "Books\decals\inksplat.tga", over text on page_2, it would look something like:
+
+    page_2_decal_0: "1 100 230 decals\\inksplat"
+
+Decals should always be true-color images to ensure that they are correctly displayed even when 32-bit textures
+aren't enabled. Using palette based images may result in an incorrect palette being used unless the image uses
+the same palette as the book art. If the decal image contains an alpha channel it will automatically be drawn
+with alpha blending, allowing decals to nicely blend with the book background. When drawing text over a decal
+it's highly recommended to use an AA font, otherwise there will often be ugly artifacts. Using AA fonts will
+improve quality in general, even if not using decals, as they blend correctly with the background.
+
+Book texts and decals can be edited while the game is running and the .STR file and any decal images will be
+reloaded every time the book is brought up, by using the "test_book_ex" command or by enabling auto-reload with
+"toggle_book_autoreload". It does require closing and opening the book/readable, but beats having to restart the
+game.
+
+Text color for books (when using font types that allow custom text color, i.e. AA or 1-bit fonts) can be defined
+with a config var per book art. For "Books\pbook" that would be done like this, "color_books_pbook 100 30 220". In
+addition each book .STR can set a custom text color by defining "text_color", which overrides any config var. For
+example:
+
+    text_color: "120 55 206"
+
+The book .STR may also specify a custom font with "font". This also allows having a collection of AA fonts in a
+single directory, instead of multiple copies of a font in each book art directory that wants to use it. A font is
+specified with a resource base path ("intrface", "books" etc.) and the font name with any sub-dir. Examples:
+
+    font: "books fonts\\handwrite1"
+    font: "intrface fontaa12"
+
+Support for leading whitespaces, in order to for example center a page title, has also been added but is not enabled
+by default in order to not break any existing content. It has to be enabled for each book .STR that wants to use it
+by adding a "no_trim" value like this:
+
+    no_trim: "1"
+
+
+In addition to image based decals it's also possible to have text based decals. These work like the decals above
+but instead of drawing an image it draws a block of text. The total number of image and text based decals combined
+is still 32 decals per page. Each text decal may use a custom font and text color. Text based decals are specified
+almost like image decals, with only minor differences, using the format: 
+
+    page_<pnum>_decal_<dnum>: "$ <over text> <X> <Y> <W>"
+
+    <pnum>       - page number, same as the one used for page text
+    <dnum>       - decal number, starts at 0 up to 31 (all decals on a page must use consecutive numbers, no gaps)
+    <over text>  - 0 = text will be visible over the decal, 1 = decal will cover any text under it
+    <X>          - X position of top-left corner of text block (the entire book screen is 640x480)
+    <Y>          - X position of top-left corner of text block
+    <W>          - Width of the text block (text is wrapped to this width)
+
+Note the $ character, this is important because it tells the game that the decal is a text based decal.
+
+The actual text for the decal is specified in a separate parameter with the name "page_<pnum>_decal_<dnum>_text".
+
+To change decal text color to something other than the color used for the rest of the book, you can specify the
+color the same way as with "text_color" above but with the parameter name is "page_<pnum>_decal_<dnum>_text_color".
+
+To change decal font to something other than the font used for the rest of the book, you can specify the font
+the same way as "font" above but with the parameter name is "page_<pnum>_decal_<dnum>_font".
+
+Example to display a text decal of width 200 pixels and custom font and color, with the text "in the castle of
+aaaaarrrrggghhh" on page_4, it would look something like:
+
+    page_4_decal_0: "$ 0 50 310 200"
+    page_4_decal_0_text: "in the castle of aaaaarrrrggghhh"
+    page_4_decal_0_font: "intrface fontaa12"
+    page_4_decal_0_text_color: "135 100 170"
+
+and if we added a second 150 pixel wide decal to page_4, using the same font and color as regular book text,
+with the text "Three shall be the number thou shalt count.":
+
+    page_4_decal_1: "$ 0 170 60 150"
+    page_4_decal_1_text: "Three shall be the number thou shalt count."
+
+
+Decals (text or image based) may also be hidden based on special quest vars. In order to address a specific decal
+or group of decals you first have to assign a unique ID number to the decal(s). This is done by inserting #<id>
+at the beginning of the decal specification. Using the previous examples to assign the first two decal examples
+to visibility group 0 and the third decal to visibility group 1:
+
+    page_2_decal_0: "#0 1 100 230 decals\\inksplat"
+    page_4_decal_0: "#0 $ 0 50 310 200"
+    page_4_decal_1: "#1 $ 0 170 60 150"
+
+Important to note is that these group IDs are global for all books. That means if you for example have decals in
+two different books using group ID 3 in both books, then hiding decal visibility group 3 would make those decals
+hidden in both books. If you only wanted group 3 to affect a particular set of decals in one book then you can't
+use 3 in any other book.
+
+To hide decal groups you have to set bit flags in quest vars named BOOK_DECALS_HIDDEN0, BOOK_DECALS_HIDDEN1 etc.
+Each var handles 32 group ID, so BOOK_DECALS_HIDDEN0 controls group IDs 0 to 31, BOOK_DECALS_HIDDEN1 controls
+IDs 32 to 63 and so on. If a bit is 0 then decal group is visible (which is also the default if quest var for a
+specific group is found), if a bit is 1 then the decal group is hidden. Examples:
+
+    to hide decal group ID 3   - set bit 3 of BOOK_DECALS_HIDDEN0
+    to hide decal group ID 40  - set bit 8 of BOOK_DECALS_HIDDEN1
+
+Pseudo code to hide a group:
+
+    BOOK_DECALS_HIDDEN<id/32> |= 1 << (id % 32);
+
+
+Script Service Updates
+----------------------
+
+A couple of new script services have been added, and a few additions to existing ones (new marked with *):
+
+    Camera, DarkGame, DarkOverlay(*), Debug, Engine(*), Listener(*), Object, Physics, ShockOverlay(*), Version(*)
+
+See "script_services.txt" and other script related documentation for details.
+
+
+New Script Messages
+-------------------
+
+"CameraAttach"
+   Message data:
+       <none>
+   Description:
+       Sent to the object the camera was just attached to. Will not get sent to player during init when camera is
+       initially attached to player during setup.
+
+"CameraDetach"
+   Message data:
+       <none>
+   Description:
+       Sent to the object from which the camera was just detached from. This message is sent prior to any
+       subsequent "CameraAttach" message.
+
+"PropNotify"
+   Message data:
+       ePropertyListenMsg type
+       const char *propname
+       ObjID obj
+       ObjID donor
+   Description:
+       Sent to an object that is subscribed to property updates from the Listener service. The type describes the
+       interest the message is notifying for, the property name specified the property for which the notification
+       occurred, and the object and donor describe the relationship of the property and the object.
+
+"ObjNotify"
+   Message data:
+       eObjNotifyMsg type
+       ObjID obj
+   Description:
+       Sent to an object that is subscribed to object updates from the Listener service. The type describes the
+       interest the message is notifying for and the object is that which is notifying.
+
+"LinkNotify"
+   Message data:
+       eRelationListenMsg type
+       LinkID id
+       ObjID source
+       ObjID dest
+       RelationID flavor
+   Description:
+       Sent to an object that is subscribed to link updates from the Listener service. The type describes the
+       interest the message is notifying for and the ID, source, dest, and flavor describe the characteristics of
+       the relevant link.
+
+"TraitNotify"
+   Message data:
+       eHierarchyMsgKind type
+       ObjID obj
+       ObjID donor
+   Description:
+       Sent to an object that is subscribed to hierarchy updates from the Listener service. The type describes the
+       interest the message is notifying for and the object and donor describe the relationship of the trait and
+       object.
+
+
+Script-state Data Editor/Inspector
+----------------------------------
+
+The script engine maintains some data that normally isn't accessible, but that will be saved in a mission file.
+Normally this isn't something you need to care about, but having access to the data might be useful when trouble-
+shooting.
+
+The data consists of the posted script message queue (posted messages that have not yet been dispatched), active
+timed messages and persistent script variables (variables that scripts can maintain, that will be saved).
+
+The editor also provides listings of all script objects that are currently created, as well as all available script
+classes from loaded OSMs.
+
+To open the script data editor/inspector use the command "edit_scriptdata".
+
+
+While there normally isn't anything you need to access here, one thing that however isn't entirely uncommon, is
+that under some circumstances scripts execute while in edit mode. If the script code in such an event posts a
+message, it will end up in the posted message queue but not get dispatched, since scripts aren't meant to run
+in edit mode. What this does is that the queued messages will be forever stuck in the mission, and every time
+the mission is started (or entering game mode), those messages will be dispatched.
+
+These "ghost messages" are stuck forever, they might even be messages for objects or script setups that no longer
+exists, and can cause confusion or possibly even break mission functionality. Normally a mission (that isn't a
+savegame, or after returning to edit mode with game_mode_backup disabled), should have an empty message queue.
+It doesn't hurt to make sure that the queue is empty in your mission, and if not then delete the queued messages,
+before doing any serious testing.
+
+
+OSM Author Notes
+----------------
+
+An OSM can use the new Version script service to determine the game version. To avoid problems when someone
+tries to use an OSM with an older version of the game, the OSM can check if the Version script service is
+available or not first. If a service isn't available the engine will return the Null script service as usual.
+
+Custom OSMs that access files directly have to ensure that they work correctly with the new native FM system, or
+the FMs that use them will fail (unless they're installed the old fashioned way, bypassing the native FM system).
+When an FM is active, an OSM that wants to access a file must first look for the file in the FM's dir, and then
+the current working dir. There are two ways to deal with this:
+
+     A) Search for a file in paths defined by a config var (such as "resname_base" or "script_module_path"). This
+        is done through the FindFileInPath function in the new Engine script service. The benefit of using that is
+        that it's fully compliant with FM and mod paths, without the caller having to deal with any of that. It
+        searches for the file in all the relevant paths in correct priority order.
+
+     B) Manually look for the file in the FM's dir, if an FM is active, by using the FM support functions in the
+        new Version script service. To check if an FM is active you can call the GetCurrentFM or GetCurrentFMPath
+        functions and see if the return value is S_OK. If it is, you can then use the return path or use
+        FMizeRelativePath to generate a filename for the file located in the FM dir. Note that it's important to
+        first look for the file in the FM dir before falling back to the current working dir, otherwise it would
+        break the defined dir priority order.
+
+OSMs that only call LoadLibrary should still work correctly, although it wouldn't hurt if they resolved the path
+with one of the two methods mentioned above (preferably method A and "script_module_path").
+
+
+FM Author Notes
+---------------
+
+Even if you, as an FM author, don't use the FM Selector (fmsel.dll) yourself, it's strongly suggested that you
+include an "fm.ini" when creating FMs from now on, and a "fmthumb.jpg" would also be preferable. These are
+standardized files with information about the FM, such as release date, author(s) or description. Currently only
+the FM Selector uses them, but standardized conventions will aid other potential future uses, such as making the
+job easier for web based FM databases, other potential FM selector implementations or loader/mod manager updates.
+
+Although an "fm.ini" could be created manually in a text editor, the preferable method is to create/export it
+from the FM Selector. That ensures that formatting and content is correct.
+
+For example the FM description text length is limited to 1500 characters. Manually editing the ini file could
+easily end up with longer description which can cause some problems for FM Selector or other applications. The
+description however is intentionally limited because it's meant to be a short and sweet overview/introduction/
+teaser for the FM that could be displayed along with search results, summary pages and so on. The description
+is absolutely not meant to be full release notes. Those should be kept in a separate readme file which FM Selector
+can also view and can be specified in "fm.ini".
+
+The "fmthumb.jpg" file is an (optional) image that's used to make the FM information presentation look more
+appealing. It can be a JPG version of the main/logo image in Thief's main menu, or it can be something fancier.
+In the FM Selector it's displayed at the top of the "View Summary" window. Potential future web based FM databases
+may do something similar. The width of the image should be at most 500 pixels, and the height should be kept under
+200 pixels. The logo image on Thief's main menu is 300 x 168, which is a good guideline to go by.
+
+The "fm.ini" and "fmthumb.jpg" files have to be located in the root directory of the FM.
+
+
+DO NOT USE MP3!
+It's strongly suggested that you avoid using MP3 files in FMs. There are patent/licensing issues tied to that
+format, which may put your FM in a troublesome position, but even more so FM selectors/loaders. Instead of MP3,
+use the OGG format (http://www.xiph.org/ogg/). There's nothing gained by using MP3 over OGG.
+
+
+To make a mission more new_mantle friendly, it may not hurt to add the property "Physics: Model" -> "Mantleable"
+(unchecked) to small objects such as torches, or access-limiting objects such as fences made of metal stakes, that
+aren't quite suitable for mantling. Although it shouldn't be overdone, as climbing up on wall signs etc. to access
+hard to reach places can be great fun.
+
+
+General DromEd Notes
+--------------------
+
+Do NOT try to load a file saved with new DromEd into an old DromEd version. It will likely crash during load and
+if it doesn't, bad things will probably still happen under the hood.
+
+Note that the new DromEd is more verbose than the old. When you load a mission created in old DromEd you may see
+warnings that you don't see in the old. Those warnings are in most cases not about any new problems, it's just that
+the old DromEd didn't output them. They're usually not a cause for greater concern if the mission already was
+playable without problems.
+
+The editor Death Stage 12 bug and campaign data/vars modification after returning from game mode should be fixed,
+so it's recommended to disable the automatic workaround/fixes in the DromEd Toolkit / ShockEd Toolkit (the most
+commonly used editor distributions). Especially the automatic DS12 fix because there are instances, at least in
+original missions, where the Death Stage property has been intentionally added, and the toolkit deletes those too.
+
+The commands "light_bright" and "lit_obj_toggle" are deprecated and will not work properly and consistently in
+all situations. Use the new command "toggle_lighting" instead.
+
+Aside from the original 15/16-bit lightmaps, there is now support for 32-bit lightmaps. 32-bit lightmaps can also
+be used in a 2X mode, which allows overbrighting. For further details see the "enable_32bit_lightmaps" config var
+in "new_config_vars.txt". Lightmapping can now also be enabled for water surfaces.
+
+The mouse wheel can be used on all value controls in the editor main window (like the X Y Z controls or brush Op).
+
+In solo-view for a 2D viewport, the context menu has a new "scroll here" command which can be used to pan around
+like with "teleport camera" in un-solo mode, except it doesn't affect the camera position.
+
+Holding down CTRL while clicking in a 2D viewport will use an alternative selection mode (aka precision-selection).
+In this mode you have to click ON a brush edge to select it, and if multiple brushes are overlapping on a point,
+clicking multiple times will cycle through each brush in that point. This allows easier selection in dense
+locations without having to resort to filters or cumbersome cycle_near functionality. There are config vars to
+configure the pixel tolerance of what constitutes ON an edge ("selection_pixel_margin"), and to make precision-
+selection the default selection mode ("precision_select_default").
+
+When assigning textures to surfaces in a solid view 3D viewport (while the texture palette is open), holding down
+SHIFT will assign a -1 texture id to the surface, so the brush default texture is used. Holding down CTRL will
+allow you to change current surface selection without assigning a texture, just as if the texture palette wasn't
+open. Holding down ALT will change the current texture selection in the texture palette to the texture of the
+surface you clicked on.
+
+A native mono console window can be enabled with the config var "mono_console". There are optional parameters
+to specify size and position of the window, see "new_config_vars.txt" for details.
+
+There's an "lcolor_picker" command which opens a color picker dialog that outputs hue/saturation vals, that can be
+used to set light color. For brush lights it's also possible to directly pick a color from the dialog by clicking
+on the "Type:Omni" button. Alternatively there's the "edit_lcolor" command which opens the color picker dialog to
+edit the light color of the currently selected light or object brush. The command has an optional argument that
+if set to 1 it skips the message box to ask if inherited property should be edited (in cases where the dialog
+would be shown), and always adds a local property. If set to 2 it skips the message box, but always edits the
+property on the archetype. Use the latter with care as that will result in gamesys changes.
+
+Loading a mission that was previously lit with the new version of DromEd, will restore the lighting settings used.
+For example if a mission is lit with objcast and 32-bit lightmaps, then the lighting mode will be switched to
+objcast and 32-bit as the mission is loaded. This ensures that a mission can be relit with the same settings as it
+was previously relit, without having to remember or guess which settings were used. When loading missions from
+previous DromEd versions, the lighting mode remains unchanged though.
+
+A new button named "force" has been added next to "multi-brush-me" for Area brushes. The "force" button works like
+"multi-brush-me" except it adds brushes even if they already belong to a different multibrush (removing them from
+their previous multibrush in the process). There are also two new commands to help clean up multibrush assignments,
+"dissolve_unnamed_groups" and "dissolve_all_groups", as well as an option to make unnamed groups auto-dissolve
+when they're deselected (see "auto_dissolve_unnamed_groups_on_deselect" in "doc\dromed.cfg" for more details).
+
+
+HW Rendering in DromEd
+----------------------
+
+It's possible to enable hardware rendering for editor viewports when running with DX9 ("use_d3d_display"). This is
+done with the config var "editor_disable_gdi", preferably in "dromed.cfg". It's recommended to also use a 32-bit
+color depth in combination with HW rendering, "edit_screen_depth 32". Software only supports 16-bit color so
+that's the default. HW rendering enables the use of z-buffering, texture filtering and colored object lighting
+in solid view.
+
+IMPORTANT! Read the above section again and the comments in the sample "dromed.cfg" carefully. When running DromEd
+in software mode (i.e. when "editor_disable_gdi" is NOT defined or DX6 is used) then you MUST run in 16-bit mode
+("edit_screen_depth 16") or the editor will sooner or later crash/freeze miserably. This point cannot be stressed
+enough!
+
+Even if multisampling is enabled for the game ("multisampletype"), it isn't enabled in edit mode by default. It can
+be enabled there too with "d3d_disp_hw2d_msaa", but if you experience any problems or don't think it's necessary
+then it's better to leave it off.
+
+Although it should normally not be necessary, there might be some rare occasions (after device loss) where the
+editor window doesn't get properly redrawn so the window is black. The command "redraw_all" will fix that.
+
+These are HW related editor commands that may be of interest:
+
+    set_2d_tex_filter   - Enable/disable texture filtering, default is enabled.
+    toggle_wire_zbuffer - Toggle the use of z-buffer when rendering wireframe debug visuals like show_phys_models,
+                          default is disabled. When enabled wireframes won't be visible through walls, which can
+                          be helpful to make the screen less messy. Only works if z-buffering hasn't been disabled.
+    toggle_2d_zbuffer   - Toggle z-buffering.
+    editor_water_alpha  - Set alpha used to render water surfaces in solid view, default is 0.5. The editor doesn't
+                          use the actual alpha as seen in-game, because it's more useful to be able to see all level
+                          geometry. This can also be set as a config var with the same name.
+
+
+Viewport BG Images in DromEd
+----------------------------
+
+When HW rendering is enabled (see section above) it's also possible to set background images in the 2D viewports.
+This can be useful when you have a floor plan or level layout that you want to have in the background as a guide
+for building. The background images are locked to a size and position in the world.
+
+To set and configure the images use the command "set_bg_image". All images and settings can be cleared with
+"reset_bg_images". The bg settings aren't saved anywhere, however after closing the configuration dialog the full
+command lines for the set bg images will be output to mono. You can then save these command lines somewhere and
+either manually enter them again or place them in a batch file that is executed with the "run" command.
+
+Dialog parameters:
+    Enable     - Display image (if defined and successfully loaded).
+    Image      - Image name as a relative filename to any directory specified in resname_base, mod_path,
+                 uber_mod_path or active FM directory. File extension may be omitted. Only image formats supported
+                 by Dark can be used.
+    Width      - Image width in world units. A negative value H-flips the image. This can be 0 (or -0) if Height is
+                 non-zero to automatically calculate a width that retains the image's aspect ratio.
+    Height     - Image height in world units. A negative value V-flips the image. This can be 0 (or -0) if Width is
+                 non-zero to automatically calculate a height that retains the image's aspect ratio.
+    Position   - World coordinates of the image center.
+    Rotation   - Image rotation around viewport's depth axis.
+    Alpha      - Alpha (1.0 opaque, 0.0 completely transparent).
+    Unfiltered - Draw image without texture filtering.
+
+Drawing of background images can be globally enabled/disabled, without affecting background image settings, with
+the "show_bg_images" command (0 - hide, 1 - show, -1 - toggle).
+
+
+Updates to DARKDLGS.DLL
+-----------------------
+
+DARKDLGS.DLL provides most dialog windows in DromEd, such as the hierarchy window, properties editors etc.. Some
+of those have additional features and adjustments.
+
+The icons displayed next to properties have received two additions, to be able to distinguish between certain
+property types. The first new icon is the /\ shaped one, three black dots connected with two lines (looks almost
+like a pair of cherries). This is used for non-inheriting properties. These are properties that are automatically
+instanced on concrete objects, but if absent, won't inherit their value from the parent object. The second new icon
+looks like the standard black dot but is semi-transparent. This icon is used for transient properties. These are
+properties that aren't saved. Usually they aren't edited in DromEd, they're mainly there for inspection / debugging.
+Metaproperties and relations/links also have unique icons now.
+
+    Object Hierarchy dialog
+    -----------------------
+    Query  - List all abstracts and concretes that have the chosen property assigned. The query will be performed
+             on the archetype currently selected in the list, and all its abstract and concrete descendants.
+             In the query results dialog you can edit the objects, properties and save the query results as a text
+             file. The result list displays abstract objects in bold and concrete objects normally (archetypes
+             which don't have the property but have to be included to display the hierarchy are also non-bold).
+             The query function is very useful in various situations. It's highly recommended that you play around
+             with it, to get to know it.
+             Additionally the query results dialog has a "Multi Edit" function that supports mass-editing a
+             particular data field in a queried property/link or the entire property(/link data), for any number of
+             objects or links. It's useful to avoid the time consuming task of having to editing potentially loads
+             of objects one by one. The multi edit dialog contains a list view and has filter support to filter on
+             object names and IDs, and to filter on the property field values. The filter syntax is mostly the same
+             as the one in "DromEd Texture Palette", except that it supports an & operator at the beginning of a
+             rule to indicate that the rule must match (AND) rather than the default filter mode which is OR.
+             It also supports < and > rules, when used in the object filter (the left edit control) it applies the
+             operation on object IDs, so for example ">0" would show only concrete objects. When used in the value
+             filter (the right edit control) it's used to compare the property field value for numerical types,
+             otherwise the filter is ignored. Ex: Name filter "*magic:*smoke:&>0" would display all objects whose
+             name contain "magic" _or_ "smoke" but they must also all be concrete objects. If the current property
+             field being displayed was floating values, the a field filter of "<62.34" would display all items with
+             a field value below 62.34. Filters in "Mult Edit" can be cleared in the same way as in the "Object
+             Hieararchy dialog".
+    Export - Export the entire or parts of the object hierarchy to a text file. "Export Selected" will export
+             the archetype currently selected in the list and all of its descendants, including concrete objects
+             if there are any created. If you only want to export gamesys objects then do so before loading any
+             mission.
+    Filter - Filter on object names. The filter syntax is largely identical to the one in "DromEd Texture Palette".
+             Clicking on the filter count info text, to the right of the edit box, will clear all filters. Same as
+             deleting all text from the edit box.
+
+    An "[All]" category has been added to the "Show Tree" drop-list. It displays all abstract and concrete objects
+    in a single tree, allowing filters and querying to be done on all object types at once. A new command "all_tree"
+    is also available, which works like "obj_tree" except the hierarchy dialog is opened with the "[All]" tree.
+
+    Object Properties dialog
+    -------------------------
+    Copy/Paste   - Copy/Paste properties between objects. Doesn't work for links or sources/receptrons. Copying
+                   a property will also copy it in text form to the Windows clipboard, however the paste operation
+                   doesn't use the Window clipboard.
+    Filter       - Filter on property names. The filter syntax is largely identical to the one in "DromEd Texture
+                   Palette". Clicking on the filter count info text, to the right of the edit box, will clear all
+                   filters. Same as deleting all text from the edit box.
+    Hierarchy Op - Replicate or delete selected (in list) property from descendants of the object. This can be
+                   useful, for example, to clean up redundantly added properties from descendants, or to retrofit
+                   all concretes in a mission with a non-inheriting property. Before performing any hierarchy
+                   operations, it's recommended to inspect the relevant objects and property with the Query
+                   function in the Object Hierarchy dialog, to make sure no unwanted changes will be made.
+
+                   Operation:
+                       Copy Property                 - Copy property to dest object, overwriting if already set.
+                       Copy Property If Not Set      - Copy property to dest object only if it isn't set.
+                       Delete Property               - Delete property from dest object.
+                       Delete Property If Same Value - Delete property from dest object only if it has the same
+                                                       value(s) as the source object/property.
+                   Scope:
+                       All Descendants               - All abstract and concrete descendants are processed.
+                       Abstract Descendants          - Only abstract descendant are processed.
+                       Direct Concrete Descendants   - Only concrete descendants that inherit directly from the
+                                                       source object are processed. If for example the source
+                                                       object has an abstract descendant, which in turn has
+                                                       concrete descendants, then these are NOT processed.
+                       All Concrete Descendants      - All concrete descendants are processed.
+
+    Links dialog
+    ------------
+    Deleting ParticleAttachement (and the new DetailAttachement) links from the links dialog will now only delete
+    the link, and NOT the attached particle(/detail) object.
+    A Multi Edit function is available, see Multi Edit under "Object Hierarchy dialog" above, that allows multi
+    editing of link data for the selected links. The selected links have to be of the same type for Multi Edit
+    to work.
+
+
+Other changes include smaller tweaks like dialog sizes, added list columns in some cases or usability like the
+Add Link dialog not listing return/inverse links (instead it has a toggle ~ button for those) or confirmation
+dialogs before deleting objects/properties. The metaproperties hierarchy view now has icons to distinguish between
+metaproperties and regular archetypes that use the metaproperties, and the room hierarchy also to easily see the
+difference between abstract and concrete room archetypes. The object properties dialog displays object name
+properties in bold for objects that have an explicit name set, rather than the implicit "A/An <parent name>"
+name.
+
+Some of the dialogs are now resizable and remember their last size and position. Link/receptron/source list views
+also remember their column widths. If resizing isn't desired it can be disabled with the "DialogResizing" param
+in "lg.ini". The width of sdesc dialogs (i.e. property edit dialogs) may also be increased through "lg.ini",
+but they aren't run-time resizable.
+
+Link/receptron/source list views support reordering items. When reordering receptrons, they retain their original
+ID, only the order is changed. For regular links and sources, reordering means swapping the IDs between items to
+get them to order differently. Keep in mind that if you reorder a link on one object, you may also be affecting
+its order on the object of the other side of the link, since the ID is changed. The order of links can only be
+changed between links of the same flavor.
+
+The property popup menus on the Add/Query buttons have simple substring filtering support. The filter functionality
+can be tweaked a bit or completely disabled through "lg.ini". By default you press CTRL+F to activate filtering,
+and then start typing the filter string. Some modes, that can be set in "lg.ini", have filtering always activated
+so you can just start typing right away. The control that displays the entered filter string isn't an actual edit
+control, even if it may appear that way. You can't edit the text, only backspace to delete the last character
+or CTRL+L to clear the filter string entirely. CTRL+C and CTRL+V also work as copy and paste.
+
+The "Scripts" property dialog has been tweaked. When adding the property to an object, the dialog now always starts
+out empty, even if the parent archetype also has the property. Instead, if any scripts can be inherited from a
+parent archetype, the property dialog will display an additional text box that lists all the inheritable scripts.
+
+Input fields that specify an object, such as the "From" and "To" inputs in the Add Link dialog, support displaying
+an object pick dialog. You can either click on the input control with the middle mouse button, or press CTRL+F when
+the control has input focus, which will bring up a tree list of all abstract and concrete objects to pick from.
+
+Clicking with the middle mouse button on the edit control in the "Design Note" / "Objlist Arg" property dialogs
+will open a special param edit dialog. This dialog is designed for text that is formatted as typical script
+parameters, in "<param name>=<value>;" format, and displays the params in list/table form. Property text that
+doesn't comply to this param-value format will prevent the dialog from opening. To edit param names or values,
+double click on the name or value in the list. It's also possible to press TAB or RETURN to start editing the
+(first) selected item. You can tab through all elements in the list. To commit an edited name/value you have press
+RETURN or TAB (or navigate away with cursor UP/DOWN). If there's some formatting error in the value it will fail
+to commit, and the edit control will remain active for further editing. Pressing ESC or clicking on something
+else will revert to the original text. To add a new param, start editing the "<<<add new>>>" item that's last in
+the list (or press INS). Params can be deleted by selecting them and pressing DEL. Copy-paste is supported.
+
+The new texture palette is also provided by darkdlgs, but has its own section "DromEd Texture Palette" below.
+
+
+DromEd Texture Palette
+----------------------
+
+There's a new, dialog based, texture palette in DromEd that replaces the old built-in one. It can handle more than
+the old 256 entries, and has a number of enhancements. The basic functionality is still the same, while the palette
+is open, textures are painted on surfaces in the solid 3D viewport. Here's a list of usage info and tips:
+
+* The texture entries in the list window have different color codings to convey some extra information about them.
+  The slightly cyan colored ones mean that the texture is a family loaded texture, a texture that was loaded by
+  "add_family". Other entries (single loaded, sky or Jorge) are light gray. There can be a couple of dark gray
+  entries which cannot be selected, those are special textures which can't be used to map surfaces but are
+  part of the texture palette. Currently that should only happen for the default water textures.
+
+* A texture entry may display one or more attribute flags, in the form of a white letter on a black square.
+  There are following attributes:
+
+      A - animated texture
+      T - transparent (image with explicit alpha, 8-bit image that uses pal index 0 or material flags forces alpha)
+      M - texture has a material file
+
+* Water textures have an icon in the top left corner, identifying it as a water texture and also showing if it's
+  the texture seen when looking in to or out of the water.
+
+* Right-clicking on a texture in the list brings up a context menu with a number of commands.
+
+* Double-clicking on a texture is the same as Assign to Face in the context menu, it assigns the texture to the
+  currently selected brush face.
+
+* A handful of texturing related DromEd hotkeys should work also when the texture palette dialog is the active
+  window, for the rest the DromEd window has to be in focus.
+
+* The "Filter" control allows only displaying textures that match the filter rules. The drop-list contains filter
+  presets for unfiltered (*), all loaded family names, non-zero usage count (>0), and 0 usage count (<1).
+
+  - Wildcard characters * (zero or more characters) and ? (a single character) are supported. A filter rule
+    implicitly ends with a * so it's not necessary to add one at the end manually.
+    Examples: "*wood*frame", "*wall?1".
+
+  - The filter string starts matching from the first character, so the filter "wall" (which is the same as "wall*")
+    would only find textures that begin with "wall". To search for textures that contain the sub-string "wall"
+    you have to use the filter "*wall".
+
+  - To filter on family name, the family portion of the filter has to end with a slash (/) or backslash (\).
+    For example "mech/" would display textures that are part of the "mech" family. Wildcards can be used on family
+    names, like "*deco*/".
+
+  - A filter rule can filter on both family and texture name. For example "*deco*/*wall*" will show all textures
+    that contain the sub-string "wall" in any family that contains the sub-string "deco".
+
+  - A filter can be inverted (logical NOT) by prefixing with an exclamation mark (!). For example "!mech/" would
+    display textures from all families except "mech".
+
+  - To filter on usage count (number of worldrep surface or brush faces, depending on setting, the texture is used
+    on) use less-than (<) or greater-than (>) followed by a number. For example "<5" would display all textures
+    that are used on less than 5, or ">100" would display all textures that are used on more than 100.
+
+  - The filter string can consist of multiple ORed rules separated by a semicolon. For example "mech/;ArtDeco/"
+    would display all textures from either "mech" or "ArtDeco" families.
+
+* The dialog title bar displays the current number of textures visible in the list. If there are filtered textures
+  it displays two numbers in the form "(num_visible_textures / total_num_textures)"
+
+* The dialog can be closed with the Escape key, but DromEd's toggle texture palette hotkey also works, as well as
+  other standard methods of closing a window.
+
+The "View Material" command opens a material file in Windows Notepad. If the material file resides inside a CRF
+file, it's extracted to a temp file which is then opened in Notepad. It's possible to use a custom viewer by
+adding something like the following to LG.INI:
+
+    [Editor]
+    MaterialViewer=C:\Notepad++\Notepad++.exe
+
+
+Build Dialog
+------------
+
+A one-stop build dialog has been added, which is invoked with the command "build_dlg". It provides configuration
+options for worldrep optimization and various lightmap options. Using the build dialog is recommended as it removes
+the requirement of knowing in which order to run the different processing stages, or executing a handful of commands
+to configure the lighting settings.
+
+The checkboxes are the different processing stages which can be enabled/disabled. Some stages implicitly also
+process another, like for example processing the world rep will also relight even if lighting was unchecked.
+
+    * "World Rep (+ Lighting)"    - Portalize.
+      "WR Quality"                - Select optimized or draft portalization (unlike with the regular commands, it's
+                                    possible to switch back and forth using the build dialog).
+
+    * "Lighting"                  - Process lighting.
+      "Shadow Type"               - Light tracing/casting modes (correspond to Quick, Raycast, Objcast).
+      "Shadow Softness"           - Light sampling mode. "Standard" is the normal mode of previous DromEd versions.
+                                    The other modes work as if quad lighting was enable on all light source (object
+                                    and brush lights). The different sampling modes determine the sample pattern,
+                                    which affects the softness/blurriness of shadows. "High (4-pt avg)" corresponds
+                                    to how quad lit object lights worked (except that with this option, quad lit
+                                    would be applied to all lights, whether they are explicitly quad lit or not),
+                                    which isn't particularly good quality. Using "High (9-pt wghtd avg)" or one of
+                                    "Medium (5-pt wghtd avg)"/"Medium (9-pt wghtd avg)" are probably the best ones
+                                    because they produce the least possible lightmap blockiness. The former is
+                                    blurrier/softer, the latter two are less blurry. Which mode to use is an
+                                    aesthetic choice of the mission author.
+                                    The modes correspond to modes 0 to 7 of the "quad_lighting" command.
+      "5-/9-point Center Weight"  - When using any of the 5 or 9 point sample modes, this value is used to define
+                                    the weighting value of the center sample. Increasing the weight will reduce
+                                    softness. For evenly distributed averaging the value should be 1.0/numSamples.
+                                    So for 5 point sampling a weight of 0.2 (=1.0/5) will make all 5 samples
+                                    contribute equally to the final result. For 9 point sampling the value would
+                                    be 0.11 (roughly =1.0/9). A center weight of 1.0 would result in only the
+                                    center sample being used, i.e. no softness at all. (Can also be changed with the
+                                    command "quad_lighting_cweight".)
+      "Lightmap Type"             - Bit depth (and 32-bit LM mode) of lightmaps.
+      "Lightmapped Water"         - Enable/disable lightmapping on water surfaces (can also be changed with the
+                                    "set_lightmapped_water" command).
+
+    * "Rooms"                     - Build room db (same as Compile rooms).
+    * "Pathfinding"               - Build pathfind db.
+
+    "Brush Filtering"             - Disabling brush filtering will include all brushes in processing even when
+                                    they're not visible because they're disabled by "Filter". (Can also be changed
+                                    with the command "set_ignore_filters".)
+
+
+Loading Textured Group (.vbr)
+-----------------------------
+
+It's possible to load a saved group / virtual brush (.vbr) with preserved textures by using the "load_group_ex"
+command. However it requires the group to have been saved with the new DromEd so that the vbr file contains texture
+information. If the loaded group uses a texture that is currently not loaded in the texture palette, it will
+normally add the entire family of that texture. If it for some reason can't add the family, such as max number of
+families already loaded, it will attempt to load the texture(s) as single-loaded.
+
+
+Exporting Terrain Mesh
+----------------------
+
+The worldrep (WR) mesh can be exported to OBJ (WaveFront format) files, with the command "wr_export_obj". OBJ
+files can be imported in most 3D applications. The exporter creates an OBJ and an MTL file and exports texture
+coordinates and texture filenames with full path so the OBJ file can be viewed with textures in a 3D app. This
+however requires the family textures to be extracted, since 3D apps can't access CRF files.
+
+The exporter dialog has the following options:
+
+    "Triangulated"   - Convert all polygons to triangles in the exported mesh. Can be useful if the application(s)
+                       reading the exported OBJ file has problems with n-sided polygons.
+    "Export Portals" - Include WR portals in the exported mesh. Usually only useful for debugging purposes.
+
+Using a professional 3D application can provide an easier way to inspect the worldrep and see what's going on,
+if there are any problematic locations.
+
+
+Fog Zones
+---------
+
+It's possible to have different fog settings in different areas of a mission by using fog zones. There can be up
+to 8 fog zones additionally to the normal/global fog. A fog zone is essentially a fog preset and is selected in
+the "Local Weather" property on room brushes, which instead of a simple checkbox now has a drop-list where you
+can select Global Fog (normal fog) or one of the 8 fog zones. To configure fog parameters for zones, open
+"Fog Zones" in "Mission Parameters..." (edit_file_vars).
+
+Global fog can also be configured in the "Fog Zones" dialog, but the original console commands also work. There
+is however one new thing to note when using the console commands to change settings. When changing global fog
+setting in game mode, those will be reset when returning to edit mode and have to be re-applied there if desired.
+This is the result of global fog settings now supporting script control, so it has to be able to save the fog state
+to savegame data and restore it.
+
+The normal building rules and limitations for fog also apply to fog zones, so for example if you're standing inside
+a fog zone cell and look into another non-fogged cell, then that cell will receive the same fog. Fog zones are
+applied to the worldrep in the same fashion as normal fog, which is during room compile or portalization, so
+changing settings on the "Local Weather" property by a script will have no effect. The fog configuration for fog
+zones and global fog may be modified by a script though, so that the fog color and/or intensity can change while
+playing.
+
+IMPORTANT: Fog zones have one limitation, they do not work on sky surfaces. Due to how the sky is rendered, only
+           global fog settings will apply to sky components (that have Enable Fog set). That means that fog zones
+           should be contained to areas where you cannot see the sky from or through a fog zone region.
+
+
+Ambient Light Zones
+-------------------
+
+Very similar to fog zones, it's possible to have up to 8 alternative ambient light settings in a mission. The zone
+selection is also done in the "Local Weather" property on room brushes. The ambient light zones are configured in
+"Rendering Parameters" under "Mission Parameters..." (edit_file_vars).
+
+After changing the zone in "Local Weather" rooms have to be re-compiled and the mission re-lit (portalization would
+also achieve this) for the changes to have full effect. After only changing the zone light levels the mission has
+to at least be re-lit.
+
+One thing to keep in mind is that objects between two ambient zones, like a door with two different ambient
+zones on each side, will only receive one type of ambient lighting, that will be seen from both the front and
+back. A little extra care may be needed if two ambient zones differ largely, possibly requiring a third ambient
+zone with a light level in between, that is used on the doorway cell as a transition.
+
+Each ambient light zone (including global ambient) also has an additional ambient light level parameter, used when
+calculating an object's light level as seen by AI ("AI Vis Bias"). This allows having a bright daylight mission, or
+bright parts of a mission with higher ambient level, where the AI light level (as also seen on the light gem) won't
+go entirely black in locations where no brush/object lights reach.
+
+
+Max View Distance
+-----------------
+
+The max view distance (beyond which z-buffering will not work and objects will be visible through terrain and other
+issues) is by default 256 units in the engine. When using the provided "cam_ext.cfg" it changes it to 512. However,
+regardless of what user setting the max view distance is, a mission author may set a mission specific minimum view
+distance required to correctly render the mission. It would be appropriate to do so for any mission that requires
+more than the engine default of 256 units.
+
+For example if you have a mission where you have a large open area where the player can be positioned such that he
+could see other parts nearly 400 units away, then setting the minimum required view distance to 400 would ensure
+that everything always renders correctly, even if the user happens to have a shorter max view distance set. While
+it certainly doesn't have to be precise, haphazardly setting excessively large values isn't recommended as it would
+unnecessarily reduce Z precision.
+
+The setting can be found in "Rendering Parameters" under "Mission Parameters..." (edit_file_vars), and is called
+"Required View Dist". The default is 0 which means the mission works fine with the engine default (256).
+
+
+New Texture Align Mode "AlignExt"
+---------------------------------
+
+Additionally to the already present modes AlignNorm and AlignBr, there's a new mode called AlignExt. It provides
+more control by having separate U and V scaling (known as "S" and "T") values that can be non-integer values, and
+even negative to mirror the texture. AlignExt also locks the texture to the brush face, so when the brush is moved
+and/or rotated, the mapping still looks the same (with the exception of potential deformations due to grid
+snapping). Although it's possible to have vastly differing U and V scales, note that it will also make lightmap
+pixels non-square, which might not be desirable.
+
+
+UV Mapping a Cylinder
+---------------------
+
+For easy UV mapping of a cylinder brush, where the texture will seamlessly wrap around the cylinder (or a portion
+of it), there's a new command "uvmap_cylinder". The cylinder mapped faces will use the new AlignExt mode. While
+it's possible to specify all the mapping parameters on the command-line, we'll stick with the dialog based variant
+here. To map a cylinder brush, select a side of the brush (not top or bottom) where you want the texture to start.
+Then assign the texture you want to use to that face, if it isn't already. Now run the "uvmap_cylinder" command
+without any arguments. The dialog parameters are as follows:
+
+    "Num U Tiles"   - Number of times the texture repeats around the cylinder (or faces if "Limit # Faces" is set).
+                      May be negative to flip texture.
+    "Num V Tiles"   - Number of times the texture repeats from bottom to top of the cylinder. May be negative to
+                      flip texture. If value is 0 (or -0) V tiling is calculated automatically based on U tiling,
+                      so that the texture is uniformly tiled in both U and V (i.e. square pixels).
+    "U Offset"      - U offset, works like the "U" control.
+    "V Offset"      - V offset, works like the "V" control.
+    "Limit # Faces" - If 0 the cylinder is mapped all the way around, otherwise it only maps the specified number
+                      of consecutive faces, starting from the currently selected one. For example if "Nbr U Tiles"
+                      is 2 and we limit mapping to 2 faces, then the texture will repeat twice over the currently
+                      selected face and the next one. The other faces will remain unaffected.
+    "Rotate 90°"    - When this is checked the texture is rotated 90 degrees, so that it's sideways.
+
+The "uvmap_cylinder" command also works on pyramids (not corner-apex pyramids), but note that a pyramid can't be
+mapped seamlessly, except for the very bottom pixel row around the base.
+
+
+Quick-linking
+-------------
+
+As a complement to the "link_chain" command, which can be tricky to use, there's now something called quick-linking.
+Quick-linking works such that you select an object, then use the "qlink_add" command to add the object to a queue.
+This can be repeated any (well up to 512) number of times. To finally create a link chain between the queued objects,
+in the order they were added, you execute the "qlink_create" command. Without any arguments it will display a dialog
+where you can select the link flavor and some other options. The "Circular Link" option selects whether a link will
+be created between the last and the first objects in queue or not. The "Leave QL Queue" option just tells the
+"qlink_create" command to not clear the quick-link queue after it's done, in case you want to create more links
+between the same objects.
+
+To remove an object from the queue you have to select the object and then use the "qlink_del" command. This will
+remove the last entry for this object from the queue. If the object has been added multiple times and you want to
+remove all entires, then you have to execute "qlink_del" several times until all entries have been removed.
+
+To insert an object in front of another already queued object, you have to select the object you want to insert
+and then execute the "qlink_insert" command with the object id of the already queued object as argument. For example
+you already added object 163 to the quick-link queue, and then later you want to insert an object prior to 163. With
+the new object selected you invoke "qlink_insert 163". If 163 has been queued multiple times then the new object
+is inserted in front of the last entry of 163. It's not possible to insert it in front of earlier occurrences, in
+that case you have abort and start the quick-link from scratch again.
+
+To abort a quick-link operation that's in progress, without creating any links, there's the "qlink_reset" command.
+
+When there are two or more objects added to the quick-link queue, the editor will draw link arrows between the
+objects. When the queue is emptied after the "qlink_create" or "qlink_rest" commands, these link arrows will
+disappear again. The color of the quick-link arrows can be changed with the "link_draw_qlink" config var, the
+default color is white.
+
+"qlink_create" can optionally also be invoked with the link flavor as an argument to prevent the dialog from being
+displayed. An optional second flags argument may be supplied after the flavor, to select circular linking and if
+queue should not be cleared. The flag values are 1 for circular linking and 2 for not clearing the queue. To set
+multiple flags simply add the values together, for example a value of 3 would do a circular link and not clear the
+queue.
+
+
+CAMOVL.TXT
+----------
+
+An additional parameter named "NoFrostedShaderEffects" can be specified in CAMOVL.TXT, to force the overlay to be
+rendered without the (DX9) blur/DOF effect. The effect can also be disabled with the "ForceCameraOverlayNormal"
+config var. Disabling the effect can be useful when hacking a custom bitmap overlay through CAMOVL.TXT, however
+it's strongly recommended to use the new Renderer->"Camera Overlay" property instead. It's designed specifically
+for custom bitmap overlays and allows having one or more of them without breaking the scouting orb's overlay, which
+customizing CAMOVL.TXT will do.
+
+
+Stripped Mission Reconstruction
+-------------------------------
+
+It's possible to reconstruct room and light brushes in stripped missions, with the commands "reconstruct_rooms"
+and "reconstruct_lights". Having the room and light brushes allows stripped missions to be relit and tweaked a
+bit. The commands should only be ran once, or it will create duplicates, so for example if you run
+reconstruct_rooms twice, or on a mission that already has rooms brushes, then you'll end up with duplicate
+room brushes everywhere.
+
+This functionality is a bit experimental so no guarantees are made on how accurate or successful reconstruction is,
+however so far no immediate problems have been noticed.
+
+
+Changed Edit Flow Group Dialog
+------------------------------
+
+Added "global proj. thresh." (global projection threshold) parameter to dialog. Unlike the other parameters that
+only apply to the specific flow group being edited, the global projection threshold is a global, i.e. mission
+wide, parameter.
+
+Normally this value should be left unchanged, but it can be useful when working with complex water surfaces. If
+you have problems with the texture mapping of sloped water surfaces flipping out (like extremely stretched texture)
+then increasing this value can help (max is 0.707). Remember to keep an eye on all water surfaces in the mission
+after changing the value, to make sure everything else still looks as it should.
+
+Mathematical details for the interested: The value is the cosine of the threshold angle between a surface normal
+and the default projection axis, used to calculate/project the UV coordinates of the water, where the projection
+angle as deemed to be too large so an alternative projection axis is used. The default value of 0.005 is the
+cosine of about 89.7 degrees. The closer the angle gets to 90 degrees, the more stretched the texture will get
+until it flips out completely. By lowering the angle (minimum is 45 degrees, which leads to the max cosine val of
+0.707) the stretching is reduced, at the cost of potentially introducing texture seams at some polygon edges, so
+the angle is best only be lowered as little as necessary to get rid of problems.
+
+
+Changed Prop: Script->"Trap Control Flags"
+------------------------------------------
+
+Added "FromSelf" flag for scripts to determine whether self-triggers should be allowed on traps, which T1 and T2,
+for example, disagree on.
+
+
+Changed Prop: Script->"Trap Control Flags" (SS2)
+------------------------------------------------
+
+The property that was originally named "Trap Control Flags" in Shock, is now known as "Trip Control Flags". This
+is to avoid confusion with another Dark property named the same, which was introduced to the engine after Shock.
+The reason the Shock one was renamed is because it was inappropriately named to begin with. All internal names
+and code related to the property refer to it as "Trip Flags".
+
+
+Changed Prop: Weather->"Local Weather"
+--------------------------------------
+
+The "fog" checkbox has been changed to a drop-list to allow fog zone selection. For more information about fog
+zones see the "Fog Zones" section above. The equivalent of an unchecked box is now "Disabled" and for a checked
+box "Global Fog".
+
+An "ambient lighting" parameter has been added to select ambient light zone. See section "Ambient Light Zones"
+above. The default(/original) behavior is "Global Ambient".
+
+
+Changed Prop: Renderer->"Bitmap Worldspace"
+-------------------------------------------
+
+New parameter "Flags" was added, with following flags:
+
+    "Double sided"        - Bitmap is visible from both sides (the backside will appear mirrored).
+    "Flip backside UV"    - Mirror texture coordinates on backside of a "Double sided" bitmap (text would be
+                            readable).
+    "Lit"                 - Apply object lighting to bitmap object.
+    "Face camera (axial)" - Bitmap always faces camera while rotating around the image's Y axis.
+    "No UV Tiling"        - Disable UV tiling (not visible in editor, only in-game).
+
+New parameter "Axial Fade" that enables alpha fade out when the viewer gets closer to being parallel with the axis
+of rotation on a "Face camera (axial)" bitmap. Useful for certain effects, like light beams, to make the bitmap
+invisible when the viewer is at an angle where the flatness and face-the-camera effect would become too jarring.
+When "Axial Fade" is 0 the fade effect is disabled. Increasing the value, up to 1.0, increases the angle (from the
+axis) at which fade out begins.
+
+
+Changed Prop: Renderer->"Anim Light"
+------------------------------------
+
+The property can now be used to animate a dynamic light, instead of a regular immobile anim light. This is done
+by checking the "Dynamic Light" checkbox. Radius, offset and quad lit parameters are ignored for dynamic lights.
+
+When calculating lightmaps for regular anim lights, the default intensity cutoff value is 15. That means that
+surfaces where an anim light's intensity is lower than the cutoff value will be considered as the light not
+reaching them at all. This is an optimization to reduce the amount of dynamic lightmap updates for surfaces
+where the anim light contribution is negligible.
+
+There can however be cases where this cutoff can be more noticeable, and if you're really pedantic about quality
+it's possible to lower this cutoff value for the mission. The command to set the cutoff value is
+"set_animlight_cutoff". It takes a value between 0 and 15. After changing the cutoff the mission has to be relit
+for the change to take effect. Note that the value will be reset to 15 when the mission is New:ed in DromEd, and
+each time a mission is loaded the value will be updated from the loaded mission. Keep in mind that lowering the
+value may impact performance in particular in larger areas or areas with many anim lights. It doesn't hurt to do
+some performance testing after lowering it, and not lower it more than necessary to achieve desired results rather
+than just always set it 0 without reason.
+
+
+Changed Prop: Renderer->"Corona"
+--------------------------------
+
+There are the following new parameters:
+
+    "flags"            - see below
+    "color"            - Color to multiply the corona texture with. White will result in the texture appearing
+                         in its original color (so for example when using a grayscale texture it be used to create
+                         coronas of any color, not requiring one texture for each color).
+    "spot angle scale" - When flag "Use Spotlight Cone" is set, the spotlight cone angles are multiplied with this
+                         factor, allowing adjustment of the visibility angle of the corona.
+
+Following flags can be set:
+
+    "Blend Add"             - Render the corona using additive blending.
+    "Use Spotlight Cone"    - Apply spotlight cone (from the Spotlight property) to the visibility of the corona,
+                              so that it fades out towards the outer cone angle.
+    "Track Moving Object"   - Update the corona position along with the object (used on moving objects).
+    "Detail Attached Proxy" - Use the Anim Light / Spotlight properties of the object that this object is attached
+                              to with a DetailAttachement link. Allows attaching multiple coronas to a single
+                              light object.
+
+
+Changed Prop: Renderer->"Render Type"
+-------------------------------------
+
+Additional "Corona Only" render type. When this is set on an object, the object itself will not be rendered, but
+if it does have Corona set, the corona will still be visible. This render type provides a clean way (no invisible
+polys/objects being rendered) to create corona only objects. The best way to do that is to create a bitmap object,
+using some small dummy bitmap (like "snow") which will not be visible anyway, set the render type to "Corona Only"
+and add the Corona property. The size of the object should be changed to match the corona max size, so that it
+doesn't prematurely disappear from view.
+
+
+Changed Prop: Physics->Misc->"Rope"
+-----------------------------------
+
+Added "Calc Correct Len" checkbox. When enabled the rope can actually be up to the specified rope length ("Desired
+Length"). The standard length calculations are incorrect and make the ropes shorter than what the length parameters
+specify, but the incorrect calculations are maintained as default to ensure that placed ropes in existing missions
+maintain their original lengths.
+
+There's also a config var ("force_correct_rope_lengths") that can globally force all ropes to use the correct length
+calculations, even if "Calc Correct Len" isn't set.
+
+
+Changed Prop: Physics->Model->"Attributes" (OBB)
+------------------------------------------------
+
+The "Is Edge Trigger" checkbox in OBB physics attributes has been changed into "Flags" and some new flags have
+been added. The new flags are:
+
+    "Apply Platform Friction"   - When "Apply Platform Friction" is set, friction will be applied when the player
+                                  is standing on it. For example if it's used on an object based staircase (with an
+                                  OBB shape), the player can stand still on it where he normally would slide down.
+    "Pushing Vator Attachments" - Moving terrain objects with Collision Type None now have a slightly different
+                                  movement handling, to ensure their movement is framerate independent. (Previously
+                                  there were problems with slow moving camvators moving at noticeably different
+                                  speeds depending on framerate.) This doesn't work well if the vator pushes other
+                                  phys objects, like an elevator does. Normally not a problem since the Collision
+                                  Type is None, but in the rare case that a non-colliding vator has physics
+                                  attachments which are supposed to collide, setting this flag could help (at the
+                                  expense of not being entirely framerate independent anymore).
+                                  Ideally all movement should be framerate independent, but for technical reasons a
+                                  small portion of movement is normally affected by framerate.
+
+
+Changed Prop: Door->"Rotating"
+------------------------------
+
+Added new parameter "Lean Blocks Sound %". This is the percentage of "Blocks Sound %" that the door will block
+sound when the player is leaning into it. Default is 0, which is the original behavior of no sound blocking at
+all when leaning into a door. A value of 100 would make the door block the same amount of sound as when not
+leaning into it.
+
+
+Changed Prop: Door->"Translating"
+---------------------------------
+
+See Door->"Rotating".
+
+
+Changed Prop: Receptron Effect "Poke Object"
+--------------------------------------------
+
+The effect has been corrected to work as originally intended, to "Spoof Damage to an object. 'Tickle' it, so it
+takes no damage, but acts as if it had taken damage", by generating a damage event with 0 damage. Previous behavior
+was incorrectly identical to "Damage Object". The "Damage Object" specific parameter values have been removed
+in the process.
+
+
+Changed Prop: SFX->"Particles"
+------------------------------
+
+The particle type "Bitmap disk" has been added. It works like a "Single-colored disk" with enhancements, but
+instead of always using an internal disk image, it can use a user specified bitmap, like "Scaled bitmap" particles
+also do. If bitmap name is left empty then it'll use the same texture as "Single-colored disk" particles, this
+makes it easy to convert "Single-colored disk" particles to "Bitmap disk", to benefit from improvements like for
+example lighting support or proper screen edge clipping. Unlike "Scale bitmap" particles, if the bitmap is animated
+and animation is enabled, each particle will play the animation. Another difference to other particle types is that
+the "Transparency (alpha)" property (and "Distance Alpha") affects them. The following "Bitmap disk" specific
+parameters are available:
+
+    "bm-disk flags"
+    ---------------
+        "Use Lighting"       - Apply object lighting to particle group (only a single lighting value at the
+                               origin is calculated so it may not be suitable for large particle groups).
+        "Fade-in at Birth"   - Fade in alpha from 0 to "alpha" during birth phase.
+        "Grow-in at Birth"   - Grow particle from (near) 0 size to "size of particle" during birth phase.
+        "Random Start Frame" - Randomize start frame per-particle for animated bitmaps, if animation is disabled
+                               this will select a random frame for each particle.
+        "Play Ani Once"      - Play an animated bitmap once and stop on the last frame.
+        "Use RGB Colors"     - Use alternative RGB color param(s) instead of the normal palette based color(s)
+        "Fade RGB->2nd"      - Enable color fading from primary RGB to 2nd (requires "Use RGB Colors")
+        "Fade RGB->2nd->3rd" - Enable color fading from primary RGB to 2nd to 3rd (requires "Use RGB Colors")
+
+    "bm-disk birth time"
+    --------------------
+        Duration of birth phase, if 0 there is no birth phase, make sure that birth time isn't too long so it
+        interferes with "particle fade time".
+
+    "bm-disk rot (vel, offs, rand)"
+    -------------------------------
+        Rotate particle texture. It doesn't rotate the actual particle, only the UV coordinates, so the bitmap's
+        contents should fit a disc-shaped area to avoid the poly edges from becoming apparent. There are three
+        rotation parameters, 'vel' is the rotation speed, 'offs' is how much each particle's start rotation is
+        offset from the previously launched particle, 'rand' is the amount of random rot speed variation to apply.
+
+    "bm-disk ani frame time"
+    ------------------------
+        Controls the rate at which animated bitmaps animate, if the value is 0 then animation is disabled.
+        Be aware that using animated textures may degrade performance because rendering of the particles can
+        be split up a lot when switching textures back and forth, so it may be a good idea to not have an
+        excessive amount of particles in such cases, or only use the effect in areas that aren't performance
+        heavy.
+
+    "bm-disk grow speed"
+    --------------------
+        The speed at which particles grow after the birth phase, defined as percentage of "size of particle".
+
+For easier selection of palette index for particle colors there's a "pcolor_picker" command, which opens a color
+picker dialog that will output a palette index with a color that is the closest match for the picked color.
+
+
+Changed Prop: SFX->"Heat Disks"
+-------------------------------
+
+The option "Z-compare" has been added. When it's enabled, Z-buffer compare will be enabled for heat disks
+rendered in hardware (DX9). If Z-compare is disabled then the disks can appear on top objects or terrain it
+should be behind of. The hardware heat disks now also support the "Z-Bias", "Bitmap Color", "Transparency (alpha)"
+and "Distance Alpha" properties.
+
+Keep in mind that currently for each heat disk object that gets rendered, the engine has to copy the frame buffer
+to a texture, which is an expensive operation. So for performance reasons the effect should be used with care
+and preferably so that not more than one heat disk object is visible on the screen at a time.
+
+If alpha is 0 for a heat disk object then it won't get rendered, so it would be possible to have a "Distance Alpha"
+based setup of several heat disk objects in view (in different location), where you're only close enough to one
+at a time for it's alpha to be larger than 0. That way only one heat disk effect is still rendered.
+
+
+Changed Prop: AI->"Efficiency settings"
+---------------------------------------
+
+There's a new "Flags" parameter, with following flags:
+
+    "Allow Effic. While Visible" - Allow AI to enter/stay in efficiency modes even if it's visible on screen. By
+                                   enabling this option the AI "skating" bug re-activates. This option is required
+                                   on metaproperty M-ZombiePossum in order for zombie resurrection to work.
+                                   The option is effective regardless of whether "Enabled" is checked or not.
+    "Allow Effic. While Combat"  - Allow AI to enter efficiency modes while in combat. By enabling this option the
+                                   bug where AIs can freeze during combat, when the player moves far away, and then
+                                   stay frozen even if the player comes close again, is reactivated. This option is
+                                   required on metaproperty M-ZombiePossum in order for zombie resurrection to work.
+                                   The option is effective regardless of whether "Enabled" is checked or not.
+
+
+Changed Prop: Tweq
+------------------
+
+Tweqs have two new "CurveC" flags:
+
+    "Pendulum(/BounceHi)" - This provides a sinusoidal curve between "low" and "high" limits, like a pendulum. When
+                            it's set the "NoLimit" AnimC flag has no effect. The "rate" is defined as swings per
+                            second, where a swing is from low to high or from high to low, so a rate of 1.0 on a
+                            rotating joint tweq would swing with the same timing as a pendulum in a grandfather
+                            clock. When "Bounce" is set this flag will have a different meaning, it tells the bounce
+                            to occur at the high limit instead of the low limit.
+    "Bounce"              - Essentially identical to "Pendulum" except that one side of the swinging motion will
+                            abruptly change direction like a bounce. By default the bounce occurs at the low limit
+                            but also setting the "Pendulum(/BounceHi)" flag will make it bounce at the high limit
+                            instead (it can't bounce at both high and low).
+
+Tweqs have three new "MiscC" flags:
+
+    "CreatureScale"       - This only affects the "Scale" tweq type, and only on creature objects. This will make
+                            the tweq scale apply to the Creature->"Creature Scale" property instead of the
+                            Shape->"Scale" property.
+    "Use Model 5"         - This only affects the "Models" tweq type, and only when "Random" is also set. Normally
+                            it only randomized between Model 0 through Model 4, where Model 5 is reserved for other
+                            script use. By setting this flag, randomization will include all 6 models.
+    "LinkRel"             - This only affects the "Rotate" tweq type. The object with this enabled needs to be
+                            linked to another object with a "DetailAttachement" link or the tweq does nothing.
+                            The tweq modifies the relative rotation values in the link data, instead of directly
+                            affecting the object's rotation. It can be used to rotate an object around a local
+                            axis, no matter what direction it's facing in the world.
+
+
+Changed Link: "CreatureAttachment"
+----------------------------------
+
+There's a new parameter "Rot Mode" that affects how the joint's rotation affects the attached object's rotation.
+It has the following settings:
+
+    "Default"                   - Normal behavior where the object rotates with the joint if the joint isn't an
+                                  end joint (i.e. the last joint on a limb, like fingers). If the joint is an end
+                                  joint then the object's rotation is not affected by the joint.
+    "Always Use Joint Rotation" - The object always rotates with the joint, no matter which joint.
+    "Never Use Joint Rotation"  - The object never rotates with the joint, no matter which joint.
+
+
+Changed Propagator: "Radius"
+----------------------------
+
+An additional dispersion option, "Quadratic", has been added. The intensity drops off slowly at the beginning
+of the curve (near the origin), then increases gradually and drops off quickly at the end of the radius.
+
+    XXXXXXXX
+           XXXXXXX
+                 XXXX
+                    XXX
+                      XX
+                       XX
+                        XX
+                         XX
+                          X
+                          X
+
+Specifically, it's an X^4 shaped curve. It's very roughly the opposite of "Inverse Quadratic" (which drops off
+intensity quickly at first and then lingers on).
+
+
+New Prop: Renderer->"Alpha Blend Mode"
+--------------------------------------
+
+Select custom alpha blending mode for transparent objects. Most useful is the "Add" blend mode for effects that
+in reality emit light in some form, like for example fire and explosions, to make the effects less dull. The
+blend mode presets correspond to following blend mode pairs (as also used in materials):
+
+    "Normal"                    - [SRC_ALPHA, INV_SRC_ALPHA]
+    "Add"                       - [SRC_ALPHA, ONE]
+    "Multiply Dest"             - [DST_COLOR, ZERO]
+    "Multiply Dest and Add"     - [DST_COLOR, ONE]
+    "Multiply Inv Dest"         - [INV_DST_COLOR, ZERO]
+    "Multiply Inv Dest and Add" - [INV_DST_COLOR, ONE]
+    "Multiply Dest 2X"          - [DST_COLOR, SRC_COLOR]
+
+
+New Prop: Renderer->"Alpha Test Threshold"
+------------------------------------------
+
+Set custom reference value for alpha test operations. Alpha tested pixels that have an alpha value below this
+threshold won't get rendered. Only has an effect if the object has any surfaces that are rendered with alpha
+testing/keying. The value range is 0.0 to 1.0, where 1.0 corresponds to a 255 alpha value.
+
+
+New Prop: Renderer->"Render Order"
+----------------------------------
+
+The default render order of objects is:
+
+    1. Render opaque (that don't have Renderer->"Transparency (alpha)") objects, the order in which they are
+       rendered is undetermined.
+    2. Render transparent objects sorted by viewing distance.
+
+With the "Render Order" property there are a few more steps available for opaque objects, that allows some control
+over which objects are rendered before or after others, which can be used to solve render order problems in
+certain cases. For example if there are transparent decal objects, which are only placed on terrain surfaces, one
+could configure those to be rendered prior to any other objects, thus avoiding alpha sorting problems if such are
+present.
+
+The extended render order is:
+
+     1. Pre Opaque 1
+     2. Pre Opaque 2
+     3. Pre Opaque 3
+     4. Pre Opaque 4
+     5. Render standard opaque objects (which don't have any "Render Order" set)
+     6. Post Opaque 1
+     7. Post Opaque 2
+     8. Post Opaque 3
+     9. Post Opaque 4
+    10. Render transparent objects
+
+The property also has the option to render the object without updating the z-buffer, which could help avoid
+z-fighting or a decal sticking through other objects, if the object is known to be (or should appear) flat against
+a terrain surface.
+
+
+New Prop: Renderer->"Camera Overlay"
+------------------------------------
+
+The property can be assigned to objects that have, or can have, a camera attached to have a custom camera overlay
+rendered while the camera is attached to it. The object could be the player, or for example a scouting orb. If
+the "Camera Overlay" is active it will override any default overlay of the game. In other words if a custom overlay
+is set on scouting orb, it will be used instead of the default overlay effects for it.
+
+An overlay can either be a color tint on the entire screen, like the coloring when the player is under water, or
+a bitmap. For example a black bitmap with two holes "cut out" in the alpha channel to get a viewing-through-
+binoculars effect.
+
+The bitmap is loaded from the "BITMAP\" dir, like with bitmap particles, except it can either be a single texture
+with one image file in "BITMAP\" or it can be an animated bitmap with numbered files in "BITMAP\txt" or "txt16".
+
+In order to deal with different display aspect ratios when using a bitmap overlay, there are the following scale
+modes:
+
+    "Scale to fit screen"      - Bitmap is scaled to cover the entire screen, shapes will look stretched/squished
+                                 depending on if viewed on 16:9 or 4:3.
+    "Fit 4:3, mask w. color"   - The bitmap is treated as a 4:3 image (regardless of its actual dimensions) and
+                                 is scaled to fit screen while maintaining the 4:3 ratio, the empty areas on the
+                                 sides on widescreen displays will be filled using the specified "Mask color".
+    "Fit 4:3, mask w. edge"    - Same as above except that instead of filling the sides with the mask color, it
+                                 uses the edge pixels of the bitmap and stretches them outward.
+    "Crop 16:9, mask w. color" - The bitmap is treated as a 16:9 image, and if the display aspect ratio is
+                                 narrower the image will be cropped, down to 4:3 at most (the bitmap should be
+                                 created so that it looks okay when cropped to 4:3, but giving 16:9 users a little
+                                 extra fluff). In the unlikely event that masking is required, it's done the
+                                 same way as "Fit 4:3, mask w. color".
+    "Crop 16:9, mask w. edge"  - Same as above except masking is done like "Fit 4:3, mask w. edge".
+
+If the bitmap object has multiple frames the animation rate is set with "Ani frame time (ms)" as the duration, in
+milliseconds, per frame. A value of 0 disables animation.
+
+The "Filter color" is multiplied with the bitmap, so if the bitmap is black it has no effect, if it's white it will
+end up using the filter color as is. If no bitmap is used, the filter color is used as the tint color for the entire
+screen.
+
+"Alpha" sets the overall transparency, including any masking areas. Setting alpha to 0 will skip overlay drawing
+and can be used if you want to disable a native overlay without wasting any rendering time.
+
+
+New Prop: Renderer->"Light-based transparency"
+----------------------------------------------
+
+This property can be set on AI objects and uses the AI's visibility value to continually update the
+Renderer->"Transparency (alpha)" on the object, so that they become more or less transparent depending on how
+much light they receive. Whether they become more transparent in light or less transparent can be controlled
+by setting the "Light level" parameters accordingly.
+
+
+New Prop: Renderer->"Force Static Shadow"
+-----------------------------------------
+
+When this property is set on objects that are NOT immobile (Object System->Immobile), they will cast shadows
+on lightmaps anyway (when doing objcast lighting). This can be useful for example so symmetrical rotating
+machinery can cast shadows.
+
+
+New Prop: Renderer->"Distance Alpha"
+------------------------------------
+
+Distance based object alpha/transparency. This is used to make object transparency change, based on distance from
+the viewer, to either become more or less transparent when the viewer moves away. The available parameters are:
+
+    "Near Alpha"    - Alpha value to use when viewer is at a distance of "Near Distance" or closer.
+    "Far Alpha"     - Alpha value to use when viewer is at a distance of "Far Distance" or further away.
+    "Near Distance" - Distance from object where alpha will be "Near Alpha", must not be larger than "Far Distance".
+    "Far Distance"  - Distance from object where alpha will be "Far Alpha"
+    "Falloff Type"  - Controls the curve that the alpha will fade based on distance:
+                          "Linear"           - Changes at a constant rate.
+                          "Smoother at Near" - Levels out as viewer gets closer.
+                          "Smoother at Far"  - Levels out as viewer moves away.
+    "Anim Light"    - Optional concrete object id of an object with the "Anim Light" property, where the brightness
+                      of the animated light is used to control alpha. This is useful when a bitmap object is used
+                      for light cone effects so that the light cone animates along with the light.
+                      It can also be set to "-1" to let it use the object connected through a "DetailAttachement"
+                      link as the anim light object. Especially useful when creating archetypes of anim light
+                      objects that have linked light cone effects.
+
+In order for this property to have any effect, the object also has to have the "Transparency (alpha)" property set.
+The Distance Alpha alpha value is multiplied with the alpha from the Transparency property.
+
+
+New Prop: Renderer->"Bitmap Color"
+----------------------------------
+
+Optional color to multiply bitmap objects with. Especially useful when used in combination with grayscale bitmaps,
+allowing a single bitmap to be used to produce bitmap objects of any color.
+
+
+New Prop: Renderer->"Never Block Coronas"
+-----------------------------------------
+
+When enhanced corona tracing is enabled (through config var "enhanced_corona_trace"), corona line-of-sight tests
+are done against objects, so that coronas don't appear through them. There may however be instances where you
+want to ensure that an object never obstructs coronas. Setting this property (with a checked/TRUE value) will
+prevent the object from blocking coronas, even when "enhanced_corona_trace" is enabled.
+
+
+New Prop: Renderer->"Face Strings"
+----------------------------------
+
+Strings table to look for face strings on this object. This has a higher priority than the global face strings
+table so that mods and FMs can easily add their own AIs without having to worry about clobbering face strings for
+other AIs.
+
+
+New Prop: Renderer->"Dynamic Light Radius"
+------------------------------------------
+
+The default radius for Dynamic Light is 10, this property gives the ability to set a non-standard radius with a
+value between 4 and 30. Any value outside that range will be clamped to ensure that the radius stays within the
+range. Don't forget that dynamic lights do not cast shadows on terrain and will shine through walls, so increasing
+the radius should done with a bit of care and performance testing.
+
+
+New Prop: Door->"Static Light Pos"
+----------------------------------
+
+When enabled, the lighting calculations for the door will use the door's closed position to find which lights are
+reaching the door. It's a hack/workaround to avoid lights instantly flipping on or off when a door opens/closes.
+Especially noticeable with sliding doors in SS2, where the lights often get obstructed by the wall as the door
+slides into it and the door suddenly turns nearly black, or vice versa.
+
+
+New Prop: Creature->"Creature Scale"
+------------------------------------
+
+Scale a creature object, a value of 1.0 means original size. Physics models are not scaled in size, but their
+position is adjusted correctly. Keep in mind that reducing the size of an AI will not magically allow it to
+move through smaller doors/openings, because pathfinding can't support it.
+
+
+New Prop: Creature->"Disable Head Track"
+----------------------------------------
+
+Disable head tracking for a creature object.
+
+
+New Prop: Inventory->"Block Frob?" (T2)
+---------------------------------------
+
+Same as the SS2 counterpart, made available to T2. Allows objects, like windows, to block frobbing through them.
+
+
+New Prop: Difficulty->"Remove Properties"
+-----------------------------------------
+
+Similar to the "Destroy" property, but instead of destroying the object it removes one or more properties from
+it. It has two difficulty sets, the alternative set can be used by prefixing a property name with a "!". The
+property names are the internal names, which can be listed to file (proplist.txt) with the "dump_props" command.
+When specifying several properties they must be separated by commas and no spaces in between.
+
+Ex:
+    quest var values      0, 1
+    alt quest var values  2, 3, 4, 5
+    Properties            PickCfg,!KeyDst
+
+    Will remove the PickCfg property on difficulty levels 0 and 1, and will remove the KeyDst property on 2 - 5.
+
+
+New Prop: Room->"Render Options"
+--------------------------------
+
+Render related settings for room. Works like the Weather->"Local Weather" property in that it requires updating
+the worldrep (either by re-portalizing or re-compiling rooms) for changes to take effect.
+
+    "Flags"    - "See-through" - Marks cells in the room as see-through (i.e. transparent). This can be used with
+                                 alpha keyed terrain textures to render a contiguous block of cells with transparent
+                                 walls. This is an experimental feature which may or may not work properly. Use
+                                 with care as it essentially flood-fills the worldrep to determine the contiguous
+                                 block of cells. It's only meant to be used on an isolated, smaller, portion of
+                                 a mission which the player can teleport in and out of.
+    "Env Zone" - Environmap map zone to assign to the cells in the room. This can be a number from 0 to 63 and the
+                 number corresponds to the zone numbers in Mission Variables->"Environment Maps". Zone 0 is the
+                 global/default zone, which is assigned to cells by default. See the Mission Variables->"Environment
+                 Maps" section below.
+
+
+New Prop: Editor->"Design Note" (SS2)
+-------------------------------------
+
+Same as the T2 counterpart. Note that custom OSMs in SS2 use another property for user script parameters, those
+will NOT use Design Note unless they are updated.
+
+
+New Prop: Editor->"Editor Comments"
+-----------------------------------
+
+This property provides what "Design Note" was originally intended for, a property where mission authors can put
+notes about an object. The comments can include line breaks. This property is only available in DromEd and not
+in the game exe.
+
+
+New Prop: Shape->"Model LOD"
+----------------------------
+
+This property provides simple level-of-detail functionality, as a tool to help improve performance on missions that
+have a lot of high(er)-poly objects in view. "High" is defined by standards of the dark engine and not by modern
+standards.
+
+Similar to Tweq->Models, this property modifies the "Model Name" of an object, but based on the current viewing
+distance to the object. Because this changes the "Model Name" just like the tweq, it's unfortunately NOT possible
+to use both Tweq->Models and "Model LOD" on one and the same object.
+
+For a valid LOD property you have to specify at least 2 LOD models (at most 3), or the property remains inactive.
+The "LOD 0 Model" name should normally be the same that's set in "Model Name". LOD 0 is the highest resolution
+model. The distance thresholds at which a LOD level changes can be set in the property as well. "LOD 0->1 Dist" is
+the distance at which LOD 0 switches to LOD 1, and "LOD 1->2 Dist" is the distance that LOD 1 switches to LOD 2,
+if the LOD 2 model has been set.
+
+Note that LOD won't be active in editor viewports, you have to enter game mode to see it in action.
+
+Do NOT use the LOD property for special effects to change a model's appearance based on distance. There are render
+quality user settings that can modify the LOD distances and force lower LODs, so a user can balance quality vs.
+performance, which would break such special effects. The different LODs should be of the same model, just with
+progressively lower polygon counts.
+
+
+New Link: "DetailAttachement"
+-----------------------------
+
+This link type can be used to attach non-physical objects, aka detail objects, to other objects. It more or less
+works just like "ParticleAttachement" links but also allows specifying an offset transform and attaching to
+sub-objects (like for example a door handle). Just like particle attachments, archetypes may contain detail
+attachments. When creating a concrete from such an archetype, the attached objects will automatically be created
+and linked to, and when the object is deleted the attached objects are deleted along with it, unless the
+"No Auto-Delete" flag has been set.
+
+When using the link to attach to joints, the flag "No Joint Rot" may be used to prevent joint rotation from
+affecting the attached object. For example if a lantern is attached in hanging orientation, it will remain in that
+orientation no matter what direction the hand is pointing.
+
+The command "dattach_link" can be used to create or update a DetailAttachement link between two (concrete) objects.
+The relative pos/rot of the created/updated link is automatically calculated so that the current world location of
+the detail object remains unchanged. That allows visually placing and aligning a detail object where you want it,
+and then creating the link with the correct vals.
+
+There's a special type "Transparent Decal" that attaches to an object like the "Object" type, but it's a special
+purpose link type that can be used to attach transparent decal objects to a transparent object. For example if you
+have a blood decal that uses full alpha that you want to place onto a window object, it will most likely cause
+alpha sorting problems (it will be on top of the window from certain view positions and below from others). This
+can be solved by detail attaching the decal to the window with the "Transparent Decal" type. In order for this
+link type to work the decal object must have "Has Refs" set to FALSE/unchecked. Using the "dattach_link" command
+it will automatically add the "Has Refs" property with the correct value.
+
+The "Transparent Decal" link type makes use of two additional parameters "decal plane norm" and "decal plane dist",
+which define the plane (in object space) onto which the decal is placed. For example for the top surface of a
+cube shaped object with dimension 2, the normal would be [0 0 1] and the plane dist 1, the bottom surface would
+be [0 0 -1] and dist 1. When the transparent object is rendered it can then determine if it's behind or in front
+of that plane to know if the decal should be rendered in front of behind. For box/OBB shaped objects like windows
+and doors, you can usually avoid dealing with the plane parameters if you use the "dattach_link" command, it will
+try to automatically determine the plane.
+
+
+New Link: "Script"
+------------------
+
+This link type can be used to assign supplemental scripts to objects beyond those specified in the "Scripts"
+property. It is a special link type that is directionless, meaning that its source and destination objects are
+necessarily the same. Similar to "ScriptParams", there is a text data field, which is where the name of the script
+to be assigned should be placed.
+
+The scripts specified in these links are enumerated after those specified in the property and are only processed
+for objects also possessing the "Scripts" property.
+
+
+New Reaction: "Push MetaProperty"
+---------------------------------
+
+This reaction type works exactly like the "Add MetaProperty" reaction type other than the fact that it will not add
+the metaproperty again if it is already present. This can alleviate some problems with metaproperties being added
+multiple times when this is not intended.
+
+
+Changed Var: Mission Variables->"Dark Mission Description"
+----------------------------------------------------------
+
+Added "Mission Game" parameter for hinting for which game the mission is intended. This is not used internally;
+rather, it is intended as a hint for FM loaders and other software to use for mission identification.
+
+
+Changed Var: Mission Variables->"Rendering Parameters"
+------------------------------------------------------
+
+Replaced "Quad Sunlight" with "Sunlight Mode" for more control. It has the following options (which like
+"Quad Sunlight" only have any effect when Objcast lighting is enabled):
+
+    "Single Unshadowed"        - single sample with no object shadows (corresponds to "Quad Sunlight" unchecked)
+    "Quad + Objcast Shadows"   - quad-lit with object shadows (corresponds to "Quad Sunlight" checked)
+    "Quad Unshadowed"          - quad-lit with no object shadows
+    "Single + Objcast Shadows" - single sample with object shadows
+
+Added Ambient Light Zone light levels and AI Vis Bias. See "Ambient Light Zones" section above.
+
+Added "Motion DB Res" parameter for specifying a custom per-mission motion database name.
+
+
+Changed Var: Mission Variables->"NewSky:Stars"
+----------------------------------------------
+
+Added "Global Transparency" parameter which can be used to adjust the overall star visibility.
+
+Added "Star Orientation" parameter to specify the angle (about the Z axis) that the stars should be oriented.
+
+
+New Var: Mission Variables->"Fog Zones"
+---------------------------------------
+
+See "Fog Zones" section above.
+
+
+New Var: Mission Variables->"Environment Maps"
+----------------------------------------------
+
+Mission defined environment texture map table. Up to 63 textures can be specified plus one global/default env map.
+These textures, usually cubemaps, can be used by reflection effects in materials (see "Materials" section above
+and the "use_location_envtex" section in the separate material documentation) so that reflections better match the
+environment of the mission or specific location in a mission. The "Global" env map is used as default when a
+location in the mission doesn't have a specific Env Zone set. Assigning an Env Zone to a portion of the mission
+works similar as fog and ambient zones, except it's done through the property Room->"Render Options" (see property
+description above for details).
+
+The specified environment textures should be cubemaps. There are several fallback mechanisms when the game is
+running in DX6 mode, which doesn't support cubemaps. Firstly a material can have conditional configurations so
+that reflection material render passes aren't rendered in DX6. Secondly if it does render reflections in DX6,
+Dark will use the first cubemap face (as described in the "Cubemaps" section above) as a 2D reflection map, or
+the mission author may optionally provide a custom 2D fallback map for the cubemap. The custom 2D fallback
+maps are images with the same filename as the cubemap but placed in a sub-directory named "2d".
+
+For example let's say you've specified a cubemap "tex\envmaps\BigHallway1" in one of the env map slots. When Dark
+runs in DX6 mode it first looks for the image "tex\envmaps\2d\BigHallway1", if that isn't found then it uses the
+first face from original cubemap.
+
+The texture for an env zone can be replaced by a script using SetEnvMapZone in the Engine script service.
+
+
+Changed Var: GameSys Variables->"Overload Params" (SS2)
+-------------------------------------------------------
+
+Added "Affect Duration" option that will extend PSI duration (by the value of +2 points) when overloaded.
+
+
+New Var: GameSys Variables->"Misc Dark Settings"
+------------------------------------------------
+
+This is a new gamesys var/parameter to control misc engine behavior.
+
+    * "Custom MetaProp action targets"
+
+      The receptron actions "Add MetaProperty" and "Remove MetaProperty" normally ignore the selected target
+      object and always add the meta property to "Me". Enabling this gamesys option will make the actions
+      use the actual selected target object.
+
+
+New QVar: "DISABLE_EYE_ZOOM" (T2)
+---------------------------------
+
+When this quest var is set to non-zero, the player eye-zoom function is disabled.
+
+
+New QVar: "HIDE_UI_ELEMENTS" (T2)
+---------------------------------
+
+This quest var is a bit mask to hide UI elements during gameplay. For example when switching the camera over to
+another entity and not wanting the player's UI elements to be visible. It only affects the visibility of the
+elements and not input interaction/control, so use with care when hiding current item and weapon. Do NOT use this
+as a user option to disable UI. There are config vars that are appropriate for that.
+
+When the qvar doesn't exist or is 0, all UI items are visible as normal. Following bits are used:
+
+    Bit  Element
+    ---  -------
+    0    Light gem
+    1    Health bar
+    2    Air bar
+    3    Current weapon
+    4    Current item
+    16   Script based HUD elements by IDarkOverlayHandler::DrawOverlay (only set if you know what you're doing)
+    17   Script based HUD elements by IDarkOverlayHandler::DrawTOverlay (only set if you know what you're doing)
+
+
+For example if "HIDE_UI_ELEMENTS" has a decimal value of 31, bits 0 to 4 will be set to 1 which means all regular
+UI elements will hidden. A value of 1 would only hide the light gem. A value of 6 would hide only the health and
+air bars.
+
+When wanting to hide all regular player related UI elements it's recommended to set the qvar value to 255. This
+would make the mission a bit more future proof in the hypothetical case that any additional UI elements get added.

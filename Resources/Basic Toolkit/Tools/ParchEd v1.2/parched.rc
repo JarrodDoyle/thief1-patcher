@@ -1,0 +1,157 @@
+/******************************************************************************
+ *    parched.rc
+ *
+ *    This file is part of DarkUtils/ParchEd
+ *    Copyright (C) 2004 Tom N Harris <telliamed@whoopdedo.cjb.net>
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 2 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program; if not, write to the Free Software
+ *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ *****************************************************************************/
+#ifndef WORKSHOP_INVOKED
+#include "windows.h"
+#endif
+#include "resources.h"
+
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif
+
+ID_APP MENU
+BEGIN
+	POPUP "&File"
+	BEGIN
+		MENUITEM "&New Text", IDM_NEWTEXT
+		MENUITEM "&Open Text\tCtrl+O", IDM_OPENTEXT
+		MENUITEM "&Save Text\tCtrl+S", IDM_SAVETEXT
+		MENUITEM "&Open Art", IDM_OPENART
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit\tAlt+F4", IDM_EXIT
+	END
+	POPUP "&Edit"
+	BEGIN
+		MENUITEM "&Undo\tCtrl+Z", IDM_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "Cu&t\tCtrl+X", IDM_CUT
+		MENUITEM "&Copy\tCtrl+C", IDM_COPY
+		MENUITEM "&Paste\tCtrl+V", IDM_PASTE
+	END
+	POPUP "&Page"
+	BEGIN
+		MENUITEM "Add Page", IDM_NEWPAGE
+		MENUITEM "Delete Page", IDM_REMOVEPAGE
+		MENUITEM "Goto Page\tCtrl+G", IDM_GOTOPAGE
+		MENUITEM "Next Page\tCtrl+N", IDM_NEXTPAGE
+		MENUITEM "Previous Page\tCtrl+P", IDM_PREVPAGE
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "About ParchEd...", IDM_ABOUT
+	END
+END
+
+ID_GETPAGE DIALOG 30, 73, 236, 62
+STYLE WS_BORDER | WS_CAPTION | DS_MODALFRAME | WS_POPUP | DS_3DLOOK
+CAPTION "Goto Page"
+FONT 8, "MS Shell Dlg"
+BEGIN
+	RTEXT		"Page #", -1, 4, 8, 54, 8, SS_SIMPLE
+	EDITTEXT	IDT_EDITTEXT, 59, 7, 116, 12, 
+			WS_GROUP | WS_BORDER | WS_TABSTOP | ES_AUTOHSCROLL | ES_NUMBER
+	DEFPUSHBUTTON	"OK", IDOK, 182, 5, 50, 14, WS_GROUP
+	PUSHBUTTON	"Cancel", IDCANCEL, 182, 23, 50, 14
+END
+
+STRINGTABLE
+BEGIN
+	ID_APP		"ParchEd"
+	IDS_INFOTEXT	"ParchEd 1.2\
+Copyright © 2004-2005 Tom N Harris <telliamed@whoopdedo.cjb.net>\
+This is free software; see the source for copying conditions.\
+There is NO warranty; not even for MERCHANTABILITY or FITNESS\
+FOR A PARTICULAR PURPOSE."
+
+	IDS_OPENART	"Select Book Art"
+	IDS_OPENTEXT	"Open Book Text"
+	IDS_SAVETEXT	"Save Book Text"
+
+	IDS_ARTFILTER	"Book Art"
+	IDS_STRFILTER	"Book Text"
+
+	// must begin with '<'
+	IDS_UNTITLED	"<new>"
+
+	IDS_TITLEFORMAT		"ParchEd - %s"
+	IDS_TITLEPAGEFORMAT	"ParchEd - %s (page %d of %d)"
+
+	IDS_ERRORTITLE		"Error"
+	IDS_ERROR_WINDOW	"Windows is being snotty."
+	IDS_ERROR_MEMORY	"Can't allocate buffer."
+	IDS_ERROR_LOADFILE	"Can't load file."
+	IDS_ERROR_SAVEFILE	"Can't save file."
+	IDS_ERROR_GRAPHICS	"Can't create offscreen graphics."
+END
+
+
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#endif
+
+ID_APP ACCELERATORS
+BEGIN
+	"O",	IDM_OPENTEXT, CONTROL, VIRTKEY
+	"S",	IDM_SAVETEXT, CONTROL, VIRTKEY
+	VK_F4,	IDM_EXIT, ALT, VIRTKEY
+	"X",	IDM_EXIT, ALT, VIRTKEY
+	"Z",	IDM_UNDO, CONTROL, VIRTKEY
+	"X",	IDM_CUT, CONTROL, VIRTKEY
+	"C",	IDM_COPY, CONTROL, VIRTKEY
+	"V",	IDM_PASTE, CONTROL, VIRTKEY
+	"G",	IDM_GOTOPAGE, CONTROL, VIRTKEY
+	"N",	IDM_NEXTPAGE, CONTROL, VIRTKEY
+	"P",	IDM_PREVPAGE, CONTROL, VIRTKEY
+	VK_INSERT,	IDM_NEWPAGE, VIRTKEY
+END
+
+1 ICON "app.ico"
+
+1 24	"ParchEd.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION	1,2,0,0
+PRODUCTVERSION	1,2,0,0
+FILEFLAGS	0
+FILEOS		VOS_NT_WINDOWS32
+FILETYPE	VFT_APP
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040904e4"
+		BEGIN
+			VALUE	"CompanyName", "WhoopDedo.org\0"
+			VALUE	"FileDescription", "ParchEd\0"
+			VALUE	"FileVersion", "1.2\0"
+			VALUE	"InternalName", "ParchEd\0"
+			VALUE	"LegalCopyright", "Copyright (C) 2004-2005 Tom N Harris\0"
+			VALUE	"OriginalFilename", "ParchEd.exe\0"
+			VALUE	"ProductName", "DarkUtils\0"
+			VALUE	"ProductVersion", "0.7\0"
+		END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE	"Translation", 1033, 1252
+	END
+END

@@ -1,0 +1,15 @@
+
+global Discover 0
+torso  Biped
+
+schema Recoil 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113520     0  500
+
+schema Recoil 0, Direction 8
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BZ113550     0  500

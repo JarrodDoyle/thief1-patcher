@@ -1,0 +1,125 @@
+<html>
+
+<title>Mission-Specific Resources</title>
+MAHK 7/27/98<br>
+<h1>Mission-Specific Data Resources</h1>
+Here's stuff you need to know as an artist or designer to get various
+mission-specific data mojo going in dark.  
+
+<h2>Setting Up Your Level</h2> 
+The <em>Mission Parameters</em> dialog will have an entry called
+<em>Dark Mission Description</em>.  Before you can have any
+mission-specific data you need to set these parameters correctly:
+<ul>
+<li><em>Mission Number</em> should be your integer mission number.
+<li><em>Mission Pathname</em> should be an 8-character pathname.  It
+is the directory where your mission specific art and text will live.  
+It is generally a subdir under <tt>art\finals\intrface</tt>, but it
+could be other places as well. 
+</ul>
+
+<h2>Mission Goals</h2>
+A mission can have any number of goals.  They are numbered, starting
+with 0.  Goals will appear on the various goal displays in numerical
+order.  
+
+<h3>Quest Variables</h3>
+For each goal in your mission, the following mission quest variables
+must be defined:  
+<ul>
+<li><tt>GOAL_STATE_</tt><em>N</em>
+    <ul>
+    <li> 0 = Incomplete
+    <li> 1 = Complete 
+    <li> 2 = Inactive 
+    <li> 3 = Failed 
+    </ul>
+<li><tt>GOAL_VISIBLE_</tt><em>N</em>: Whether this goal is displayed on the
+objectives screen and other places.  
+</ul>
+
+To create a mission quest variable, use the command
+<tt>quest_create_mis </tt><em>variable</em><tt>,</tt><em>value</em>.
+Goal quest variables <em>must</em> be numbered consecutively starting
+at zero.  If you skip a number, then later numbers will be ignored.
+
+<h3>Text Strings</h3>
+The file <tt>art\finals\</tt><em>pathname</em><tt>\goals.str</tt> contains
+the text for all the goals.  Each goal has two descriptions, a short
+game description that is seen during the game, and a longer fiction
+description that is seen in the briefing summary.  
+
+Here's a sample string file: 
+<pre>
+// Goal #0
+fiction_0: "You hate the guy.  You must kill him"  // fiction description 
+text_0: "Kill the Guy"  // short description 
+
+// goal #1
+fiction_1: "You must complete the ritual of self-sacrifice, which can only be performed by drowning in the pool." 
+text_1: "Drown to Death" 
+</pre>
+
+<h2>Maps</h2>
+
+
+<h3>Setting up your page range.</h3>
+Two mission quest variables control the range of automap
+page numbers.  They are <tt>MAP_MIN_PAGE</tt> and
+<tt>MAP_MAX_PAGE</tt>.  The page range is inclusive.  You can change
+these variables on the fly to hide or reveal map pages. 
+
+<h3>Art Needs</h3>
+
+Each page has a piece of "background art" and a number of "decals."  Each room the the
+room database specifies which decal it uses, and on which page, according to its
+"automap" property.  When the automap is drawn, the decal that
+represents the player's current room is pasted onto the automap.  
+
+<h4>Backgrounds</h4> 
+<ul>
+<li> 
+The background art must fit inside the "automap
+frame" found in <tt>art\finals\intrface\map.pcx</tt> 
+<li>
+Put the background art for each page in 
+<tt>art\finals\intrface\</tt><em>pathname</em><tt>\pageNNN.pcx</tt>,
+where <tt>NNN</tt> is the page number, padded with
+zeroes  (e.g. <tt>001</tt>, <tt>002</tt>, etc.). 
+</ul>
+
+<h4>Decals</h4> 
+
+Artists should take the "background art" and mark it up with all the
+decals you want to exist.  
+<ul>
+<li>
+It's ok to put them in the same file, or in multiple files.  
+<li>Pink-box the decals and put them in
+<tt>art\src\</tt><em>pathname</em>.  
+<li>You may discover you need multiple files per map page in order to keep
+your pink-boxes from overlapping.  
+<li>Name the decal files <tt>pNNNrX.pcx</tt> where <tt>NNN</tt> is the
+page number and <tt>X</tt> is a letter of the alphabet, starting with
+"A" (e.g. p001ra.pcx, p001rb.pcx, etc. ).  
+<li>For each page, run:<br><tt>makerect pNNNra.pcx pNNNrb.pcx</tt>
+... <tt>pNNNrc.pcx</tt> <br>
+This will create the file "pNNNra.bin".  Copy it to
+<tt>art\finals\</tt><em>pathname</em>.
+<li>For each page, run:<br><tt>cutout pNNNra.pcx pNNNrb.pcx</tt>
+... <tt>pNNNrc.pcx</tt> <br>
+This will create several "pNNNrXXX.pcx" files.  Copy them to <tt>art\finals\</tt><em>pathname</em>.
+</ul>
+
+<h4>Properties</h4>
+
+In the mission, set the <em>automap</em> property for the rooms that want
+decals.  The <em>location</em> should specify the decal number.
+Decals are ordered primarily by which decal file they come from.
+Within a file, decals are ordered according to the top-left corner of
+their bounding boxes. 
+
+
+</html>
+
+

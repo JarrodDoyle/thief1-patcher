@@ -1,0 +1,127 @@
+
+global Apebeast 0
+torso  Biped
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213000     4  500
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BA211030     0  500
+motion BA211031     0  200
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BA211010     0  0
+motion BA211011     0  500
+
+schema Locomote 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213261     0  500
+
+schema Locomote 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213260     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213263     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213253     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213252     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA213262     0  500
+
+schema Discover 0, Thwarted 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA214730     0  500
+
+schema Discover 0, Challenge 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA214731     0  500
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BA211000     4  500
+motion BH111210     6  500
+motion BH111211     6  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BA211001     4  500
+motion BA211002     4  500
+motion BA211003     4  500
+motion BA211004     4  500
+
+schema Search 0, Peek 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112024     0  500
+
+schema Search 0, Peek 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112025     0  500
+
+schema Discover 0, Recoil 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112026     0  500
+
+schema Search 0, Peek 0, Direction 3, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112027     4  500
+
+schema Search 0, Scan 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112003     0  500
+motion BH112010     0  500
+motion BH112021     0  500
+motion BH112023     0  500
+
+schema Locomote 0, Search 0, WithSword 0
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion apesrc     0  0

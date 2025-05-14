@@ -1,0 +1,72 @@
+
+global Discover 0
+torso  Biped
+
+schema PointOut 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112550     0  500
+
+schema PointOut 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212300     0  500
+
+schema Recoil 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113550     0  500
+
+schema Recoil 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112100     0  500
+
+schema Recoil 0, IsConfined 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112101     0  500
+
+schema Thwarted 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114730     4  500
+
+schema Challenge 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114731     0  500
+
+schema PointOut 0, Direction 5
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114734     0  500
+
+schema PointOut 0, Direction 6
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114733     0  500
+
+schema PointOut 0, Direction 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114735     0  500
+
+schema Salute 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114736     4  500
+motion BH114737     4  500
+motion BH114738     4  500
+motion BH114739     4  500

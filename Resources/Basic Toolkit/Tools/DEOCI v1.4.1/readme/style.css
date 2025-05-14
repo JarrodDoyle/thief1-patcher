@@ -1,0 +1,30 @@
+body{
+	margin-left: 18%;
+	margin-right: 18%;
+	font-family: Tahoma;
+	font-size: 12;
+	
+	color: Black;
+	background-color: #D3D3D3;
+}
+body.help{
+	margin-left: 6%;
+	margin-right: 6%
+}
+a:link{
+	color: Blue;
+}
+a:visited{
+	color: DarkRed;
+}
+a:hover{
+	color: Blue;
+}
+a:active{
+	color: Blue;
+}
+
+/*
+alternate colour names:
+http://www.w3schools.com/cssref/css_colornames.asp
+*/

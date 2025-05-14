@@ -1,0 +1,48 @@
+Required programs:
+Bright183	http://www.thiefmissions.com/lpg/Tools/Bright183.zip
+IrfanView	http://www.irfanview.com
+
+-- Common palette tutorial; the easy way to use Bright183 --
+ - By Nameless Voice, September 2005 -
+
+The Dark Engine has a limit of about 248 different colour palettes which can be in use at any given time. Each unique colour palette that you use, be it for an object texture or for a terrain texture, counts towards this limit.
+In the original Thief, all the textures used the same 256 colour palette (the 'txt' palette), and as such the total number of palettes used was 1 (even though the engine supported far more; this was a limit in place to keep support for Software rendering).
+Thief 2, however, uses a lot of different palettes; as you probably know, each texture family has its own palette, and 'txt16' object textures can use any palette they want.
+When loading object textures from txt16, the Dark Engine will actually check to see if an image uses a palette which has already been loaded, and if it has then the palette will not be loaded twice. In other words, any number of images with identical palettes only count one towards the palette limit.
+
+When creating custom objects and textures, it is easy to use a unique palette for each texture, but if you use a lot of custom resources, you can easily hit this limit.
+As such, you should always try to give a common palette to textures which use similar colours.
+
+
+The best program for converting several images to use a common palette is Bright183. (It can be downloaded here, among other places).
+
+This tutorial will explain how to use Bright to easily repalettise groups of textures, by using some batch files I've written, and a new folder for each texture set.
+(I know that Telliamed has written a GUI front-end for Bright, but I find my method much easier...)
+
+You will need Bright183 and IrfanView.
+
+The first thing you need to do is to copy each of the three code blocks below, paste them into your favourite text editor, and save them as batch (.bat) files. The suggested file name for each one just above it.
+You will need to change the line 'set BrightPath=C:\Games\ShockEd\Bright183' to point to the correct path for your Bright folder.
+You may also need to set the correct path for IrfanView; I think that the location I've specified is the installation default, but you should double-check it.
+Do not include the actual program name (or a final backslash) in either path.
+
+Using these batch files is very simple.
+First, create a new folder, and copy your texture files into it. They should be saved in Bitmap (.bmp) format using valid Thief dimensions (any combinations of 2, 4, 8, 16, 32, 64, 128, or 256). I would always use COPIES, and not the texture originals (in most cases your originals will probably be at higher resolution in another format, anway.)
+Next, copy one of the batch files into the folder; you can determine which one is appropriate as follows:
+
+ - Convert everything in this folder to a common palette.bat -
+This one converts all the bmp files in the current folder to a new common palette, and outputs the new files in .gif format.
+
+ - Convert everything in this folder to a specific palette.bat -
+This one converts all the bmp files in the current folder to the palette used by the image Full.??? (where ??? is either .gif, .pcx, .bmp, or .pcx). Outputs the new files in .gif format. Note that the original palette file is converted to .pcx and renamed to Full.pal; the original format file is not kept, so always use a COPY of a texture as the palette source. If no new 'full.???' file exists, then the previous one (now 'Full.pal') is used.
+ 
+ - Repalettise to Texture Family.bat-
+This one converts all the bmp files in the current folder to a new common palette, and outputs the new files as a texture family (in .pcx format, with a Full.pcx file to display the newly created palette.)
+
+Once you have chosen the correct batch file, simply run it, and the objects will be repalettised.
+If you set an output path in the batch file (using set OutputPath=[path]), the newly created textures will be automatically moved to that location, replacing any existing files.
+
+And that's it. Happy repalettising!
+
+ - NV
+

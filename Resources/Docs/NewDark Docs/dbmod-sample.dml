@@ -1,0 +1,790 @@
+DML1
+
+// a dml file must always start with above DML1 header at the very beginning (no empty space in front) and
+// it must be all uppercase
+
+// this is a single line comment
+
+/*
+   this is a multi-line
+   comment
+*/
+
+
+// This as an optional mission identification block that may only be used in mission dbmods (see the
+// "Mission dbmods" section below first, before reading more about this).
+// If it's specified it must be located first in the file (after the DML1 header).
+// This feature requires T2 v1.22+ / SS2 v2.43+.
+//
+// It's a list of concrete object IDs and their approximate positions in a mission, which together make up
+// what you could call a fingerprint of a certain mission. Since a mission filename is not very unique,
+// there are many FMs that have mission files with the same name. The mission fingerprint allows "linking"
+// a mission dml file to a specific mission, ensuring that the dml is only loaded for that particular mission.
+//
+// The objects are usually 8 to 10 (somewhat) randomly picked objects in a mission, at most 15. Ideally you should
+// pick objects from all over the mission to increase the uniqueness strength of the fingerprint. It's also good
+// to select objects that are least likely to be moved or deleted in any potential updates of the mission, ensuring
+// that a dbmod will be able to work even if a mission has been updated a bit.
+//
+// The object positions specified in the fingerprint are usually rounded to nearest whole unit to make it less
+// cluttered. Fingerprint matching allows for small deviations in object position. As long as an object in the
+// mission is within 3 units of the position specified in the fingerprint, it will be considered a match.
+//
+// A successful fingerprint match is if at least 7 objects match, when specifying 8 or 9 objects. With 10 or
+// more, 3 objects are allowed to fail.
+//
+// Additionally a fingerprint may optionally include, or consist of, one or more rules for mission qvars to
+// equal or not equal certain values, an object has a property or a certain name.
+//
+// As of T2 v1.26+ / SS2 v2.47+ gamesys dbmods may also have fingerprint blocks, however they may only contain
+// the "PROP", "NAME" and "GAM" rules.
+//
+// Syntax:
+//
+//   [!]FINGERPRINT
+//   {
+//      <ObjID> '['<xpos> <ypos> <zpos>']'        // Concrete object id with associated XYZ position (there must
+//                                                // be at least 8 of these, at most 15 and no duplicates).
+//                                                // The editor command "fpos" can be used to output this obj-pos
+//                                                // format to mono (without arg it uses currently selected obj).
+//      ...
+//      QVAR <qvar_name>                          // A mission qvar must exist.
+//      !QVAR <qvar_name>                         // A mission qvar must not exist.
+//      [!]QVAR <qvar_name> ["&" <bitmask>] ("==" | "!=" | ">" | "<" | ">=" | "<=") <value>
+//                                                // A mission qvar must be equal / not equal / greater / less /
+//                                                // greater or equal / less or equal to a value.
+//                                                // Optionally a bitmask value can be applied to the qvar
+//                                                // if only certain qvar bits should be compared to the value.
+//                                                // In the normal QVAR form (no "!" prefix) the qvar must exist.
+//                                                // In the !QVAR form the rule will also match if the qvar doesn't
+//                                                // doesn't exist.
+//                                                // Important: Always have spaces between each arg and operator.
+//      ...
+//
+//   Rules available in T2 v1.26+ / SS2 v2.47+:
+//
+//      PROP <ObjID> <prop_name>                  // An object must have a property (inherited properties are ignored).
+//      !PROP <ObjID> <prop_name>                 // An object must not have a property (inherited properties are ignored).
+//      ...
+//      NAME <ObjID> <name>                       // An object must be named as specified.
+//      !NAME <ObjID> <name>                      // An object must not be named as specified or not exist at all.
+//      ...
+//      GAM <gam_name>                            // The current gamesys must be named as specified.
+//      !GAM <gam_name>                           // The current gamesys must not be named as specified.
+//      ...
+//
+//   Rules available in T2 v1.28+ / SS2 v2.49+:
+//      EXIST <ObjID>                             // This object must exist.
+//      !EXIST <ObjID>                            // This object must not exist.
+//      ...
+//      ARCH <ObjID> <ObjID>                      // This object must have the specified parent archetype.
+//      ARCH <ObjID> <ObjID>                      // This object must not have the specified parent archetype..
+//      ...
+//      SCR <scr_name>                            // The specified script module must be loaded.
+//      !SCR <scr_name>                           // The specified script module must not be loaded.
+//      ...
+//      CFG <cfg_var>                             // The specified configuration variable must be defined.
+//      !CFG <cfg_var>                            // The specified configuration variable must not be defined.
+//      ...
+//   }
+//
+// If prefixed with a '!' (i.e. "!FINGERPRINT") it means that the dml file will only be loaded if the
+// fingerprint does NOT match the current mission. Might be useful for more complex identification
+// to eliminate false positives in rare cases.
+//
+// Although of limited use, there may be several fingerprint blocks specified. If there are several "FINGERPRINT"
+// blocks, only one of them is required to match for the dml to be loaded. However if there are "!FINGERPRINT"
+// blocks, the dml will NOT be loaded if any of them match, even if there's also a matching "FINGERPRINT".
+
+// Typical fingerprint example
+FINGERPRINT
+{
+   426 [123 56 33]
+   451 [5 -20 76]
+   1492 [-378 58 -245]
+   42 [-20 -30 185]
+   1914 [54 -24 87]
+   1305 [66 56 9]
+   1789 [203 59 -63]
+   1998 [-242 -26 407]
+   2000 [-44 38 189]
+   1969 [37 -47 -497]
+}
+
+// Qvar based fingerprint example, the dml will not be loaded if the mission has a mission quest var "Version"
+// that equals 1.
+!FINGERPRINT
+{
+   QVAR "Version" == 1
+}
+
+// The dml will be loaded if the mission has a qvar named "Version", whose value is NOT equal to 1, and it also
+// does NOT have a qvar named "SpecialEdition". Note that the fingerprint will only match if both qvar rules match.
+FINGERPRINT
+{
+   QVAR "Version" != 1
+   !QVAR "SpecialEdition"
+}
+
+// The dml will be loaded if the mission has a matching object position configuration, but it must also NOT have
+// a qvar named "Version", or of it does its value must be less than 2, and a qvar named "MiscFlags" must exist
+// and have the lowest 3 bits set (explaining bit logic/math is not within the scope of this document).
+FINGERPRINT
+{
+   426 [123 56 33]
+   451 [5 -20 76]
+   1492 [-378 58 -245]
+   42 [-20 -30 185]
+   1914 [54 -24 87]
+   1305 [66 56 9]
+   1789 [203 59 -63]
+   1998 [-242 -26 407]
+   !QVAR "Version" < 2
+   QVAR "MiscFlags" & 7 == 7
+}
+
+// The dml will be loaded if the current gamesys is not named "epic.gam", for example if the dbmod is known to be
+// incompatible with a particular gamesys
+!FINGERPRINT
+{
+   GAM "epic.gam"
+}
+
+
+// Include additional OSMs, that may be required by a DML. These must be specified before any regular commands
+// and after any FINGERPRINT blocks (of there any), otherwise there will be syntax error and the dml file will
+// fail to load.
+// The following examples load the OSM modules "CustomScripts1.osm" and "MyScripts.osm".
+// This feature requires T2 v1.22+ / SS2 v2.43+.
+#script "CustomScripts1"
+#script "MyScripts"
+
+// Exclude certain OSMs that are known to cause problems with a DML. The usage semantics are the same as those
+// for "#script"
+#!script "BadScripts"
+
+// Load a custom schema definitions file required by a DML. It can only be used in a gamesys DML, though its
+// other usage semantics are the same as those for "#script" and "#!script"
+#schema "MySchemas"
+
+
+// Mission dbmods
+// --------------
+//
+// A mission dml can only affect concrete objects and mission tag blocks, aka file vars or fvars
+// (see dump_tagblocks commands for which tag blocks belong to mission and which to gamesys).
+//
+// Note that mission dbmods are not loaded for savegames because they have no effect, since concrete object
+// data is retrieved from the savegame and not the mission file.
+//
+// To apply a dbmod to a specific mission file, create a dml named the same as the .mis file with an added
+// .dml extension, for example "miss1.mis.dml". To have a dbmod applied to all missions, create a dml file
+// named "miss_all.dml".
+//
+// The location of the dml files can be:
+//     A) in the same place as the mission files, which is either the base dir (or in "load_path", but base
+//        dir has precedence), or an FM dir if it contains missions (otherwise it will fall back to base dir)
+//     B) in a mod_path:ed (or uber_mod_path:ed) dir
+//
+// All found dml files (that match the loading requirements) will be loaded. That means there can be
+// multiple "layers" of dbmods through the mod path system. The game will first load dml files in the
+// base/FM dir as described above. Then it will load all dml files, with the same name, from each mod path
+// in the expected order, i.e. the highest priority dir (the first one) last so it has the final say.
+//
+// There's a third way for loading specific mission dbmods. If there is a directory named "dbmods\<mission>"
+// in any path from which dbmods can be loaded, then it will load all dml files in that directory, regardless
+// of their name. So for example if the game is loading the mission "miss1.mis", then it will load all dml files
+// in directories named "dbmods\miss1.mis\". There's also a "dbmods\miss_all\" that applies to all missions.
+// Note that it will not load the FM/base dir first for these, all paths will be processed in regular order
+// (still with the highest priority dir loaded last). For that it might be safer to avoid including a dbmods
+// mission dir in an FM. See info about the "dbmods" directory in "Gamesys dbmods" below, for details on file
+// order etc..
+//
+// The loading order of the different dml types is "miss_all" first, then the specific mission files (such
+// as "miss1.mis.dml") and finally files from "dbmods" directories.
+//
+// Example:
+//     We are loading the mission "miss1", and have the following files
+//        <base dir>/miss_all.dml
+//        <base dir>/miss1.mis.dml
+//        <modA dir>/miss_all.dml
+//        <modA dir>/dbmods/miss1.mis/barrelfix.dml
+//        <modB dir>/miss_all.dml
+//        <modB dir>/miss1.mis.dml
+//        <modB dir>/dbmods/miss1.mis/torchfix.dml
+//        <modB dir>/dbmods/miss1.mis/skyfix.dml
+//        <modB dir>/dbmods/miss_all/gen.dml
+//
+//     The mod_path is "modA+modB".
+//
+//     This will result in that it first loads "miss_all" from the base dir, then from the modB dir and finally    
+//     from the modA dir. Then it will load "miss1.mis.dml" from the base dir and after that the modB dir. Finally
+//     the dml files from "dbmods" mission directories will be loaded ("miss_all" first, and then for a specific
+//     mission). The loading order would be:
+//
+//        <base dir>/miss_all.dml
+//        <modB dir>/miss_all.dml
+//        <modA dir>/miss_all.dml
+//        <base dir>/miss1.mis.dml
+//        <modB dir>/miss1.mis.dml
+//        <modB dir>/dbmods/miss_all/gen.dml
+//        <modB dir>/dbmods/miss1.mis/skyfix.dml
+//        <modB dir>/dbmods/miss1.mis/torchfix.dml
+//        <modA dir>/dbmods/miss1.mis/barrelfix.dml
+//
+//
+// Because specific mission dbmods are based only on the name of a mission file, there may be situations where
+// they could get applied to other missions (than what the dbmod was intended for) with the same filename.
+// To solve that problem a mission dbmod can specify mission identification blocks, known as fingerprints.
+// A fingerprint is information that uniquely identifies a particular mission, so the game can determine if the
+// dml file should be loaded or not for the current mission. For further details see the description for the
+// FINGERPRINT block above.
+//
+// Generally you're very strongly advised to include fingerprints in any mission specific dbmods that are intended
+// to be installed in mod paths. Failure to do so has a high chance of getting the dbmods applied to the wrong
+// mission files when the mod is used in combination with (other) FMs.
+//
+// The ability to link a dml file to a specific mission with the fingerprint, and to bundle any number of
+// mission specific dml files into a single directory, using the "dbmods/<mission>" feature, would lend itself
+// to create a consolidated patch bundle type of mod. Dml fixes and tweaks for known problems with various FMs,
+// all nicely rolled into a single and easy to manage mod.
+//
+// As of T2 v1.28+ / SS2 v2.49+ there has been some changes at what phase in the loading process "ObjProp" and
+// "Create" commands are executed for mission dbmods. In previous versions these commands were executed earlier
+// and with some limitations on change notification, which for example prevented full position updates of physical
+// objects. The commands are now executed later and with notifications. Normally you should be able to create
+// dbmods as usual, without having to care about these changes.
+//
+// However, on the off chance that there's some situation that requires the old behavior, there are two new
+// directives that change which load phase "ObjProp" and "Create" commands - (anywhere) below the directives -
+// are executed.
+//
+// Adding a comment line "//@pre" anywhere - between commands - will tell the dml loader to execute those two
+// command types (in addition to the new "ObjName" and "Destroy" commands) during the earlier load phase. Other
+// commands remain unaffected by the directive. It's possible to switch back to normal behavior after a "//@pre"
+// directive by adding "//@post". The default mode is "//@post" when no directives are declared. Note that if you
+// "Create" an object in "@post", you cannot address it with "ObjProp" commands in "@pre" as the object hasn't been
+// created yet. Example:
+//
+//     DML1
+//
+//     // ObjProp/Create commands here execute in post-load, as that's the default
+//     +ObjProp ...
+//     Create ... "Test1"
+//
+//     //@pre
+//     // ObjProp/Create commands will now execute in the earlier load phase, the Link command is unaffected
+//     +ObjProp ...
+//     +ObjProp "Test1" ...  // this an example of what would NOT work because "Test1" is created above during
+//                           // "post", so here in "pre" the object does not exist yet
+//     Create ...
+//     +Link ...
+//
+//     // we can now switch back to normal mode and have remaining ObjProp/Create commands execute in post-load
+//     //@post
+//     Create ...
+//     +ObjProp ...
+
+
+
+// Gamesys dbmods
+// --------------
+//
+// A gamesys dml can only affect abstract objects and gamesys tag blocks (/ fvars).
+//
+// To apply a dbmod to gamesys, it follows similar convention as for mission files. Append .dml extension,
+// for example "dark.gam.dml", or to apply it to all gamesys files call it "gamesys.dml".
+//
+// The location and loading rules are the same as for missions, described above. There is however one
+// additional option for applying gamesys mods. Gamesys dml files may also be placed in a "dbmods" sub-dir
+// in any dir that's in in resname_base or mod_path. All "dbmods" directories will be loaded (or rather all
+// *.dml files in them) in expected order, so that the highest priority dir is loaded last for the final
+// say. All dml files in one dir are loaded in alphabetical/sorted order, that ensures a consistent order
+// each time and also allows you to affect the order by simply renaming the files (in case there are some
+// small conflicts between mods that can be resolved by changing the order). Any sub-directories contained
+// inside a "dbmods" directory will be ignored (for gamesys patches).
+//
+// The "dbmods" directories are processed after all the regular dml files are processed.
+//
+// Example:
+//     <base dir>/gamesys.dml
+//     mymods/dbmods/tougherAI.dml
+//     mymods/dbmods/weakerWeapons.dml
+//     modA/dbmods/cheaperLoot.dml
+//     modA/dbmods/tougherAI.dml
+//
+//     The mod_path is "mymods+modA".
+//
+//     The loaded order will be:
+//         <base dir>/gamesys.dml
+//         modA/dbmods/cheaperLoot.dml
+//         modA/dbmods/tougherAI.dml
+//         mymods/dbmods/tougherAI.dml
+//         mymods/dbmods/weakerWeapons.dml
+
+
+// To get warning and error output, logging can be enabled with config var "dbmod_log 1" (cam.cfg). It
+// will create a text file "dbmod.log" in the game dir.
+
+
+// NOTE: Changing properties should be done with care and proper testing, not all properties may be safe
+//       to change, add or delete.
+
+
+// NOTE for DromEd users
+// ---------------------
+//
+// Dbmods are NOT normally loaded in the editor because any changes they make would be permanent, which
+// defeats their normal purpose. They can be enabled, if you're really really sure you know what you're
+// doing, with the config var "apply_dbmods 1". Conversely dbmods can be disabled in the normal game exe
+// with "apply_dbmods 0". There's also a "dbmod_load" command, which works regardless of apply_dbmods,
+// for manually loading dml files.
+
+
+/*
+   Available commands:
+   -------------------
+
+   TagBlock <object name>
+   {
+      <field name>['['<val_idx>']'] <value>
+      ...
+   }
+
+
+   [+]ObjProp <ObjID or name> <prop name>
+   {
+      <field name>['['<val_idx>']'] <value>
+      ...
+   }
+
+   [+]ObjProp <ObjID or name> <prop name> = <value>
+
+   -ObjProp <ObjID or name> <prop name>
+
+
+   ObjName <ObjID or name> <obj name>
+
+   -ObjName <ObjID or name>
+
+
+   ObjArch <ObjID or name> <archetype ObjID or name>
+
+
+   MetaProp <ObjID or name> <metaprop ObjID or name>
+
+   +MetaProp <ObjID or name> <metaprop ObjID or name>
+
+   ++MetaProp <ObjID or name> <metaprop ObjID or name>
+
+   -MetaProp <ObjID or name> <metaprop ObjID or name>
+
+
+   [+]Link <source ObjID or name> <dest ObjID or name> <link name> [<LinkID>]
+   {
+      <field name>['['<val_idx>']'] <value>
+      ...
+   }
+
+   ++Link <source ObjID or name> <dest ObjID or name> <link name>
+   {
+      ...(same as above)...
+   }
+
+   -Link <source ObjID or name> <dest ObjID or name> <link name> [<LinkID>]
+
+
+   [+]Receptron <ObjID or name> <stim name> [<LinkID>]
+   {
+      Min <value or 'None'>
+      Max <value or 'None'>
+
+      Target <ObjID or name or 'Me' or 'Source'>     // ['name' requires T2 v1.28+ / SS2 v2.49+]
+      Agent <ObjID or name or 'Me' or 'Source'>      // ['name' requires T2 v1.28+ / SS2 v2.49+]
+
+      Effect <effect name>
+      {
+         <field name>['['<val_idx>']'] <value>
+         ...
+      }
+   }
+
+   ++Receptron <ObjID or name> <stim name>
+   {
+      ...(same as above)...
+   }
+
+   -Receptron <ObjID or name> <stim name> [<LinkID>]
+
+
+   [+]StimSource <ObjID or name> <stim name> [<LinkID>]
+   {
+      Intensity <value>
+
+      Propagator <propagator name>
+      {
+         Life
+         {
+            <field name>['['<val_idx>']'] <value>
+            ...
+         }
+
+         Shape
+         {
+            <field name>['['<val_idx>']'] <value>
+            ...
+         }
+      }
+   }
+
+   ++StimSource <ObjID or name> <stim name>
+   {
+      ...(same as above)...
+   }
+
+   -StimSource <ObjID or name> <stim name> [<LinkID>]
+
+
+   [The following commands require T2 v1.27+ / SS2 v2.48+.]
+
+
+   CreateArch <archetype ObjID or name> [<new obj name>]
+   {
+      ...
+      Optionally this block may contain any number of ObjProp commands (see above) which are applied before the
+      new object has fully completed the creation process in the engine. Useful if an object has to be
+	  "pre-loaded" with certain properties before it fully manifests itself.
+	  The ObjProp syntax is however slightly different here, the first <ObjID or name> parameter is omitted.
+      ...
+   }
+
+   CreateArch <archetype ObjID or name> [<new obj name>]
+
+   Create <archetype ObjID or name> [<new obj name>]
+   {
+      ...
+      Optionally this block may contain any number of ObjProp commands (see above) which are applied before the
+      new object has fully completed the creation process in the engine. Useful if an object has to be
+	  "pre-loaded" with certain properties before it fully manifests itself.
+	  The ObjProp syntax is however slightly different here, the first <ObjID or name> parameter is omitted.
+      ...
+   }
+
+   Create <archetype ObjID or name> [<new obj name>]
+
+
+   DestroyArch <archetype ObjID or name>
+
+   DestroyArchAll <archetype ObjID or name>
+
+   Destroy <archetype ObjID or name>
+
+
+   [+]QuestVar <quest var name> <operator> <value>
+
+   -QuestVar <quest var name>
+
+
+   (NOTE: "<field name> <value>" pairs (or "= <value>") must always be on the same line)
+
+
+   In rare cases there are multiple field names with identical names, in order to be able to access subsequent
+   fields by name only, the optional val_idx parameter is available as a zero-based array index. For example to
+   access the second "joint of skeleton" in the MeshAttach property one would specify it as
+       "joint of skeleton"[1]
+   These indices are listed by the dump_tagblocks_full/dump_props_full commands mentioned below.
+
+   Specifying objects by name (in <ObjID or name> fields) is a feature that requires T2 v1.22+ / SS2 v2.43+,
+   and names must be in quotes.
+*/
+
+
+// Modify data fields for the "CELOBJVAR1" tag block.
+// A list of tag blocks can be generated with the "dump_tagblocks_full" console command, which creates a text
+// file named "taglist.txt".
+//
+// It's also possible to export the current values of all tagblocks (in DML style format) with the command
+// "dump_tagblocks_vals", which are saved to "taglist_vals.txt".
+//
+TagBlock "CELOBJVAR1"
+{
+	"Enable Celestial object" 1
+	"Is Alpha Texture" 1
+	"Enable Fog" 1
+	"Texture" pmoonec
+	"Alpha" 0.2
+	"Angular Size" 32.0
+	"Latitude" 60.0
+	"Rotation" 220.0
+	"Color" 1.0, 1.0, 1.0
+}
+
+// another example that sets the song(/music) for a mission
+TagBlock "SONGPARAMS" 1 0
+{
+	"Song Name" mysong01
+}
+
+
+// Modify an existing object property.
+// A list of properties can be generated with the "dump_props_full" console command, which creates a text
+// file named "proplist.txt".
+//
+ObjProp -2877 "PhysAttr"
+{
+	"Mass" 750.0
+	"Density" 2.0
+	"Rotation Axes" X Axis, Y Axis
+}
+
+// If the property datatype is a basic type that has no named fields, like an integer or boolean value,
+// there are two alternatives:
+// 
+ObjProp -174 "MAX_HP"
+{
+	"" 30
+}
+
+ObjProp -174 "MAX_HP" = 30
+
+// To create a property if it doesn't already exist on an object, prefix ObjProp with a +
+
++ObjProp -437 "RenderAlpha" = 1.0
+
+// To delete a property prefix ObjProp with a -
+
+-ObjProp -437 "RenderAlpha"
+
+// The same as above but using object name instead of ID
+
+-ObjProp "CollectorTower" "RenderAlpha"
+
+
+// Set a specialized name for an existing object.
+// 
+ObjName -4643 "MyNamedObj"
+
+// To remove name prefix ObjName with a -
+
+-ObjName -4643
+
+
+// Reparent an existing object or archetype.
+// Reserved archetypes cannot be reparented and objects cannot be reparented to descendents.
+//
+ObjArch -173 -1085
+
+
+// Add a meta property to an object unless the object or one of its archetypes has it
+
+MetaProp -174 -3876
+
+// Add a meta property to an object even if one of its archetypes has it, but not if the object
+// itself already has it
+
++MetaProp -174 -3876
+
+// Add a meta property to an object even even if it's already added to the object (allowing it to get
+// added multiple times)
+
+++MetaProp -174 -3876
+
+// Remove a meta property from an object
+
+-MetaProp -174 -3876
+
+
+// Modify an existing link
+// A list of link types can be generated with the "dump_props"/"dump_props_full" console commands.
+//
+
+// This will modify the first "Lock" link between -79 and -3057 it can find, if there are multiple links
+// there's no guarantee which it will pick.
+Link -79 -3057 "Lock" = 3
+
+// By additionally specifying the LinkID for a specific link you can make sure it picks that particular
+// link. It still requires the other information about link type and source/destination so that it can
+// verify that the the link is the link intended, and not another link that happend to be assigned the
+// same ID (which can happen if another prior dbmod deleted and added links, or a modified gamesys).
+Link -79 -3057 "Lock" 01300000 = 3
+
+// To create a link conditionally if no with the same source and dest already exists, prefix Link with a +
+// If a previously existing link is found, it's modified.
+
+// Like above, this will modify the first existing link it can find if there is one.
++Link -79 -3057 "WeaponOffset"
+{
+	"Weapon Modes" MELEE
+}
+
+// By specifiyng the LinkID it will look for a specific link, and if that isn't found or it doesn't have
+// the expected type or source/destination, it will create a new link.
++Link -79 -3057 "Lock" 01300000 = 3
+
+// To create a new link unconditionally, whether one with the same configuration already exists or not,
+// prefix Link with ++
+// Use with care to not create multiple links for singleton link types.
+
+++Link -79 -3057 "Lock"
+{
+	"" 3
+}
+
+// To delete a link
+
+// Delete the first link, with the specified configuration, it can find.
+-Link -79 -3057 "Lock"
+
+// Delete a specific link, if it matches the configuration.
+-Link -79 -3057 "Lock" 01300000
+
+
+// Receptrons and Stim Sources work the same way as links, see above.
+// A list of receptron effects and propagator types can be generated with the "dump_props"/"dump_props_full"
+// console commands.
+// Here are some basic examples.
+//
+
++Receptron -79 "FireStim"
+{
+	Min 0.2
+	Max None
+
+	Effect "Amplify"
+	{
+		"Multiply by" 1.2
+		"Then add" 0.5
+	}
+}
+
+Receptron -79 "FireStim" 00210001
+{
+	Min 0.2
+	Target -2
+	Agent -257
+}
+
+-Receptron -79 "FireStim" 00210001
+
+
++StimSource -79 "FireStim"
+{
+	Intensity 2.0
+
+	Propagator "Radius"
+	{
+		Life
+		{
+			"Period" 5000
+		}
+
+		Shape
+		{
+			"Radius" 1.0
+		}
+	}
+}
+
+
+// The CreateArch command can be used to create an archetype, when used in a gamesys dbmod.
+// The Create command can be used to create or clone a concrete object when used in a mission dbmod.
+// The syntax is identical for both commands, the difference is what type of dbmod they can be used in
+// and that Create allows the supplied archetype to be either an abstract archetype or another concrete
+// object to clone from.
+//
+
+// This creates an unnamed archetype with "Objects" as its parent archetype.
+// Since the new archetype object is unnamed, there's no way for other dbmod commands to reference it,
+// which makes this form of the command less useful in practice.
+CreateArch "Object"
+
+// This also creates an unnamed archetype but assigns a couple of properties during creation.
+CreateArch "Object"
+{
+	+ObjProp "RenderAlpha" = 1.0
+
+	+ObjProp "PhysAttr"
+	{
+		"Mass" 750.0
+		"Density" 2.0
+		"Rotation Axes" X Axis, Y Axis
+	}
+}
+
+// Create a named archetype
+
+CreateArch "Object" "MyArchetype"
+
+CreateArch "Object" "MyArchetype"
+{
+	+ObjProp "MAX_HP" = 30
+}
+
+// ... which subsequent dbmod commands can modify
++ObjProp "MyArchetype" "RenderAlpha" = 1.0
+
+// Create a metaproperty by using the archetype "MetaProperty"
+CreateArch "MetaProperty" "M-MyMeta"
+
+// Create a stim type by using the archetype "Stimulus"
+CreateArch "Stimulus" "MyStim"
+
+// Create a concrete object
+Create "Marker"
+{
+	+ObjProp "Position"
+	{
+		"Location" 10.0, 20.1, -10.5
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" "MyScript"
+	}
+}
+
+// Clone a concrete object
+Create 35
+{
+	+ObjProp "Position"
+	{
+		"Location" 30.9, 85.4, -4.8
+		"Heading" 4000
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+
+
+// The DestroyArch and DestroyArchAll commands can be used to destroy an archetype, when used in a gamesys dbmod.
+// DestroyArchAll differs from DestroyArch in that it will also destroy all descendents of the specified
+// rather than reparent them to their grandparent.
+// The Destroy command can be used to destroy a concrete object when used in a mission dbmod.
+// The syntax is identical for both commands, the difference is what type of dbmod they can be used in.
+//
+
+// This destroys a named archetype and reparents all immediate descendents.
+DestroyArch "MyArchetype"
+
+// Destroy an archetype and all descendents.
+DestroyArchAll "MyArchetype"
+
+// Destroy a concrete object.
+Destroy "MyObject"
+
+
+// Add or modify a mission quest variable in mission dbmods only.
+// The available operators are "=", "+=", "-=", "*=", and "/=".
+// When adding a new quest variable, only the simple "=" operator is available.
+//
+QuestVar "vault_code" *= 4
+
+// To add and set a new quest variable
+
++QuestVar "goal_target_5" = 517
+
+// To remove a quest variable
+
+-QuestVar "goal_max_diff_3"

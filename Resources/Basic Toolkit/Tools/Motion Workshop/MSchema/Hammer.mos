@@ -1,0 +1,219 @@
+
+global Hammer 0
+torso  Biped
+
+schema Stand 0, MeleeCombat 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413000     4  500
+
+schema MeleeCombat 0, Block 0, WithSword 0
+MType  SwordGenBlock
+TimeScale 0
+XYZScale  0
+motion BH413220     0  500
+
+schema MeleeCombat 0, Block 0, Direction 1, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH413225     0  500
+
+schema MeleeCombat 0, Block 0, Direction 2, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH413228     0  500
+
+schema MeleeCombat 0, Block 0, Direction 5, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH413231     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 6, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH413100     0  500
+motion BH413001     0  500
+motion BH413002     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 0, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH413100     0  500
+motion BH413003     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 5, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH413100     0  500
+motion BH413004     0  500
+
+schema MeleeCombat 0, Attack 0, SpecialAttack 0, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH413100     0  500
+motion BH413005     0  500
+motion BH413oo6     0  500
+
+schema Locomote 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413260     0  500
+
+schema Locomote 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413261     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413265     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413264     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 1.2
+XYZScale  0
+motion BH413265     0  500
+
+schema Locomote 0, LocoUrgent 0, MeleeCombat 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 1.2
+XYZScale  0
+motion BH413265     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 1.2
+XYZScale  0
+motion BH413264     0  500
+
+schema Locomote 0, LocoUrgent 0, MeleeCombat 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 1.2
+XYZScale  0
+motion BH413264     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 4, WithSword 0
+MType  GroundAction
+TimeScale 0.7
+XYZScale  2.9
+motion BH111050     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion BH111050     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111050     0  500
+
+schema Locomote 0, LocoUrgent 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111050     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 3, WithSword 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  2.9
+motion BH411032     0  100
+motion BH411033     0  100
+
+schema Locomote 0, LocoUrgent 0, MeleeCombat 0, Direction 3, WithSword 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  2.9
+motion BH111032     0  100
+motion BH111033     0  100
+
+schema ReceiveWound 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413500     0  500
+
+schema ReceiveWound 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413501     0  500
+
+schema ReceiveWound 0, Direction 7, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413502     0  500
+
+schema ReceiveWound 0, Direction 8, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413503     0  500
+motion BH413504     0  500
+
+schema ReceiveWound 0, SevereWound 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413505     0  500
+motion BH413506     0  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH414150     0  500
+motion BH414151     0  500
+
+schema Locomote 0, WithBow 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111060     0  500
+motion BH111061     0  0
+
+schema Stand 0, WithBow 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BH111005     4  500
+motion BH111210     6  500
+motion BH111211     6  500
+
+schema Stand 0, Wheel 0, WithBow 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+motion BH111005     4  500
+motion BH112102     6  500
+motion BH112103     6  500
+motion BH211232     6  500
+
+schema RangedCombat 0, WithBow 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113101     0  500
+motion BH113102     0  500

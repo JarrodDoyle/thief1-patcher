@@ -1,0 +1,81 @@
+// This is a one-line comment
+
+// Include a header file. A header file is a file with C-style #define and/or #include statements.
+// (sub-path must be specified in order to work)
+#include "mschema/example.h"
+
+
+// Syntax rule notes:
+// []-block means optional params
+// * after a []-block means the optional block can be repeated any number of times
+// ()-block is used to encapsulate several OR (|) rules, where a param can be either or of the listed params
+// FLOAT is a floating point value that must have at least one decimal (e.g. not 0 but 0.0)
+// IDENT is an unquoted string of max 15 chars, it may only contain alphanumeric chars or underscore,
+//       where the first char may not be a number
+
+
+// This creates a database object for the specified number of actors, and must be done first to avoid crashes and other issues.
+// For Thief the normal value is 'all_dark_actors', which is the same as 10. However to generate data compatible with original
+// Thief 1/G the value should be 9.
+// For SS2 the normal value is 'all_shock_actors', which is the same as 5.
+
+actors_declare (all_dark_actors | all_shock_actors | <INT>)
+
+
+// This declares a tag.
+// If 'opt' is specificed then it flags the tag as optional with the float value specifying the weight.
+
+tag <IDENT> [opt <FLOAT>]
+
+
+// This declares a schema.
+// The first IDENT is a label which is discarded by DromEd, but you could use it to easier identify the purpose
+// of a schema when looking at a schema file.
+// ATYPE is the actor type (which works as an index out of the total number of actors declared by 'actors_declare').
+// Below is a list of actor type names (and for the curious their corresponding int values).
+//
+// Thief:
+//   humanoid       (0)
+//   playerLimb     (1)
+//   playerBowLimb  (2)
+//   burrick        (3)
+//   spider         (4)
+//   constantine    (5)
+//   sweel          (6)
+//   rope           (7)
+//   apparition     (8)
+//   robot          (9, Thief 2 addition)
+//
+// SS2:
+//   humanoid       (0)
+//   playerLimb     (1)
+//   droid          (2)
+//   overlord       (3)
+//   arachnid       (4)
+
+schema <IDENT> actor <ATYPE> archetype (<IDENT> | <INT>)
+       [(timewarp | duration | stretch | distance) <FLOAT>]*
+       tags: [<IDENT> [<INT>]]*
+       motions: [<IDENT> [(neck_is_fixed | neck_not_fixed | blend <INT> | blend_default | blend_none | is_turn | is_loco | in_place)]*]*
+
+
+
+// Motion schemas are loaded with the "build_motion_database" command, from the "mschema" directory.
+// There are two types of file extensions supported, ".def" and ".mtg". The "*.def" files are loaded first.
+// Load order is important because "actors_declare" and "tag" declarations have to be done first, before
+// any "schema" declarations. However the "build_motion_database" command can not handle large files so
+// putting everything in a single file isn't possible.
+//
+// For a schema sample you can use the "dump_motion_schemas" command in DromEd.
+// It will generate a dump file ("mschema_dump.txt") with all schema declarations for the currently loaded motion db.
+// As mentioned, a single large file will not work with "build_motion_database", so the dump file has to be split into
+// smaller files, if you want to be able to load them. See the notes below.
+
+// IMPORTANT
+// =========
+// The "build_motion_database" that loads the schema files, can't handle too large files. It will produce nonsensical syntax errors or other parse errors.
+// Keeping each file a bit under 1000 lines seems to work. If there still are errors that don't make sense then try splitting it up into even smaller files.
+// Because "actors_declare" and all "tag" declarations have to be done before schemas, you must put "actors_declare" and "tag" declarations in a single file
+// with a ".def" extension. Then put all "schema" declarations in any number of files with ".mtg" extensions. That will ensure a correct load order.
+//
+// For example "tags.def", "sch1.mtg", "sch2.mtg" etc., or "Tags.def", "Apebeast.mtg" "BipedStands.mtg" etc..

@@ -1,0 +1,1226 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>Building Efficient Levels</title>
+	<meta name="generator" content="OpenOffice.org 1.0.1  (Win32)">
+	<meta name="created" content="20030913;23584800">
+	<meta name="changedby" content="Tom Harris">
+	<meta name="changed" content="20030914;2021938">
+	<style>
+	<!--
+		@page { size: 8.5in 11in; margin-left: 1.5in; margin-right: 0.5in; margin-top: 1in; margin-bottom: 1in; }
+		p { margin-bottom: 0in; line-height: 100%; color: #000000; font-family: "Times New Roman", "Times", serif; font-size: 10pt; so-language: en-US; }
+		p.comment { font-family: "Arial Narrow", "Helvetica Narrow", sans-serif; font-size: 10pt; so-language: en-US; }
+		div.telliamed { float: right; width: 18%; background: #ffffcc; }
+	-->
+	</style>
+</head>
+<body lang="en-US" text="#000000">
+<p style="font-size: 18pt">Building Efficient Levels
+</p>
+<div id="Frame13" class="telliamed">
+	<p class="comment">With annotations by Tom N Harris.</p>
+</div>
+<p style="font-size: 16pt">A Tutorial</p>
+<p><br>
+</p>
+<p>This document attempts to expose you to the intricacies of creating a
+level which <i>renders</i> efficiently, that is, making levels that
+give good frame rate.  The issue of how best to <i>build</i>
+efficiently, minimizing your time spent building it, is a separate
+one, and not considered herein.</p>
+<p><br>
+</p>
+<p>To conduct this tutorial, you will need several things:</p>
+<ul style="margin-left: 0in">
+	<div id="Frame1" class="telliamed">
+		<p class="comment">Any version of Dromed will do.</p>
+	</div>
+	<li><p style="margin-left: 0.25in">A running copy of <b>dromed</b>
+	</p></li>
+	<li><p style="margin-left: 0.25in">This text, either on-line or
+	printed.  I recommend having it online--either run <b>dromed</b> in
+	a window, or use two machines.</p></li>
+	<li><p style="margin-left: 0.25in">The &quot;tutorial&quot; levels,
+	which can be found in <b>r:\prj\cam\levels\opt</b>.  The levels are
+	named <b>t1.cow</b>, <b>t2.cow</b>, <b>t3.cow</b>, etc.  I recommend
+	copying them to your local directory (just copy everything from
+	<b>r:\prj\cam\levels\opt</b>) so that you won't have to type really
+	long filenames.  There may be a config variable you can use to force
+	it to look there, but I don't know what it is.  They eat up a lot of
+	storage, so if you have them on the net, delete them when you're
+	done.</p></li>
+	<div id="Frame2" class="telliamed">
+		<p class="comment">The <b>monolog</b> command supersedes 
+		the use of an extra monitor.</p>
+	</div>
+	<li><p style="margin-left: 0.25in">A monochrome monitor is
+	recommended, but not required.</p></li>
+</ul>
+<p>You will also have to bring the following abilities to the tutorial:</p>
+<ul style="margin-left: 0in">
+	<li><p style="margin-left: 0.25in">You should be an experienced
+	dromed level creator.  This tutorial is not about using the <i>tools</i>,
+	but rather about the unexpected consequences of how the underlying
+	system works.  You should be comfortable with the tools, or else you
+	will gain little from the experience, although you don't actually
+	need to be able to do much.</p></li>
+	<div id="Frame3" class="telliamed">
+		<p class="comment">Alt-8 is <b>show_cell</b> in modern Dromed. 
+		And it does work in both game mode and the editor.</p>
+	</div>
+	<li><p style="margin-left: 0.25in">You need a command that lets you
+	see the underlying world, such as <b>show_cell</b>.  I recommend
+	binding a hotkey to it, so you can toggle it on and off to see
+	what's going on; e.g. <b>bind alt-z show_cell</b>.  Unfortunately,
+	this currently seems to produce a hotkey which only works in the
+	editor--it won't work in game mode.  Alternately, you can just stay
+	in the <b>show_cell </b>mode the entire tutorial.</p></li>
+	<li><p style="margin-left: 0.25in">You need to know how to look at
+	the rendered world, either game mode, or the &quot;solid world&quot;
+	menu selection, or F2 in the editor.</p></li>
+	<div id="Frame4" class="telliamed">
+		<p class="comment">We no longer need dos4gw.exe. Nor does 
+		anyone use Dromed in fullscreen mode.</p>
+	</div>
+	<li><p style="margin-left: 0.25in">You need to know how to
+	portalize ('<b>p</b>') and optimize (<b>optimize</b>).  Remember the
+	following crucial rule for optimize: when you optimize, it creates
+	&quot;optimization hints&quot;, and turns on the &quot;use
+	optimization hints&quot; flag, which is <b>optimize_bsp</b>.  If you
+	want to build a non-optimized level, you must turn off <b>optimize_bsp</b>.
+	 If you load a new level, you still have to turn it off by hand
+	(this is a bug); otherwise you get the optimization hints for the
+	other level, which will be very wrong.  At the moment, running
+	<b>optimize</b> in fullscreen causes problems.  It seems to work
+	fine in a window, but in fullscreen, if you're lucky, it will seem
+	to close, bring up a dialog box warning of a problem; if you select
+	&quot;ignore&quot;, and then bring dromed back up (by clicking on it
+	in the task bar or alt-tabbing to it), then it'll be fine.  On some
+	machines, it may just not work at all in fullscreen.  Also, not that
+	optimizing runs a separate program <b>csgmerge.exe</b> which is
+	included in the release, but you need <b>dos4gw.exe</b> on your path
+	to run it; if you're going to edit on a laptop or a machine at home,
+	you'll have to make sure you have a copy of it (you can find it in
+	<b>n:\bin</b>).</p></li>
+</ul>
+<p><br>
+</p>
+<div id="Frame5" class="telliamed">
+	<p class="comment">The editor has improved. Particularly Dromed2 
+	which is much better at finding efficient splits.</p>
+</div>
+<p>The tutorial works as follows.  In each section, you load a new 
+level.  This document describes the interesting aspects of the level, 
+and you should look around at it as solid-world, normally (to make 
+sure you understand the architecture) and in debug (e.g. <b>show_cell</b>) 
+to reveal the underlying <i>world representation</i> (&quot;worldrep&quot;),
+which is the collection of cells and polygons.  If you have a monochrome,
+you should portalize and look at the cell and polygon counts, and
+<i>understand</i> them.  If you don't understand them, you're not
+really learning the lesson.  I provide the cell and polygon counts in
+case you don't have a monochrome; if they're inconsistent, it's
+probably a typo on my part, although it's also possible that the
+editor has changed since when this tutorial was written, although
+it's unlikely, except for results from running <b>optimize</b>.  
+</p>
+<p>You should feel free to say to yourself &quot;what happens if?&quot; and
+change the level — delete a brush, change it from solid to air,
+etc.  This is especially wise to <i>review</i> behaviors you've
+already explored — e.g. &quot;If I delete this brush, it'll be just
+like that old case, right?&quot;.  On the other hand, if you do too
+much &quot;what if&quot;, you may get ahead of the tutorial...</p>
+<p><br>
+</p>
+<p>Well, you're basically ready to start.  Two important things to remember...
+ One, I'm not going to say over and over &quot;portalize, look at it
+normally, look at it in debug&quot;.  I'll say it one more time (for
+the first level), but it would get really redundant otherwise.  Two,
+if you give up on the tutorial, please jump to the end of this
+document, where I give a few rules of thumbs, and explain what you
+should come away from this tutorial thinking, and what lessons you
+<i>shouldn't</i> learn from this tutorial.</p>
+<p>Many of the early levels are cleverly designed so they don't need
+optimization, just portalization.  Don't worry about this cleverness,
+just trust me on it.  Optimization is <b>always</b> required for
+large levels, no matter how clever you are.</p>
+<p><br>
+</p>
+<div id="Frame6" class="telliamed">
+	<p class="comment">Coplanar poly merging is the default in modern 
+	Dromeds. (We all know the error.) It's not worth turning off the 
+	flags except to see how much worse things would be without it.</p>
+</div>
+<p>The numbers I've reported for <b>optimize</b> are definitely 
+inaccurate in the current skup (PA 1.04).  You should be able to get 
+the same numbers by toggling the commands <b>split_polys</b> and 
+<b>merge_polys</b> so both are on.  This is a little separate system 
+from the optimizer which guarantees correct handling of coplanar polygons, 
+and will probably soon default to on in a future skup.  It also has the
+benefit of removing some excess polygon splitting that occurs sometimes, 
+and that's the main reason you need it to get the <b>optimize</b> numbers.
+</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t1.cow</b></p>
+<p>Load up <b>r:\prj\cam\levels\opt\t1.cow</b>, or just <b>t1.cow</b> if you
+copied it locally.  If you portalize, you will see that we have one
+cell, and six polygons.  The six polygons is hopefully rather
+obvious.  What do we mean it's one cell?  Well, a cell is a convex
+region of space.  Unfortunately, it's somewhat hard to visualize.  To
+start with, we'll keep it simple by using levels which have a single
+floor &amp; ceiling height, so you can just look at the floor plan to
+understand it.  We'll come back to cells in the next level.</p>
+<p>The room is a bit small; anything larger starts to cause polygon splits,
+but that's a lesson for later.  We're mainly concerned about cells
+and portals for now, so ignore it and live with the fact that it's a
+tiny room.</p>
+<p>You can do a <b>show_cell</b> but it won't reveal very much.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t2.cow</b></p>
+<p>2 cells, 12 polygons</p>
+<p>Here we've added a second brush, and now there are two cells.  If you look
+at the floor polygons (especially under <b>show_cell</b>), you can
+see the boundary between the two cells.  One easy way to see what's
+going on is that if the niche was still the same texture as the room,
+the floor could be one big polygon, except it would be concave.  It's
+been split into two to make it convex, and because for now the floor
+represents our floor plan, the fact that the floor has to be two
+polygons means the world has to be two cells.</p>
+<p>Note that the 12 polygons are not 6 for each cell, but rather 5 for each
+cell, plus 2 at the boundary between the two.  If both brushes were
+equally wide, there'd be 10 polygons; if the niche were even wider,
+than the extra 2 would be in the other cell, and if the two brushes
+&quot;dog-legged&quot;, there'd be one in each.  But I can't be
+bothered to make sample levels to show you those, and counting
+polygons isn't really that important, I'm trying to focus on cells.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t3.cow</b></p>
+<p>3 cells, 22 polygons</p>
+<p>Now, just because there are two brushes doesn't mean we have to have two
+cells.  Here I've done something of a hack to create two niches with
+only one brush, hence three cells from two brushes.  Note that if you
+look at the top down view in the editor, it looks like there might be
+<b>five</b> cells, but in actuality, it only takes <b>three</b> to
+make it convex.  In general, <b>optimize</b> is in charge of trying
+to actually achieve the minimum number, but for these simple levels,
+plain old portalization achieves it.</p>
+<p>Because of the order of the brushes in time, there's checkerboard on the
+floor and ceiling.  This is intentional to make it clear how the
+brushes work.  If there's no checkerboard on the floor and ceiling
+(by fixing the timing), it'll be 3 cells and 18 polygons. 
+</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t4.cow</b></p>
+<p>3 cells, 16 polygons</p>
+<p>A rule of thumb I've talked about before is that niches are &quot;cheaper&quot;
+than protrusions.  Here's a simple pillar.  Look at the floor, and
+see how it's been made convex.  Note that if it were textured
+differently, it would look more like two niches on the same side of
+the room.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t5.cow</b></p>
+<p>3 cells, 16 polygons</p>
+<p>Just to prove a point, here I've used two air brushes to build niches so
+the room looks basically the same as <b>t4.cow</b>, but now they
+really are niches.  Lo and behold, the cell and polygon counts are
+identical.  This is an important rule about levels — it doesn't
+matter how you build them, it just matters what the results are (this
+is only technically true if you <b>optimize</b>, and even then
+doesn't always quite work out).  I didn't actually bother getting the
+textures perfect, and the room is a little bigger so the texture on
+the floor comes out differently, but you get the idea.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t6.cow</b></p>
+<p>3 cells, 16 polygons</p>
+<p>Here's the pillar again.  Up until now, I've been careful to make sure
+brushes always stuck through each other.  This time, the pillar brush
+is flush with the wall, <b>with</b> grid snapping on, so it is really
+well and truly flush.  And the results, as you can see, are the same.</p>
+<p>But what happens if we mess up a little?</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t7.cow</b></p>
+<p>4 cells, 20 polygons</p>
+<p>I turned off grid snapping and moved the brush a tiny bit forward. 
+That added a cell behind the pillar, and added quite a few polygons. 
+Oops.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t8.cow</b></p>
+<p>4 cells, 19 polygons</p>
+<p>Now there's a bit of space above the pillar.  Similar effect.  (Don't
+forget to <b>show_cell</b> it.)</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t9.cow</b></p>
+<p>5 cells, 22 polygons</p>
+<p>Now there's space above and below the pillar.  In fact, rather than make
+it look like an error, it's now just a protrusion on the wall.  I
+pushed it back through the wall so you can try making it &quot;fill
+air&quot; to compare niches versus protrusions.  This is the simplest
+case of  the difference.  Making it a niche produces 2 cells and 14
+polygons.  Why's that?  Well, the cells are obvious enough (I hope). 
+Why the polygon count difference?  If you look at <b>show_cell</b>
+with the niche, you can imagine &quot;pulling the niche inside out&quot;
+so it pokes into the room, so there'd still be only 14 polygons.  In
+fact, in a Quake level, this is 14 polygons either way.  But if you
+<b>show_cell</b> with the brush as a solid, you can see why it
+doesn't work that way.  The room gets split up into 5 cells, and the
+polygons have to get split up into the cells as well.  The floor ends
+being split into 4 polygons, as does the ceiling.  (Quake does a
+similar operation to produce cell-like things, but doesn't always
+have to split polygons into them.)</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t10.cow</b></p>
+<p>2 cells, 12 polygons</p>
+<p>We're back to a plain old pillar.  This used to be <b>t6.cow</b>, which was
+3 cells and 16 polygons. We've turned the pillar at an angle.  That
+saves one polygon on the pillar itself (there's only two exposed
+surfaces); the other polygon savings come from the cell savings. 
+Look at the floor and see how it's been split.  Probably not how you
+or I would have done it; I'll come back to this in the advanced
+topics section.  Nonetheless, it works.</p>
+<p>Notice that so far, the rule of thumb is &quot;there are as many cells as
+there are exposed pillar surfaces&quot;.  This is true to a certain
+extent, but we'll come back to it in a bit.</p>
+<p>First, let's screw up this brush a little bit.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t11.cow</b></p>
+<p>4 cells, 20 polygons</p>
+<p>Now we're back to being screwed up, much like when the pillar was out
+from the wall.  There are two little niches behind the pillar, now,
+which creates two extra cells, and massively increases poly count.</p>
+<p style="line-height: 110%">To sum up this diagonal brush thing:<br>
+<span style="margin-left: 0.25in; line-height: 110%"> empty room:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 polys<br></span>
+<span style="margin-left: 0.25in; line-height: 110%"> diag pillar:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12 polys<br></span>
+<span style="margin-left: 0.25in; line-height: 110%"> bad diag pillar:&nbsp;&nbsp;20 polys</span></p>
+<p>Ok, back to squared off pillars.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t12.cow</b></p>
+<p>4 cells, 22 polygons</p>
+<div id="Frame7" class="telliamed">
+	<p class="comment">Dromed is now able to optimize this down to 
+	3 cells.  (Someone made Sean eat his words.)</p>
+</div>
+<p>Now there are two pillars on opposite sides of the room.  Remember 
+how one pillar created two niches?  Well, two pillars create four niches.  
+However, for obscure reasons, that's not how <b>dromed</b> ends up 
+creating it.  We get 4 cells, not 5.  If you look at the cells, you can 
+see that it found it could combine some of them.  In fact, you could 
+build this space with only 3 cells; unfortunately, even <b>optimize</b> 
+doesn't find this way.
+</p>
+<p>If we add corresponding beams to the floor and ceiling, we get the next
+level.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t13.cow</b></p>
+<p>4 cells, 25 polygons</p>
+<p>Now I've put beams on the floor and the ceiling, and you can see pretty
+clearly how there could be three cells (I hope).  In fact, if you
+<b>optimize</b> this level, it should in fact decide that this is the
+smart way to split the level, and you'll get 3 cells and 22 polygons.
+ Which is not bad compared to 3 cells and 16 polygons from the
+original one pillar!</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t14.cow</b></p>
+<p>10 cells, 55 polygons</p>
+<p>Ok, here's the same basic idea, made to look like a real level.  If you
+<b>show_cells</b>, you can see how it split things up.  It's really
+important that the wall and ceiling beams are all the same width, so
+they line up, and allow the space to be split up differently.</p>
+<p><b>optimize</b> splits this into 7 cells, 48 polygons, and figures out the smart
+splitting.</p>
+<p>Now, suppose we delete the ceiling bits, and misalign the pillars...</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t15.cow</b></p>
+<p>12 cells, 61 polygons</p>
+<p>Now, even though the ceiling beams are gone, we have more polygons and
+cells.  That's because the niches don't line up anymore, and because
+it exposed a bug in the level.  Two of the pillars aren't grid
+snapped!  But if you look at them all, they all have round numbers
+for their sizes and locations.  Feel free to find them and fix them,
+which will bring it down to 10 cells and 55 polygons, the same as
+<b>t14.cow</b>, but with less visible geometry.  In other words, by
+making the pillars line up on each side of the room, we were able to
+add the ceiling beams for free.</p>
+<p>Let's return to smaller levels, and later we'll look at big stuff again.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t16.cow</b></p>
+<p>3 cells, 17 polygons</p>
+<p>Ok, we're back to a simple room with two pillars.  This time, they're
+both diagonal.  Now, it splits into 3 cells, which isn't bad--it's
+better than when we had two squared off pillars.  In fact, recall
+that two squared off pillars used 4 cells, but could have been done
+in 3; in this case, we only use 3 cells, but you could do it in 2. 
+<b>show_cell</b> and look at the floor; it's nothing like how a human
+would split up the room (by just splitting it down the middle).  Note
+that the way one pillar got dealt with interacted with the other one
+(the lines on the floor meet).  This is the sort of thing that
+introduces lots of cells when you build real levels.</p>
+<p>To put that another way, when squared-off pillars just made &quot;niches&quot;
+right next to the pillars, the pillars were only having <i>local</i>
+effects; nothing else in the room was affected.  But the diagonal
+pillars try to make niches next to them, but because of the angle of
+the brushes, the splits cross the room, where they may have non-local
+effects.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t17.cow</b></p>
+<p>3 cells, 22 polygons</p>
+<p>Now I put in two more pillars.  However, there are no more cells. 
+Because I made the pillars line up perfectly, you can now see what
+was going on with the previous level--you can see how it was
+splitting up into a room and two niches (now it's four niches).</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t18.cow</b></p>
+<p>5 cells, 29 polygons</p>
+<p>Now I moved the brushes a little so they don't line up with each other
+any more.  Whoops!  Notice the two really thin cells.  This is
+sort-of a non-local effect.</p>
+<p>Well, this is probably a good time to explain this.  The way the level
+thing works is not local; it doesn't try to build little adjacent
+niches.  This might be a good way to do things, but turns out to be
+<i>very</i> hard, so we instead use a simple global algorithm, called
+<b>bsp</b> (it's a lot like the object rendering <b>bsp</b>, yes, but
+not identical).  So, when we talk about the niches and stuff, that's
+just a simple way of trying to understand things.  In reality, the
+program works in a radically different way, and can produce quite
+unexpected results.</p>
+<p>Nevertheless, &quot;niche&quot; thinking tends to be a good way to understand
+stuff.  I guess the rule of thumb is about right; every time you add
+a pillar poking into a room, you can expect to add a bunch of cells
+and polygons--the number of new cells is equal to the number of
+exposed surfaces on the pillar (minus one), and the number of polys
+is something like three times that (one for each surface, and one
+each for splitting the floor and ceiling).  That means just adding a
+few separate pillars can make a room much more complex.  <i>However</i>,
+the global properties come into play here; if you make things line
+up, like in <b>t17.cow</b>, you can save quite a few cells (and hence
+polys), because the <i>global</i> optimizer (i.e. <b>optimize</b>,
+and for simple levels even without) &quot;knows&quot; how to take
+advantage of it.  Unfortunately, it also means that sometimes things
+come out a little less locally optimal than we'd like.</p>
+<p>Let's look at this theory a little more, with some more complicated
+pillars.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t19.cow</b></p>
+<p>4 cells, 18 polygons</p>
+<p>Back to a single diagonal brush.  Now I've shrunk it vertically, adding a
+cell above and below.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t20.cow</b></p>
+<p>3 cells, 16 polygons</p>
+<p>Here's a little trick from Mahk, a 3-sided pyramid poking in.  Again, we end
+up with 3 cells, but look at how awkward the polygon splitting is. 
+Imagine if there was geometry in those places!</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t21.cow</b></p>
+<p>6 cells, 28 polygons</p>
+<p>Why imagine it?  Here's a pillar.  Look at what a mess it is!  How are
+our numbers?  Well, going from empty→pyramid was 1 cell, 6 
+polys→3 cells, 16 polys, or +2,+10.  Going from empty→pillar
+(<b>t4.cow</b>) also produces 3,16, or +2,+10.  So we would expect if
+they didn't interact, we'd get +4,+20, or a total of 5 cells and 26
+polygons.  Instead, they interact, and we get an extra cell.</p>
+<p>Fortunately, we can <b>optimize</b> and improve things.  <b>optimize</b>ing
+produces 5 cells and 24 polygons.  The optimizer doesn't actually
+prioritize minimizing cells, rather it tries to minimize polygons,
+and as you can see it succeeds; it decides that rather than building
+two little niches next to the pillar (<b>t4.cow</b>), it should run a
+split across the middle of the room.  This isolates the pyramid from
+the rest of the geometry in the room, and actually saves polygons
+(remember the above said we'd expect 5 cells and 26 polygons).  In
+<b>t20.cow</b>, the pyramid split the ceiling, the floor, and the
+east wall into multiple polygons.  Now, with the isolating split, the
+diagonal split coming from the pyramid is cut off from affecting more
+than the floor and ceiling.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t22.cow</b></p>
+<p>5 cells, 25 polygons</p>
+<p>So now the pillar is a diagonal pillar.  Again, look at how the split
+plane ickily messes up the other half of the room.  Of course, it's
+also obviously not actually needed.  Again, <b>optimize</b> fixes
+this up, producing 4 cells and 21 polygons.</p>
+<p>Let's look at a slightly simpler interaction:</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t23.cow</b></p>
+<p>4 cells, 21 polygons</p>
+<p>Here we have two diagonal brushes at different angles interacting. 
+<b>optimize</b> produces 3 cells and 19 portals, which isn't too bad.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t24.cow</b></p>
+<p>3 cells, 18 polygons</p>
+<p>I moved the vertical pillar over to the other side.  Now the pillars
+just miss interacting.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t25.cow</b></p>
+<p>4 cells, 24 polygons</p>
+<p>And now I shrunk the room a little so they interact again.  Notice this
+is still better than <b>t22</b> was non-optimized.  Surprisingly,
+even optimized, this doesn't get any better.  (A hint as to why is
+that now the situation is symmetric.  When it was asymmetric, there
+were more choices; i.e. if you look at how the floor is split, you
+can see that it could have matched either face of the pillar, but
+neither one produced different results, because the opposite pillar
+is arranged symmetrically.  This is not to say that symmetry is
+generally bad; just that it means if it doesn't naturally optimize,
+it may come out worse.)</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t26.cow</b></p>
+<p>4 cells, 20 polygons</p>
+<p>Hey, back to a single square pillar.  Now it's out in the &quot;middle&quot;
+of the room, and we get even more cells than normal.  Although it's
+still just one cell per visible face.</p>
+<p>Suppose we put a bunch of them in, such that they don't line up?</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t27.cow</b></p>
+<p>10 cells, 44 polygons</p>
+<p>Well, if each 4-sided pillar is supposed to add 3 cells, then 3 pillars
+would be 10 cells.  Which is in fact what we get.  (Why does it work
+out this way?  Because adding one pillar splits the room into 4
+&quot;rooms&quot;.  Each successive pillar only affects the one room
+it's &quot;inside&quot;.)  <b>optimize</b> can't improve this.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t28.cow</b></p>
+<p>12 cells, 54 polygons</p>
+<p>This seems like it's quite like the previous one, but now the pillars
+&quot;overlap&quot;, in the sense that some pillars cross the lines
+on the floor caused by the other pillars.  This causes extra
+splitting.  However, <b>optimize</b> brings this back down to 10
+cells and 46 polygons.  There's still a few extra polygons, but it's
+close.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t29.cow</b></p>
+<p>9 cells, 43 polygons</p>
+<p>Now the pillars line up perfectly which each other.  This saves one cell
+and one polygon versus <b>t27.cow</b>.</p>
+<p>However, <b>optimize</b> knows how to take good advantage of it, and brings it
+down to only 7 cells and 36 polygons.  To put that in perspective, if
+somehow the floor and ceiling could be drawn as one big polygon each,
+there at a minimum 18 polygons in the scene (6 in the room, and 4 on
+each pillar).  The best split (which <b>optimize</b> doesn't find)
+would be 6 cells and 28 polygons.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t30.cow</b></p>
+<p>6 cells, 32 polygons</p>
+<p>And here's a simple row of pillars, which is much better.  Unfortunately,
+while this one comes out well, placing the pillars north-south causes
+the room to come out less efficient, even after running <b>optimize</b>.
+ (See level <b>t30a.cow</b> for an example.)  This is due to a
+serious consequence of how <b>optimize</b> works; a rewrite of
+<b>optimize</b> might be able to avoid it, but I can't think of an
+algorithm off-hand.  If you find this going on and want to
+micro-optimize it, try rotating the brushes 90 degrees.  I know,
+that's pretty sad, but that's life.</p>
+<p>Well, let's start looking at some other typical architectural features.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t31.cow</b></p>
+<p>14 cells, 57 polygons</p>
+<p>Here we have a simple door frame.  Everything is grid-aligned, so there
+are no errors.  And we only have a tiny bit of each room, yet we're
+already at 57 polygons (if our goal is ~250 per scene, that's already
+quite a lot, although in reality you only tend to see about 1/2 the
+polygons at a time [because half of them are facing away from you]). 
+Without the door frame, it's only 2 cells and 13 polygons.  So it
+would be nice if we could find some happy medium.</p>
+<p>Ok, first of all, if we simply <b>optimize</b>, we're down to 6 cells and
+33 polygons, and in any one scene it's pretty reasonable.  But
+suppose we want to simplify it more anyway?</p>
+<p>What exactly is this door frame creating?  Well, it makes a niche above
+and on either side.  Additionally, it's arranged so that it's visible
+from the other side, that is, it still pokes out.  It doesn't create
+any extra niches on this case (it's like the beams in <b>t13.cow</b>),
+but it is real polygons.  Suppose we only care about the door frame
+being visible on one side; so we could make it flush on the other
+side.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t32.cow</b></p>
+<p>11 cells, 46 polygons</p>
+<p>Well, let's not beat around the bush.  <b>optimize</b> produces 5 cells and
+29 polygons.  Basically, we cut out a little geometric complexity
+(remember, there was really only one extra cell due to the corridor
+not being flush).</p>
+<p>If we want to save a little more, we might decide that we don't really
+need the niche above the door.  (On the other hand, it's only that
+niche that prevents this level from being buildable in <b>Doom</b>.)</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t33.cow</b></p>
+<p>8 cells, 37 polygons</p>
+<p><b>optimize</b> 4 cells 26 polygons</p>
+<p>Well, optimized, that only saved us 3 polygons and 1 cell.  If you looked
+at the niche above the doorway before, you'd have seen that it was in
+fact 3 polygons, so this isn't very surprising.  We don't save any
+extra because there's really no more non-local effects.</p>
+<p>So each of these changes saved us 3 and 4 polygons, which isn't much. 
+Together, that's 7 polygons, out of the original 33 (only looking at
+the optimized numbers).  That's actually 20%, which is worth
+remembering--if you don't really need the extra polygons, get rid of
+them.</p>
+<p>Well, there's your simple doorway thing.  Let's look at another
+architectural feature.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t34.cow</b></p>
+<p>9 cells, 39 polygons</p>
+<p><b>optimize</b> 6 cells 28 polygons</p>
+<p>Here's a simple set of stairs.  There's some obvious stuff to notice: one
+cell per step, and the splitting of the polys along the stairs. 
+Except for the ceiling, all of those extra polys are necessary to
+make the entire thing convex, so basically, this is close to as good
+as it gets.</p>
+<p>There's really nothing better to do here; note that everything is grid
+snapped, and there is no space under the stairs.  (If you <i>want</i>
+space under the stairs, you can make it, but your cell and poly count
+will increase.)</p>
+<p>One useful thing to keep in mind; if you want to make the ceiling
+stairstep identically, make it line up with the steps below.  (One
+way to do this would be to carve out vertical slabs of air extends
+from the top of the step to the ceiling above it, instead of building
+the steps out of solid).  This will (hopefully) end up creating one
+cell per step, and no extra splitting (the wall will still split, but
+it needs it since it's not convex).  You can see an example in
+<b>t34a.cow</b>.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t35.cow</b></p>
+<p>35 cells, 118 polygons</p>
+<p><b>optimize</b> 13 cells, 65 polygons</p>
+<p>Here's a very simple railing.  Really, this is basically a bunch of pillars,
+plus the door frame thing.  The door frame effect is because the
+railing is wider than the supports, so there's a little lip, and a
+bunch of polygons there.  <b>optimize</b> gets paid the big bucks
+because it drastically simplifies this; notice, for instance, how
+that lip on the underside is one long polygon, which could only
+happen by having one long cell there, which is why the floor has the
+small polygon split out of it.  On the other hand, you can get most
+of the optimization by hand by taking the last brush (the railing
+itself) and moving it back in time to time 2.  Why?  This is an
+advanced topic, discussed later.</p>
+<p>(Also note that if you raycast lighting, the shadows caused by the supports
+are too fine to be reproduced.  Hence such small features are
+probably a bad idea.)</p>
+<p>Anway, this is pretty close to optimal, and it still uses way too many
+polygons.  I also think if it were laid out north-south it wouldn't
+work as well, like the pillars before.  Here's a version without the
+little overhang:</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t36.cow</b></p>
+<p>11 cells, 64 polygons</p>
+<p><b>optimize</b> 11 cells, 64 polygons</p>
+<p>These come out identically because I did move the top railing to time 2. 
+You can see that one side of the railing is split up in a stupid way,
+which is why the poly count is too high.  This is the same problem as
+the north-south pillar thing I mentioned before.  I have no good
+ideas for how to fix it.</p>
+<p>Ok.  Now let's make a big room with a couple of architectural features in
+it.  I'll scale up the texture so the size of the room doesn't
+increase the poly count (this is a totally separate issue, <i>sigh</i>)...</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t37.cow</b></p>
+<p>34 cells, 153 polygons</p>
+<p><b>optimize</b> 20 cells, 127 polygons</p>
+<p>Ok.  Here's a simple room with a railing, stairs down, and a doorway out.
+ I've made each of these optimal: the railing is flush, the doorway
+is flush with the corridor out and extends to the ceiling, and the
+stairs are perfectly matched together.</p>
+<p>If you go into game mode and look at the stats, you'll see that you
+typically get ~50 polygons, and the worst case I could find (get in a
+corner so you can see the whole level) was ~95 polygons.  A lot of
+that geometry is that railing, which is pretty excessive anyway. 
+Later I'll try to make an even more complicated scene, to go for
+around ~200 visible polygons.  But, first, let's consider how we
+might improve this area as it stands.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t38.cow</b></p>
+<p>33 cells, 154 polygons</p>
+<p><b>optimize</b> 19 cells, 118 polygons</p>
+<p>Here I've started &quot;globally&quot; optimizing, making things line up
+with other things.  The railing is flush with the edge of the stairs,
+and both of them line up with the interior of the door frame.  This
+doesn't help the non-optimized version, but the optimized one saves
+about 8% of the polygons.  The worst case for the room is now about
+70 polygons, which isn't as big a savings, but it's still moved down
+to the acceptability range.</p>
+<p>Note that at this point, I haven't made any changes to the features
+themselves, just how they relate to each other.  Removing the space
+between the railing and the stairs is quite visible, but could be
+acceptable.</p>
+<p>A better thing to do at this step is to change the railing itself.  I
+can make the supports larger, and have fewer of them.  I also make
+them line up with the stairs, although in this case it turns out that
+they're not interacting with the stairs anyway.  If the stairs were
+going up, they would interact, but then the railing wouldn't make any
+sense, so I'm not going to bother to show an example.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t39.cow</b></p>
+<p><b>optimize</b> 17 cells, 106 polygons</p>
+<p>As expected, this saved a bunch.  Note that the lighting is worse than
+it should be because I doubled the texture scale (which lowers the
+lighting resolution). I spent some time moving the light around to
+get a good shadow while I was at it.  Actually, first I set the
+lighting to about 400, then moved it around and watched the shadow. 
+The supports are still too narrow to produce good shadows on the
+floor, but the ones on the wall were pretty distinct.  Then putting
+the lighting back down to 128 makes the shadows more subtle, and
+hides the fact that the floor doesn't come out that well.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t40.cow</b></p>
+<p><b>optimize</b> 15 cells, 99 polygons</p>
+<p>Here I matched the railing and the door frame up, making the door frame
+look stupidly narrow, just to show the benefits.  It only saved 7
+polygons, but really, 7 polygons is close to 10%, and in fact we're
+down to  2/3 of the original 147.  Now the worst case scene I can
+find is down to 65, although the typical case (when you can see the
+railing) is still around 50.</p>
+<p>Let's move on to another architectural feature, the ramp.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t41.cow</b></p>
+<p>6 cells, 31 polygons</p>
+<p>Here I've built one of the shapes that is very difficult to build with
+CSG.  At this stage 6 cells and 31  polygons might not sound so bad,
+but actually it is.  Optimizing saves a couple polys.  Obviously,
+when we look at in <b>show_cell</b>, there seems to be quite a few
+extra polygons.  What's going on?</p>
+<p>What's up here is that we haven't actually built what we were trying to
+build, and so optimization doesn't help.  I've made the &quot;error&quot;
+exagerrated in the level; if you look close, you'll see what's going
+on, but here's some diagrams:</p>
+<p><img src="Optimize_image1.png" align="bottom" width="493" height="300">
+</p>
+<p>Using this approach, we end up with quite a few polygons on that front
+face, rather than just the ideal two.  And the cells end up getting
+split similarly (each of the little notches in the front face is a
+&quot;pillar&quot; sticking into the space above the ramp.)  With
+more care, we can make it so there's only one notch on top, instead
+of two, and it's <i>possible</i> to make things line up perfectly,
+but it's very hard, and it doesn't generalize well once we start
+connecting multiple ramps together.</p>
+<p>This is one of the most signficiant limitations of CSG.  CSG lets us use
+simple, abstract building materials, and carefully reproduces every
+detail.  That's nice for making a door frame out of only three
+brushes, but it turns out to be a mess in this sort of situation.</p>
+<p>The best thing we can do is try to chop off the pieces we don't want by
+using air brushes.  We can lay an air brush flat on top of the
+horizontal segment by using grid snapping; however, we can't lay an
+air brush down perfectly flat on top of the sloped one.</p>
+<p>There are two basic approaches to solving this, and both require air
+brushes: line things up so that there's only one notch, and it gets
+trimmed off with the unsloped air brush; or else build the entire
+sloped ramp by using an air brush.  Here's what I mean:</p>
+<p><img src="Optimize_image2.png" align="bottom" width="513" height="177">
+</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t42.cow</b></p>
+<p>9 cells, 33 polygons</p>
+<p><b>optimize</b> 4 cells, 21 polygons</p>
+<p>Ok, so here I did it the way on the left, and I got more polygons and
+cells than before.  However, once optimized, we get the expected
+benefit.  Note that with the full merge/split stuff going to
+correctly handle coplanar polygons, you have to make the air brush
+have the right textures on the right surfaces.  The south wall of the
+air brush is up against the wall, so needs the wall texture, whereas
+the bottom surface needs the checkerboard.  What a pain.  The second
+one is even worse.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t43.cow</b></p>
+<p>11 cells, 37 polygons</p>
+<p><b>optimize</b> 4 cells, 22 polygons</p>
+<p>This one is built the second way.  This time it comes out a little less
+efficiently.  The facing surface ended up getting split into three
+polygons instead of two.  This is actually the same problem as the
+north-south row of pillars problem, but the details are a bit hairy. 
+Suffice it to say, it's basically &quot;close enough&quot;; the fact
+that in this case one came out better than the other doesn't actually
+generalize, since other factors will affect this.</p>
+<p>In general, the way on the left may be easier to build if you have one
+surface that's axis-aligned.  The second approach is more general,
+and can be used for any sets of brushes coming together at any angle,
+assuming that is that they can be drawn in 2d.  If one of them is
+rotated about its own axis as they come together (like those old
+diagonal pillars--if you try to make one of those meet a non-rotated
+pillar), then you're pretty much doomed trying to build a clean joint
+with CSG.  One approach, especially if it's decorative, not a surface
+to walk on, is to put a big cube covering over the meeting point. 
+This will most likely be simpler geometrically than the actual
+meeting point.  (See <b>t43a.cow</b> and <b>t43b.cow</b> for an
+example; the polygon savings is small, ~10%, but you can see how
+non-physical architecture is replaced by something vaguely believable
+and a little cheaper--every little bit helps..)</p>
+<p>The basic point here is that when you poke two angled brushes together,
+the &quot;interior&quot; edge comes out good (the bottom of the ramps
+in this case), but the top &quot;edge&quot; doesn't.  So if we use
+another pair of angled brushes of the opposite medium, we can fix the
+top by making it derive from the interior of the new brushes.</p>
+<p>If we wanted this sort of shape for a room, we would reverse the above
+media.  In fact, that's pretty much how people currently make angled
+ceilings already--by taking one big air brush and then chopping out
+regions with solids.  Take the right picture above, and imagine that
+the entire area under the red brushes was blue, and that the blue was
+the room with an air brush, and the red was the solids being uses to
+chop up the room, and you can probably see what I mean.</p>
+<p>Let's put these numbers in perspective.  The &quot;poorly built&quot; one
+was 5 cells, 29 polys optimized, and the &quot;well built&quot; one
+was 4 cells and 21 polygons.  Here's a related but different thing:</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t44.cow</b></p>
+<p>6 cells, 28 polygons</p>
+<p><b>optimize</b> 6 cells, 26 polygons</p>
+<p>This is the same thing but without them meeting.  We'd expect it to be a
+lot like the sloppily-built ramp, because it has similar sorts of
+features.  (When the ramp is properly built, the features line up so
+some of them are inside the others, and some exactly match.)</p>
+<p>Now, let's look at the same thing, but a little bit harder.  I'm not going
+to draw any more bitmapped diagrams like above, so you should look at
+the room to see the shape I'm producing, and you can try to look at
+the brushes themselves, but hopefully the written text here will be
+clear enough.</p>
+<p>The reality is that this came out <i>better</i> than the sloppily-built
+ramp, but less well than the well-built ramp.  Why?  Well, compared
+to the well-built ramp, there's clearly just more exposed surfaces. 
+There's also a more complicated breakup of space, because of the
+space between the two pieces.</p>
+<p>But why is the sloppily-built ramp worse than each of these?  Because the
+pieces <i>poked through</i> each other.  This meant that each brush
+face appeared in multiple polygons.  For example, the top of the flat
+brush appeared twice; to the right where it extended to the wall, and
+also to the left of where the sloping brush poked through it.</p>
+<p>Now let's move on to making the more complicated variants of the ramp.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t45.cow</b></p>
+<p>11 cells, 37 polygons</p>
+<p><b>optimize</b> 4 cells, 22 polygons</p>
+<p>This is just <b>t43</b>, but upside down.  Now the airbrushes have to clip
+the <i>bottom</i> of the brushes for things to come out right.</p>
+<p>Now, if we want to build a ramp that connects two landings, it's just a
+combination of <b>t43</b> and <b>t45</b>.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t46.cow</b></p>
+<p>18 cells, 58 polygons</p>
+<p><b>optimize</b> 5 cells, 25 polygons</p>
+<p>This is really hard to build, because the air brush for making a clean
+join with one landing interpenetrates the other landing.  So we have
+<i>two</i> brushes for each landing, one which comes early and one
+which comes late.  The early one defines the side that needs to be
+trimmed by air brushes; the late one defines the side that needs to
+be a solid joint (but gets messed up by an air brush from the other
+one).  Go ahead and delete the current brush and see the notch that
+is produced.</p>
+<p>So, when someone tells you &quot;why's this level so inefficient; it's
+only got three brushes?&quot;, remember that sometimes, to build
+something that looks like it should only take three brushes, it may
+take 9 if you want to build it with no little nooks and crannies.</p>
+<p>There may be a cleaner way to build this.  Looking at it in show cell, one
+relatively clean way to build it is if you could make an air brush
+which looked the the shape of the niche, e.g. pull one edge way out,
+you could use a shape like that to carve out the platform and ramp.</p>
+<p>On the other hand, if we use the approach from <b>t42</b>, it is a lot
+simpler:</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t47.cow</b></p>
+<p>16 cells, 54 polygons</p>
+<p><b>optimize</b> 5 cells, 25 polygons</p>
+<p>This comes out the same, but it's a lot fewer brushes.  Note however that
+it took a lot of tweaking to make the top and bottom ramps seem to
+line up (in actuality, the underside starts further to the right and
+ends further to the right).  If you're willing to let this aspect be
+sloppy, this approach works.  The other approach was easier in some
+ways.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t48.cow</b></p>
+<p>18 cells, 72 polygons</p>
+<p><b>optimize</b> 9 cells, 50 polygons</p>
+<p>Here's the beginning of a spiral ramp up around the outside edge of the
+room.  I rely on the fact that I'm grid snapping the platforms, so I
+use the approach from t42.  However, you end up needing an air brush
+above and below each platform, one for each ramp coming in.  These
+airbrushes then tend to crop stuff out from the ramp unintentionally.
+ If you look with show_cell, you'll see a few things.  First, the air
+brush under the one platform that has two ramps has taken a notch out
+of the ramp leading up to it; this was the simplest thing I could
+find to do.  Furthermore, there is excessive geometric complexity
+where the ramps meet the platform, because the ramp edges don't line
+up with the joins exactly.  There is <i>no way</i> to make these
+match precisely using CSG.</p>
+<p>(Note that I doubled the texture scale on the room to avoid getting splits
+due to large polygons.)</p>
+<p>If we make the landings L shaped (using two brushes), we can simplify
+the problem a bit.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t49.cow</b></p>
+<p>18 cells, 79 polygons</p>
+<p><b>optimize</b> 9 cells, 48 polygons</p>
+<p>Here the landings extend out in an L, so that the place where they
+interact with the ramp is farther away from the wall.  This makes it
+possible to keep one air brush from messing up a different ramp.  It
+also saves a tiny number of polygons, although I don't know if that's
+always going to be true.  This basically seems like the simplest way
+to do it, and it was still a lot of work trying to make the ramps
+pass through the landings cleanly.  All I can suggest is that you try
+to recreate these ramp situations yourself, and if you can't get the
+same cell/poly counts I got, look very closely at exactly where my
+ramps pass through the landings.  (Trying to build this, especially
+building multiple ramps that go all the way around, really makes me
+want to be able to hide individual brushes.  Or realIy I just want to
+<i>only</i> see the ramp and the two landings I'm connecting.)</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t50.cow</b></p>
+<p>29 cells, 63 polygons</p>
+<p><b>optimize</b> 10 cells, 38 polygons</p>
+<p>Here's Mahk's classic 6-sided star made from two strangely rotated cubes,
+and the top clipped off with an air brush.  Optimizing helps quite a
+bit, although looking at it it doesn't seem <i>that</i> optimal.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t51.cow</b></p>
+<p>25 cells, 68 polygons</p>
+<p><b>optimize</b> 10 cells, 58 polygons</p>
+<p>Now, with two of them, the optimizer decides to split the room into a top
+&amp; bottom; none of the weirdly angled split planes from the stars
+are allowed to affect anything except the very bottom of the walls,
+which helps quite a bit.  Also, I made sure they were lined up, which
+just means two of the six diagonal planes from each one match up,
+which saves a little.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t52.cow</b></p>
+<p>57 cells, 148 polygons</p>
+<p><b>optimize</b> 22 cells, 122 polygons</p>
+<p>Now I added two more.  This adds quite a few polygons.  If you could get
+really high above the room, you could probably see them all, but
+typically from one corner of the room you can see about 80 of them at
+once.  So it's pretty fast if there's nothing else in the room.  If
+you check, you'll see that they no longer line up; because I couldn't
+let them grid snap, it was basically impossible to keep them lined
+up.  It would probably help a bunch if I could have lined them up. 
+The way to have done it would have been to have used the vsliders to
+force movement along only axis, but unfortunately I find them pretty
+painful to use, or use the keyboard, or type coordinates.</p>
+<p>Now let's look at a different way of having many of them.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t53.cow</b></p>
+<p>60 cells, 131 polygons</p>
+<p><b>optimize</b> 19 cells, 106 polygons</p>
+<p>This works out quite similarly, except if you look at the portal count,
+you'll see that portals is larger than polygons.  This is generally a
+bad thing.  Ideally there'd be 2/3 as many portals as polygons, but
+we can live with about 1:1...</p>
+<p>You can see that the optimizer again chose nice horizontal split planes
+to cut each level off from the others.  Unfortunately, this produces
+these very thin cells, and quite a few portals parallel to the
+ceiling (portals being imaginary polygons at the boundaries of cells
+where there aren't actual polygons--i.e. polygons at the boundary
+between two cells).</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t54.cow</b></p>
+<p>34 cells, 135 polygons</p>
+<p><b>optimize</b> 15 cells, 81 polygons</p>
+<p>Here's the same thing, but now made out of air.  Thus, it's &quot;niches&quot;
+instead of &quot;protrusions&quot;.  However, since the niches aren't
+themselves convex, it doesn't help as much as you might expect. 
+Still it saves a bit.  But it looks less cool, I think (even if it
+were in the ceiling, where it might make some sense).</p>
+<p>Each star shaped niche can be made 4 cells (1 large triangle making 3
+points, and then 3 smaller triangles).  In this case, with the
+current optimizier, it does this for the middle star, but the other
+two come out as 5 cells, one of which is a rhombus shape, with 4
+smaller triangles dangling off.  While not maximally efficient, it's
+still pretty close.  Notice that since the point of each star pokes
+through the point from the next level, each point is forced to be
+split into two polygons.   It would probably be a little cheaper if
+this didn't happen, but the portalizer tended to crash while I was
+trying to build it, I believe because the points were coming out too
+close to being <i>right</i> on the line or something.</p>
+<p>Let's look at one more variant on the star.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t55.cow</b></p>
+<p>19 cells, 64 polygons</p>
+<p><b>optimize</b> 13 cells, 53 polygons</p>
+<p>If the front surface of the star isn't flush with the wall (if the
+airbrush that's clipping it is pulled out from the wall so the star
+sticks into the room), this produces 19 cells and 72 polygons
+optimized.  So keeping it flush against the wall keeps it from
+splitting up the rest of the room, which is definitely a good thing.</p>
+<p>Note that the air brush which trims it has the general room texture, and
+then a set of smaller brushes have been used to set the texture of
+the central star.  This is because the main clipping air brush has to
+overlap the outside edges of the star as well...</p>
+<p>Also notice that while this ends up with only 53 polygons, they're
+basically <i>all</i> visible when you stand back.  (From the corner,
+you can see 52 polygons--all but the one behind you.) 
+</p>
+<p>Now let's make the same decoration but instead of having the star be
+grooves in the wall, have them be raised bumps.  We expect the same
+poly count on the star features itself, but the room will become less
+simple, so it'll probably blow up the cell count and add some polys
+too.</p>
+<p><br>
+</p>
+<p style="font-size: 16pt"><b>t56.cow</b></p>
+<p>21 cells, 78 polygons</p>
+<p><b>optimize </b>18 cells, 72 polygons</p>
+<p>As 
+expected, the entire room gets split up into lots of cells, and
+everything is a mess.  Note that visually, it's not that different
+than if the tiled surface were out at the front edge, which was <b>t50</b>,
+which had only half the polygons, unless you light it dramatically as
+I've done here--I used a simple, relatively bright texture for the
+ridges and let the lighting show what's going on.  It takes a
+relatively nearby light to make it so distinct, and even so it's hard
+to see whether it's recessed or protruding if you're right in front
+of it.  For me, <b>t55</b> is pretty hard to parse, but I'm looking
+at a 320<span style="font-family: MS Sans Serif, sans-serif">x</span>200
+window in a 1280<span style="font-family: MS Sans Serif, sans-serif">x</span>1024
+screen, so perhaps fullscreen its more clear.  Actually, playing with
+<b>t56</b> more, raycast lighting makes a big difference--if it were
+a niche, it couldn't case a shadow on the wall it was set into, but
+not a niche, it can (although you have to position the light pretty
+carefully).</p>
+<p><br>
+</p>
+<p style="font-size: 18pt"><b>Advanced Concepts</b></p>
+<p><br>
+</p>
+<p><b>Optimizing doesn't</b></p>
+<p>Sometimes the way the optimizer splits the world into cells may seem a little
+odd, and not &quot;optimal&quot; at all. The most obvious case is in
+level <b>t10</b>, where the most natural-seeming split would be right
+down the middle of the room, along the plane connecting the edges of
+the pillars.  It turns out the optimizer never even <i>considers</i>
+this split.</p>
+<p>Unfortunately, the optimizer is a poor, stupid program and not a human being.  It
+can't afford to consider every possible split.  In fact, the only
+splits it does consider are the ones along the planes containing
+rendered polygons.  It turns out that this is always sufficient to
+split the world up into convex cells, and it even avoids some
+problems that show up in non-optimized levels, where, for instance,
+an air brush fully contained in another air brush can still cause
+extra splitting.</p>
+<p>But in the case of <b>t10.cow</b>, there <i>is</i> no rendered polygon in
+the plane connecting the two edges of the pillars.  So the optimizer
+finds an alternative split of the room, which is too bad, since its
+approach unnecessarily splits the walls.  But if the program had to
+try all the planes formed by <i>every</i> pair of edges, there'd be
+far too many planes, and it's not clear how many levels this would
+actually help much on anyway.</p>
+<div id="Frame8" class="telliamed">
+	<p class="comment">Of course, the optimizer is a whole lot better 
+	now. I don't know exactly how they improved CSG since then. It may 
+	just be the addition of coplanar polygon merging. Whatever it is, 
+	it works.</p>
+</div>
+<p>Also, even within this restricted choice of planes, the optimizer 
+doesn't generally find the &quot;optimal&quot; splitting of the level. 
+Instead, it has a set of simple rules of thumb (or &quot;heuristics&quot;) 
+with which it makes guesses about the best way to split the level.  
+This process happens step by step, first choosing a plane with which to 
+split the level into two pieces, and then going through the same process 
+on each of the pieces, et cetera.  It never backs up if a decision turns 
+out to cause problems (which is called &quot;backtracking&quot; in computer
+science), nor does it consider the long-term ramifications of a given
+decision (&quot;look-ahead&quot;).  It just makes the best decision
+it can based solely on the current situation and the heuristics (it
+is thus a so-called &quot;greedy&quot; algorithm).
+</p>
+<p>The upshot of all this is that, except in very simple levels, the
+optimizer is unlikely to find the absolute best possible
+portalization of the level.  But it does find very good ones, much
+better than by making these kinds of splitting decisions without any
+attempt at &quot;optimality&quot; (as happens in ordinary
+portalization).</p>
+<p><br>
+</p>
+<p><b>Making &quot;optimized&quot; levels by hand</b></p>
+<p>Tim is the reigning expert on this subject.  When you portalize without
+optimization, dromed splits the world up with <i>all</i> of the brush
+planes.  It turns out that many of them will be irrelevent and
+ignored, but some will not be.</p>
+<p>The basic way it works is that every brush is split by all of the brushes
+before it in time, or rather all of the planes of all of the brushes
+before it.</p>
+<div id="Frame9" class="telliamed">
+	<p class="comment">This is also where blockable brushes show their 
+	usefulness. A blockable brush will force a split along its faces. So 
+	where the natural architecture doesn't provide a convenient niche in 
+	which to isolate smaller details, you can make an artificial zone to 
+	limit the extent of later cells.</p>
+</div>
+<p>What than means is that if you make a tiny little dense knot of stuff, 
+and then a big room around it (even if that room swallows up all of the 
+other stuff), the big room will be split by the all the little stuff.  
+So the easy rule of thumb is to, in general, put large spaces earliest 
+in time, and details later (assuming this doesn't interfere with the real 
+use of time for building).  The end result is that the details can't slice
+up the large spaces, and in fact they tend not even to slice each
+other up, because the large spaces cause sufficient splits to isolate
+the small spaces.
+</p>
+<p>You don't really want to understand it any more than this.</p>
+<p>If you've already built a level and want to tweak this stuff, you don't
+have to rebuild it in the right order; just slide the brushes around
+in time appropriately.</p>
+<p><br>
+</p>
+<p><b>Bad polygon merger.  No donut.</b></p>
+<p>The way dromed works is that it generates a bunch of really tiny polygon
+fragments.  (You can see them by disabling <b>merge_nodes</b>.)  Then
+it tries to merge them back together.  Unfortunately, optimal polygon
+merging is really hard, so dromed uses a rather simple merging
+algorithm.  The upshot?  Those places where the polygons seemed split
+stupidly, like the railing (<b>t35.cow</b>) or the north-south pillar
+case (<b>t30a.cow</b>), are due to this.  (This then affects the
+optimizer, which thinks that since those polygons are already split
+up, it might as well put a cell boundary between them.)</p>
+<p>If you have some bad polygon merging going on in front of you (from
+<b>show_cell</b>), you <i>can</i> try to tweak this by applying the
+above &quot;optimized levels by hand&quot; rules, and also by
+rotating brushes by 90 degrees, which effectively changes the order
+the brush faces split up the level.</p>
+<p>Unfortunately, due to the global properties of optimization, the merging results
+might totally change on you if you move some unrelated stuff around
+and re-optimize.  As they are wont to say, &quot;<i>Har.</i>&quot; 
+</p>
+<p><br>
+</p>
+<p><b>Extra splitting</b></p>
+<p>There are also two other kinds of splitting <i>not</i> caused by the planes
+of rendered polygons: <i>large polygon splitting</i>, and <i>complex
+cell splitting</i>.  Large polygon splitting occurs when a polygon
+gets to be more than a certain number of texels tall or wide (I think
+it's probably about 224 or so).  Note that it doesn't matter whether
+the texture on the wall repeats every 64 or 128; it's the <i>total</i>
+number of texels that counts.  What <i>does </i>affect it is texture
+scale: the polygon still splits at the same number of texels, but
+each texel covers a larger or smaller area on the wall.  As of this
+writing, our default texture scale is about half that of Quake, so
+for an equivalent sized room, we get twice as much splitting (in both
+dimensions, so 4<span style="font-family: MS Sans Serif, sans-serif">x</span> 
+as many polygons).</p>
+<p>Complex cell splitting occurs if a given cell has too many polygons in it;
+there's simply a limit on how many polygons can be in a cell.  Such a
+cell gets locally split into one or more other cells.</p>
+<p>Both can occur at once; if you make a very large room, large polygon
+splitting will create a ton of polygons, and then complex cell
+splitting may split the cell into several smaller cells.</p>
+<p>Extra polygons created due to large poly splitting are reported on the
+monochrome during portalization.  Complex cell splitting displays a
+warning that it is splitting a cell with a given number of polygons.</p>
+<p><br>
+</p>
+<p style="font-size: 18pt"><b>Conclusions</b></p>
+<div id="Frame11" class="telliamed">
+	<p class="comment">Another good use of <b>show_cell</b> is to quickly 
+	find trouble spots. You can concentrate on fine tuning areas of high 
+	complexity. Or to watch out for problem cells.</p>
+</div>
+<p>Well, now you know pretty much everything I know.  Now, you might 
+feel like you have a methodology for looking at areas to find out why 
+they're not optimal, but, surprise!, that's not the point of this.  I 
+don't want you to feel comfortable with typing <b>show_cell</b> and 
+investigating where your polygons are coming from; rather you should 
+be able to expect it simply from what you're building.  The methodology 
+I've used here only works on small levels.  Because the optimizer is 
+<i>global</i>, it will never do quite as well as this when it's operating 
+on a complete level.  It <i>will</i> do nearly as well, but it will
+introduce additional splits that aren't really needed locally
+(because it's global).  Now, you might want to sometimes try
+<b>show_cell</b> if things aren't coming out as well as you expect. 
+Hopefully some day we'll have the level analyzer which will go find
+the slowest places in your level, and then you could try this
+methodology.
+</p>
+<div id="Frame10" class="telliamed">
+	<p class="comment">In other words, you're not building cells, you're 
+	building architecture. Make your levels look good first, you can tweak 
+	them down to optimize well afterwords. But having read all this, you 
+	can better anticipate potential difficulties and avoid building yourself
+	into a bad situation.</p>
+</div>
+<p>So if the methodology isn't the point, what is?  The point is that 
+there are some rules, some analysis techniques, and given a particular 
+rendered geometry (more or less regardless of how it's constructed) 
+some predictability of the complexity of the final worldrep.  Hopefully 
+you feel somewhat closer to this knowledge than you did when you started.
+</p>
+<p><br>
+</p>
+<p>Here are my rules of thumb:</p>
+<ul style="margin-left: 0in">
+	<li><p style="margin-left: 0.25in">Grid snap everything.  Choose an
+	appropriate grid scale to the size of the thing you're working on.</p></li>
+	<li><p style="margin-left: 0.25in">Make things line up if you don't
+	really care about the extra polygons (e.g. door frame in <b>t31..t33</b>).
+	</p></li>
+	<li><p style="margin-left: 0.25in">Make &quot;unrelated&quot;
+	features line up to get global optimizations (e.g. pillars in
+	<b>t27..t30</b>).</p></li>
+	<li><p style="margin-left: 0.25in">Be careful about poking brushes
+	through other things, i.e. not flush.  With parallel surfaces and
+	the new coplanar polygon support, this can produce unwanted texture
+	boundaries; with angled surfaces, it can accidentally produce extra
+	unwanted geometry if there's poke-through, etc.  Creating
+	concavities like ramps requires lots of extra brushes (<b>t41..t43</b>).
+	</p></li>
+	<li><p style="margin-left: 0.25in">Decorative geometry formed as a
+	niche creates fewer cells (and hence polygons) than similar geometry
+	protruding into a room (see <b>t55,t56</b>) but may look less cool,
+	especially with shadows.</p></li>
+	<li><p style="margin-left: 0.25in">Fill in unwanted geometry
+	(<b>t43a,t43b</b>).</p></li>
+</ul>
+<p><br>
+</p>
+<p>stb 3/29/97</p>
+<p><br>
+</p>
+<div id="Frame12" class="telliamed" style="float: none; width: 100%">
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+cmd file loctation (where you prefer to keep your .cmd files, always end with a \):
+C:\games\thief2\cmds\
+
+FM root (e.g. c:\games\thief2\FMs\fm_name or c:\games\thief2 if you don't use FMSel, , always end with a \):
+C:\games\thief2\FMs\goaltest\
+
+Language subfolder (use none to create intrface\goals.str or use english, french, german etc for a subfolder)
+none

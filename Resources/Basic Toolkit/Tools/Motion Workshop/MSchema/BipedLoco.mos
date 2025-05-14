@@ -1,0 +1,24 @@
+
+torso  Biped
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111o1o     0  200
+motion BH111o11     0  0
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111032     0  100
+motion BH111033     0  100
+
+schema Locomote 0, LocoUrgent 0, WithTurns 0
+MType  GLP180Turn
+TimeScale 0
+XYZScale  0
+motion BH111032     0  100
+motion BH111033     0  100
+motion BH211239     2  200

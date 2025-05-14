@@ -1,0 +1,59 @@
+DML1
+
+// Thief2 multiplayer gamesys modifications
+
+
+// Need to make Phantoms physical in order for their ghost to be created
+-ObjProp "Phantom" "NonPhysCreature"
+
++ObjProp "SFX" "NetworkCategory" = Hosted
++ObjProp "physical" "NetworkCategory" = Hosted
++ObjProp "Projectile" "NetworkCategory" = Hosted
++ObjProp "fnord" "NetworkCategory" = Hosted
+
++ObjProp "Marker" "NetworkCategory" = Local Only
++ObjProp "Odometer" "NetworkCategory" = Local Only
++ObjProp "ExBannerFlinders" "NetworkCategory" = Local Only
++ObjProp "Flinders" "NetworkCategory" = Local Only
++ObjProp "ParticleBridge" "NetworkCategory" = Local Only
+
++ObjProp "climbable" "AI_NoGhost" = TRUE
++ObjProp "Cameras" "AI_NoGhost" = TRUE
++ObjProp "Turret" "AI_NoGhost" = TRUE
+
++ObjProp "Cameras" "AI_NoHandoff" = TRUE
+
+// Base archetype names used for MP on-screen messages
++ObjProp "Spider" "CreatureName" = "a spider"
++ObjProp "guard" "CreatureName" = "a guard"
++ObjProp "thief" "CreatureName" = "a thief"
++ObjProp "Undead" "CreatureName" = "an undead creature"
++ObjProp "Apparition" "CreatureName" = "an apparition"
++ObjProp "Phantom" "CreatureName" = "a phantom"
++ObjProp "Beast" "CreatureName" = "a beast"
++ObjProp "Robot" "CreatureName" = "a robot"
++ObjProp "KeeperAgent" "CreatureName" = "a Keeper"
+
+// Child archetype names used for MP on-screen messages
++ObjProp "HugeSpider" "CreatureName" = "a huge spider"
++ObjProp "SewerSpider" "CreatureName" = "a sewer spider"
++ObjProp "Mechanist" "CreatureName" = "a Mechanist"
++ObjProp "swordsman" "CreatureName" = "a swordsman"
++ObjProp "bowman" "CreatureName" = "a bowman"
++ObjProp "ZombieTypes" "CreatureName" = "a zombie"
++ObjProp "Haunt" "CreatureName" = "a haunt"
++ObjProp "Turret" "CreatureName" = "a turret"
++ObjProp "ham guard" "CreatureName" = "a Hammerite guard"
++ObjProp "hamguard2" "CreatureName" = "a Hammerite guard"
++ObjProp "ham priest" "CreatureName" = "a Hammerite priest"
++ObjProp "ham novice" "CreatureName" = "a Hammerite novice"
++ObjProp "ham worker" "CreatureName" = "a Hammerite worker"
++ObjProp "FrogSplat" "CreatureName" = "an exploding frogbeast"
+
+// Metaproperty added by PlayerScript when a player dies, ensures that
+// nothing collides with the player's phys model while dead
+CreateArch "MetaProperty" "M-MPAvatarDead"
+{
+	+ObjProp "CollisionType" = 0
+	+ObjProp "PhysAIColl" = FALSE
+}

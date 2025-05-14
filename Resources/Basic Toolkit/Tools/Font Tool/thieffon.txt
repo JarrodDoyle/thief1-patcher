@@ -1,0 +1,120 @@
+Thief Font Converter - create font files for Dark Engine based games
+
+usage: thieffon -c {options} image_file <fon_file> <pal_file>
+       thieffon -d {options} fon_file <image_file> <pal_file>
+
+       -c      Create a font file from an BMP image file.
+       -d      Create an image file from a font file.
+
+       Common options:
+       -b num  The color table index of black (background).
+               Default is 0.
+       -p num  The color table index of pink.
+               Default is 254.
+       -w num  The color table index of white (foreground).
+               Default is 1.
+
+       Create options:
+       -m      Write a monochrome font. Any non-black pixel will be set.
+       -a      Write an anti-aliased font. Only 16 colors are used.
+       -A      Write an anti-aliased font using 256 colors. Only supported in 
+               newer versions of the Dark Engine.
+       -s      When creating an 8bpp font, use the standard Thief palette.
+       -f num  Specify the character code for the first glyph.
+               Default is 32.
+
+It's called "Thief Font Converter", but the same font format is used in 
+System Shock 2. In fact, it goes all the way back to the original System 
+Shock game for DOS!
+
+You can convert fonts by just drag-and-dropping a font or image onto the 
+program. It will guess what you want to do and use common default options. 
+A number of convenient drag-and-drop shortcuts are provided for converting 
+to different formats. To change the default options, you need to run the 
+program from a command prompt or shell.
+
+To create a font, start the program with the -c option. To make an image,
+start the program with the -d option. If neither are specified, the operation 
+is guessed from the name of the input file.
+
+If no output file is named, the name of the input file will be used with the 
+extension changed to FON or BMP. An existing file with this name WILL be 
+overwritten without warning!
+
+Image files can be BMP, GIF, PNG or PCX format with either 8 or 24 bits per 
+pixel. The color indexes from an 8-bit image will be used as-is even if the 
+image palette is different. The image format should be 24 bits per pixel if 
+you want to use all 256 colors in the font. The full-color image will be 
+down-sampled to 8bpp using the supplied palette.
+
+Since font files don't contain any color information, you need to supply 
+an external palette when deconstructing a font.
+
+The default palette is the standard Thief palette with index 0 set to black 
+and index 254 set to pink. Palettes from Adobe, Microsoft, Paint Shop Pro, 
+and GIMP are supported. You can also supply an 8-bit image file and the 
+palette from the image will be used.
+
+Anti-aliased fonts never need a palette. Images for an AA font should have a 
+black background and white text. When deconstructing an AA font that uses 
+all 256 colors, a 24bpp image file will be created so the pink boxes don't 
+conflict with the font.
+
+Thief uses CP850 (MS-DOS, Western European) character codes, although the 
+standard fonts don't contain all of the glyphs. The fonts included with 
+Thief have the glyphs for 0xA4 and 0xA5 (lower-case and upper-case N with 
+tilde) reversed.
+
+Font images contain all the glyphs of the font with each one surrounded by 
+a pink box. You should have at least one pixel of blank space around each 
+pink box, or it might not be recognized. Glyphs are scanned left-to-right and 
+top-to-bottom. Glyphs of varying height are allowed. The font size will be the 
+height of the largest glyph, with the lower portions of short glyphs filled 
+with the black color. Black should always be index 0 when creating fonts.
+
+"Pink" is a relative term, and can be any color, only the index in the color 
+table is read. With 24bpp images, however, the pink boxes must have the color 
+RGB(255,0,255). Normally, pink is index 254, but can be changed. White is only 
+used when converting a monochrome font to an image. Black should be 0 when 
+creating a font, or it might not display properly in Thief.
+
+The color of a monochrome or anti-aliased font is determined by the game. 
+Regular 8bpp fonts will be displayed using the current palette (which, in 
+Thief 2, may not always be the standard palette). Use the -s argument to make 
+the font always display with the standard palette. 
+
+Most UI font names are defined in DARK.CFG (or SHOCK.CFG). On-screen text is 
+displayed using `TEXTFONT.FON'. This font cannot be anti-aliased, and since 
+8bpp fonts ignore custom colors, then it should only be monochrome. The font 
+used for map notes in Thief 2 is `f_scrp12.fon'. Book fonts, of course, are 
+looked for in the resource path.
+
+Standard anti-aliased fonts use only 16 colors. Any pixel value greater than 
+15 is ignored. The newer anti-aliased format will use all 256 colors but is 
+not supported in all versions of Thief. Because the pink boxes would use one 
+of the colors in the palette, a 24bpp image is recommended for creating fonts 
+that use all 256 colors.
+
+Adobe Photoshop reads and writes the color table of PCX files backwards. 
+In the standard Thief palette, color index 1 is white and index 254 is pink.
+revpal.exe can be used to invert the color table of a palette file or a 
+BMP file. There are no command-line options, you can just drag-and-drop the 
+files you want to convert.
+
+boxer.exe extracts rectangular regions from an image. This is similar to the 
+LGS program cutout.exe, and boxer can be made to act identically. Boxer can 
+handle many more ways of outlining regions, including partial boxes and 
+mattes. It reads 8-bit PCX, 8-bit BMP, or 24-bit BMP images and will write 
+the in the same format as the output. By default, the color of the upper-left 
+pixel is taken to be the matte color and any region enclosed by that color 
+will be extracted. The area surrounding the image is assumed to be the matte 
+color. With the -i option, only internally enclosed regions are extracted. 
+This usually just has the effect of not extracting the entire image as if it 
+were a region. The matte color can be changed with the -c option, the color 
+value is specified as red, green, and blue components separated with commas. 
+The -p option is shorthand for "-c 255,0,255". The -m option will use color 
+index 0. Except for -c, options can be combined into a single switch. So 
+"boxer -pi rect.pcx" is the same as "boxer -p -i rect.pcx", which happens 
+to be the cutout-emulation mode. And if you aren't getting the results you 
+expect, add one, two, or three -v switches to have boxer print more detailed 
+messages.

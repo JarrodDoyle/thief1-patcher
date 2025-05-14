@@ -1,0 +1,243 @@
+
+global MeleeCombat 0
+torso  Biped
+
+schema Attack 0, OnStairs 1, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213122     0  500
+
+schema Attack 0, OnStairs 0, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213120     0  500
+motion BH213121     0  500
+
+schema Attack 0, SpecialAttack 0, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213112     0  500
+motion BH213113     0  500
+
+schema Attack 0, Direction 5, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213030     0  500
+motion BH213031     0  500
+motion BH213032     0  500
+motion BH213061     0  500
+motion BH213063     0  500
+motion BH213102     0  500
+motion BH213020     0  500
+motion BH213025     0  500
+
+schema Attack 0, Direction 6, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213021     0  500
+
+schema Attack 0, Direction 0, WithSword 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BH211005     1  500
+motion BH213010     0  500
+motion BH213011     0  500
+motion BH213012     0  500
+motion BH213056     0  500
+motion BH213104     0  500
+motion BH213105     0  500
+motion BH213106     0  500
+motion BH213107     0  500
+motion BH213108     0  500
+
+schema Block 0, Direction 5, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH213231     0  200
+motion BH213232     0  200
+motion BH213233     0  200
+
+schema Block 0, Direction 1, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH213225     0  200
+motion BH213226     0  200
+motion BH213227     0  200
+
+schema Block 0, Direction 6, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH213222     0  200
+motion BH213223     0  200
+motion BH213224     0  200
+
+schema Block 0, Direction 2, WithSword 0
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BH213230     0  200
+
+schema Block 0, WithSword 0
+MType  SwordGenBlock
+TimeScale 0
+XYZScale  0
+motion BH21322z     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213265     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH21326a     0  500
+
+schema Locomote 0, Direction 3
+MType  GroundAction
+TimeScale 0.85
+XYZScale  2.3
+motion BH213256     0  500
+motion BH213300     0  500
+motion BH213301     0  500
+motion BH213262     0  500
+
+schema Locomote 0, LocoUrgent 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213256     0  500
+motion BH213300     0  500
+motion BH213301     0  500
+
+schema Locomote 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213261     0  500
+motion BH213252     0  500
+
+schema Locomote 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH21326a     0  500
+
+schema Locomote 0, Direction 4, OnStairs 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213360     0  500
+
+schema Locomote 0, OnStairs 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213351     0  500
+
+schema Locomote 0, Direction 4, OnStairs 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213361     0  500
+
+schema Locomote 0, OnStairs 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213350     0  500
+
+schema Locomote 0, Direction 4, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  2.9
+motion BH213250     0  500
+motion BH213251     0  500
+motion BH213263     0  500
+
+schema ReceiveWound 0, Direction 7, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213560     0  500
+motion BH213561     0  500
+motion BH213530     0  500
+motion BH213570     0  500
+
+schema ReceiveWound 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213530     0  500
+
+schema ReceiveWound 0, SevereWound 0, Direction 7, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213562     0  500
+motion BH213520     0  500
+motion BH213521     0  500
+
+schema ReceiveWound 0, Direction 8, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213572     0  500
+
+schema ReceiveWound 0, SevereWound 0, Direction 8, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213550     0  500
+
+schema ReceiveWound 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213511     0  500
+motion BH213514     0  500
+motion BH213540     0  500
+motion BH213541     0  500
+
+schema ReceiveWound 0, SevereWound 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213510     0  500
+motion BH213512     0  500
+motion BH213513     0  500
+
+schema ReceiveWound 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213571     0  500
+
+schema ReceiveWound 0, SevereWound 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213531     0  500
+
+schema Locomote 0, Direction 4, WithSword 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH211050     0  0
+motion BH211051     0  0

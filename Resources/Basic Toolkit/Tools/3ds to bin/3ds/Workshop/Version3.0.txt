@@ -1,0 +1,26 @@
+Free The Objects Toolkit. Shadowspawn - 10/23/2001       rsybel@adelphia.net
+
+===========================================================================
+BintoE - Version 1.00 - Updated from Version 2.0
+
+AI Meshes now work, .Cal file required for conversion. See BinConvDirections.txt
+Fixed bugs in material ordering, making results strangely skinned.
+BintoE can now handle objects that have joints (axles). It will correctly
+extract the sub-objects, correctly place and orient them (that was fun!) and
+automatically generate correctly named axles.
+Correctly generate colors for non-texture mapped polygons.
+
+
+===========================================================================
+Eto3DS - Version 1.10 - No change since Version 2.0
+
+Eto3ds now handles axles, two point objects with no faces or mapping.
+Default output format for textures is now .gif
+
+===========================================================================
+RTGto3ds - Version 1.03 - No change since Version 2.0
+
+No changes.
+
+
+

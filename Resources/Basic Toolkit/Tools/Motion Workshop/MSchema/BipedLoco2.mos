@@ -1,0 +1,102 @@
+
+global Locomote 0
+torso  Biped
+
+schema Hammer 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111041     0  0
+motion BH111040     0  0
+
+schema LocoUrgent 0, WithSword 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111032     0  100
+motion BH111033     0  100
+
+schema LocoUrgent 0, WithTurns 0, WithSword 0
+MType  GLP180Turn
+TimeScale 0
+XYZScale  0
+motion BH111032     0  100
+motion BH111033     0  100
+motion BH211239     2  200
+
+schema OnStairs 1
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111110     0  0
+motion BH111111     0  0
+
+schema OnStairs 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111100     0  0
+motion BH111101     0  0
+
+schema WithSword 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH211wk1     1  0
+motion BH211wk2     1  0
+
+schema WithBow 0, Assassin 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH211wk1     1  0
+motion BH211wk2     1  0
+
+schema LocoUrgent 0, WithBow 0, Assassin 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111032     0  100
+motion BH111033     0  100
+
+schema Search 0, WithSword 0
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion BH212oo8     0  0
+
+schema Search 0
+MType  GroundLocoSngle
+TimeScale 0
+XYZScale  0
+motion BH112oo8     0  0
+
+schema Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413260     0  500
+
+schema Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413261     0  500
+
+schema LocoUrgent 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413265     0  500
+
+schema LocoUrgent 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413264     0  500
+
+schema Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH413263     0  500

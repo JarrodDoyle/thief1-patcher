@@ -1,0 +1,47 @@
+
+global WithBow 0
+torso  Biped
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion bowalk1     0  0
+motion bowalk2     0  0
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH313006     4  500
+
+schema RangedCombat 0, WithCrossbow 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion cbowlong     4  500
+
+schema RangedCombat 0, WithBlowgun 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion blowgun     4  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH313001     0  500
+motion BH313002     0  500
+motion BH313005     0  500
+motion BH313007     0  500
+motion BH313010     0  500
+motion BH313011     0  500
+motion BH313012     0  500
+motion BH313013     0  500
+
+schema WorldFrob 0, AtWaist 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114300     0  500

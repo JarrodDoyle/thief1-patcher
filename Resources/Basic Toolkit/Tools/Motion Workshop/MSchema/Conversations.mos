@@ -1,0 +1,338 @@
+
+torso  Biped
+
+schema Conversation 0, Foo 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH414737     4  500
+
+schema Conversation 0, Bar 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113501     0  500
+
+schema Stand 0, Conversation 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH414155     4  500
+
+schema Conversation 0, Baz 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114730     4  500
+
+schema Conversation 0, Foo 0, Bar 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112027     4  500
+
+schema Conversation 0, Foo 0, Baz 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114012     4  500
+
+schema Conversation 0, Bar 0, Baz 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114010     4  500
+
+schema Conversation 0, Foo 0, Bar 0, Baz 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112015     4  500
+
+schema Conversation 0, Quux 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114004     4  500
+
+schema Conversation 0, Foo 0, Quux 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114001     4  500
+
+schema Conversation 0, Bar 0, Quux 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114003     4  500
+
+schema Conversation 0, Baz 0, Quux 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214157     4  500
+
+schema Conv 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH414737     4  500
+
+schema Conv 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113501     0  500
+
+schema Conv 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH414155     4  500
+
+schema Conv 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114730     4  500
+
+schema Conv 5
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112027     4  500
+
+schema Conv 6
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114012     4  500
+
+schema Conv 7
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114010     4  500
+
+schema Conv 8
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112015     4  500
+
+schema Conv 9
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114004     4  500
+
+schema Conv 10
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114001     4  500
+
+schema Conv 11
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114003     4  500
+
+schema Conv 12
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214157     4  500
+
+schema Conv 13
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion cortez     0  500
+
+schema Conv 14
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion digtalk     0  500
+
+schema Conv 15
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk1a     4  500
+
+schema Conv 16
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk1b     4  500
+
+schema Conv 17
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk1c     4  500
+
+schema Conv 18
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk2a     4  500
+
+schema Conv 19
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk2b     4  500
+
+schema Conv 20
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion femtalk2c     4  500
+
+schema Conv 21
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humdthtk     0  500
+
+schema Conv 22
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk1     4  500
+
+schema Conv 23
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk2a     4  500
+
+schema Conv 24
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk2c     4  500
+
+schema Conv 25
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk2d     4  500
+
+schema Conv 26
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk2e     4  500
+
+schema Conv 27
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk2f     4  500
+
+schema Conv 28
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtalk3a     4  500
+
+schema Conv 29
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humtlkem     0  500
+
+schema Conv 30
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk1a     4  500
+
+schema Conv 31
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk1b     4  500
+
+schema Conv 32
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk1c     4  500
+
+schema Conv 33
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk2a     4  500
+
+schema Conv 34
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk2b     4  500
+
+schema Conv 35
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion shotalk2c     4  500
+
+schema Conv 36
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion fembound     4  500
+
+schema Conv 37
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114736     4  500
+
+schema Conv 38
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114737     4  500
+
+schema Conv 39
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114738     4  500
+
+schema Conv 40
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114739     4  500
+
+schema Conv 41
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion jen     4  500
+
+schema Conv 42
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion plycrchd     0  500
+
+schema Misc 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion humcpsch     0  500
+
+schema Misc 3
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion cpssitc1     0  500

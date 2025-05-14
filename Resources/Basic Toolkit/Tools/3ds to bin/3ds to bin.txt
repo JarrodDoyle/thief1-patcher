@@ -1,0 +1,558 @@
+
+          =   Graphical .3ds -> .bin Conversion Utility   =
+                       =     Version 2.20    =
+
+
+=    Overview    =
+
+This program is a graphical interface for converting .3ds files into the Dark Engine's native .bin format, allowing you to easily import custom objects and creatures into DromEd. It includes features for easily scaling, rotating, translating and retexturing the object, and can also attempt to automatically fix incomplete joint and vhot data. It can also call upon the power of Shadowspawn's Free The Objects toolkit to convert .bin files back to .e or .3ds format, and use Shadowspawn's MeshUp utility to convert creature meshes to revision 2.0 format.
+The also allows you to view a preview of the object you're working on via the Looking Glass Object Viewer utility, which can be accessed by pressing Alt+V (or Alt+Shift+V for fullscreen, high colour mode). You cannot view objects that will not compile to .bin format.
+
+This program has been most thoroughly tested with Thief Gold and Thief 2, both under Windows 2000 and Windows XP. However, it should work with System Shock 2 (and other versions of Windows) as well.
+
+
+
+=   Installing   =
+
+Unzip the program to the directory of your choice.
+
+For the program to be able to function, you must have the following files:
+
+	3ds2e.exe or n3ds2e.exe
+	BSP.exe
+	MeshBld.exe
+	View.exe	(Optional)
+
+These programs should be in your Thief or SS2 folder. If you do not have them, you can download them from here:
+http://www.geocities.com/nameless_voice/Downloads/Tools/ObjectTools.zip (642k)
+
+In order to use the program for meshes, you must also extract all the .map and .mjo files from your Mesh.crf, along with the following .cal files:
+
+	conbase.cal
+	burrbase.cal
+	manbase.cal
+
+These files must all be extracted to the same location. It's probably best to create a new folder to put them into.
+In order to create Revision 2 meshes (which allow glowing faces, transparency, and the use of the Mesh Textures property), you will need Shadowspawn's MeshFix pack:
+
+	MeshUp.exe	(Optional)
+
+If you do not have these tools, you can downloaded them from here:
+http://www.geocities.com/nameless_voice/Downloads/Tools/MeshFix.zip (45k)
+
+
+In addition, you will need Shadowspawn's Free The Object's Toolkit in order to open .bin files and save .3ds files:
+
+	BinToE.exe	(Optional)
+	ETo3ds.exe	(Optional)
+
+If you do not have these tools, you can downloaded them from here:
+http://www.geocities.com/nameless_voice/Downloads/Tools/FreeTheObjects3.zip (196k)
+
+If you have enough disk space, you should extract Obj.crf to a subfolder of your Obj folder named 'Original', as this will allow the program to display original LGS textures when they are used in a model. The same should also be done for Mesh.crf.
+Only the textures files (txt and txt16) are required, but once the .bin .e files have been extracted they can be opened and converted to .3ds if you have the Free The Objects Toolkit.
+
+If you are using Windows 98, you may want to place the shortcut file in your Windows\Pif folder.
+If you do not have the Visual Basic runtime libraries, you will need to download them.
+If you do not have 3ds2e.exe, BSP.exe and MeshBld.exe, you must download them from the address above, or from http://www.thief-thecircle.com
+
+
+
+=   How to use   =
+
+Once you have loaded the program, you will need to direct it to the .3ds file that you wish to convert. If a find dialogue does not appear when you launch the program due to the program's configuration (see below), use the 'Open' button to select this file.
+If the file appears to be a mesh, you will be prompted as to whether it should be treated as one.
+Once the file has been loaded, you can modify the materials, set the scale factor, and make other adjustments.
+
+When you are satisfied with your changes, press the'Go!' button to finish the conversion proccess.
+
+If you wish to discard any changes you've made and reopen the file, you can use the the 'Reload' button.
+
+You can also save the current model in .e and .3ds* format, and open .e and .bin* files.
+
+* These formats requrie Shadowspawn's Free The Objects Toolkit.
+See the documentation for these programs for more information on opening .bin files.
+
+Finally, you can use the Package button to copy all of the files required for an object to a specific location on your drive.
+
+
+
+I will now give a short description of some of the program's options.
+
+ *	Centre Object
+If this option is enabled, the object's centroid will be placed at the object's exact centre.
+
+ *	Open .e file
+If this option is enabled, the .e file will be opened in Notepad before the file is converted to .bin format, to allow you to make manual modifications.
+To specify an alternate text editor you need to manually add the 'Notepad' setting under '[Locations]' in 3ds2bin.ini.
+For example:
+[Locations]
+Notepad=C:\Program Files\Notepad++\Notepad++.exe
+
+ *	Verbose Mode
+If this option is enabled, the program will give you additional information on the object, such as the joint setup, after it has been converted.
+
+* Fix Joint Names
+The @ symbol, used in the .e file to specify a special object, such as a joint or a vhot, cannot be used in certain 3D applications. Some programs, such as AccuTrans 3D, will replace this 'invalid' character with an underscore (_). If this option is enabled, object names that sound like joints, but begin with an underscore, will have this underscore replaced with an @ symbol.
+
+ *	Fix Joint Data
+If enabled, the program will attempt to remove excessive vertixes and faces from an object's joints. Although this can be very useful for 3D modelling software which cannot cope with objects with less than three sides (Caligari trueSpace, for example), this option does not work perfectly, so you may be forced to do this manually.
+
+ *	Auto .gif Textures
+When this option is enabled, the program will automatically change all texture file extensions to .gif. Of course, you still have to convert the actual file and place it into your Txt or Txt16 folder!
+
+ *	Scale, Translate, and Rotate.
+These options are fairly self-explanatory. Use them to scale, move, and rotate the object.
+
+ *	Centroid
+These options are uses to define the location of the object's centroid. If you set one to '-', the object's centroid will be placed at the object's lowest point on that axis. This will, effectively, offset the actual object in the opposite direction.
+The 'Centre Object' box must be cleared to use these offsetting features.
+
+ *	Comment
+You can use the Comment box to change the comment header in the .e file. As this comment is not included in the finished .bin file, it's fairly trivial.
+
+ *	Group Name
+You can use these boxes to rename any of the object's polygon groups.
+
+ *	Material Name
+You can use these boxes to rename any of the object's material groups.
+
+ *	Shader
+You can use these boxes to give a material either a PHONG or GOURARD shader, or both. This can make objects look more realistic.
+
+ *	Special
+You can use the Special boxes to give a material extra illumination. To do this, choose Illum in the first box, then enter the amount that you want the material illuminated, as a percentage, into the second box.
+Negative illumination does not seem to be supported.
+Do not use Illum on Meshes, as it crashes the old version of MeshBld we have.
+
+ *	Type
+With these boxes, you can choose if this material is a texture map, or merely a solid RGB colour. Note that you cannot set an object that originally only had a solid RGB colour to use a texture map, as there are no texture alignment coordinates in the file.
+
+ *	Data
+You can use these boxes to specify the filename for the current material's texture, or, in the case of a solid RGB material, select the colour by clicking on the box. 
+For texture maps, you can use the Texture Browser to locate a file (See below).
+Texture map filenames cannot be longer than 16 characters, including the extension.
+
+ *	???
+These parameters can only be used in conjunction with texture maps, but their exact purpose is unknown.
+
+ *	Transp
+You can use these boxes to specify the transparency of a material, as a percentage.For some reason, setting this value to 100 seems to cause Bsp.exe to crash.
+Note that 20 means 20% transparent, not 20% opaque.
+
+ *	Double-sided
+These boxes can be used to make a material double-sided. Double-sided materials can be seen from both sides, but also use more polygons on the screen.
+The proper method of making a material double-sided is to include the 'DBL' flag. However, this doesn't seem to work for meshes, so the old-style algorithm, which duplicates every poly in the chosen group and mirrors it, has also been included. To use it, you need to hold down Ctrl+Alt and click on the number next to the group you wish to make double-sided.
+Given the choice, it's probably a good idea to ues the old algorithm only if you can't use the normal method.
+
+ *	Mesh
+If checked, the current object will be treated as a mesh, otherwise it will be treated like a normal object. Although the program should detect when you are converting a mesh file, you can use this checkbox to manually override intelligent mesh/object detection.
+
+ *	Mesh Type
+This option is only availiable when converting meshes.
+Use this menu to select which type of mesh you are converting. If you select an incorrect mesh type, the chances are that your object will not be converted, or possibly even crash DromEd when used.
+The program tries to guess the correct mesh type, but this is far from perfect. It can never detect 'Apparition' or 'Droid' types.
+
+ *	Texture Preview/Browser
+This area shows a small thumbnail of the currently selected material. If the material is set to RGB, then a plain colour is displayed here. If the materials is set to TMAP, the texture map is displayed, if it can be found in the 'txt16', 'txt', 'original\txt16' or 'original\txt' folders appropriate to the current object type. Textures inside the 'Obj' folder will not be displayed if you are converting a mesh, and vice versa.
+To browse for a texture, click on the preview area or press Ctrl-T. If the file you select is not in the correct path, you will be prompted to copy it there.
+Note that if the file is not .gif format, you will need to use an external program to convert it to that format.
+
+ *	Object Viewer
+This feature allows you to view a preview of the current object by either pressing Alt-V (windowed software mode) or Alt-Shift-V (fullscreen hardware mode). Meshes are not supported.
+For more information on using the object viewer, refer to the file "Object Viewer Readme.txt".
+Note that the model needs to be converted to .bin format before it can be viewed, so you can't view a model that won't compile.
+In order to use it, you will need the Looking Glass object tools (availiable here: http://www.geocities.com/nameless_voice/Downloads/Tools/ObjectTools.zip at a size of 642k).
+
+__________________
+ Advanced options
+__________________
+
+ *	Auto Update
+If this option is enabled, the program will detect when the currently loaded .3ds file has been modified, and will ask you if you wish to reload. (Default: Enabled)
+See also: Keep advanced materials when reloading .3ds (below)
+
+ *	Automatic Incrementation
+If the currently loaded .3ds file is reloaded, and the output file already exists, the program automatically adds a number to the end of the filename, and increments this number with subsequent updates. This should help you work around the problem of DromEd refusing the notice that a .bin file has changed since it was loaded into memory. (Default: Enabled)
+
+ *	Automatic File Loading
+By default, when the program starts, it automatically loads what it thinks to be the most recent .3ds file.
+To disable this, select 'Start without looking for input' in the advanced options menu.
+Alternatively, enter choose 'Start with file selector' to have the program automatically open a file selection dialogue, with the most recent file highlighted. (Default: Start with most recent .3ds file)
+
+ *	Convert Meshes to Revision 2
+When this option is enabled, meshes are automatically converted to revision 2 meshes, which allow illumination, transparency, and the use of the Mesh Textures property.
+In order to use this feature, you need Shadowspawn's MeshFix toolkit.
+At present, this program cannot apply the Illum or Trans properties to the revision 2 meshes.
+(Default: Enabled if availiable)
+
+ *	Ignore Illum when loading .3ds.
+If this option is enabled, the self illumination of materials in the input .3ds file will be ignored.
+
+ *	Invert transparency when loading .3ds
+If the transparency value specified by your 3D modelling application becomes inverted by the Conversion Utility (eg; 5% opaque becomes 5% transpant), then you should enable this option; otherwise, leave it disabled.
+(Default: Disabled)
+
+ *	Keep advanced materials when reloading .3ds
+If this option is enabled, the advanced material options (Transparency, Shader, Special and Double-Sided) are kept when the current .3ds file is reloaded. (Default: Enabled)
+
+ *	Save current scale factors as default
+This will save the current scale factors as default, so that the scale factors will be the same whenever you load the program.
+For example, if you wish to create models in your 3D program at 10x the scale that they should be in Thief, you should set the three scale settings to "0.10" and then select 'Save current scale factors' from the Advanced options menu.
+
+ *	Attempt to fix truncated texture filenames
+Some programs, such as 3D Studio Max, truncate the texture filenames to eight characters when exporting to .3ds.
+If this option is enabled, the program will attempt to find the actual texture name when it loads the .3ds file.
+
+ *	Z-99
+
+This feature removes all vertices beloning to a joint group which have a Z coordinate of '-99.00' (additional decimal places are ignored). This is useful if your 3D modelling software does not allow polygons with less than three vertices.
+This feature will not function unless the 'Fix Joint Data' option is enabled. (Default: Enabled)
+
+ *	Choose Skin
+
+Opens the skin selection window, which allows you to choose a skin to apply to the program. You can also delete skins and create new skins.
+Skins are kept in the "3ds to bin Skins" folder in the same path as the application.
+When you choose to create a new skin, all the images will be written to a subfolder with the skin name of your choice. The files created will be bitmap images (.bmp), although the program will also accept .jpg files for everything except the three checkbox images (which must be bmp format), and the ImgNum image, which will be accepted in .bmp or .gif format.
+
+__________________
+ Troubleshooting
+__________________
+
+The Graphical .3ds -> .bin Conversion Utility keeps a log file (3ds2bin.log), which is overwritten each time the program is run. If you run into any major problems (eg. Runtime errors), send me a description of the problem and a copy of the log file, either via the TTLG Forums (Editors Guild or PM), or via email.
+If you really don't like the log feature, you can disable it by adding the line LoggingDisabled=1 to the [Settings] section of 3ds2bin.ini.
+
+
+=      History   =
+
+__________________
+ Version 2.20
+__________________
+
+ *	Fixed a bug that would prevent .bin or .e files
+	from being loaded correctly loaded if their
+	extensions were not in lowercase.
+	
+ *	Added an option to reset common options on startup.
+	This will cause the Centre Object option to become
+	re-enabled every time the program is started.
+	
+ * The program will now check darkinst.cfg or install.cfg
+	(as appropriate) to find textures for correcting texture
+	names, previewing images, and packaging.
+	The "original" folder can be in any of these resource
+	paths.
+   
+__________________
+ Version 2.19
+__________________
+
+ *	The 'texture filename too long' warning is now
+	correctly displayed when the 'Auto .gif textures'
+	option is disabled.
+   
+ *	The entry boxes for material #1 should now be
+	removed properly when when loading an object with
+	no material #1.
+   
+ *	The scale factor is now restored to the default
+	when loading a .3ds or .e file after loading a
+	.bin file (which sets the scale factor to 1x).
+   
+ *	Fixed some problems with material transparency.
+ 
+ *	Added an option to use an alternate text editor
+	for .e files.
+   
+ *	The 'Convert Meshes to Revision 2' option is now
+	saved and restored correctly when the program is
+	quit.
+
+__________________
+ Version 2.18
+__________________
+
+ *	Stopped the program from inverting transparency
+	values when loading a .3ds file. This is now
+	an option that can be enabled at your discretion.
+	If a material that is 95% opaque in your 3D app
+	becomes 5% transparent in 3ds2bin, then you need
+	to enable the option, otherwise you don't.
+   
+ *	Fixed a bug that was causing the program to use
+	the first shader type it found for all subsequent
+	materials.
+
+__________________
+ Version 2.17
+__________________
+
+ *	Fixed a major bug that would cause no end of
+	errors when trying to convert a mesh.
+
+ *	The program now properly repairs truncated
+	texture names when it loads a .3ds file.
+	(This feature was not working properly before.)
+
+__________________
+ Version 2.16
+__________________
+
+ *	The program can now output revision 2 meshes
+	(Requires Shadowspawn's MeshFix toolkit.)
+
+ *	Improved external file location algorithm.
+
+ *	In-program skin support added.
+
+__________________
+ Version 2.15
+__________________
+
+ *	Added support for the 'Droid' mesh type.
+
+__________________
+ Version 2.14
+__________________
+
+ *	Fixed a nasty bug that would cause a message about
+	a texture filename being too long to appear
+	repeatedly and infinitely when loading an object
+	with a texture name longer than the limit.
+
+ *	Fixed a minor bug with the skinning system.
+
+__________________
+ Version 2.13
+__________________
+
+ *	Fixed a major bug that could cause the group AFTER
+	a joint group to have its PARTS and PART_MAPPINGS
+	section deleted if the 'Fix Joint Data' option was
+	enabled.
+
+__________________
+ Version 2.12
+__________________
+
+ *	Fixed a particularly nasty problem where the program
+	would crash while trying to fix a truncated texture
+	filename. I still don't really know why it happened,
+	but it doesn't seem to do it any more.
+
+ *	The program now looks in the 'txt', 'original\txt16',
+	and 'txt' folders when trying to fix a truncated
+	texture filename. Previously, only 'txt16' was
+	searched.
+
+ *	Fixed a bug that was causing the program not to detect
+	rope meshes, and continually try to convince you that
+	they should be treated as objects.
+
+ *	The materials are now scrolled properly when you use
+	the tab key.
+
+ *	Added the option to ignore Illum data when loading
+	.3ds files.
+
+ *	Made it possible to access the old double-siding
+	algorithm by holding Ctrl+Alt when clicking on
+	the number next to a group.
+
+ *	The program now warns you when you try to use a
+	texture filename that is longer than the maximum
+	of 16 characters.
+
+__________________
+ Version 2.11
+__________________
+
+ *	Fixed a problem that would crash the program if you
+	tried to load a .3ds file that used a .pcx format
+	texture.
+
+__________________
+ Version 2.10
+__________________
+
+ *	Added a Package feature to allow you to quickly
+	gather all the files required to publish an object.
+
+ *	The program will now ask you for Shadowspawn's
+	tools if you try to use them when they cannot
+	be found.
+
+ *	Minor tweaks and bug fixes.
+
+__________________
+ Version 2.00
+__________________
+
+ *	The program can now both open and save .3ds, .e,
+	and .bin files!
+	In order to open .bin files and save .3ds files,
+	you will need Shadowspawn's Free The Objects
+	Toolkit v3.0.
+
+ *	Added a feature to fix truncated texture filenames.
+
+ *	Fixed the Centroid selection boxes which had
+	inadvertently disabled. They are now only disabled
+	when Centre Object is activated, as they should be.
+
+ *	Fixed a major bug that would cause the program not
+	to function if n3dse.exe or bsp.exe were placed
+	in a path containing a space character.
+
+__________________
+ Version 1.01
+__________________
+
+ *	Fixed a bug that would cause the program to crash with
+	an 'Overflow' error when opening a model with more than
+	91 groups or materials.
+
+ *	Monolog feature added.
+
+ *	Introduced a new feature to view the current model.
+
+ *	Fixed a bug that would occasionally crash the program
+	with an 'Object already loaded' error when opening a
+	.3ds file.
+
+ *	Changed the way the program interprets the Return key,
+	so that you can now use it to select items in the menus
+	without the program compiling your model.
+
+ *	Fixed a bug that could crash the program when certain
+	keyboard shortcuts were used with no file loaded.
+
+__________________
+ Version 1.00
+__________________
+
+ *	The program now has a completely new Thief-style
+	interface.
+
+ *	Shaders are now properly reset when loading a new file.
+
+ *	Group and material names are now automatically changed to
+	title case.
+
+ *	Vastly improved reading of materials.
+
+ *	Texture maps with spaces are now read correctly from the
+	.3ds file.
+
+ *	Double-sided materials are now supported properly.
+
+ *	Fixed a bug that would cause the program to display an
+	error message stating 'Run time error '53' File not found'
+	when running the program for the first time.
+
+ *	The appropriate type is now automatically detected when
+	a mesh file is opened, with the exception of 'Apparition'
+	and 'Droid' types.
+
+ *	Automatic Incrementation feature added.
+
+ *	Filenames are now automatically truncated to 15 characters,
+	plus extension - the maximum length DromEd will allow a
+	model name to be.
+
+ *	New option to automatically assign a new name to the output
+	file if it already exists.
+
+ *	The tab order for groups and materials has been fixed.
+
+ *	'Z-99' feature is now an option.
+
+ *	Default scale factor can now be saved.
+
+ *	Automatic Incrementation, Automatic Opening, and Z-99
+	options can now be changed from inside the program.
+
+ *	Removed BETA status.
+
+
+__________________
+ Version 0.95 BETA
+__________________
+
+ *	The 'Auto .gif Textures' option now works better.
+
+ *	Most recent .3ds file is now automatically loaded.
+
+ *	Joints with too many vertices are now correctly reported.
+
+ *	Updated .3ds files are now noticed better.
+
+ *	Fixed a bug that could cause the program to crash when
+	opening and then compiling a new .3ds file after setting
+	one of the previous model's materials to Illum.
+
+ *	A warning is now displayed when a material that was
+	originally set to RGB is set to TMAP.
+
+ *	'Z-99' feature for joints added.
+
+ *	Groups which are renamed to joint groups are now
+	properly proccessed by Fix Joint Names and Fix
+	Joint Data before compiling.
+
+
+__________________
+ Version 0.94 BETA
+__________________
+
+ *	Added feature for making groups Double-Sided.
+
+ *	Obsolete preferences from old versions are now ignored.
+
+ *	Program now automatically starts with file selector.
+
+ *	Texture browser added.
+
+
+___________________
+ Version 0.93 BETA
+___________________
+
+ *	Added texture preview window.
+
+ *	Support for n3ds2e.exe.
+
+
+___________________
+ Version 0.92 BETA
+___________________
+
+ *	Mesh support added.
+
+ *	Support for more than 12 textures added.
+
+ *	External programs no longer need to be in the same folder.
+
+
+___________________
+ Version 0.90 BETA
+___________________
+
+ *	First beta version
+
+
+
+= Special Thanks =
+
+Shadowspawn,
+Colourless.
+
+
+=  Copyright     =
+
+This program is copyright ©2002-2004 by Nameless Voice.
+You may not modify this program or commercially exploit it or its output in any way without my explicit permission.
+You may distribute this program, so long as it is free, credit is given the author, and the archive remains intact and unmodified.
+Nameless Voice will not be liable for any incidental, special, consequential or any other damages that may result from the use or inability to use this software, including, but not limited to, frustrated destruction of computer equipment.
+
+Some states do not allow the limitation or exclusion of liability for incidental or consequential damages so these limitations or exclusions may not apply to you.  In no event shall the total liability to you for any damages, losses, and causes of action exceed the amount paid by you for this software (€0.00).

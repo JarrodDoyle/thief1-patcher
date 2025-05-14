@@ -1,0 +1,14 @@
+
+torso  PlayerArm
+
+schema Test 0
+MType  PlyrBodyCarry
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0
+
+schema PlyrCorpseCarry 0
+MType  PlyrBodyCarry
+TimeScale 0
+XYZScale  0
+motion camSynch     0  0

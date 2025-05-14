@@ -1,0 +1,38 @@
+DECLARE_SCRIPT_SERVICE(Listener, 0x22c)
+{
+	// listen to a property
+	STDMETHOD(SubscribeProperty)(const object ref watcher, const object ref obj, const char *propname, ePropertyListenMsg interests = kListenPropModify|kListenPropSet|kListenPropUnset, BOOL async = FALSE) PURE;
+	STDMETHOD(UnubscribeProperty)(const object ref watcher, const object ref obj, const char *propname) PURE;
+	// listen to an object
+	STDMETHOD(SubscribeObject)(const object ref watcher, const object ref obj, BOOL dbmsgs = FALSE, BOOL async = FALSE) PURE;
+	STDMETHOD(UnubscribeObject)(const object ref watcher, const object ref obj) PURE;
+	// listen to a link flavor
+	STDMETHOD(SubscribeLink)(const object ref watcher, const object ref obj, linkkind kind, eRelationListenMsg interests = kListenLinkModify|kListenLinkBirth|kListenLinkDeath, BOOL async = FALSE) PURE;
+	STDMETHOD(UnubscribeLink)(const object ref watcher, const object ref obj, linkkind kind) PURE;
+	// listen to hierarchy changes
+	STDMETHOD(SubscribeHierarchy)(const object ref watcher, const object ref obj, BOOL async = FALSE) PURE;
+	STDMETHOD(UnsubscribeHierarchy)(const object ref watcher, const object ref obj) PURE;
+};
+
+typedef unsigned long ePropertyListenMsg;
+
+enum ePropertyListenMsg_
+{
+   kListenPropModify          = 1 << 0,
+   kListenPropSet             = 1 << 1,
+   kListenPropUnset           = 1 << 2,
+   kListenPropLoad            = 1 << 3,
+   kListenPropRebuildConcrete = 1 << 4,
+   kListenPropRebuildConcreteRelevant = 1 << 5,
+   kListenPropRequestFromHost  = 1 << 6,
+};
+
+typedef unsigned long eRelationListenMsg;
+
+enum eRelationListenMsg_
+{
+   kListenLinkModify    = 0x0001,
+   kListenLinkBirth     = 0x0002,
+   kListenLinkDeath     = 0x0004,
+   kListenLinkPostMortem= 0x0008,
+};

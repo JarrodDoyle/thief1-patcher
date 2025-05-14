@@ -1,0 +1,193 @@
+
+global BugDemon 0
+torso  Biped
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BB111010     0  500
+motion BB111011     0  0
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0.5
+XYZScale  0
+motion BB111010     0  500
+motion BB111011     0  0
+
+schema Locomote 0, LocoUrgent 0, WithTurns 0
+MType  GLP180Turn
+TimeScale 0.5
+XYZScale  0
+motion BB111010     0  500
+motion BB111011     0  0
+motion BH211239     2  200
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BB111000     4  500
+motion BH111210     6  500
+motion BH111211     6  500
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB211000     4  500
+
+schema MeleeCombat 0, Attack 0, Direction 5
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BB113100     4  500
+motion BB113001     0  500
+motion BB113002     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BB113100     4  500
+motion BB113003     0  500
+motion BB113004     0  500
+
+schema MeleeCombat 0, Attack 0, Direction 6
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BB113100     4  500
+motion BB113005     0  500
+motion BB113006     0  500
+
+schema MeleeCombat 0, Attack 0, SpecialAttack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion BB113010     0  500
+motion BB113011     0  500
+motion BB113012     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB112201     0  500
+motion BB112202     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213262     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213263     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213260     0  500
+
+schema Locomote 0, MeleeCombat 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213261     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213263     0  500
+
+schema Locomote 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213260     0  500
+
+schema Locomote 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213261     0  500
+
+schema ReceiveWound 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213502     0  500
+
+schema ReceiveWound 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213500     0  500
+
+schema ReceiveWound 0, Direction 7
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213501     0  500
+
+schema ReceiveWound 0, Direction 8
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213500     0  500
+motion BB213502     0  500
+
+schema ReceiveWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213501     0  500
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BB213700     0  500
+
+schema MeleeCombat 0, Block 0
+MType  SwordGenBlock
+TimeScale 0
+XYZScale  0
+motion BB213220     0  500
+
+schema MeleeCombat 0, Block 0, Direction 1
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BB213225     0  500
+
+schema MeleeCombat 0, Block 0, Direction 2
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BB213228     0  500
+
+schema MeleeCombat 0, Block 0, Direction 5
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BB213231     0  500
+
+schema MeleeCombat 0, Block 0, Direction 6
+MType  SwordDirBlock
+TimeScale 0
+XYZScale  0
+motion BB213222     0  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113651     0  500

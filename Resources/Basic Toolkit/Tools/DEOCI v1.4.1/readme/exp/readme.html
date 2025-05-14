@@ -1,0 +1,105 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="style.css">
+<title>Dark Engine Object Converter Interface</title>
+</head>
+
+<body>
+<h1 align=center>Dark Engine Object Converter Interface</h1>
+<p align=center><i>By R Soul</i></p>
+<h1>Overview</h1>
+<p>This program presents you with a graphical user interface (GUI) that runs the tools that convert an object from Dark Engine format (.bin or .e) to .3ds. It also places the object's textures in the same folder as the .3ds, so it is easier for your 3D object program to find them.</p>
+
+<p>Another important feature is that the textures can be converted from their original format (usually .gif or .tga) to another format. This is useful because not all programs support the .gif, .tga or .pcx formats that are most commonly used by Dark Engine objects.</p>
+
+<p>It should also be noted that the object does not have to be converted, and/or the textures don't have to be converted. The user can configure what the program is to do.<p>
+
+<h1>Requirements</h1>
+<ul>
+<li>.NET Framework 3.5 SP1 or newer;</li>
+<li>The "Free the Objects" toolkit from <a href=http://www.angelfire.com/games4/shadowspawn/Tools.html target=_blank>Shadowspawn (bintoe.exe and eto3ds.exe);</a></li>
+<li>A graphics program that comes with a command-line interface and the ability to convert textures, e.g. <a href=http://www.irfanview.com/>IrfanView</a>.</li>
+</ul>
+
+<h1>Installation</h1>
+<p>Simply extract the files (DEOCI.exe and Ionic.Zip.dll) to any folder and run DEOCI.exe. The .dll file is used to enable access to .crf files, which are actually renamed .zip files.</p>
+
+<h2>User Account Control</h2>
+<p>If you use Windows Vista and above, and you have UAC enabled, this program may occasionally ask for higher privileges. You will be prompted under the following circumstances:</p>
+<ul>
+<li>When the converted files are to be placed in a protected folder (e.g. within Program Files);</li>
+<li>If the program is within Program Files, a prompt will appear when you close the program. It saves your settings and previous file/folder selections to "settings.txt";</li>
+<ul><li>You actually get two prompts here, and both requests should both be granted.</li></ul>
+</ul>
+
+<h1>Using the Program</h1>
+<h2>Initial Setup</h2>
+<h3>Object/Texture Info</h3>
+<img src=sc/FirstRun.png>
+<p>When you first run the program you will presented with lots of empty lists. Most of these only have to filled once.</p>
+
+<h3>Select Object</h3>
+<p>Use Browse File to select a .bin/.e file. When you do this, the object's folder will automatically be added to the Obj/mesh Folder list below.</p>
+
+<p>Use Model Name to enter in only the name of the file, and the extension. Select .bin for normal objects and .e for AIs. You can get the name by looking in Dromed's Object Hierarchy, editing the object and looking for the Shape > Model Name property. If you don't see it, the value will be inherited, so look for it in one of the parent archetypes instead.</p>
+<img src=sc/ModelName.png>
+
+<h3>Object/Texture Locations</h3>
+<p>The lists in this section tell the program where to look for the textures that are used by the object. If you selected the object's model name in the section above, it also uses these items to find the model file.</p>
+
+<h3>Obj/mesh Folder</h3>
+<p>This is the first place the program will look for the required files. It should be set to your Thief obj or mesh folder becuase if you've updated textures or the object itself, this is where the files will be.</p>
+
+<h3>EP.crf</h3>
+<p>If the required files are not in obj/mesh, the next best place to look is the Enhancement Pack, which contains updates to the original objects.<p>
+<p>You can select 'Ignore EP.crf' if you don't have it.</p>
+
+<h3>OBJ.CRF/MESH.CRF</h3>
+<p>These are the original files. There are two selections required. The first one is the large .crf file usually stored in your RES folder. This contains the majority of files.</p>
+<p>The second selection is the .crf file in your root Thief folder. The files in this will override files of the same name in the other .crf. When Thief 2 was patched to version 1.18, updated files went in these smaller .crfs</p>
+<p>You can tell the program to ignore these two .crfs if you know the object doesn't use any original files.</p>
+
+<h3>Conversion Program Info</h3>
+<img src=sc/ConvProgInfo.png>
+<h3>Object Conversion</h3>
+<p>Locatate bintoe.exe and eto3ds.exe. There are a couple of versions around so you can add multiple ones to the list and choose the best one for your needs. For example, the latest versions are usually fine, but when testing I found an object that wasn't textured properly until I used older versions of these tools.</p>
+
+<h3>Texture Conversion</h3>
+<p><i>If you don't plan to convert textures you can ignore this section.</i></p>
+<p>Select the .exe of the program that will convert the textures. IrfanView is a good program to use.</p>
+
+<h3>Conversion Command</h3>
+<p>The program you use must have a command line interface. Click on New to define the structure of the command used for converting a single image from one format to another. If you use IrfanView the command structure is [exe-path] [source-img] /convert=[dest-image] </p>
+<p>You must use the placeholder text and the square brackets. Before this program runs the commands it will replace those with the real file locations. The extension of [dest-img] will be set according the the options you choose in the 'Texture Format Options' tab.</p>
+
+<h3>Texture Format Options</h3>
+<img src=sc/TexFormatOpt.png>
+<h3>Presets</h3>
+<p>You can use this list to quickly set the conversion options for each image format. Presets exist for <b>Anim8or</b>, <b>Blender 2.58+</b>, <b>No Conversion</b>, and <b>Custom</b>.</p>
+
+<p><b>Anim8or</b> supports .gif textures, so those images won't be converted. It does not support the others, so they are all converted to .jpg, which is supported.</p>
+<p>From version 2.58 onwards, <b>Blender</b> does not support .gif, so those are converted to .png. It doesn't support .pcx either, so those are converted to .jpg. Those settings are compatible with Elendir's <a href=https://sites.google.com/site/tgtdpng/dark-exporter-2 target=_blank>Dark Exporter plugin</a>, which allows the reverse of those conversions. The remaining formats are supported, so they will not be converted.</p>
+<p><b>No Conversion</b> does exactly what it says.</p>
+<p><b>Custom</b> allows you to edit the conversion settings. For example, if Anim8or gained tga support, you could select the Anim8or preset and then select Custom, and select 'Don't Convert' for .tga textures.</p>
+
+<h3>Why are there options for .png and .dds?</h3>
+<p>The NewDark patch has given the Dark Engine support for those two formats. At the time of writing most objects you convert will be using the first two or three, but eventually you may find yourself wanting to convert objects that use the new formats. Bear in mind however that some conversion programs will not be able to convert .dds images.</p>
+
+<h3>Output Folders</h3>
+<img src=sc/OutFolders.png>
+<h3>Converted Object</h3>
+<p>Select the folder in which the converted object should be placed. If you select 'same as source', it will be placed in the Obj/mesh folder selected in the first tab. This option is not usually recommended but exists just in case.</p>
+
+<h3>Textures</h3>
+<p>Select the folder in which textures are to be placed. It can be useful to select 'same as converted object', because by default most 3D object programs look for textures in the object's own folder. You can however leave the box unchecked and choose a different folder if your object program is configured to look in a specific place.</p>
+
+<h3>Convert</h3>
+<p>When everything has been selected, click on Convert. If you've missed anything, you will see an error message telling you what you missed. The conversion process should be very quick, so you can expect a 'Finished' message almost instantly. You can then import the object into your 3D object program.</p>
+
+<h3>Further Use</h3>
+<img src=sc/FurtherUse.png>
+<p>When you next run the program, most of the settings will be reloaded. All you have to do is select the object, and it's folder if you select a model name, and select the output folder(s).</p>
+
+</body>
+
+</html>

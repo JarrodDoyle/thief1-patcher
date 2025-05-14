@@ -1,0 +1,1149 @@
+SQUIRREL.OSM API Reference
+==========================
+
+This reference uses pseudo C declarations to show what data types functions return or expect as arguments.
+Functions that have no return value do however not use 'void' as in C, they simply omit the return type.
+
+Message classes are documented separately in "API-reference_messages.txt".
+Script services are documented separately in "API-reference_services.txt".
+
+Functions available through the Squirrel standard libs are not covered here.
+
+
+// ----------------------------------------------------------------
+// DATA TYPES
+// ----------------------------------------------------------------
+
+int          : an integer value
+uint         : an integer value (unsigned integer natively but squirrel doesn't have an unsigned type)
+float        : a floating point value
+bool         : a boolean 'true' or 'false' value
+BOOL         : an integer value (constants 'TRUE' or 'FALSE', but can be interchanged with 1 or 0)
+HRESULT      : an integer value used to indicate the result of many script service functions (>= 0 means success, typically S_OK, < 0 means failure)
+ObjID        : an integer representing an object ID
+LinkID       : an integer representing a link ID
+RelationID   : an integer representing a link flavor / relation ID
+StimID       : an integer representing an ObjID to a stimulus archetype
+StimSensorID : an integer representing a LinkID for stim sensor
+StimSourceID : an integer representing a LinkID for stim source
+timer_handle : an integer representing a script timer handle
+cMultiParm   : a dynamically typed value, can be an int, float, string, vector or 'null' (use squirrel type checking to determine type if necessary)
+sqtable      : a squirrel table object
+sqblob       : a squirrel blob object (a chunk of binary data)
+
+object       : when seen as a "object" function argument then it expects an ObjID or an object name string
+               when seen as a "object &" function argument then it expects an 'object' object to return an ObjID in (like "int_ref" below, and like
+               int_ref "tointeger()" is used as well to access the returned ObjID)
+
+stimulus_kind: same as "object" but for StimID
+
+string       : a string value, in the majority of cases just a regular squirrel string value, but when seen as a "string &" function
+               argument like Engine.ConfigGetRaw() then the function expects a "string()" object in which it will return a string,
+               example script use:
+                  local str = string();
+                  if ( Engine.ConfigGetRaw("somevar", str) )
+                      print("the config var was: " + str);
+
+vector       : a 'vector' object, in rare cases script service functions take a "vector &" argument, in those cases the function expects a vector
+               object that it will fill with a return value (like "string" above)
+
+int_ref      : an integer reference value, used as arguments in some script service functions where the function returns a value in the argument
+               for example Engine.ConfigGetInt(), where the second argument is an int_ref that will contain the config var's value upon a successful
+               return of the function, example script use:
+                  local iref = int_ref();
+                  if ( Engine.ConfigGetInt("somevar", iref) )
+                      ... = iref.tointeger();
+
+float_ref    : a float reference value, used as arguments in some script service functions where the function returns a value in the argument
+               example script use:
+                  local fref = float_ref();
+                  if ( Engine.ConfigGetFlat("somevar", fref) )
+                      ... = fref.tofloat();
+
+
+// ----------------------------------------------------------------
+// GLOBAL FUNCTIONS
+// ----------------------------------------------------------------
+
+// returns the Dark engine API version
+//    0 = old dark T1/TG
+//    1 = old dark SS2
+//    2 = old dark T2
+//    3 = NewDark T2 v1.19 / SS2 v2.4
+//    4 = NewDark T2 v1.20 / SS2 v2.41
+//    5 = NewDark T2 v1.21 / SS2 v2.42
+//    6 = NewDark T2 v1.22 / SS2 v2.43
+//    7 = NewDark T2 v1.23 / SS2 v2.44
+//    8 = NewDark T2 v1.24 / SS2 v2.45
+//    9 = NewDark T2 v1.25 / SS2 v2.46
+//   10 = NewDark T2 v1.26 / SS2 v2.47
+//   11 = NewDark T2 v1.27 / SS2 v2.48
+//   etc.
+int GetAPIVersion();
+
+// returns the type of game
+//   0 = T1/TG
+//   1 = SS2
+//   2 = T2
+int GetDarkGame();
+
+// returns non-zero if the host application is the editor
+int IsEditor();
+
+
+// construct a vector object with its components set to 0
+vector vector();
+// construct a vector object with its components set to 'f'
+vector vector(float f);
+// construct a vector object with its components set to X Y Z
+vector vector(float X, float Y, float Z);
+
+// construct zero-initialized link descriptor
+sLink sLink();
+// construct a link descriptor initialized by the link 'lid'
+sLink sLink(LinkID link);
+
+// The use of 'object' objects is very limited. For the rare cases where a script service function has an
+// "object &" param (like Physics.GetClimbingObject) or when needing to set a cMultiParm explicitly to an
+// object ID type instead of a regular integer type.
+//
+// construct an 'object' initialized to 0
+object object();
+// construct an 'object' object initialized with an object ID
+object object(ObjID obj);
+
+// construct an int reference object, for use as function argument in script service functions that have int_ref arguments
+int_ref int_ref();
+int_ref int_ref(int i);
+
+// construct a float reference object, for use as function argument in script service functions that have float_ref arguments
+float_ref float_ref();
+float_ref float_ref(float f);
+
+// construct a string object, for use as function argument in script service functions that have "string &" arguments
+string string();
+string string(string s);
+
+
+// ----------------------------------------------------------------
+// CLASSES
+// ----------------------------------------------------------------
+
+// a 3D vector
+class vector
+{
+	float x;
+	float y;
+	float z;
+
+	// Arithmetic operators:
+	//
+	//   - vector             : negated components
+	//   vector + vector      : component-wise addition
+	//   vector - vector      : component-wise subtraction
+	//   vector * vector      : component-wise multiplication
+	//   vector / vector      : component-wise division
+	//   vector + float       : component-wise addition of a scalar value
+	//   vector - float       : component-wise subtraction of a scalar value
+	//   vector * float       : component-wise multiplication of a scalar value
+	//   vector / float       : component-wise division of a scalar value
+
+	// scale this vector by 'f'
+	Scale(float f);
+
+	// return the dot product between this vector and 'v'
+	float Dot(vector v);
+	// return the cross product between this vector and 'v' (this x v)
+	vector Cross(vector v);
+	// return the length of this vector
+	float Length();
+	// normalize this vector
+	Normalize();
+	// return a normalized version of this vector
+	vector GetNormalized();
+}
+
+// a link descriptor
+class sLink
+{
+	ObjID source;
+	ObjID dest;
+	RelationID flavor;
+
+	// re-initialize this descriptor with the link 'lid', returns TRUE if link ID was valid and descriptor was updated
+	BOOL LinkGet(LinkID link);
+
+	// for API compatibility with old OSM code these accessor functions are provided as well,
+	// but there is no benefit in using these over accessing 'source', 'dest' and 'flavor' directly
+	ObjID From();
+	ObjID To();
+	RelationID Kind();
+}
+
+// an iteratable set of links, preferably used in a 'foreach' statement, like "foreach (l in Link.GetAll(flavor, from, to))"
+class linkset
+{
+	// if for some reason 'foreach' isn't desired then iteration can also be handled with the following functions,
+	// but don't mix the use of these and 'foreach'
+	//    while ( ls.AnyLinksLeft() )
+	//    {
+	//        l = ls.Link();
+	//        ls.NextLink();
+	//    }
+	BOOL AnyLinksLeft();
+	LinkID Link();
+	NextLink();
+}
+
+// an iteratable set of objects, preferably used in a 'foreach' statement, like "foreach (l in Object.GetAll(obj, type))"
+class objset
+{
+	// if for some reason 'foreach' isn't desired then iteration can also be handled with the following functions,
+	// but don't mix the use of these and 'foreach'
+	//    while ( os.AnyObjsLeft() )
+	//    {
+	//        o = os.Link();
+	//        os.NextObj();
+	//    }
+	BOOL AnyObjsLeft();
+	ObjID Obj();
+	NextObj();
+}
+
+// base class for all scripts
+class SqRootScript
+{
+	// ObjID of the object this script is attached to
+	const ObjID self;
+
+	// returns the class name of this script
+	string GetClassName();
+
+	// functions that are only to be used from within message handler functions
+	//
+	// return the current message, which can be a sScrMsg or any derived message class, depending on message type
+	sScrMsg_or_derived message();
+	// does a case insensitive compare of 'message().message' and 'sMessageName'
+	BOOL MessageIs(string sMessageName);
+	// set the kSMF_MsgBlock flag on the current message
+	BlockMessage();
+	// set message reply
+	Reply(cMultiParm value);
+	// set message reply to an ObjID (could also be done with "Reply(object(id))", but this is easier and more efficient)
+	ReplyWithObj(object value);
+
+	// When sending/posting messages do not use message names of built-in specialized message types (see message reference),
+	// because those names are reserved for specialized message classes. SendMessage/PostMessage will however only generate
+	// a regular sScrMsg message. Using the name of a specialized message type will cause undefined behavior or instability.
+	//
+	// Also keep in mind that script message handlers are squirrel functions, so the name of the message (with an "On" prefix)
+	// should preferably be a valid identifier (only alpha numeric characters and underscore). It's still possible to declare
+	// a handler for messages with other characters by replacing the characters with underscore in the handler functions name,
+	// or handle the message through the generic OnMessage() handler which is less efficient and messier.
+
+	// send an immediate message
+	cMultiParm SendMessage(object to, string sMessage, cMultiParm data, cMultiParm data2, cMultiParm data3);
+	cMultiParm SendMessage(object to, string sMessage, cMultiParm data, cMultiParm data2);
+	cMultiParm SendMessage(object to, string sMessage, cMultiParm data);
+	cMultiParm SendMessage(object to, string sMessage);
+
+	// post a message on the message queue
+	PostMessage(object to, string sMessage, cMultiParm data, cMultiParm data2, cMultiParm data3);
+	PostMessage(object to, string sMessage, cMultiParm data, cMultiParm data2);
+	PostMessage(object to, string sMessage, cMultiParm data);
+	PostMessage(object to, string sMessage);
+
+	// set a timer on 'self', returns a timer handle that can be used with KillTimer
+	timer_handle SetOneShotTimer(string sTimerName, float fPeriod, cMultiParm data);
+	timer_handle SetOneShotTimer(string sTimerName, float fPeriod);
+
+	// set a timer on 'to', returns a timer handle that can be used with KillTimer
+	timer_handle SetOneShotTimer(ObjID to, string sTimerName, float fPeriod, cMultiParm data);
+	timer_handle SetOneShotTimer(ObjID to, string sTimerName, float fPeriod);
+
+	// remove a timer that has not yet fired
+	KillTimer(timer_handle th);
+
+	// returns the time (in seconds) of the currently processed message if inside a message handler,
+	// otherwise the time of the last processed message
+	float GetTime();
+
+	// easy-access object property functions that operate on 'self' (without having to use the Property script service)
+	BOOL HasProperty(string sPropName);
+	cMultiParm GetProperty(string sPropName, string sFieldName, uchar iIndex);
+	cMultiParm GetProperty(string sPropName, string sFieldName);
+	cMultiParm GetProperty(string sPropName);
+	BOOL SetProperty(string sPropName, string sFieldName, uchar iIndex, cMultiParm value);
+	BOOL SetProperty(string sPropName, string sFieldName, cMultiParm value);
+	BOOL SetProperty(string sPropName, cMultiParm value);
+
+	// functions for persistent script data/vars
+	BOOL IsDataSet(string sVarName);
+	cMultiParm GetData(string sVarName);
+	cMultiParm SetData(string sVarName, cMultiParm value);
+	cMultiParm SetData(string sVarName); // same as SetData(sVarName, null)
+	cMultiParm ClearData(string sVarName);
+
+	// returns an ObjID based on an object name
+	ObjID ObjID(string sObjName);
+	// returns a link flavor based on a link flavor/type name
+	RelationID linkkind(string sLinkFlavorName);
+	// returns the source of a link (for quick access without using an sLink object)
+	ObjID LinkSource(LinkID id);
+	// returns the destination of a link (for quick access without using an sLink object)
+	ObjID LinkDest(LinkID id);
+
+	// returns a squirrel table object that contains the parsed key/value pairs of the "Design Note" property on object 'self'
+	// (if the host application is old dark SS2 then the "Objlist Arg" property is used instead)
+	// The parsing is based on semi-colon separated "key=value" syntax, the parsing works the same as in darkdlgs when clicking
+	// with the middle mouse button in the "Design Note" property dialog.
+	// If the parser detects that a value matches integer or floating point value syntax then it generates squirrel values of those
+	// types, in all other cases the values are treated as string values.
+	// The returned squirrel table contains one slot for each key. Note that squirrel syntax dictates that key names are valid
+	// identifiers, the table will only contain 'key' entries that fulfill that requirement. If the "Design Note" property contains
+	// key names that aren't valid identifiers then those are ignored.
+	//
+	// The parsed object property is cached the first time userparams() is called, if the property is subsequently changed then
+	// those changes won't be reflected by userparams().
+	//
+	// Ex:
+	//     object property contains: MyScriptParam1=123; MyScriptParam2="abc"
+	//     script code can access those as: userparams().MyScriptParam1 and userparams().MyScriptParam2
+	sqtable userparams();
+}
+
+
+// ----------------------------------------------------------------
+// COMMON CONSTANTS
+// ----------------------------------------------------------------
+
+TRUE
+FALSE
+S_OK
+
+ANIM_LIGHT_MODE_FLIP
+ANIM_LIGHT_MODE_SMOOTH
+ANIM_LIGHT_MODE_RANDOM
+ANIM_LIGHT_MODE_MINIMUM
+ANIM_LIGHT_MODE_MAXIMUM
+ANIM_LIGHT_MODE_EXTINGUISH
+ANIM_LIGHT_MODE_SMOOTH_BRIGHTEN
+ANIM_LIGHT_MODE_SMOOTH_DIM
+ANIM_LIGHT_MODE_RAND_COHERENT
+ANIM_LIGHT_MODE_FLICKER
+
+AMBFLG_S_ENVIRON
+AMBFLG_S_NOSHARPCURVE
+AMBFLG_S_TURNEDOFF
+
+AMBFLG_S_REMOVE
+AMBFLG_S_MUSIC
+AMBFLG_S_SYNCH
+AMBFLG_S_NOFADE
+AMBFLG_S_KILLOBJ
+AMBFLG_S_AUTOOFF
+
+TWEQ_LIMIT_RATE
+TWEQ_LIMIT_LOW
+TWEQ_LIMIT_HIGH
+
+TWEQ_AC_NOLIMIT
+TWEQ_AC_SIM
+TWEQ_AC_WRAP
+TWEQ_AC_1BOUNCE
+TWEQ_AC_SIMRADSM
+TWEQ_AC_SIMRADLG
+TWEQ_AC_OFFSCRN
+
+TWEQ_AS_ONOFF
+TWEQ_AS_REVERSE
+TWEQ_AS_RESYNCH
+TWEQ_AS_GOEDGE
+TWEQ_AS_LAPONE
+
+TWEQ_HALT_KILL
+TWEQ_HALT_REM
+TWEQ_HALT_STOP
+TWEQ_STATUS_QUO
+TWEQ_HALT_SLAY
+TWEQ_FRAME_EVENT
+
+TWEQ_CC_JITTER
+TWEQ_CC_MUL
+TWEQ_CC_PENDULUM
+TWEQ_CC_BOUNCE
+
+TWEQ_MC_ANCHOR
+TWEQ_MC_SCRIPTS
+TWEQ_MC_RANDOM
+TWEQ_MC_GRAV
+TWEQ_MC_ZEROVEL
+TWEQ_MC_TELLAI
+TWEQ_MC_PUSHOUT
+TWEQ_MC_NEGLOGIC
+TWEQ_MC_RELVEL
+TWEQ_MC_NOPHYS
+TWEQ_MC_VHOT
+TWEQ_MC_HOSTONLY
+TWEQ_MC_CREATSCL
+TWEQ_MC_USEM5
+TWEQ_MC_LINKREL
+
+TRAPF_NONE
+TRAPF_ONCE
+TRAPF_INVERT
+TRAPF_NOON
+TRAPF_NOOFF
+
+enum eWhichVarFile
+{
+	kMissionVar
+	kGameSysVar
+	kCampaignVar
+}
+
+enum ePlayerMode
+{
+	kPM_Stand
+	kPM_Crouch
+	kPM_Swim
+	kPM_Climb
+	kPM_BodyCarry
+	kPM_Slide
+	kPM_Jump
+	kPM_Dead
+}
+
+enum eScrMsgFlags
+{
+	kSMF_MsgSent
+	kSMF_MsgBlock
+	kSMF_MsgSendToProxy
+	kSMF_MsgPostToOwner
+}
+
+enum eScrTimedMsgKind
+{
+	kSTM_OneShot
+	kSTM_Periodic
+}
+
+enum eKeyUse
+{
+	kKeyUseDefault
+	kKeyUseOpen
+	kKeyUseClose
+	kKeyUseCheck
+}
+
+enum eAIActionPriority
+{
+	kLowPriorityAction
+	kNormalPriorityAction
+	kHighPriorityAction
+}
+
+enum eAIScriptAlertLevel
+{
+	kNoAlert
+	kLowAlert
+	kModerateAlert
+	kHighAlert
+}
+
+enum eAIScriptSpeed
+{
+	kSlow
+	kNormalSpeed
+	kFast
+}
+
+enum eAITeam
+{
+	kAIT_Good
+	kAIT_Neutral
+	kAIT_Bad1
+	kAIT_Bad2
+	kAIT_Bad3
+	kAIT_Bad4
+	kAIT_Bad5
+}
+
+enum eAIMode
+{
+	kAIM_Asleep
+	kAIM_SuperEfficient
+	kAIM_Efficient
+	kAIM_Normal
+	kAIM_Combat
+	kAIM_Dead
+}
+
+enum eAIActionResult
+{
+	kActionDone
+	kActionFailed
+	kActionNotAttempted
+}
+
+enum eAIAction
+{
+	kAINoAction
+
+	kAIGoto
+	kAIFrob
+	kAIManeuver
+}
+
+enum eFaceVisage
+{
+	kFaceNeutral
+	kFaceSmile
+	kFaceWince
+	kFaceSurprise
+	kFaceStunned
+}
+
+enum eBodyAction
+{
+	kMotionStart
+	kMotionEnd
+	kMotionFlagReached
+}
+
+enum eDoorAction
+{
+	kOpen
+	kClose
+	kOpening
+	kClosing
+	kHalt
+}
+
+enum eDoorStatus
+{
+	kDoorClosed
+	kDoorOpen
+	kDoorClosing
+	kDoorOpening
+	kDoorHalt
+
+	kDoorNoDoor
+}
+
+enum ePhysScriptMsgType
+{
+   kNoMsg
+
+   kCollisionMsg
+   kContactMsg
+   kEnterExitMsg
+   kFellAsleepMsg
+   kWokeUpMsg
+
+   kMadePhysMsg
+   kMadeNonPhysMsg
+}
+
+enum ePhysMessageResult
+{
+	kPM_StatusQuo
+	kPM_Nothing
+	kPM_Bounce
+	kPM_Slay
+	kPM_NonPhys
+}
+
+enum ePhysCollisionType
+{
+	kCollNone
+	kCollTerrain
+	kCollObject
+}
+
+enum ePhysContactType
+{
+	kContactNone
+	kContactFace
+	kContactEdge
+	kContactVertex
+	kContactSphere
+	kContactSphereHat
+	kContactOBB
+}
+
+enum eRoomChange
+{
+	kEnter
+	kExit
+	kRoomTransit
+}
+
+enum eObjType
+{
+	kPlayer
+	kRemotePlayer
+	kCreature
+	kObject
+	kNull
+}
+
+enum eSlayResult
+{
+	kSlayNormal
+	kSlayNoEffect
+	kSlayTerminate
+	kSlayDestroy
+}
+
+enum eTraitQueryType
+{
+	kTraitQueryArchetype
+	kTraitQueryDonors
+	kTraitQueryDescendents
+	kTraitQueryTransitive
+	kTraitQueryAllArchetypes
+	kTraitQueryAllDonors
+	kTraitQueryAllDescendents
+}
+
+enum eTweqType
+{
+	kTweqTypeScale
+	kTweqTypeRotate
+	kTweqTypeJoints
+	kTweqTypeModels
+	kTweqTypeDelete
+	kTweqTypeEmitter
+	kTweqTypeFlicker
+	kTweqTypeLock
+	kTweqTypeAll
+	kTweqTypeNull
+}
+
+enum eTweqDirection
+{
+	kTweqDirForward
+	kTweqDirReverse
+}
+
+enum eTweqOperation
+{
+	kTweqOpKillAll
+	kTweqOpRemoveTweq
+	kTweqOpHaltTweq
+	kTweqOpStatusQuo
+	kTweqOpSlayAll
+	kTweqOpFrameEvent
+}
+
+enum eTweqDo
+{
+	kTweqDoDefault
+	kTweqDoActivate
+	kTweqDoHalt
+	kTweqDoReset
+	kTweqDoContinue
+	kTweqDoForward
+	kTweqDoReverse
+}
+
+enum eQuestDataType
+{
+	kQuestDataMission
+	kQuestDataCampaign
+	kQuestDataUnknown
+}
+
+enum eSoundSpecial
+{
+	kSoundNormal
+	kSoundLoop
+}
+
+enum eEnvSoundLoc
+{
+	kEnvSoundOnObj
+	kEnvSoundAtObjLoc
+	kEnvSoundAmbient
+}
+
+enum eSoundNetwork
+{
+	kSoundNetDefault
+	kSoundNetworkAmbient
+	kSoundNoNetworkSpatial
+}
+
+enum eFrobLoc
+{
+	kFrobLocWorld
+	kFrobLocInv
+	kFrobLocTool
+	kFrobLocNone
+}
+
+enum eContainsEvent
+{
+	kContainQueryAdd
+	kContainQueryCombine
+
+	kContainAdd
+	kContainRemove
+	kContainCombine
+}
+
+enum ePropertyListenMsg
+{
+	kListenPropModify
+	kListenPropSet
+	kListenPropUnset
+	kListenPropLoad
+	kListenPropRebuildConcrete
+	kListenPropRebuildConcreteRelevant
+	kListenPropRequestFromHost
+}
+
+enum eObjNotifyMsg
+{
+	kObjNotifyCreate
+	kObjNotifyDelete
+	kObjNotifyLoadObj
+	kObjNotifyBeginCreate
+												
+	kObjNotifyDatabase
+	kObjNotifyReset
+	kObjNotifyLoad
+	kObjNotifySave
+	kObjNotifyDefault
+	kObjNotifyPostLoad
+}
+
+enum eRelationListenMsg
+{
+	kListenLinkModify
+	kListenLinkBirth
+	kListenLinkDeath
+	kListenLinkPostMortem
+}
+
+enum eHierarchyMsgKind
+{
+	kDonorAdded
+	kDonorRemoved
+}
+
+kFacePriorityMin
+kFacePriorityMax
+kFaceDurationInfinite
+
+DEFAULT_TIMEOUT
+
+ECONTAIN_NULL
+
+CTF_NONE
+CTF_COMBINE
+
+KB_FLAG_DOWN
+KB_FLAG_CTRL
+KB_FLAG_ALT
+KB_FLAG_SPECIAL
+KB_FLAG_SHIFT
+KB_FLAG_2ND
+
+KEY_BS
+KEY_TAB
+KEY_ENTER
+KEY_ESC
+KEY_SPACE
+KEY_F1
+KEY_F2
+KEY_F3
+KEY_F4
+KEY_F5
+KEY_F6
+KEY_F7
+KEY_F8
+KEY_F9
+KEY_F10
+KEY_F11
+KEY_F12
+KEY_INS
+KEY_DEL
+KEY_HOME
+KEY_END
+KEY_PGUP
+KEY_PGDN
+KEY_LEFT
+KEY_RIGHT
+KEY_UP
+KEY_DOWN
+KEY_GREY_SLASH
+KEY_GREY_STAR
+KEY_GREY_PLUS
+KEY_GREY_MINUS
+KEY_GREY_ENTER
+KEY_PAD_HOME
+KEY_PAD_UP
+KEY_PAD_PGUP
+KEY_PAD_LEFT
+KEY_PAD_CENTER
+KEY_PAD_RIGHT
+KEY_PAD_END
+KEY_PAD_DOWN
+KEY_PAD_PGDN
+KEY_PAD_INS
+KEY_PAD_DEL
+
+
+// ----------------------------------------------------------------
+// THIEF CONSTANTS
+// ----------------------------------------------------------------
+
+enum eDrkInvCap
+{
+	kDrkInvCapCycle
+	kDrkInvCapWorldFrob
+	kDrkInvCapWorldFocus
+	kDrkInvCapInvFrob
+}
+
+enum eDrkInvControl
+{
+	kDrkInvControlOn
+	kDrkInvControlOff
+	kDrkInvControlToggle
+}
+
+enum StyleColorKind
+{
+	StyleColorFG
+	StyleColorBG
+	StyleColorText
+	StyleColorHilite
+	StyleColorBright
+	StyleColorDim
+	StyleColorFG2
+	StyleColorBG2
+	StyleColorBorder
+	StyleColorWhite
+	StyleColorBlack
+	StyleColorXOR
+	StyleColorBevelLight
+	StyleColorBevelDark
+}
+
+enum eGoalState
+{
+	kGoalIncomplete
+	kGoalComplete
+	kGoalInactive
+	kGoalFailed
+}
+
+enum eDarkWeaponType
+{
+	kDWT_Sword
+	kDWT_BlackJack
+}
+
+enum eWhichInvObj
+{
+	kCurrentWeapon
+	kCurrentItem
+}
+
+enum eInventoryType
+{
+	kInvTypeJunk
+	kInvTypeItem
+	kInvTypeWeapon
+}
+
+enum eDarkContainType
+{
+	kContainTypeAlt
+	kContainTypeHand
+	kContainTypeBelt
+	kContainTypeRendMin
+	kContainTypeRendMax
+
+	kContainTypeNonRendMin
+	kContainTypeGeneric
+	kContainTypeInventory
+	kContainTypeNonRendMax
+
+	kContainTypeMin
+	kContainTypeMax
+}
+
+kMsgAlignDefault
+kMsgAlignLeft
+kMsgAlignCenter
+kMsgAlignRight
+kMsgAlignTop
+kMsgAlignMid
+kMsgAlignBot
+kMsgTextAlignLeft
+kMsgTextAlignCenter
+kMsgTextAlignRight
+kMsgHAlignMask
+kMsgVAlignMask
+kMsgTextAlignMask
+
+DEFAULT_MARGIN
+
+
+// ----------------------------------------------------------------
+// SS2 CONSTANTS
+// ----------------------------------------------------------------
+
+enum eStats
+{
+	kStatStrength
+	kStatEndurance
+	kStatPsi
+	kStatAgility
+	kStatCyber
+}
+
+enum eWeaponSkills
+{
+	kWeaponConventional
+	kWeaponEnergy
+	kWeaponHeavy
+	kWeaponAnnelid
+	kWeaponPsiAmp
+}
+
+enum eTechSkills
+{
+	kTechHacking
+	kTechRepair
+	kTechModify
+	kTechMaintenance
+	kTechResearch
+}
+
+enum ePsiPowers
+{
+	kPsiLevel1
+	kPsiPsiScreen
+	kPsiStillHand
+	kPsiPull
+	kPsiQuickness
+	kPsiCyber
+	kPsiCryokinesis
+	kPsiCodebreaker
+
+	kPsiLevel2
+	kPsiStability
+	kPsiBerserk
+	kPsiRadShield
+	kPsiHeal
+	kPsiMight
+	kPsiPsi
+	kPsiImmolate
+
+	kPsiLevel3
+	kPsiFabricate
+	kPsiElectro
+	kPsiAntiPsi
+	kPsiToxinShield
+	kPsiRadar
+	kPsiPyrokinesis
+	kPsiTerror
+
+	kPsiLevel4
+	kPsiInvisibility
+	kPsiSeeker
+	kPsiDampen
+	kPsiVitality
+	kPsiAlchemy
+	kPsiCyberHack
+	kPsiSword
+
+	kPsiLevel5
+	kPsiMajorHealing
+	kPsiSomaDrain
+	kPsiTeleport
+	kPsiEnrage
+	kPsiForceWall
+	kPsiMines
+	kPsiShield
+
+	kPsiNone
+}
+
+enum ePsiPowerType
+{
+	kPsiTypeShot
+	kPsiTypeShield
+	kPsiTypeOneShot
+	kPsiTypeSustained
+	kPsiTypeCursor
+}
+
+enum ePlayerEquip
+{
+	kEquipWeapon
+	kEquipWeaponAlt
+	kEquipArmor
+	kEquipSpecial
+	kEquipSpecial2
+
+	kEquipPDA
+	kEquipHack
+	kEquipModify
+	kEquipRepair
+	kEquipResearch
+
+	kEquipFakeNanites
+	kEquipFakeCookies
+	kEquipFakeLogs
+	kEquipFakeKeys
+
+	kEquipCompass
+}
+
+enum eEcoState
+{
+	kEcologyNormal
+	kEcologyHacked
+	kEcologyAlert
+}
+
+enum eSpawnFlags
+{
+	kSpawnFlagNone
+	kSpawnFlagPopLimit
+	kSpawnFlagPlayerDist
+	kSpawnFlagGotoAlarm
+	kSpawnFlagSelfMarker
+	kSpawnFlagRaycast
+	kSpawnFlagFarthest
+
+	kSpawnFlagDefault
+	kSpawnFlagAll
+}
+
+enum eImplant
+{
+	kImplantStrength
+	kImplantEndurance
+	kImplantAgility
+	kImplantPsi
+	kImplantMaxHP
+	kImplantRun
+	kImplantAim
+	kImplantTech
+	kImplantResearch
+	kImplantWormMind
+	kImplantWormBlood
+	kImplantWormBlend
+	kImplantWormHeart
+}
+
+enum eTrait
+{
+	kTraitEmpty
+
+	kTraitMetabolism
+	kTraitPharmo
+	kTraitPackRat
+	kTraitSpeedy
+	kTraitSharpshooter
+
+	kTraitAble
+	kTraitCybernetic
+	kTraitTank
+	kTraitLethal
+	kTraitSecurity
+
+	kTraitSmasher
+	kTraitBorg
+	kTraitReplicator
+	kTraitPsionic
+	kTraitTinker
+
+	kTraitAutomap
+}
+
+NUM_TRAIT_SLOTS
+
+enum eObjState
+{
+	kObjStateNormal
+	kObjStateBroken
+	kObjStateDestroyed
+	kObjStateUnresearched
+	kObjStateLocked
+	kObjStateHacked
+}
+
+kOverlayInv
+kOverlayFrame
+kOverlayText
+kOverlayRep
+kOverlayBook
+kOverlayComm
+kOverlayContainer
+kOverlayHRM
+kOverlayRadar
+kOverlayLetterbox
+kOverlayOverload
+kOverlayPsi
+kOverlayYorN
+kOverlayKeypad
+kOverlayLook
+kOverlayAmmo
+kOverlayMeters
+kOverlayHUD
+kOverlayStats
+kOverlaySkills
+kOverlayBuyTraits
+kOverlaySetting
+kOverlayCrosshair
+kOverlayResearch
+kOverlayPDA
+kOverlayEmail
+kOverlayMap
+kOverlayAlarm
+kOverlayPsiIcons
+kOverlayHackIcon
+kOverlayRadiation
+kOverlayPoison
+kOverlayMiniFrame
+kOverlaySecurity
+kOverlayTicker
+kOverlayBuyStats
+kOverlayBuyTech
+kOverlayBuyWeapon
+kOverlayBuyPsi
+kOverlayTechSkill
+kOverlayMFDGame
+kOverlayTlucText
+kOverlaySecurComp
+kOverlayHackComp
+kOverlayHRMPlug
+kOverlayMiniMap
+kOverlayElevator
+kOverlayVersion
+kOverlayTurret
+kOverlayMouseMode
+
+kOverlayModeOff
+kOverlayModeOn
+kOverlayModeToggle
+
+DEFAULT_MSG_TIME
+
+SCM_NORMAL
+SCM_DRAGOBJ
+SCM_USEOBJ
+SCM_LOOK
+SCM_PSI
+SCM_SPLIT
+
+MAX_STAT_VAL
+MAX_SKILL_VAL

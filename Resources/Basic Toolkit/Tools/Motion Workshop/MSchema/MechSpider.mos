@@ -1,0 +1,147 @@
+
+global MechSpid 0
+torso  Spider
+
+schema Stand 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+
+schema Stand 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM113000     4  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion NM111010     0  0
+motion NM111011     0  0
+
+schema Locomote 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion NM111030     0  0
+motion NM111031     0  0
+
+schema Locomote 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  0
+motion NM111211     0  0
+motion NM111210     0  0
+
+schema Locomote 0, LocoUrgent 0
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111010     0  0
+motion NM111011     0  0
+
+schema Locomote 0, LocoUrgent 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111030     0  0
+motion NM111031     0  0
+
+schema Locomote 0, LocoUrgent 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111211     0  0
+motion NM111210     0  0
+
+schema Locomote 0, MeleeCombat 0
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111010     0  0
+motion NM111011     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 1
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111030     0  0
+motion NM111031     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 2
+MType  GroundLocoPair
+TimeScale 0.2
+XYZScale  0
+motion NM111211     0  0
+motion NM111210     0  0
+
+schema Locomote 0, MeleeCombat 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion NM111017     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion NM111017     0  500
+
+schema MeleeCombat 0, Attack 0
+MType  SwordSwing
+TimeScale 0
+XYZScale  0
+motion NM113000     4  500
+motion NM113001     0  500
+motion NM113002     0  500
+motion NM113003     0  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM112001     0  500
+
+schema Search 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM112001     0  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM112200     0  500
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0.6
+XYZScale  0
+motion nmbrek     0  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion nmzap     4  0
+
+schema ReceiveWound 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM113501     0  500
+motion NM113502     0  500
+
+schema ReceiveWound 0, MeleeCombat 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM113502     0  500
+
+schema ReceiveWound 0, MeleeCombat 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion NM113501     0  500

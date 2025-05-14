@@ -1,0 +1,76 @@
+Readme file for Meshscale, version 2.0
+
+Meshscale is a program which will read through a .E format file from LGS and
+scale all the object size numbers in the POINTS section.
+The scaler is user definable on the command line, and will scale up as well
+as down. This allows the user to create larger and smaller versions of the
+Thief AIs.
+
+The basic usage is as follows:
+
+Meshscale 'x scaler' 'y scaler' 'z scaler' 'infile' [outfile]
+
+The scaler is a floating point number, no real limit on the range. (Dromed
+will enforce one somewhere). You can now specify separate scales for the
+X, Y, and Z dimensions, allowing you to 'stretch' AI in different ways. 
+Infile is an .e file, usually found in the mesh .crf file.
+By default, meshscale will append a 's' to the filename,
+unless an outut filename is specified. Meshscale will not allow the output
+filename to be the same as the input filename, so it won't accidently
+overwrite the original .E file.
+
+meshscale 2.0 2.0 2.0 spidey7.e
+
+will produce a double size spider, outfile named spidey7.es. You'll have
+to change the filename by hand.
+
+meshscale 4.0 4.0 1.0 spidey7.e FlatSpider.e
+
+will produce a quad sized, very flat, spider, outfile named FlatSpider.e.
+
+The source code is provided for meshscale, for those of you who want to try
+just scaling certain joints or limbs, or doing other bizarre things.
+
+*****************************************************************************
+
+Meshbld use following meshscale.
+
+A scaled .e file isn't going to get you anywhere, so you need to turn it into
+a LGS compatible .bin file. This is what meshbld is used for. It converts .E
+AI files into .bin files. This is similar to the bsp.exe program, used to 
+convert more mundane objects to .bin format.
+
+This isn't as simple as running the meshbld program, it needs a joint map, as
+well as another map file. In some cases it will generate a skeleton
+file, but I'm not sure how this works yet. So for now, let's follow the rules
+LGS laid down.
+
+Assuming you're scaling an existing AI (if you're scaling a newly created
+creature, please write a new guide!), you'll want to find the matching batch
+file in the mesh.crf file. For example, scaling a spider model, you'll want
+the 'dospider.bat' file. You'll need to make your own copy, removing the 
+rtg2e call on the first line. If you don't remove it, it will just overwrite
+your newly scaled .E file!
+
+What you want is the meshbld command line in the file. For example, the
+spider batch file, after editing, contains just the following line:
+
+meshbld %1.e %1.bin spidey.map -mspidey.mjo -v
+
+As you can see, you'll need to extract spidey.map and spidey.mjo from the
+mesh.crf file. Once you've extracted those files, and have your scaled
+.E file, simply run:
+
+dospider BigSpider
+
+You'll get a BigSpider.bin and a BigSpider.cal file. Install those into
+your mesh directory in your Thief directory. You should now be able to
+change a spider AI to use your new model.
+
+It's always good to verify that everything is working right before a change,
+so it might be a good idea to just generate a new .bin and .cal from an
+existing model, and make sure they work before trying a scaled AI model.
+
+
+
+

@@ -1,0 +1,28 @@
+
+torso  Biped
+
+schema Stand 0, Wheel 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+motion BH111o48     4  500
+motion BH112102     6  500
+motion BH112103     6  500
+motion BH211232     6  500
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0
+XYZScale  0
+motion BH111o48     4  500
+motion BH111210     6  500
+motion BH111211     6  500
+
+schema Stand 0, Pivot 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+motion BH111o48     4  500
+motion BH111210     6  500
+motion BH111211     6  500
+motion BH21123X     6  500

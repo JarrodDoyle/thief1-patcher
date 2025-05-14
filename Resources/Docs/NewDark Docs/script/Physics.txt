@@ -1,0 +1,44 @@
+DECLARE_SCRIPT_SERVICE(Physics, 0x141)
+{
+	STDMETHOD(SubscribeMsg)(object phys_obj, int message_types) PURE;
+	STDMETHOD(UnsubscribeMsg)(object phys_obj, int message_types) PURE;
+	STDMETHOD_(object,LaunchProjectile)(object launcher, object proj, real power, integer flags, const vector ref add_vel) PURE; 
+	STDMETHOD(SetVelocity)(object obj, const vector ref vel) PURE; 
+	STDMETHOD(GetVelocity)(object obj, vector ref vel) PURE; 
+#if !defined(SHOCK) && !defined(THIEF1)
+	STDMETHOD(ControlVelocity)(object obj, const vector ref vel) PURE; 
+	STDMETHOD(StopControlVelocity)(object obj) PURE;
+#endif
+
+	STDMETHOD(SetGravity)(object obj, float gravity) PURE;
+	STDMETHOD_(float, GetGravity)(object obj) PURE;
+	STDMETHOD_(BOOL, HasPhysics)(object obj) PURE;
+	STDMETHOD_(BOOL, IsSphere)(object obj) PURE;
+	STDMETHOD_(BOOL, IsOBB)(object obj) PURE;
+	STDMETHOD(ControlCurrentLocation)(object obj) PURE;
+	STDMETHOD(ControlCurrentRotation)(object obj) PURE;
+	STDMETHOD(ControlCurrentPosition)(object obj) PURE;
+	STDMETHOD(DeregisterModel)(object obj) PURE;
+	STDMETHOD_(void, PlayerMotionSetOffset)(int subModel, vector ref offset) PURE;
+	STDMETHOD(Activate)(const object obj) PURE;
+	STDMETHOD_(BOOL, ValidPos)(const object obj) PURE;
+
+	//
+	// new functions in T2 v1.19 / SS2 v2.4:
+	//
+
+	// is object a rope
+	STDMETHOD_(BOOL, IsRope)(const object ref obj) PURE;
+
+	// get climbable object that 'climber' is currently attached to, OBJ_NULL if none
+	STDMETHOD_(void, GetClimbingObject)(const object ref climber, object ref climbobj) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+#if defined(SHOCK) || defined(THIEF1)
+	STDMETHOD(ControlVelocity)(object obj, const vector ref vel) PURE; 
+	STDMETHOD(StopControlVelocity)(object obj) PURE;
+#endif
+};

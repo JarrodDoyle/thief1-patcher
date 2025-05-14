@@ -1,0 +1,3 @@
+hilight_check_snap 1
+hilight_do_snap
+play_schema dinner_bell

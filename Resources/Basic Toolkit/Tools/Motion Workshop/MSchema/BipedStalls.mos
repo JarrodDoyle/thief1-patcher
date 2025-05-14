@@ -1,0 +1,22 @@
+
+torso  Biped
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion fetal     0  500
+motion fetalch1     0  500
+motion fetalch2     0  500
+
+schema Stalled 0, Blinded 0, Foo 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113602     0  500
+
+schema Stalled 0, Blinded 0, Bar 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113603     0  500

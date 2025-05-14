@@ -1,0 +1,33 @@
+DECLARE_SCRIPT_SERVICE(Property, 0xda)
+{
+	STDMETHOD_(cMultiParm, Get)(object obj, const char * prop, const char * field = NULL) PURE;
+	STDMETHOD(Set)(object obj, const char * prop, const cMultiParm ref) PURE;
+	STDMETHOD(Set)(object obj, const char * prop, const char * field, const cMultiParm ref) PURE;
+#ifndef THIEF1
+	STDMETHOD(SetLocal)(object obj, const char * prop, const char * field, const cMultiParm ref) PURE;
+#endif
+	STDMETHOD(Add)(object obj, const char* prop) PURE;
+	STDMETHOD(Remove)(object obj, const char* prop) PURE;
+	STDMETHOD(CopyFrom)(object targ, const char* prop, object src) PURE;
+	STDMETHOD_(BOOL,Possessed)(object obj, const char* prop) PURE;
+
+	//
+	// new functions in T2 v1.27 / SS2 v2.48:
+	//
+
+#ifdef THIEF1
+	STDMETHOD(SetLocal)(object obj, const char * prop, const char * field, const cMultiParm ref) PURE;
+#endif
+
+	// query if object has a property set locally, ignoring inheritance from archetypes and metaproperties
+	STDMETHOD_(BOOL,PossessedSimple)(object obj, const char* prop) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	// indexed versions of Get(), Set(), and SetLocal() that will get the n-th field with the provided name
+	STDMETHOD_(cMultiParm, GetIndexed)(object obj, const char * prop, const char * field, uchar index) PURE;
+	STDMETHOD(SetIndexed)(object obj, const char * prop, const char * field, uchar index, const cMultiParm ref) PURE;
+	STDMETHOD(SetLocalIndexed)(object obj, const char * prop, const char * field, uchar index, const cMultiParm ref) PURE;
+};

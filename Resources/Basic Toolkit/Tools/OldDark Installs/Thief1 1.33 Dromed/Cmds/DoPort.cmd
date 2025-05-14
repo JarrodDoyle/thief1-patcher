@@ -1,0 +1,10 @@
+set_lighting_mode 2
+compress_br_ids
+clear_surface_cache
+portalize
+relight_level
+ai_build_path_database
+rooms_build
+build_ai_room_database
+save_mission Done.mis
+play_schema camto3

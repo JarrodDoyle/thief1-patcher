@@ -1,0 +1,246 @@
+
+torso  Biped
+
+schema Crumple 0, KnockOut 0, Sitting 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion sitdie     0  500
+
+schema Crumple 0, Die 0, Shiver 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion sitdie     0  500
+
+schema Crumple 0, KnockOut 0, Shiver 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion sitdie     0  500
+
+schema Crumple 0, Die 0, Sitting 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion sitdie     0  500
+
+schema Stand 0, Shiver 0
+MType  GroundAction
+TimeScale 3
+Scale2    0
+motion humshiv2     0  500
+
+schema Stand 0, Sitting 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion guysit     0  500
+
+schema IdleGesture 0, Keeper 0
+MType  GroundAction
+TimeScale 1.8
+Scale2    0
+motion BH114735     0  500
+
+schema Drink 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion humgulp     0  500
+
+schema WithSword 0, Drink 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion humgulp     0  500
+
+schema Stand 0, Bound 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion fembound     4  500
+
+schema IdleGesture 0, Unarmed 0, Cherub 0
+MType  GroundAction
+TimeScale 3
+Scale2    0
+motion BH112015     4  500
+
+schema IdleGesture 0, Archaeologist 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion BH114312     4  500
+motion BH114313     4  500
+motion BH114314     4  500
+motion shotalk2c     4  500
+
+schema IdleGesture 0, WithSword 0, Archaeologist 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion BH114312     4  500
+motion BH114313     4  500
+motion BH114314     4  500
+motion shotalk2c     4  500
+
+schema IdleGesture 0, Hammer 0, WithSword 0, Archaeologist 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion BH114312     4  500
+motion BH114313     4  500
+motion BH114314     4  500
+motion shotalk2c     4  500
+
+schema Stand 0, Search 0
+MType  StandWith90s
+TimeScale 0
+Scale2    0
+motion BH111o48     4  500
+motion srchtn1     2  500
+motion srchtn1     2  500
+
+schema Stand 0, Search 0, WithSword 0
+MType  StandWith90s
+TimeScale 0
+Scale2    0
+motion BH111o48     4  500
+motion srchtn2     2  500
+motion srchtn2     2  500
+
+schema Locomote 0, DancerOne 0
+MType  GroundAction
+TimeScale 0
+Scale2    0
+motion zomdanc2     4  0
+
+schema WorldFrob 0, AtWaist 0, Lever 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114310     0  500
+
+schema Stalled 0, Blinded 0
+MType  GroundAction
+TimeScale 0
+XYZScale  3.25
+motion BH113600     0  500
+
+schema Stalled 0, Blinded 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213600     0  500
+
+schema Stalled 0, Flail 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113601     0  500
+
+schema IdleGesture 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112001     4  500
+motion BH114153     4  500
+motion BH114201     4  500
+motion BH111001     4  500
+motion BH114152     4  500
+motion BH114155     4  500
+motion BH112015     4  500
+motion BH112502     4  500
+motion BH111005     4  500
+
+schema IdleGesture 0, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111001     4  500
+motion BH114152     4  500
+motion BH114155     4  500
+motion BH112015     4  500
+motion BH112502     4  500
+motion BH111005     4  500
+
+schema ReadyItem 0, ItemSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212206     0  500
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111050     0  500
+
+schema Search 0, Peek 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112020     4  500
+
+schema Search 0, Peek 0, Direction 3, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212020     0  500
+
+schema Search 0, Peek 0, Direction 1, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212001     0  500
+
+schema Search 0, Peek 0, Direction 2, WithSword 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212002     0  500
+
+schema Stand 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111006     4  500
+
+schema Locomote 0, WithTray 0
+MType  GroundLocoPair
+TimeScale 0.5
+XYZScale  0
+motion BH111o19     0  0
+motion BH111o18     0  500
+
+schema Stand 0, Halt 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111037     0  500
+motion BH111038     0  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion BH111060     0  500
+motion BH111061     0  0
+
+schema Locomote 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111070     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111400     0  500
+motion BH111401     0  500
+motion BH111402     0  500
+motion BH111403     0  500
+motion BH111404     0  500
+motion BH111405     0  500

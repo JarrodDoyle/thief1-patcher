@@ -1,0 +1,38 @@
+* * To Do
+ - Initialize data with default values from StructInfo.
+ - Search for property, link, metaprop, stim, receptron.
+ - Ins/Del keyboard editing.
+
+
+* * Known Bugs
+ - Changes to a link dest are not reflected in object editors other than the 
+   one that created the link editor. The effects are harmless, but annoying.
+ - The Object menu doesn't always represent the actual commands available.
+   i.e. "Remove ..." is shown even if there's no current selection.
+
+
+* * 2006-07-12
+ - Use an object cache to speed-up imports.
+
+
+* * 2006-07-07
+ - A simple and buggy version of XML import. 
+
+
+* * 2004-07-23
+ - Full editing capabilities are available, including a simple chunk editor.
+
+
+* * 2004-07-11
+ - You know you're spending too much time on a project when you begin 
+   keeping a history/todo list.
+ - At this point, databases can be read, the properties &c of objects can 
+   be listed, some of them can be edited, and reparenting objects is possible.
+   It reads StructInfo XML files. And the UI looks pretty snazzy for something
+   that doesn't require a behemoth of a class library.
+
+
+* * 2004-07-01
+ - The first code for ObjTree (which will likely be renamed later) is first
+   written. Just so you know.
+

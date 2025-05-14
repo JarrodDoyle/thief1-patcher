@@ -1,0 +1,88 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="style.css">
+<title>Dark Engine Object Converter Interface</title>
+</head>
+
+<body>
+<h1 align=center>Dark Engine Object Converter Interface</h1>
+<p align=center><i>By R Soul</i></p>
+<p align=center><i>Tested by: Daraan, LarryG, Renzatic, Ricebug</i></p>
+<h1>Overview</h1>
+<p>This program presents you with a graphical user interface (GUI) that runs the tools that convert an object from Dark Engine format (.bin or .e) to .3ds. It also places the object's textures in the same folder as the .3ds, so it is easier for your 3D object program to find them.</p>
+
+<p>Another important feature is that the textures can be converted from their original format (usually .gif or .tga) to another format. This is useful because not all programs support the .gif, .tga or .pcx formats that are most commonly used by Dark Engine objects.</p>
+
+<p>It should also be noted that the object does not have to be converted, and/or the textures don't have to be converted. The user can configure what the program is to do.<p>
+
+<h1>Requirements</h1>
+<ul>
+<li>.NET Framework 3.5 SP1 or newer;</li>
+<li>The "Free the Objects" toolkit from <a href=http://www.angelfire.com/games4/shadowspawn/Tools.html target=_blank>Shadowspawn (bintoe.exe and eto3ds.exe)</a>;</li>
+<li>A graphics program that comes with a command-line interface and the ability to convert textures, e.g. <a href=http://www.irfanview.com/ target=_blank>IrfanView</a>.</li>
+</ul>
+
+<h1>Installation</h1>
+<p>Simply extract the files (DEOCI.exe and Ionic.Zip.dll) to any folder and run DEOCI.exe. The .dll file is used to enable access to .crf files, which are actually renamed .zip files.</p>
+
+<h2>User Account Control</h2>
+<p>If you use Windows Vista and above, and you have UAC enabled, this program may occasionally ask for higher privileges. You will be prompted under the following circumstances:</p>
+<ul>
+<li>When the converted files are to be placed in a protected folder (e.g. within Program Files);</li>
+<li>If the program is within Program Files, a prompt will appear when you close the program. It saves your settings and previous file/folder selections to "settings.txt";</li>
+<ul><li>You actually get two prompts here, and both requests should both be granted.</li></ul>
+</ul>
+
+<h1>Using the Program</h1>
+<h2>Initial Setup</h2>
+<p>When you first run the program you will presented with lots of empty lists. Most of these only have to filled once.</p>
+
+<h2>Object/Texture Info</h2>
+<p><font color=red><b>(Click in the red rectangles for more info)</b></font></p>
+<table>
+<tr><td><img src=sc/ObjTexInfo.png usemap=#clickhelp1 border=0></td><td><iframe name=info src=exp/empty.html width=504 height=437 frameborder=0 seamless=seamless></iframe></td></tr>
+</table>
+<map name=clickhelp1>
+	<area shape=rect coords=15,54,487,119 href=exp/SelectObject.html target=info>
+	<area shape=rect coords=15,146,487,189 href=exp/ObjFolder.html target=info>
+	<area shape=rect coords=15,194,487,256 href=exp/EPcrf.html target=info>
+	<area shape=rect coords=15,259,487,361 href=exp/ObjMeshCrf.html target=info>
+	<area shape=rect coords=146,390,253,431 href=exp/Convert.html target=info>
+</map> 
+
+<h2>Conversion Program Info</h2>
+<table>
+<tr><td><img src=sc/ConvProgInfo.png usemap=#clickhelp2 border=0></td><td><iframe name=info2 src=exp/empty.html width=504 height=437 frameborder=0 seamless=seamless></iframe></td></tr>
+</table>
+<map name=clickhelp2>
+	<area shape=rect coords=15,53,487,174 href=exp/ObjConversion.html target=info2>
+	<area shape=rect coords=15,186,487,380 href=exp/TextureConversion.html target=info2>
+	<area shape=rect coords=146,390,253,431 href=exp/Convert.html target=info2>
+</map>
+
+<h2>Output Folders</h2>
+<table>
+<tr><td><img src=sc/OutFolders.png usemap=#clickhelp3 border=0></td><td><iframe name=info3 src=exp/empty.html width=504 height=437 frameborder=0 seamless=seamless></iframe></td></tr>
+</table>
+<map name=clickhelp3>
+	<area shape=rect coords=15,63,487,131 href=exp/ConvObjFolder.html target=info3>
+	<area shape=rect coords=15,139,487,203 href=exp/ConvTexFolder.html target=info3>
+	<area shape=rect coords=20,213,179,246 href=exp/RemOutFolders.html target=info3>
+	<area shape=rect coords=146,390,253,431 href=exp/Convert.html target=info3>
+</map>
+
+<h2>Further Use</h2>
+<img src=sc/FurtherUse.png border=0>
+<p>When you next run the program, most of the settings will be reloaded. All you have to do is select the object, and it's folder if you select a model name, and select the output folder(s).</p>
+
+<p>For each item, the drop down list contains previous choices, with the most recent one being at the top.</p>
+
+<p>If you select an object file that does not exist, you will be asked if you want it removed from the list.<p>
+<img src=sc/NotFound.png border=0>
+
+<h2>Settings.txt</h2>
+<p>Whenever you exit the program, a file called <b>Settings.txt</b> (in the same folder as DEOCI.exe) will be updated. You can edit this file, but ensure you stick to the format.</p>
+
+</body>
+
+</html>

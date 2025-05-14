@@ -1,0 +1,17 @@
+//  Torsos. Each motion belongs to a torso set. I believe the order
+//  of these is important to Dromed. We'll find out.
+//  Note that Frogs use the same torso as Burricks.
+//  What I thought was a Small Spider torso turns out to be a Sweel!
+//  (At least the joint map in the .MI file matches)
+
+
+torso Biped
+torso PlayerArm
+torso PlayerBow
+torso Burrick
+torso Spider
+torso Constantine
+torso Sweel
+torso Available1
+torso Apparition
+torso Droid

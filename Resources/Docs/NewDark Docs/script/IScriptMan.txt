@@ -1,0 +1,89 @@
+DECLARE_INTERFACE_(IScriptMan, IUnknown)
+{
+	STDMETHOD (GameInit)(THIS) PURE;
+	STDMETHOD (GameEnd)(THIS) PURE;
+	STDMETHOD(BeginScripts)(THIS) PURE; 
+	STDMETHOD(EndScripts)(THIS) PURE; 
+	STDMETHOD (SetModuleDatapath)(THIS_ const Datapath *) PURE;
+	STDMETHOD (AddModule)(THIS_ const char *) PURE;
+	STDMETHOD (RemoveModule)(THIS_ const char *) PURE;
+	STDMETHOD (ClearModules)(THIS) PURE;
+	STDMETHOD (ExposeService)(THIS_ IUnknown *, const GUID *) PURE;
+	STDMETHOD_(IUnknown *, GetService)(THIS_ const GUID *) PURE;
+	STDMETHOD_(const sScrClassDesc *, GetFirstClass)(THIS_ tScrIter *) PURE;
+	STDMETHOD_(const sScrClassDesc *, GetNextClass)(THIS_ tScrIter *) PURE;
+	STDMETHOD_(void, EndClassIter)(THIS_ tScrIter *) PURE;
+	STDMETHOD_(const sScrClassDesc *, GetClass)(THIS_ const char *) PURE;
+	STDMETHOD (SetObjScripts)(THIS_ ObjID, const char **, unsigned n) PURE;
+	STDMETHOD (ForgetObj)(THIS_ ObjID) PURE;
+	STDMETHOD (ForgetAllObjs)(THIS) PURE;
+	STDMETHOD_(BOOL, WantsMessage)(THIS_ ObjID, const char * pszMessage) PURE;
+	STDMETHOD (SendMessage)(THIS_ sScrMsg *,
+	                        sMultiParm * DEFAULT_TO(NULL)) PURE;
+	STDMETHOD_(void, KillTimedMessage)(THIS_ tScrTimer) PURE;
+	STDMETHOD_(int, PumpMessages)(THIS) PURE;
+	STDMETHOD_(void, PostMessage)(THIS_ sScrMsg *) PURE;
+	STDMETHOD_(tScrTimer, SetTimedMessage)(THIS_ sScrMsg *,
+	                                       ulong time,
+	                                       eScrTimedMsgKind kind) PURE;
+	STDMETHOD_ (cMultiParm, SendMessage2)(ObjID, 
+	                                      ObjID, 
+	                                      const char *,
+	                                      const cMultiParm &, 
+	                                      const cMultiParm &, 
+	                                      const cMultiParm &) PURE;
+	STDMETHOD_(void, PostMessage2)(ObjID, 
+	                               ObjID, 
+	                               const char *,
+	                               const cMultiParm &, 
+	                               const cMultiParm &, 
+	                               const cMultiParm &,
+	                               ulong flags DEFAULT_TO(0)) PURE;
+	STDMETHOD_(tScrTimer, SetTimedMessage2)(ObjID to,
+	                                        const char *,
+	                                        ulong,
+	                                        eScrTimedMsgKind,
+	                                        const cMultiParm &) PURE;
+	STDMETHOD_(BOOL, IsScriptDataSet)(THIS_ const sScrDatumTag * pTag) PURE;
+	STDMETHOD (GetScriptData)(THIS_ const sScrDatumTag * pTag, sMultiParm *) PURE;
+	STDMETHOD (SetScriptData)(THIS_ const sScrDatumTag * pTag, const sMultiParm *) PURE;
+	STDMETHOD (ClearScriptData)(THIS_ const sScrDatumTag * pTag, sMultiParm *) PURE;
+	STDMETHOD (AddTrace)(ObjID Object, char *pszMessage, 
+	                     eScrTraceAction ScrTraceAction, int iTraceLine) PURE;
+	STDMETHOD (RemoveTrace)(ObjID Object, char *pszMessage) PURE;
+	STDMETHOD_ (BOOL, GetTraceLine)(int iTraceLine) PURE;
+	STDMETHOD_ (void, SetTraceLine)(int iTraceLine, BOOL bStatus) PURE;
+	STDMETHOD_ (int, GetTraceLineMask)() PURE;
+	STDMETHOD_ (void, SetTraceLineMask)(int iTraceLineMask) PURE;
+	STDMETHOD_(const cScrTrace *, GetFirstTrace)(tScrIter *) PURE;
+	STDMETHOD_(const cScrTrace *, GetNextTrace)(tScrIter *) PURE;
+	STDMETHOD_(void, EndTraceIter)(tScrIter *) PURE;
+	STDMETHOD (SaveLoad)(THIS_ tPersistIOFunc pfnIO, 
+	                     void * pContextIO, BOOL fLoading) PURE;
+	STDMETHOD_(void, PostLoad)() PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	STDMETHOD_(int, GetQueuedMessageCount)() PURE;
+	STDMETHOD_(sScrMsg*, GetQueuedMessageInfo)(int iIndex) PURE;
+	STDMETHOD_(void, DeleteQueuedMessage)(int iIndex) PURE;
+	STDMETHOD_(int, GetTimedMessageCount)() PURE;
+	STDMETHOD_(sScrMsg*, GetTimedMessageInfo)(int iIndex, ulong *pPeriod, ulong *pNextTime, tScrTimer *pMsgId) PURE;
+	STDMETHOD_(sScrDatumTag*, GetFirstScriptData)(tScrIter *pIter, sMultiParm **ppData) PURE;
+	STDMETHOD_(sScrDatumTag*, GetNextScriptData)(tScrIter *pIter, sMultiParm **ppData) PURE;
+	STDMETHOD_(void, EndScriptDataIter)(tScrIter *pIter) PURE;
+	STDMETHOD_(const char*, GetFirstScriptObject)(tScrIter *pIter, ObjID *pObj) PURE;
+	STDMETHOD_(const char*, GetNextScriptObject)(tScrIter *pIter, ObjID *pObj) PURE;
+	STDMETHOD_(void, EndScriptObjectIter)(tScrIter *pIter) PURE;
+
+	// get script module information
+	STDMETHOD_(int, GetModuleCount)() PURE;
+	STDMETHOD_(const char *, GetModule)(int iIndex) PURE;
+
+	// get script parameters from object
+	STDMETHOD(GetAllScriptParams)(ObjID obj, tScrParCallback cb) PURE;
+	STDMETHOD_(BOOL, HasScriptParam)(ObjID obj, const char *param) PURE;
+	STDMETHOD_(cMultiParm, GetScriptParam)(ObjID obj, const char *param) PURE;
+};

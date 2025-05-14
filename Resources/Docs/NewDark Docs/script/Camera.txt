@@ -1,0 +1,38 @@
+DECLARE_SCRIPT_SERVICE(Camera, 0x140)
+{
+	STDMETHOD(StaticAttach)(object attachee) PURE;
+	STDMETHOD(DynamicAttach)(object attachee) PURE;
+	STDMETHOD(CameraReturn)(object attachee) PURE;
+	STDMETHOD(ForceCameraReturn)() PURE;
+
+	//
+	// new functions in T2 v1.22 / SS2 v2.43:
+	//
+
+	// get the object the camera is currently attached to
+	STDMETHOD_(object,GetCameraParent)() PURE;
+
+	// returns true if GetCameraParent() != PlayerObject()
+	STDMETHOD_(boolean, IsRemote)() PURE;
+
+	// get location/rotation for the camera
+	STDMETHOD_(vector,GetPosition)() PURE;
+	STDMETHOD_(vector,GetFacing)() PURE;
+
+	//
+	// new functions in T2 v1.23 / SS2 v2.44:
+	//
+
+	// transform a pos from camera space to world space, WorldToCamera(vector(0,0,0)) would be the same as GetPosition()
+	STDMETHOD_(vector,CameraToWorld)(const vector ref local_pos) PURE;
+
+	// transform a pos from world space to camera space, WorldToCamera(GetPosition()) would be the same as vector(0,0,0)
+	STDMETHOD_(vector,WorldToCamera)(const vector ref world_pos) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	// prevent moving the facing direction of the camera
+	STDMETHOD(LockMovement)(BOOL move_allowed) PURE;
+};

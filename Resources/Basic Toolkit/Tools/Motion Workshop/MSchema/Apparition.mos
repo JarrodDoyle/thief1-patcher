@@ -1,0 +1,57 @@
+
+torso  Apparition
+
+schema Stand 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP111000     4  500
+
+schema Locomote 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP111001     4  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP113101     0  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP112550     0  500
+
+schema Discover 0, Direction 5
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP112551     0  500
+
+schema Discover 0, Direction 6
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP112552     0  500
+
+schema Discover 0, Direction 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP112550     0  500
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP113701     0  500
+motion AP113702     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion AP114001     0  500

@@ -1,0 +1,1 @@
+You will need to extract the contents of Motion.crf into this folder in order for the motion database builder to work.

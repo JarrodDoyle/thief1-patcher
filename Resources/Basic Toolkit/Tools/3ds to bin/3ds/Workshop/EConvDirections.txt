@@ -1,0 +1,63 @@
+Eto3DS usage. Shadowspawn - 4/29/2005
+Version - 1.30
+
+==============================================================================
+Enhancements:
+Eto3DS now handles axles for translating and rotating sub-objects.
+
+==============================================================================
+
+Eto3DS is a command line (DOS) program which converts the Looking Glass Studios
+intermediate .E files into standard .3DS files. There are some .E files
+located in the mesh.crf file. However, the real reason for the existance of
+this program is to convert .E files created by BintoE into .3ds format.
+However, any .E file created by 3ds2e (or n3ds2e) or RTG2e should be
+convertable into .3ds format.
+
+OK, how to use Eto3ds. Running it without any arguments gives you the
+following;
+
+Eto3DS Version 1.03 by Shadowspawn
+Usage: Eto3DS /e<ext> /t Infile [Outfile]
+
+Ok, first thing is the /e option. The 3DS file needs to specify it's texture
+map file. Yes, we have the .gif files, but not all 3D modeling programs read
+them. This option allows you to specify what extension the 3DS file will look
+for as a texture map type. By default (if you don't specify the option),
+Eto3DS will use .gif format. To specify a .bmp file, use the /e option as
+
+/ebmp
+
+Please note: Eto3DS will NOT create your texturemap file. It's in the
+mesh.crf file or the obj.crf file. You need to extract it and convert it to
+whatever your 3D program will allow as input. Just make sure it's extension
+matches what you told Eto3DS.
+
+NEW FOR VERSION 1.30
+
+The /t option (for truncate) seems to solve the old problem of my 3ds output
+files not being compatible with 3DSMax. This limits all names related to texture
+groups and texture files to 8 characters, and all object names to 10 characters.
+If you're not using 3DSMax, you probably don't need this options
+
+
+The Infile field is required, it's the name of the .E file. An optional
+output filename can be specified. The default is to strip the extension
+from the input file name and append .3DS to form the output name.
+
+For an example, say you extracted the spidey7.E file from the mesh.crf file.
+So lets say we want to convert it to 3DS, using .jpg format bitmaps.
+The command line would be;
+
+eto3ds /ejpg spidey7.e
+
+which will create spidey7.3ds, which will be looking for the texture map file
+spiderg.jpg when you load it into your 3d modeler. (spiderg.gif was the
+original filename in the .E file).
+
+
+The output files are accurate 3DS files, but not every viewer or modeler may
+be able to read them. I've tested with Anim8tor and Truespace, both can read
+the files.
+
+

@@ -1,0 +1,77 @@
+
+torso  Biped
+
+schema Search 0, Peek 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112024     0  500
+
+schema Search 0, Peek 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112025     0  500
+
+schema Discover 0, Recoil 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112026     0  500
+
+schema Search 0, Peek 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112027     4  500
+
+schema RangedCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113100     0  500
+motion BH113101     0  500
+motion BH113102     0  500
+
+schema Stalled 0, Flail 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113610     0  500
+
+schema Stalled 0, Rebalance 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113611     0  500
+
+schema Stalled 0, Flail 0, InWater 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113612     0  500
+
+schema Stalled 0, Poisoned 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113650     0  500
+motion BH113651     0  500
+
+schema Stalled 0, Stunned 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113670     0  500
+
+schema Stalled 0, Stunned 0, Long 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH113671     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114157     0  500

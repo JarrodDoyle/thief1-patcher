@@ -1,0 +1,15 @@
+
+global Frog 0
+torso  Burrick
+
+schema Locomote 0
+MType  GroundLocoSngle
+TimeScale 0.7
+XYZScale  0
+motion FG111010     0  500
+
+schema ReceiveWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion FG113500     0  500

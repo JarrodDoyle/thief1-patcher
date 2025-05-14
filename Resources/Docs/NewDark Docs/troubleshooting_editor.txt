@@ -1,0 +1,67 @@
+Most config vars mentioned here are found in cam_ext.cfg, so if no other
+.cfg file is explicitly mentioned, then cam_ext.cfg applies.
+
+Many problems have multiple possible solutions listed. Try each listed
+solution one at a time, not all of them at once.
+
+----------------------------------------------------------------------
+
+Problem:
+    Editor crashes, in particular after loading mission or portalizing
+    anything (like the default cube), when solid view is enabled.
+Problem:
+    The 3D view isn't updated after portalization.
+Problem:
+    The camera marker looks partly miscolored.
+Cause:
+    The editor is running in software render mode but the editor screen
+    depth is set to 32-bit.
+Solutions:
+    * Stick with software rendering and change bit depth to 16 by setting
+      "edit_screen_depth 16" (usually in "dromed.cfg").
+    * Enable hardware rendering by specifying/uncommenting "editor_disable_gdi"
+      in "dromed.cfg".
+
+----------------------------------------------------------------------
+
+Problem:
+    Some editor menu entries like Save and Portalize don't do anything.
+Cause:
+    You used the supplied "menus-sample.cfg" which states that it requires
+    the DromEd/ShockEd Toolkit, but you haven't installed the Toolkit.
+Solutions:
+    * Forget about "menus-sample.cfg" and install the latest Toolkit
+      instead.
+    * Revert to your old "menus.cfg" and edit it to add functionality
+      of updated editor (such as recent files menu, "toggle_lighting"
+      instead of "light_bright" and "lit_obj_toggle" etc.).
+
+----------------------------------------------------------------------
+
+Problem:
+    Lines in the viewports look dimmer than normal, or lines of the
+    selected brush dims when viewport is updated, when running editor
+    with hardware rendering.
+Solutions:
+    * Disable anti-aliasing (MSAA) support in editor window by disabling
+      "d3d_disp_hw2d_msaa" (disabled by default).
+
+----------------------------------------------------------------------
+
+Problem:
+    Some editor hotkeys are not working.
+Cause:
+     Editor not properly installed or configured, "default.bnd" file
+     possibly missing.
+Solutions:
+    * Make sure "default.bnd" is present, and contains the key bindings
+      you expect.
+    * Make sure there are no conflicting binds in "user.bnd".
+
+----------------------------------------------------------------------
+
+Problem:
+    The numeric key pad isn't working to input number in editor input
+    fields.
+Solution:
+    * Make sure num-lock is on.

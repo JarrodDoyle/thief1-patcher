@@ -1,0 +1,13 @@
+DECLARE_SCRIPT_SERVICE(AnimTexture, 0x16a)
+{
+	STDMETHOD(ChangeTexture)(object refobj, const char *fam1, const char *tx1, 
+		const char *fam2, const char *tx2) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	STDMETHOD(ChangeTextureLoc)(const vector ref pos, float rad,
+		const char *fam1, const char *tx1,
+		const char *fam2, const char *tx2) PURE;
+};

@@ -1,0 +1,34 @@
+DECLARE_SCRIPT_SERVICE(DarkUI,0x19f)
+{
+	STDMETHOD(TextMessage)(const char* message, int color = 0, int timeout = DEFAULT_TIMEOUT) PURE; 
+	STDMETHOD(ReadBook)(const char* text, const char* art) PURE; 
+	STDMETHOD_(object,InvItem)() PURE;
+	STDMETHOD_(object,InvWeapon)() PURE;
+	STDMETHOD(InvSelect)(object obj) PURE;
+	STDMETHOD_(boolean,IsCommandBound)(const string ref cmd) PURE; 
+	STDMETHOD_(string,DescribeKeyBinding)(const string ref cmd) PURE; 
+
+	//
+	// new functions in v1.28:
+	//
+
+	// TextMessage with more options
+	STDMETHOD(TextMessageFormatted)(const char* message, int color, int timeout,
+		const char* font = NULL, int xmargin = DEFAULT_MARGIN, int ymargin = DEFAULT_MARGIN,
+		int align = kMsgAlignDefault) PURE;
+}; 
+
+#define DEFAULT_MARGIN -1
+#define kMsgAlignDefault    0x00
+#define kMsgAlignLeft       0x01
+#define kMsgAlignCenter     0x02
+#define kMsgAlignRight      0x03
+#define kMsgAlignTop        0x04
+#define kMsgAlignMid        0x08
+#define kMsgAlignBot        0x0C
+#define kMsgTextAlignLeft   0x10
+#define kMsgTextAlignCenter 0x20
+#define kMsgTextAlignRight  0x30
+#define kMsgHAlignMask      kMsgAlignRight
+#define kMsgVAlignMask      kMsgAlignBot
+#define kMsgTextAlignMask   kMsgTextAlignRight

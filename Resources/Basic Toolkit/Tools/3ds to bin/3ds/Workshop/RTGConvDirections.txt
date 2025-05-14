@@ -1,0 +1,88 @@
+RTGto3DS usage. Shadowspawn - 8/3/2001
+
+Bug Fixes:
+1.01 - Fixed some color problems
+1.02 - Removed an unnecessary mesh array from the 3ds output.
+1.03 - Set the default output texture format to .gif
+
+RTGto3DS is a command line (DOS) program which converts the original RTG
+files from Looking Glass Studios Thief and Thief2 into standard 3DS files.
+The RTG files are located in the mesh.crf file. These are in different 
+locations in Thief and Thief2, so you'll have to figure out where they are.
+The RTG files DON'T have an extension, so when you search the mesh.crf file,
+you'll see the following, for example;
+
+spidey7
+spidey7.bin
+spidey7.cal
+spidey7.e
+
+The file called simply 'spidey7' is the RTG file.
+
+If you open the spidey7 file in a text editor, you'll see it's in ASCII. You
+might also notice that there is a long path to a filename, typically ending
+in a filename.TIF. We don't have the .tif files for the images, they've all
+been converted to .gif format, and are also in the mesh.crf file.
+
+OK, how to use RTGto3ds. Running it without any arguments gives you the
+following;
+
+RTGto3DS Version 1.0 by Shadowspawn
+Usage: RTGto3DS /e<ext> Infile [Outfile]
+
+Ok, first thing is the /e option. The 3DS file needs to specify it's texture
+map file. Yes, we have the .gif files, but not all 3D modeling programs read
+them. This option allows you to specify what extension the 3DS file will look
+for as a texture map type. By default (if you don't specify the option),
+RTGto3DS will use .gif format. To specify a .bmp file, use the /e option as
+
+/ebmp
+
+Please note: RTGto3DS will NOT create your texturemap file. It's in the
+mesh.crf file. You need to extract it and convert it to whatever your
+3D program will allow as input. Just make sure it's extension matches
+what you told RTGto3DS.
+
+
+The Infile field is required, it's the name of the RTG file. An optional
+output filename can be specified. The default is to strip any extension
+from the input file name and append .3DS to form the output name.
+
+
+For the above spidey7 example, lets say we want to convert it to 3DS, using 
+.jpg format bitmaps. So, the command line would be;
+
+rtgto3ds /ejpg spidey7
+
+which will create spidey7.3ds, which will be looking for the texture map file
+spiderg.jpg when you load it into your 3d modeler. (spiderg.TIF was the 
+original filename in the RTG file).
+
+
+The output files are accurate 3DS files, but not every viewer or modeler may
+be able to read them. I've tested with Anim8tor and Truespace, both can read
+the files. I converted them to a 'prettier' 3DS format using AccuTrans 3D, but
+a problem has been found with some of the converted files. It seems that
+certain object names have been truncated. Your best bet is to find a modeler
+which can read in the converted files directly, then save the AI mesh in the
+modeler's native format.
+
+
+Where do we go from here?
+
+Once you are done modifying the AI mesh, (Adding a horned helmet, changing a
+sword to a cudgel, etc), you want to bring this back into Thief (or SS2). 
+
+1.) Convert the .3DS file into an .E file, using n3ds2e (or 3ds2e, if it's
+    all you've got). n3ds2e is newer, and can be found at The-Circle and
+    Thief-Underground.
+2.) Find the directions for MeshScale, and read up on converting .E to .bin
+
+(Quick tut - you'll need the batch file from mesh.crf, as well as a .map
+and .mjo, and possibly a .cal file. It all depends on what AI you're 
+converting. The batch file (dospider.bat, for example) will list the files
+you'll need to extract).
+
+3.) Move the new .bin and .cal file into your mesh subdirectory.
+4.) Create a similar creature in Thief or SS2.
+5.) Change the Shape -> Model Name to your new mesh file name

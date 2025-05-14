@@ -1,0 +1,11 @@
+N3ds2e & BSP
+===============
+Conversion tools for Dromed/Thief
+These are the newest versions
+03/19/02
+---------------
+Use N3ds2e to convert .3ds file to a .e file
+Use BSP to convert an .e file into a .bin file
+===============
+I think the original file came from LGS and ShadowSpawn updated it, but I'm not totally sure.
+ Schwaa

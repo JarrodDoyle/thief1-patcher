@@ -1,0 +1,32 @@
+DECLARE_SCRIPT_SERVICE(AI, 0xe5)
+{
+	STDMETHOD_(boolean, MakeGotoObjLoc)(ObjID objIdAI, const object &objIdTarget, eAIScriptSpeed speed = kNormalSpeed, eAIActionPriority = kNormalPriorityAction, const cMultiParm ref dataToSendOnReach = NULL_PARM) PURE;
+	STDMETHOD_(boolean, MakeFrobObj)(ObjID objIdAI, const object &objIdTarget, eAIActionPriority = kNormalPriorityAction, const cMultiParm ref dataToSendOnReach = NULL_PARM) PURE;
+	STDMETHOD_(boolean, MakeFrobObj)(ObjID objIdAI, const object &objIdTarget, const object &objWith, eAIActionPriority = kNormalPriorityAction, const cMultiParm ref dataToSendOnReach = NULL_PARM) PURE;
+	STDMETHOD_(eAIScriptAlertLevel, GetAlertLevel)(ObjID objIdAI) PURE;
+	STDMETHOD_(void, SetMinimumAlert)(ObjID objIdAI, eAIScriptAlertLevel level) PURE;
+	STDMETHOD_(void, ClearGoals)(ObjID objIdAI) PURE;
+	STDMETHOD_(void, SetScriptFlags)(ObjID objIdAI, int iFlags) PURE;
+	STDMETHOD_(void, ClearAlertness)(ObjID objIdAI) PURE;
+	STDMETHOD_(void, Signal)(ObjID objIdAI, const string ref signal) PURE;
+	STDMETHOD_(boolean, StartConversation)(ObjID conversationID) PURE;
+
+	//
+	// new functions in T2 v1.27 / SS2 v2.48:
+	//
+
+	// stun-related functions previously only available through the ShockAI script service are now available to all games here
+	STDMETHOD_(BOOL, Stun)(object who, const string ref startTags, const string ref loopTags, float sec) PURE;
+	STDMETHOD_(BOOL, IsStunned)(object who) PURE;
+	STDMETHOD_(BOOL, UnStun)(object who) PURE;
+	// freeze-related functions previously only available through the ShockAI script service are now available to all games here
+	STDMETHOD_(BOOL, Freeze)(object who, float sec) PURE;
+	STDMETHOD_(BOOL, IsFrozen)(object who) PURE;
+	STDMETHOD_(BOOL, UnFreeze)(object who) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	STDMETHOD_(BOOL, SetFaceVisage)(object who, eFaceVisage visage, uint priority = kFacePriorityMin, int duration = kFaceDurationInfinite) PURE;
+};

@@ -1,0 +1,67 @@
+song m04song
+
+event test
+flags 42
+goto 10 empty
+
+section empty
+empty
+event
+goto 100 "empty"
+event "theme start" 
+goto s0400
+
+section "s0400" 
+s0400
+event ""
+goto s04gap
+event theme end
+goto empty
+
+section s04gap
+loop_count 12
+empty
+event
+goto s0401
+event theme end
+goto empty
+
+section s0401
+s0401
+event
+goto s0404
+event theme end
+goto s0407end
+
+section s0404
+loop_count 4
+s0404
+event
+goto 65 s0405
+goto 35 s0406
+event theme end
+goto s0407end
+
+section s0405
+loop_count 3
+s0405
+event
+goto 65 s0406
+goto 35 s0404
+event theme end
+goto s0407end 
+
+section s0406
+loop_count 4
+s0406
+event
+goto 65 s0404
+goto 35 s0405
+event theme end
+goto s0407end
+
+section s0407end
+s0407end
+event
+goto empty
+

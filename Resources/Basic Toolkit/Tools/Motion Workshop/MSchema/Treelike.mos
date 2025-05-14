@@ -1,0 +1,24 @@
+
+global TreeBeast 0, Treelike 0
+torso  Biped
+
+schema Stand 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+torso  T0
+motion tbstill     4  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 5
+XYZScale  0
+torso  T0
+motion tbal01bp     4  400
+
+schema Search 0
+MType  GroundAction
+TimeScale 20
+XYZScale  0
+torso  T0
+motion tbal01bp     4  400

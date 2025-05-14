@@ -1,0 +1,9 @@
+=== Changes from BCB
+- ENVSOUND.SPC, SPEECH.SPC, FIRE.SCH, BUGBEAST.SCH, CRAYMAN.SCH: Added schemas for Crayman, Bugbeast, Fire elemental (from Thief 1/G)
+- HITS.SCH: Fixed hits for Crayman
+
+=== Changes from TNH
+- BASE.ARC, SPEECH.SPC, MURUS.SCH: Added Murus (from Thief 1)
+- DOORS.SCH: Added AI_DOOR schemas for Slide3Fast, Slide2Sm, Manhole, OblManhole
+- MISCSFX.SCH: Increase volume on pluck_harp, play_piano
+- HITS.SCH: Removed Crayman from sword_body

@@ -1,0 +1,60 @@
+--------------------------
+ThiefMapper: Version 1.0
+--------------------------
+(c) C.Tschoegl
+Ancalagon@gmx.net
+
+ABOUT THE PROGRAM
+
+This program is intended to facilitate the creation of Automaps for
+'Thief: The Dark Project' by Looking Glass Studios. It allows easier 
+placing of locations on a basic map. This program is Freeware. If you
+find any bugs, send me an email.
+
+INSTALLATION
+
+Unzip the files to wherever you like.
+
+USING THIEFMAPPER
+
+To create a new positions file for your self-made maps, 
+go to Positions->New and select your Pagexxx.pcx file. The map
+and corresponding locations will be loaded. Make sure that all
+locations are in the same directory as the map and numbered 
+from PxxxR000.pcx onwards. Select a location in the Tools window
+and position it on the map. Do the same for the other locations.
+After you're done, go to Positions->Save to save the information.
+
+To load a positions file, go to Positions->Load and select the
+Pxxxra.bin. Again, all files have to be in the same directory.
+
+To add new locations, go to Locations->Add. The program will search
+for new location files in the directory where the others are.
+
+For examples of what maps look like, look into Thief's Intrface.crf.
+
+USING MAPS IN THIEF
+
+For your mission to use the maps, you need to put them inside the 
+"intrface" directory for your mission. If your mission was named 
+for example "miss15" that would be the directory \intrface\miss15.
+The necessary files for a functioning automap are:
+			- Pagexxx.pcx  (the basic map)
+			- PxxxRyyy.pcx (locations)
+ 			- Pxxxra.bin   (positioning info)
+
+Example for a mission named "miss15" with one basic map and two locations:
+			\intrface\miss15\Page001.pcx
+			\intrface\miss15\p001r000.pcx
+			\intrface\miss15\p001r001.pcx
+			\intrface\miss15\P001ra.bin
+
+In DromEd, you need to select a room brush and edit its properties.
+Add Room::Automap and enter the number of the basic map into the Page
+field (e.g. 1 for Page001.pcx) and the number of the location into
+the Location field. (0 for p001r000.pcx, 1 for p001r001.pcx etc.)
+
+DISCLAIMER
+
+Use ThiefMapper at your own risk. I cannot be held responsible for any
+damage it may cause.

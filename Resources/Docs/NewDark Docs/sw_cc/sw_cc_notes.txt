@@ -1,0 +1,15 @@
+Software color control (sw_cc) uses shaders to apply gamma and/or saturation/color filter and/or
+brightness/contrast. See "d3d_disp_sw_cc" in "new_config_vars.txt" for basic information. This document is
+only intended to describe how to override the sw_cc shaders with custom ones.
+
+To make dark load custom sw_cc shaders you just have to place a Direct3D Effects file named "cc.fx" in a
+directory named "shaders". The "shaders" directory can be in the game root or a mod/FM path. The effects
+file is required to have a number of techniques with predefined names. The best approach is to start with
+the "cc.fx" provided along with this documentation. That's the default shader implementation in dark, the
+same that it uses when no custom override exists.
+
+If a custom "cc.fx" fails to compile the game's log file will contain the error output. You have load/start
+a mission for the effects file to get loaded/compiled.
+
+Included are a couple of examples with different dither/noise algorithms. A brief summary is provided
+at the top of each FX file, which can be viewed in any text editor.

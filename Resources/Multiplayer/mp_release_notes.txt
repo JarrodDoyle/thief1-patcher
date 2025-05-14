@@ -1,0 +1,81 @@
+Thief II: The Metal Age Multiplayer
+===================================
+
+Overview
+--------
+This is an unofficial patch for Thief II: The Metal Age (T2) which updates the game with multiplayer
+functionality. Consider it to be in beta state. There are various issues and things that don't work,
+and don't expect it to work with all FMs or with Thief 1/Gold. If you're looking for a fully working
+multiplayer experience then this is not for you. Bugs and improvements may or may not be addressed in
+the future.
+
+This patch is made available "as is" and without warranty of any kind. It was not developed by
+Eidos/Square Enix, Looking Glass Studios, GOG, Steam, Mastertronic, or Amazon, and is neither
+supported nor endorsed by them or anyone else. The aforementioned parties cannot be held responsible
+for any problems or damages incurred by this software. If you do not agree with these terms then do
+not apply the update.
+
+T2 and its resources/executables are the property of Eidos/Square Enix.
+
+Permission is granted to any party that has obtained the legal rights to sell the original (v1.18 or
+earlier) game, such as GOG and Steam, to include this update, as long as they also have been granted
+permission by Eidos/Square Enix to do so.
+
+
+Installation
+------------
+You should have a valid game install with the latest v1.28 update before installing the multiplayer files.
+You can just extract the contents of "mp.zip" into the game's root directory and run "Thief2MP.exe".
+
+Extracting "mp.zip" will overwrite some original OSM files with multiplayer compatible versions. These
+updated OSMs still work with the singleplayer game. If you're not comfortable with that, you can make
+a separate copy of your entire game directory and install multiplayer in the copy instead. That way
+you have dedicated single- and multi-player installs.
+
+The MP package comes with "dark_net.bnd" that contains additional key bindings specifically for multiplayer,
+and "dark_net.cfg" which is a config file only loaded by the multiplayer EXE. You can edit these in a
+text editor.
+
+All players in a game session should always make sure to run the same version of the game, and ideally
+use the same mod configuration.
+
+The MP package also contains the file "GlobalServer.zip" which holds Windows binaries and cross-
+platform source code for the global/master server software. The global server is a server that
+maintains a list of publicly available game hosts that can be viewed with the game's built-in server
+browser. The contents of this ZIP is only relevant for those who intend to run a global server, otherwise
+you can ignore it.
+
+If you want to enable the game's server browser or host public games, and you have the address to an
+available global server, then open "dark_net.cfg" in a text editor and set the "global_server_name"
+variable to that address. You can also set a default player name, host name or host address in the
+same config file.
+
+Multiplayer savegames are located in the directory "netsaves". Inside "netsaves" are sub-directories
+named after the server name, containing the savegame files. That means if you plan on playng with saving
+that you should keep track of the server names used/joined and avoid the same server name for different
+playthroughs. Failing to do so can lead to savegame mismatches or accidental overwrites.
+
+The game host uses the network port 5198.
+
+
+Notes on Playing
+----------------
+
+An alive player can revive dead players by frobbing them. It's not game over until all players are dead.
+
+If you want to chat with other players, by text or voice, you'll have to use an external chat application.
+
+As mentioned above, do not expect a fully working game. Issues can range from smaller glitches to certain
+mission(s) having special case completion conditions that are not fully multiplayer compatible, resulting
+in only the host player having the ability to perform the completing objective.
+
+
+Disclaimer
+----------
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

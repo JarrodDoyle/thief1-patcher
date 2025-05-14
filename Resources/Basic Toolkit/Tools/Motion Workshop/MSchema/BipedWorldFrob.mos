@@ -1,0 +1,33 @@
+
+global WorldFrob 0
+torso  Biped
+
+schema AtWaist 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114312     4  500
+
+schema AtWaist 0, Door 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114313     4  500
+
+schema AtWaist 0, Lever 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114314     4  500
+
+schema AtWaist 0, Lever 0, WithTray 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH1143i5     0  500
+
+schema AtWaist 0, BellPull 0, WithTray 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH1143i6     0  500

@@ -1,0 +1,51 @@
+
+torso  Biped
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH112203     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH114001     4  500
+motion BH114002     4  500
+motion BH114003     4  500
+motion BH114004     4  500
+motion BH114005     4  500
+motion BH114006     4  500
+motion BH114007     4  500
+motion BH114008     4  500
+motion BH114009     4  500
+motion BH114010     4  500
+motion BH114011     4  500
+motion BH114012     4  500
+motion BH114100     4  500
+motion BH114120     4  500
+motion BH114150     4  500
+motion BH114151     4  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214112     0  500
+motion BH214111     0  500
+motion BH214101     0  500
+motion BH114605     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH313001     0  500
+motion BH313002     0  500
+motion BH313005     0  500
+motion BH313007     0  500
+motion BH313010     0  500
+motion BH313011     0  500
+motion BH313012     0  500
+motion BH313013     0  500

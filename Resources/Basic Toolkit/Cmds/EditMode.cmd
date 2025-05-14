@@ -1,0 +1,2 @@
+unset editorcam_from_game
+edit_mode

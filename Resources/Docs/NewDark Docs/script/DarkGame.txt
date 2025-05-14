@@ -1,0 +1,33 @@
+DECLARE_SCRIPT_SERVICE(DarkGame,0x1b4)
+{
+	STDMETHOD(KillPlayer)() PURE;
+	STDMETHOD(EndMission)() PURE;
+	STDMETHOD(FadeToBlack)(float time) PURE;
+	STDMETHOD(FoundObject)(ObjID obj) PURE;
+	STDMETHOD_(BOOL, ConfigIsDefined)(const char *name) PURE;
+	STDMETHOD_(BOOL, ConfigGetInt)(const char *name, int ref value) PURE;
+	STDMETHOD_(BOOL, ConfigGetFloat)(const char *name, float ref value) PURE;
+	STDMETHOD_(real, BindingGetFloat)(const char *name) PURE;
+	STDMETHOD_(BOOL, GetAutomapLocationVisited)(int page, int location) PURE;
+	STDMETHOD(SetAutomapLocationVisited)(int page, int location) PURE;
+
+	//
+	// new functions in v1.19:
+	//
+
+	// set/change the next mission that will follow current mission (normally the next mission is cur+1 or if
+	// "missflag.str" contains a miss_%d_next the next mission is defined by that)
+	STDMETHOD_(void, SetNextMission)(int mission) PURE;
+
+	// get current mission number
+	STDMETHOD_(int, GetCurrentMission)() PURE;
+
+	//
+	// new functions in v1.24:
+	//
+
+	// only does something in T2 multiplayer builds
+	STDMETHOD_(BOOL, RespawnPlayer)() PURE;
+	// only does something in T2 multiplayer builds
+	STDMETHOD(FadeIn)(float time) PURE;
+};

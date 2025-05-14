@@ -1,0 +1,59 @@
+Tom's Monolog Viewer
+====================
+
+So here's my take on the monolog viewer. It's pretty fast because it
+loads as a debugger for Dromed. You still need to open a file, or 
+Dromed doesn't print anything. But one of the features of Mono.exe is
+appending logs to another file.
+
+Running Mono.exe will prompt you for an executable. Any app will do,
+if you happen to have some other program that prints debug messages.
+
+The Mono window will remain open after you exit the application. If 
+you close Mono first, the application will be forced to terminate as 
+well. Except if you are using Windows XP or Vista. Don't worry, Mono 
+will warn you before closing.
+
+For frequent use, you should create a configuration file. Create an 
+INI file with a section "Mono". Set the following options:
+    exe  : (Required) Executable to run. Can be just the name if 
+	       its in the same directory as the configuration file.
+           Otherwise, use a full path.
+    args : Additional arguments for the program. (Not used by Dromed.)
+    log  : Log file. Mono output will be appended to this file.
+           Don't use the same name as the monolog file Dromed creates.
+           The file is not modified until you close the Mono window.
+    stamp: A line that will be printed before anything else. Can contain
+           replacement text:
+               %1 : The executable name
+               %2 : Program arguments
+               %3 : Current date (short)
+               %4 : Current date (long)
+               %5 : Current time
+               %6 : Logged-in user name
+               %% : A single %
+               %! : A single !
+               %n : Start a new line
+
+You can change all of this using the menu options.
+
+When you use a configuration file, the size and position of the window
+are saved after you close the window. To change the application or log 
+files you need to manually save the configuration.
+
+You can easily create a shortcut to Mono.exe and add the name of the 
+configuration file to the shortcut command line. (Remember to use a 
+full path if it's not in the same directory as Mono.exe.)
+
+Since Dromed only prints debug messages when a monolog file is open, 
+you should automatically open it when Dromed starts. Add this line
+to you DROMED.CFG file:
+    monolog monolog.txt
+
+Use a filename that makes sense for you, and is not the same as the 
+permanent log file that Mono.exe writes to. (Dromed's monolog file 
+will be erased each time Dromed starts.)
+
+Mono.exe uses Scintilla for displaying text. You need to have the file
+Scintilla.dll in the same directory as Mono.exe. This doesn't need to 
+be the Dromed directory.

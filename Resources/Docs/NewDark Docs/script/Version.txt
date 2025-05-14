@@ -1,0 +1,50 @@
+DECLARE_SCRIPT_SERVICE(Version, 0x228)
+{
+	// returns an app name-version string in the form of "Thief 2 Final 1.19" if title_only is FALSE
+	// or an app name string in the form of "Thief 2"/"DromEd"/"System Shock 2" if title_only is TRUE
+	STDMETHOD_(void,GetAppName)(BOOL title_only, string ref result) PURE;
+
+	// get version numbers
+	STDMETHOD_(void,GetVersion)(int &major, int &minor) PURE;
+
+	// returns 0 if the running executable is NOT the editor, 1 if editor in edit mode, 2 if editor in game mode
+	// (due to a bug, the return values for 1 and 2 are reversed in T2 v1.22 / SS2 v2.43, this only affects the
+	// editor and not the game executables)
+	STDMETHOD_(int,IsEditor)() PURE;
+
+	// returns the "game" string (set in cam.cfg to select game, i.e. "dark/"shock")
+	STDMETHOD_(void,GetGame)(string ref result) PURE;
+
+	// returns the current gamesys filename (including ".gam" extension)
+	STDMETHOD_(void,GetGamsys)(string ref result) PURE;
+
+	// returns the current map/mission filename (including ".mis" extension)
+	STDMETHOD_(void,GetMap)(string ref result) PURE;
+
+	//
+	// FM services
+	//
+
+	// get the current FM name, returns empty string and S_FALSE if none is active
+	STDMETHOD(GetCurrentFM)(string ref result) PURE;
+
+	// get the current FM path name as "rootpath/name" (roopath can be relative to CWD), returns empty string and S_FALSE if none is active
+	STDMETHOD(GetCurrentFMPath)(string ref result) PURE;
+
+	// returns the 'relpath' with the current FM path prefixed if an FM is active, otherwise the unmodified 'relpath'
+	STDMETHOD_(void, FMizeRelativePath)(const char *relpath, string ref result) PURE;
+
+	// checks if path is absolute, if so returns it as-is, otherwise behaves the same as FMizeRelativePath
+	STDMETHOD_(void, FMizePath)(const char *path, string ref result) PURE;
+
+	//
+	// new functions in T2 v1.28 / SS2 v2.49:
+	//
+
+	//
+	// Mod services
+	//
+
+	// get either all mod paths in order or a specific mod path, returns empty string and S_FALSE if specified index is not available
+	STDMETHOD(GetModPath)(string ref result, int which = -1) PURE;
+};

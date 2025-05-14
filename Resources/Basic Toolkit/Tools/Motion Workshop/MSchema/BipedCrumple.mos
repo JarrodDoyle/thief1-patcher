@@ -1,0 +1,80 @@
+
+global Crumple 0
+torso  Biped
+
+schema Die 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213701     0  500
+
+schema Die 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213714     0  500
+
+schema Die 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213715     0  500
+
+schema Die 0, IsConfined 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213710     0  500
+motion BH213712     0  500
+
+schema Die 0, OnStairs 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213719     0  500
+
+schema Die 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213702     0  500
+motion BH213705     0  500
+motion BH213713     0  500
+motion BH213701     0  500
+motion BH213714     0  500
+motion BH213715     0  500
+motion BH213710     0  500
+motion BH213712     0  500
+
+schema Die 0, WithSword 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213712     0  500
+motion BH213715     0  500
+
+schema Die 0, WithSword 0, Ramirez 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213712     0  500
+motion BH213715     0  500
+
+schema KnockOut 0, WithSword 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213717     0  500
+
+schema KnockOut 0, WithSword 0, Ramirez 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213717     0  500
+
+schema KnockOut 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213717     0  500
+motion BH213718     0  500

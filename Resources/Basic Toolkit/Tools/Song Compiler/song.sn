@@ -1,0 +1,60 @@
+song m01song
+
+//event test
+//goto 42
+
+section empty
+volume 0
+loop_count 1
+empty
+event ""
+; goto empty
+goto 100 0
+event "theme start"
+; goto mel1
+goto 100 1
+
+section mel1
+volume 0
+loop_count 1
+s01mel1
+event ""
+;goto 100 mel1a
+goto 100 2
+event "theme end"
+goto 100 5
+
+section mel1a
+volume 0
+loop_count 1
+s01mel1
+event ""
+goto 100 3
+event "theme end"
+goto 100 5
+
+section mel2
+volume 0
+loop_count 1
+s01mel2
+event ""
+goto 100 4
+event "theme end"
+goto 100 5
+
+section mel2a
+volume 0
+loop_count 1
+s01mel2
+event ""
+goto 100 1
+event "theme end"
+goto 100 5
+
+section end
+volume 0
+loop_count 1
+empty
+event ""
+goto 100 0
+

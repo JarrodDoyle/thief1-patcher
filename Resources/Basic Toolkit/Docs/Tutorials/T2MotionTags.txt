@@ -1,0 +1,2301 @@
+Motion Tag Hierarchy    Thief II		01/13/2003
+
+ +PlaySpecMotion 0
+    +Zombie 0
+    +BugDemon 0
+    +WithSword 0
+    +WithBow 0
+    +Player 0
+ +Locomote 0
+    +LocoUrgent 0
+       +MeleeCombat 0
+          +Direction 1
+             +Hammer 0
+                +WithSword 0
+             +WithSword 0
+          +Direction 2
+             +Hammer 0
+                +WithSword 0
+             +WithSword 0
+          +Direction 3
+             +Hammer 0
+                +WithSword 0
+          +Direction 4
+             +Hammer 0
+       +Direction 1
+          +Hammer 0
+       +Direction 2
+          +Hammer 0
+       +Direction 4
+          +Hammer 0
+       +WithTurns 0
+          +BugDemon 0
+          +WithSword 0
+       +Zombie 0
+       +Apebeast 0
+       +BugDemon 0
+       +CrayMan 0
+       +WithSword 0
+       +WithBow 0
+          +Assassin 0
+       +TreeBeast 0
+       +Player 0
+    +Search 0
+       +Zombie 0
+       +Apebeast 0
+          +WithSword 0
+       +WithSword 0
+       +TreeBeast 0
+    +MeleeCombat 0
+       +Direction 1
+          +Zombie 0
+          +Apebeast 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +TreeBeast 0
+       +Direction 2
+          +Zombie 0
+          +Apebeast 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +TreeBeast 0
+       +Direction 3
+          +Apebeast 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +CrayMan 0
+          +TreeBeast 0
+       +Direction 4
+          +OnStairs 0
+             +WithSword 0
+          +OnStairs 1
+             +WithSword 0
+          +Zombie 0
+          +Apebeast 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +CrayMan 0
+          +WithSword 0
+          +TreeBeast 0
+       +OnStairs 0
+          +WithSword 0
+       +OnStairs 1
+          +WithSword 0
+       +Zombie 0
+    +Direction 1
+       +Zombie 0
+       +Apebeast 0
+       +Hammer 0
+       +BugDemon 0
+       +CrayMan 0
+       +Player 0
+    +Direction 2
+       +Zombie 0
+       +Apebeast 0
+       +Hammer 0
+       +BugDemon 0
+       +CrayMan 0
+       +Player 0
+    +Direction 4
+       +Zombie 0
+       +Hammer 0
+       +BugDemon 0
+       +Player 0
+    +Direction 8
+       +CrayMan 0
+    +OnStairs 0
+    +OnStairs 1
+    +Zombie 0
+    +Apebeast 0
+    +Hammer 0
+       +WithBow 0
+    +BugDemon 0
+    +CrayMan 0
+    +WithSword 0
+    +WithBow 0
+       +Assassin 0
+    +TreeBeast 0
+    +Drunk 0
+    +WithTray 0
+    +DancerOne 0
+    +Player 0
+       +Crouching 0
+       +Climbing 0
+ +LocoUrgent 0
+    +Direction 3
+       +Player 0
+          +Jumping 0
+ +Stand 0
+    +Halt 0
+       +WithSword 0
+    +Wheel 0
+       +Zombie 0
+       +Hammer 0
+          +WithBow 0
+    +Pivot 0
+    +Search 0
+       +WithSword 0
+    +MeleeCombat 0
+       +Zombie 0
+       +Apebeast 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+       +CrayMan 0
+       +WithSword 0
+       +TreeBeast 0
+    +Sitting 0
+    +Zombie 0
+    +Apebeast 0
+    +Hammer 0
+       +WithBow 0
+    +BugDemon 0
+    +CrayMan 0
+    +WithSword 0
+       +Drunk 0
+    +TreeBeast 0
+       +Treelike 0
+    +Drunk 0
+    +Conversation 0
+    +Player 0
+       +Crouching 0
+       +Climbing 0
+       +LeaningLeft 0
+       +LeaningRight 0
+    +Shiver 0
+    +Bound 0
+ +ReadyItem 0
+    +ItemSword 0
+    +ItemBow 0
+    +WithSword 0
+ +WorldFrob 0
+    +AtWaist 0
+       +Lever 0
+          +WithSword 0
+          +WithTray 0
+       +Door 0
+          +WithSword 0
+       +BellPull 0
+          +WithTray 0
+       +WithSword 0
+       +WithBow 0
+ +Search 0
+    +Peek 0
+       +Direction 1
+          +Apebeast 0
+             +WithSword 0
+          +WithSword 0
+       +Direction 2
+          +Apebeast 0
+             +WithSword 0
+          +WithSword 0
+       +Direction 3
+          +Apebeast 0
+             +WithSword 0
+          +WithSword 0
+    +Scan 0
+       +Apebeast 0
+          +WithSword 0
+       +CrayMan 0
+       +WithSword 0
+       +TreeBeast 0
+       +Player 0
+    +TreeBeast 0
+       +Treelike 0
+ +Discover 0
+    +PointOut 0
+       +Direction 0
+          +WithSword 0
+       +Direction 5
+          +WithSword 0
+       +Direction 6
+          +WithSword 0
+       +WithSword 0
+    +Recoil 0
+       +Direction 4
+       +Direction 8
+       +IsConfined 0
+       +Apebeast 0
+          +WithSword 0
+       +WithSword 0
+    +Challenge 0
+       +Apebeast 0
+       +CrayMan 0
+       +WithSword 0
+       +TreeBeast 0
+    +Thwarted 0
+       +Apebeast 0
+       +CrayMan 0
+       +WithSword 0
+          +Haunt 0
+       +TreeBeast 0
+    +Salute 0
+       +WithSword 0
+    +Zombie 0
+    +TreeBeast 0
+       +Treelike 0
+ +IdleGesture 0
+    +Apebeast 0
+    +Hammer 0
+       +WithSword 0
+          +Archaeologist 0
+    +CrayMan 0
+    +WithSword 0
+       +Archaeologist 0
+    +Unarmed 0
+       +Cherub 0
+    +TreeBeast 0
+    +Keeper 0
+    +Player 0
+    +Archaeologist 0
+ +Stalled 0
+    +Poisoned 0
+       +WithSword 0
+    +Stunned 0
+       +Long 0
+          +WithSword 0
+       +WithSword 0
+       +TreeBeast 0
+    +Blinded 0
+       +WithSword 0
+       +Foo 0
+       +Bar 0
+    +Flail 0
+       +InWater 0
+          +WithSword 0
+       +WithSword 0
+    +Rebalance 0
+       +WithSword 0
+ +Flail 0
+    +TreeBeast 0
+ +Crumple 0
+    +KnockOut 0
+       +Sitting 0
+       +WithSword 0
+          +Drunk 0
+          +Ramirez 0
+       +Shiver 0
+    +Die 0
+       +Direction 1
+       +Direction 2
+       +Direction 3
+       +IsConfined 0
+       +OnStairs 0
+       +Sitting 0
+       +WithSword 0
+          +Drunk 0
+          +Ramirez 0
+       +Shiver 0
+    +Zombie 0
+    +BugDemon 0
+    +CrayMan 0
+    +TreeBeast 0
+    +Player 0
+ +ReceiveWound 0
+    +SevereWound 0
+       +MeleeCombat 0
+          +Direction 1
+             +WithSword 0
+          +Direction 2
+             +WithSword 0
+          +Direction 7
+             +WithSword 0
+          +Direction 8
+             +WithSword 0
+       +Zombie 0
+       +Hammer 0
+          +WithSword 0
+    +MeleeCombat 0
+       +Direction 1
+          +WithSword 0
+       +Direction 2
+          +WithSword 0
+       +Direction 7
+          +WithSword 0
+       +Direction 8
+          +WithSword 0
+       +WithSword 0
+       +TreeBeast 0
+       +Player 0
+    +Direction 1
+       +Zombie 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+    +Direction 2
+       +Zombie 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+    +Direction 7
+       +Zombie 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+    +Direction 8
+       +Zombie 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+    +BugDemon 0
+    +CrayMan 0
+       +WithSword 0
+    +Player 0
+ +MeleeCombat 0
+    +Block 0
+       +Direction 1
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +CrayMan 0
+          +WithSword 0
+       +Direction 2
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +WithSword 0
+       +Direction 5
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +CrayMan 0
+          +WithSword 0
+       +Direction 6
+          +BugDemon 0
+          +WithSword 0
+       +Hammer 0
+          +WithSword 0
+       +BugDemon 0
+       +WithSword 0
+    +Attack 0
+       +SpecialAttack 0
+          +Direction 0
+             +CrayMan 0
+          +Zombie 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +WithSword 0
+          +TreeBeast 0
+       +Direction 0
+          +Zombie 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +WithSword 0
+          +Player 0
+       +Direction 5
+          +Zombie 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +WithSword 0
+          +Player 0
+       +Direction 6
+          +Zombie 0
+          +Hammer 0
+             +WithSword 0
+          +BugDemon 0
+          +WithSword 0
+       +OnStairs 0
+          +WithSword 0
+       +OnStairs 1
+          +WithSword 0
+       +TreeBeast 0
+ +RangedCombat 0
+    +Hammer 0
+       +WithBow 0
+    +BugDemon 0
+    +WithBow 0
+       +WithCrossbow 0
+       +WithBlowgun 0
+    +TreeBeast 0
+    +Player 0
+       +Crouching 0
+ +Direction 3
+    +Player 0
+       +Jumping 0
+ +Direction 4
+    +Player 0
+       +Jumping 0
+ +Sit2Stand 0
+ +Stand2Sit 0
+ +Sit2Lie 0
+ +Lie2Stand 0
+ +WithSword 0
+    +Drink 0
+ +Drink 0
+ +Conversation 0
+    +Foo 0
+       +Bar 0
+          +Baz 0
+       +Baz 0
+       +Quux 0
+    +Bar 0
+       +Baz 0
+       +Quux 0
+    +Baz 0
+       +Quux 0
+    +Quux 0
+ +Conv 1
+ +Conv 2
+ +Conv 3
+ +Conv 4
+ +Conv 5
+ +Conv 6
+ +Conv 7
+ +Conv 8
+ +Conv 9
+ +Conv 10
+ +Conv 11
+ +Conv 12
+ +Conv 13
+ +Conv 14
+ +Conv 15
+ +Conv 16
+ +Conv 17
+ +Conv 18
+ +Conv 19
+ +Conv 20
+ +Conv 21
+ +Conv 22
+ +Conv 23
+ +Conv 24
+ +Conv 25
+ +Conv 26
+ +Conv 27
+ +Conv 28
+ +Conv 29
+ +Conv 30
+ +Conv 31
+ +Conv 32
+ +Conv 33
+ +Conv 34
+ +Conv 35
+ +Conv 36
+ +Conv 37
+ +Conv 38
+ +Conv 39
+ +Conv 40
+ +Conv 41
+ +Conv 42
+ +Misc 1
+ +Misc 3
+ +Player 0
+    +Jumping 0
+    +Mantle 0
+ +Direction 1
+    +PlyrSword 1
+       +PlyrSwordSwing 1
+    +PlyrSword 2
+       +PlyrSwordSwing 1
+    +PlyrSword 6
+ +Direction 2
+    +PlyrSword 1
+       +PlyrSwordSwing 1
+    +PlyrSword 2
+       +PlyrSwordSwing 1
+    +PlyrSword 6
+ +Direction 5
+    +PlyrSword 6
+ +Direction 6
+    +PlyrSword 6
+ +PlyrSword 0
+ +PlyrSword 1
+    +BlackJack 0
+       +PlyrSwordSwing 0
+    +PlyrSwordSwing 0
+    +PlyrSwordSwing 2
+ +PlyrSword 2
+    +BlackJack 0
+       +PlyrSwordSwing 0
+    +PlyrSwordSwing 0
+    +PlyrSwordSwing 2
+ +PlyrSword 3
+ +PlyrSword 4
+ +PlyrSword 5
+ +PlyrCorpseCarry 0
+ +PlyrBow 0
+ +PlyrBow 1
+ +PlyrBow 4
+ +PlyrBow 5
+ +PlyrBow 6
+ +PlyrBow 7
+ +Test 0
+ +PlaySpecMotion 0
+ +Locomote 0
+    +LocoUrgent 0
+       +WithTurns 0
+    +Halt 0
+    +Direction 4
+    +Frog 0
+ +Stand 0
+    +Wheel 0
+    +MeleeCombat 0
+    +Drunk 0
+ +Search 0
+    +Peek 0
+       +Direction 1
+       +Direction 2
+    +Scan 0
+ +Discover 0
+    +Recoil 0
+       +Direction 4
+    +Challenge 0
+    +Thwarted 0
+ +IdleGesture 0
+ +Stalled 0
+    +Stunned 0
+    +Flail 0
+       +InAir 0
+       +Long 0
+    +Rebalance 0
+ +Crumple 0
+    +KnockOut 0
+    +Die 0
+       +IsConfined 0
+ +ReceiveWound 0
+    +SevereWound 0
+    +Direction 1
+    +Direction 2
+    +Direction 7
+    +Direction 8
+    +Frog 0
+ +MeleeCombat 0
+    +Attack 0
+       +SpecialAttack 0
+       +Direction 0
+       +Direction 5
+ +RangedCombat 0
+ +PlaySpecMotion 0
+ +Locomote 0
+    +LocoUrgent 0
+       +Direction 1
+          +MechSpid 0
+       +Direction 2
+          +MechSpid 0
+       +MechSpid 0
+    +MeleeCombat 0
+       +Direction 1
+          +MechSpid 0
+       +Direction 2
+          +MechSpid 0
+       +Direction 4
+          +MechSpid 0
+       +MechSpid 0
+    +Direction 1
+       +MechSpid 0
+    +Direction 2
+       +MechSpid 0
+    +Direction 4
+       +MechSpid 0
+    +MechSpid 0
+ +Stand 0
+    +Wheel 0
+    +MeleeCombat 0
+       +MechSpid 0
+    +MechSpid 0
+ +Search 0
+    +MechSpid 0
+ +Discover 0
+    +MechSpid 0
+ +IdleGesture 0
+    +MechSpid 0
+ +Crumple 0
+    +MechSpid 0
+ +ReceiveWound 0
+    +MeleeCombat 0
+       +Direction 1
+          +MechSpid 0
+       +Direction 2
+          +MechSpid 0
+       +MechSpid 0
+ +MeleeCombat 0
+    +Attack 0
+       +SpecialAttack 0
+       +MechSpid 0
+ +RangedCombat 0
+    +MechSpid 0
+ +Locomote 0
+ +PlaySpecMotion 0
+ +Locomote 0
+ +Stand 0
+ +Discover 0
+    +Direction 0
+    +Direction 5
+    +Direction 6
+ +Crumple 0
+ +RangedCombat 0
+ +PlaySpecMotion 0
+    +Droid 0
+ +Locomote 0
+    +LocoUrgent 0
+       +Droid 0
+          +Maintenance 0
+    +Direction 4
+       +Droid 0
+    +Droid 0
+ +Stand 0
+    +Droid 0
+ +Search 0
+    +Droid 0
+ +Discover 0
+    +Droid 0
+ +Crumple 0
+    +Droid 0
+ +ReceiveWound 0
+    +MeleeCombat 0
+       +Droid 0
+    +Droid 0
+ +RangedCombat 0
+    +Droid 0
+       +Security 0
+       +Maintenance 0
+       +Assault 0
+
+
+Detailed Motion Tag Hierarchy
+
+0: +PlaySpecMotion 0
+       71: 119 (+rmbleapf)
+       242: 298 (+BH112203)
+       243: 164 (+BH114001)
+       243: 299 (+BH114002)
+       243: 165 (+BH114003)
+       243: 163 (+BH114004)
+       243: 300 (+BH114005)
+       243: 301 (+BH114006)
+       243: 302 (+BH114007)
+       243: 303 (+BH114008)
+       243: 304 (+BH114009)
+       243: 161 (+BH114010)
+       243: 305 (+BH114011)
+       243: 160 (+BH114012)
+       243: 306 (+BH114100)
+       243: 307 (+BH114120)
+       243: 308 (+BH114150)
+       243: 309 (+BH114151)
+       244: 310 (+BH214112)
+       244: 311 (+BH214111)
+       244: 312 (+BH214101)
+       244: 313 (+BH114605)
+       245: 216 (+BH313001)
+       245: 217 (+BH313002)
+       245: 218 (+BH313005)
+       245: 219 (+BH313007)
+       245: 220 (+BH313010)
+       245: 221 (+BH313011)
+       245: 222 (+BH313012)
+       245: 223 (+BH313013)
+       505: 616 (+BH111400)
+       505: 617 (+BH111401)
+       505: 618 (+BH111402)
+       505: 619 (+BH111403)
+       505: 620 (+BH111404)
+       505: 621 (+BH111405)
+       517: 629 (+BH114157)
+       527: 636 (+BH114700)
+       527: 637 (+BH114701)
+       529: 639 (+BH114722)
+       529: 640 (+BH114723)
+       541: 645 (+fetal)
+       541: 646 (+fetalch1)
+       541: 647 (+fetalch2)
+1:    +Zombie 0
+          397: 495 (+BZ114000)
+          397: 496 (+BZ114001)
+          404: 507 (+BZ113800)
+          404: 508 (+BZ113801)
+          404: 509 (+BZ113802)
+2:    +BugDemon 0
+          325: 411 (+BB112201)
+          325: 412 (+BB112202)
+3:    +WithSword 0
+          48: 86 (+BH211400)
+          48: 87 (+BH211401)
+          48: 88 (+BH211402)
+          48: 89 (+BH211403)
+          48: 90 (+BH211404)
+          48: 91 (+BH211405)
+          63: 107 (+BH214722)
+          63: 108 (+BH214723)
+4:    +WithBow 0
+          170: 216 (+BH313001)
+          170: 217 (+BH313002)
+          170: 218 (+BH313005)
+          170: 219 (+BH313007)
+          170: 220 (+BH313010)
+          170: 221 (+BH313011)
+          170: 222 (+BH313012)
+          170: 223 (+BH313013)
+5:    +Player 0
+          348: 429 (+humidl02)
+          348: 196 (+plycrchd)
+          348: 430 (+plycrchu)
+          348: 431 (+plyswrnch)
+          348: 432 (+plyswrnch2)
+6: +Locomote 0
+       211: 260 (+BH111o1o)
+       211: 261 (+BH111o11)
+       503: 537 (+BH111060)
+       503: 538 (+BH111061)
+7:    +LocoUrgent 0
+          212: 262 (+BH111032)
+          212: 263 (+BH111033)
+8:       +MeleeCombat 0
+9:          +Direction 1
+10:             +Hammer 0
+11:                +WithSword 0
+                      419: 524 (+BH413265)
+12:             +WithSword 0
+                   24: 47 (+BH213265)
+13:          +Direction 2
+14:             +Hammer 0
+15:                +WithSword 0
+                      421: 525 (+BH413264)
+16:             +WithSword 0
+                   25: 48 (+BH21326a)
+17:          +Direction 3
+                27: 49 (+BH213256)
+                27: 50 (+BH213300)
+                27: 51 (+BH213301)
+18:             +Hammer 0
+19:                +WithSword 0
+                      427: 262 (+BH111032)
+                      427: 263 (+BH111033)
+20:          +Direction 4
+21:             +Hammer 0
+                   425: 293 (+BH111050)
+22:       +Direction 1
+             538: 524 (+BH413265)
+23:          +Hammer 0
+                416: 524 (+BH413265)
+24:       +Direction 2
+             539: 525 (+BH413264)
+25:          +Hammer 0
+                417: 525 (+BH413264)
+26:       +Direction 4
+27:          +Hammer 0
+                424: 293 (+BH111050)
+28:       +WithTurns 0
+             213: 262 (+BH111032)
+             213: 263 (+BH111033)
+             213: 264 (+BH211239)
+29:          +BugDemon 0
+                318: 397 (+BB111010)
+                318: 398 (+BB111011)
+                318: 264 (+BH211239)
+30:          +WithSword 0
+                258: 262 (+BH111032)
+                258: 263 (+BH111033)
+                258: 264 (+BH211239)
+31:       +Zombie 0
+             381: 482 (+BZ111010)
+             381: 483 (+BZ111011)
+32:       +Apebeast 0
+             298: 376 (+BA211030)
+             298: 377 (+BA211031)
+33:       +BugDemon 0
+             317: 397 (+BB111010)
+             317: 398 (+BB111011)
+34:       +CrayMan 0
+             545: 652 (+BC111020)
+             545: 653 (+BC111021)
+35:       +WithSword 0
+             257: 262 (+BH111032)
+             257: 263 (+BH111033)
+36:       +WithBow 0
+37:          +Assassin 0
+                263: 262 (+BH111032)
+                263: 263 (+BH111033)
+38:       +TreeBeast 0
+             77: 130 (+rmbrunr)
+             77: 131 (+rmbrunl)
+39:       +Player 0
+             352: 262 (+BH111032)
+             352: 263 (+BH111033)
+40:    +Search 0
+          265: 342 (+BH112oo8)
+41:       +Zombie 0
+             382: 484 (+BZ111o4o)
+42:       +Apebeast 0
+43:          +WithSword 0
+                315: 396 (+apesrc)
+44:       +WithSword 0
+             264: 341 (+BH212oo8)
+45:       +TreeBeast 0
+             87: 146 (+rmbswalk)
+46:    +MeleeCombat 0
+47:       +Direction 1
+             28: 53 (+BH213261)
+             28: 54 (+BH213252)
+48:          +Zombie 0
+                386: 486 (+BZ111100)
+49:          +Apebeast 0
+                303: 383 (+BA213253)
+50:          +Hammer 0
+51:             +WithSword 0
+                   418: 524 (+BH413265)
+52:          +BugDemon 0
+                328: 415 (+BB213260)
+53:          +TreeBeast 0
+                80: 134 (+rmbmelsl)
+54:       +Direction 2
+             29: 48 (+BH21326a)
+55:          +Zombie 0
+                388: 487 (+BZ111110)
+56:          +Apebeast 0
+                304: 384 (+BA213252)
+57:          +Hammer 0
+58:             +WithSword 0
+                   420: 525 (+BH413264)
+59:          +BugDemon 0
+                329: 416 (+BB213261)
+60:          +TreeBeast 0
+                81: 135 (+rmbmelsr)
+61:       +Direction 3
+             26: 49 (+BH213256)
+             26: 50 (+BH213300)
+             26: 51 (+BH213301)
+             26: 52 (+BH213262)
+62:          +Apebeast 0
+                305: 385 (+BA213262)
+63:          +Hammer 0
+64:             +WithSword 0
+                   426: 526 (+BH411032)
+                   426: 527 (+BH411033)
+65:          +BugDemon 0
+                326: 413 (+BB213262)
+66:          +CrayMan 0
+                551: 660 (+BC111090)
+67:          +TreeBeast 0
+                78: 132 (+rmbmelad)
+68:       +Direction 4
+69:          +OnStairs 0
+70:             +WithSword 0
+                   32: 57 (+BH213361)
+71:          +OnStairs 1
+72:             +WithSword 0
+                   30: 55 (+BH213360)
+73:          +Zombie 0
+                384: 485 (+BZ111050)
+74:          +Apebeast 0
+                302: 382 (+BA213263)
+75:          +Hammer 0
+76:             +WithSword 0
+                   422: 293 (+BH111050)
+77:          +BugDemon 0
+                327: 414 (+BB213263)
+78:          +CrayMan 0
+                552: 659 (+BC111080)
+79:          +WithSword 0
+                34: 59 (+BH213250)
+                34: 60 (+BH213251)
+                34: 61 (+BH213263)
+                44: 80 (+BH211050)
+                44: 81 (+BH211051)
+80:          +TreeBeast 0
+                79: 133 (+rmbmelbu)
+81:       +OnStairs 0
+82:          +WithSword 0
+                33: 58 (+BH213350)
+83:       +OnStairs 1
+84:          +WithSword 0
+                31: 56 (+BH213351)
+85:       +Zombie 0
+             380: 482 (+BZ111010)
+             380: 483 (+BZ111011)
+86:    +Direction 1
+          536: 522 (+BH413260)
+87:       +Zombie 0
+             385: 486 (+BZ111100)
+88:       +Apebeast 0
+             300: 380 (+BA213261)
+89:       +Hammer 0
+             414: 522 (+BH413260)
+90:       +BugDemon 0
+             331: 415 (+BB213260)
+91:       +CrayMan 0
+             549: 658 (+BC111060)
+92:       +Player 0
+             368: 465 (+ogpmelsl)
+93:    +Direction 2
+          537: 523 (+BH413261)
+94:       +Zombie 0
+             387: 487 (+BZ111110)
+95:       +Apebeast 0
+             301: 381 (+BA213260)
+96:       +Hammer 0
+             415: 523 (+BH413261)
+97:       +BugDemon 0
+             332: 416 (+BB213261)
+98:       +CrayMan 0
+             548: 657 (+BC111070)
+99:       +Player 0
+             369: 466 (+ogpmelsr)
+100:    +Direction 4
+          237: 293 (+BH111050)
+          540: 644 (+BH413263)
+101:       +Zombie 0
+             383: 485 (+BZ111050)
+102:       +Hammer 0
+             423: 293 (+BH111050)
+103:       +BugDemon 0
+             330: 414 (+BB213263)
+104:       +Player 0
+             351: 438 (+plywlkbk)
+105:    +Direction 8
+106:       +CrayMan 0
+             550: 659 (+BC111080)
+107:    +OnStairs 0
+          260: 337 (+BH111100)
+          260: 338 (+BH111101)
+108:    +OnStairs 1
+          259: 335 (+BH111110)
+          259: 336 (+BH111111)
+109:    +Zombie 0
+          379: 482 (+BZ111010)
+          379: 483 (+BZ111011)
+110:    +Apebeast 0
+          299: 378 (+BA211010)
+          299: 379 (+BA211011)
+111:    +Hammer 0
+          256: 333 (+BH111041)
+          256: 334 (+BH111040)
+112:       +WithBow 0
+             434: 537 (+BH111060)
+             434: 538 (+BH111061)
+113:    +BugDemon 0
+          316: 397 (+BB111010)
+          316: 398 (+BB111011)
+114:    +CrayMan 0
+          544: 650 (+BC111010)
+          544: 651 (+BC111011)
+115:    +WithSword 0
+          261: 339 (+BH211wk1)
+          261: 340 (+BH211wk2)
+116:    +WithBow 0
+          166: 211 (+bowalk1)
+          166: 212 (+bowalk2)
+117:       +Assassin 0
+             262: 339 (+BH211wk1)
+             262: 340 (+BH211wk2)
+118:    +TreeBeast 0
+          76: 128 (+rmbwlkl)
+          76: 129 (+rmbwlkr)
+119:    +Drunk 0
+          504: 615 (+BH111070)
+120:    +WithTray 0
+          501: 611 (+BH111o19)
+          501: 612 (+BH111o18)
+121:    +DancerOne 0
+          165: 210 (+zomdanc2)
+122:    +Player 0
+          350: 436 (+plywlklt)
+          350: 437 (+plywlkrt)
+          364: 460 (+humwlkrt)
+          364: 461 (+humwlklt)
+123:       +Crouching 0
+             356: 442 (+plycrwlk)
+124:       +Climbing 0
+             374: 474 (+humclmbl)
+             374: 475 (+humclmbr)
+125: +LocoUrgent 0
+126:    +Direction 3
+127:       +Player 0
+128:          +Jumping 0
+                361: 450 (+plyrjmpf)
+129: +Stand 0
+       267: 207 (+BH111o48)
+       267: 346 (+BH111210)
+       267: 347 (+BH111211)
+130:    +Halt 0
+          502: 613 (+BH111037)
+          502: 614 (+BH111038)
+131:       +WithSword 0
+             47: 84 (+BH211037)
+             47: 85 (+BH211038)
+132:    +Wheel 0
+          266: 207 (+BH111o48)
+          266: 343 (+BH112102)
+          266: 344 (+BH112103)
+          266: 345 (+BH211232)
+133:       +Zombie 0
+             378: 478 (+ZOMSTD)
+             378: 479 (+BZ111210)
+             378: 480 (+BZ111211)
+             378: 481 (+BZ111230)
+134:       +Hammer 0
+135:          +WithBow 0
+                436: 291 (+BH111005)
+                436: 343 (+BH112102)
+                436: 344 (+BH112103)
+                436: 345 (+BH211232)
+136:    +Pivot 0
+          268: 207 (+BH111o48)
+          268: 346 (+BH111210)
+          268: 347 (+BH111211)
+          268: 348 (+BH21123X)
+137:    +Search 0
+          163: 207 (+BH111o48)
+          163: 208 (+srchtn1)
+          163: 208 (+srchtn1)
+138:       +WithSword 0
+             164: 207 (+BH111o48)
+             164: 209 (+srchtn2)
+             164: 209 (+srchtn2)
+139:    +MeleeCombat 0
+140:       +Zombie 0
+             389: 488 (+BZ113100)
+             389: 489 (+BZ113101)
+             389: 490 (+BZ113102)
+141:       +Apebeast 0
+             297: 375 (+BA213000)
+142:       +Hammer 0
+143:          +WithSword 0
+                405: 510 (+BH413000)
+144:       +BugDemon 0
+             320: 400 (+BB211000)
+145:       +CrayMan 0
+             547: 654 (+BC113100)
+             547: 656 (+BC113000)
+146:       +WithSword 0
+             45: 82 (+BH211006)
+             45: 82 (+BH211006)
+             45: 82 (+BH211006)
+             45: 82 (+BH211006)
+147:       +TreeBeast 0
+             74: 125 (+rmbstd)
+148:    +Sitting 0
+          154: 201 (+guysit)
+149:    +Zombie 0
+          377: 478 (+ZOMSTD)
+          377: 479 (+BZ111210)
+          377: 480 (+BZ111211)
+          377: 481 (+BZ111230)
+150:    +Apebeast 0
+          308: 388 (+BA211000)
+          308: 346 (+BH111210)
+          308: 347 (+BH111211)
+151:    +Hammer 0
+152:       +WithBow 0
+             435: 291 (+BH111005)
+             435: 346 (+BH111210)
+             435: 347 (+BH111211)
+153:    +BugDemon 0
+          319: 399 (+BB111000)
+          319: 346 (+BH111210)
+          319: 347 (+BH111211)
+154:    +CrayMan 0
+          561: 670 (+BC111005)
+          561: 346 (+BH111210)
+          561: 347 (+BH111211)
+155:    +WithSword 0
+156:       +Drunk 0
+             46: 83 (+BH211007)
+157:    +TreeBeast 0
+          73: 121 (+rmbstd2)
+          73: 122 (+rmbtu90l)
+          73: 123 (+rmbtu90r)
+          73: 124 (+rmbtu180)
+158:       +Treelike 0
+             180: 231 (+tbstill)
+159:    +Drunk 0
+          500: 610 (+BH111006)
+160:    +Conversation 0
+          95: 157 (+BH414155)
+161:    +Player 0
+          357: 443 (+plystand2)
+          357: 444 (+plytu90l)
+          357: 445 (+plytu90r)
+          357: 446 (+plytu180)
+162:       +Crouching 0
+             355: 441 (+plycrch)
+163:       +Climbing 0
+             375: 476 (+humcld)
+164:       +LeaningLeft 0
+             353: 439 (+plyleanl)
+165:       +LeaningRight 0
+             354: 440 (+plyleanr)
+166:    +Shiver 0
+          152: 199 (+humshiv2)
+167:    +Bound 0
+          158: 190 (+fembound)
+168: +ReadyItem 0
+       246: 314 (+BH214113)
+       528: 638 (+BH114720)
+       528: 225 (+BH114721)
+169:    +ItemSword 0
+          236: 292 (+BH212206)
+170:    +ItemBow 0
+          172: 225 (+BH114721)
+171:    +WithSword 0
+          62: 106 (+hippat)
+172: +WorldFrob 0
+173:    +AtWaist 0
+          518: 204 (+BH114312)
+174:       +Lever 0
+             214: 265 (+BH114310)
+             520: 206 (+BH114314)
+175:          +WithSword 0
+                61: 105 (+BH214314)
+176:          +WithTray 0
+                521: 630 (+BH1143i5)
+177:       +Door 0
+             519: 205 (+BH114313)
+178:          +WithSword 0
+                60: 104 (+BH214313)
+179:       +BellPull 0
+180:          +WithTray 0
+                522: 631 (+BH1143i6)
+181:       +WithSword 0
+             59: 103 (+BH214312)
+182:       +WithBow 0
+             171: 224 (+BH114300)
+183: +Search 0
+184:    +Peek 0
+          238: 294 (+BH112020)
+185:       +Direction 1
+             506: 393 (+BH112024)
+186:          +Apebeast 0
+187:             +WithSword 0
+                   310: 393 (+BH112024)
+188:          +WithSword 0
+                49: 92 (+BH212024)
+                240: 296 (+BH212001)
+189:       +Direction 2
+             507: 394 (+BH112025)
+190:          +Apebeast 0
+191:             +WithSword 0
+                   311: 394 (+BH112025)
+192:          +WithSword 0
+                50: 93 (+BH212025)
+                241: 297 (+BH212002)
+193:       +Direction 3
+             509: 159 (+BH112027)
+194:          +Apebeast 0
+195:             +WithSword 0
+                   313: 159 (+BH112027)
+196:          +WithSword 0
+                52: 95 (+BH212027)
+                239: 295 (+BH212020)
+197:    +Scan 0
+          252: 324 (+BH112003)
+          252: 325 (+BH112010)
+          252: 326 (+BH112021)
+          252: 327 (+BH112023)
+198:       +Apebeast 0
+199:          +WithSword 0
+                314: 324 (+BH112003)
+                314: 325 (+BH112010)
+                314: 326 (+BH112021)
+                314: 327 (+BH112023)
+200:       +CrayMan 0
+             560: 295 (+BH212020)
+201:       +WithSword 0
+             253: 328 (+BH212003)
+             253: 329 (+BH212021)
+             253: 330 (+BH212023)
+202:       +TreeBeast 0
+             86: 145 (+rmbssrch)
+203:       +Player 0
+             363: 459 (+plyserch)
+204:    +TreeBeast 0
+205:       +Treelike 0
+             182: 232 (+tbal01bp)
+206: +Discover 0
+207:    +PointOut 0
+          228: 279 (+BH112550)
+208:       +Direction 0
+             534: 202 (+BH114735)
+209:          +WithSword 0
+                68: 110 (+BH214735)
+210:       +Direction 5
+             532: 642 (+BH114734)
+211:          +WithSword 0
+                66: 112 (+BH214734)
+212:       +Direction 6
+             533: 643 (+BH114733)
+213:          +WithSword 0
+                67: 113 (+BH214733)
+214:       +WithSword 0
+             229: 280 (+BH212300)
+215:    +Recoil 0
+          231: 282 (+BH112100)
+          394: 491 (+BZ113520)
+          508: 395 (+BH112026)
+216:       +Direction 4
+             230: 281 (+BH113550)
+217:       +Direction 8
+             395: 493 (+BZ113550)
+218:       +IsConfined 0
+             232: 283 (+BH112101)
+219:       +Apebeast 0
+220:          +WithSword 0
+                312: 395 (+BH112026)
+221:       +WithSword 0
+             51: 94 (+BH212026)
+222:    +Challenge 0
+          531: 641 (+BH114731)
+223:       +Apebeast 0
+             307: 387 (+BA214731)
+224:       +CrayMan 0
+             554: 662 (+BC114160)
+225:       +WithSword 0
+             64: 109 (+BH214731)
+             64: 110 (+BH214735)
+226:       +TreeBeast 0
+             83: 140 (+rmbchlng)
+227:    +Thwarted 0
+          530: 158 (+BH114730)
+228:       +Apebeast 0
+             306: 386 (+BA214730)
+229:       +CrayMan 0
+             553: 661 (+BC114150)
+230:       +WithSword 0
+             65: 111 (+BH214730)
+             65: 109 (+BH214731)
+231:          +Haunt 0
+                70: 118 (+BH111001)
+232:       +TreeBeast 0
+             92: 154 (+rmbthwt)
+233:    +Salute 0
+          535: 191 (+BH114736)
+          535: 192 (+BH114737)
+          535: 193 (+BH114738)
+          535: 194 (+BH114739)
+234:       +WithSword 0
+             69: 114 (+BH214736)
+             69: 115 (+BH214737)
+             69: 116 (+BH214738)
+             69: 117 (+BH214739)
+235:    +Zombie 0
+          396: 494 (+BZ114300)
+236:    +TreeBeast 0
+          89: 127 (+rmbidle)
+237:       +Treelike 0
+             181: 232 (+tbal01bp)
+238: +IdleGesture 0
+       234: 285 (+BH112001)
+       234: 286 (+BH114153)
+       234: 287 (+BH114201)
+       234: 118 (+BH111001)
+       234: 288 (+BH114152)
+       234: 289 (+BH114155)
+       234: 162 (+BH112015)
+       234: 290 (+BH112502)
+       234: 291 (+BH111005)
+239:    +Apebeast 0
+          309: 389 (+BA211001)
+          309: 390 (+BA211002)
+          309: 391 (+BA211003)
+          309: 392 (+BA211004)
+240:    +Hammer 0
+          433: 535 (+BH414150)
+          433: 536 (+BH414151)
+241:       +WithSword 0
+242:          +Archaeologist 0
+                162: 204 (+BH114312)
+                162: 205 (+BH114313)
+                162: 206 (+BH114314)
+                162: 189 (+shotalk2c)
+243:    +CrayMan 0
+          555: 663 (+BC114200)
+          555: 664 (+BC114201)
+244:    +WithSword 0
+          235: 118 (+BH111001)
+          235: 288 (+BH114152)
+          235: 289 (+BH114155)
+          235: 162 (+BH112015)
+          235: 290 (+BH112502)
+          235: 291 (+BH111005)
+245:       +Archaeologist 0
+             161: 204 (+BH114312)
+             161: 205 (+BH114313)
+             161: 206 (+BH114314)
+             161: 189 (+shotalk2c)
+246:    +Unarmed 0
+247:       +Cherub 0
+             159: 162 (+BH112015)
+248:    +TreeBeast 0
+          75: 126 (+rmbidle2)
+          75: 127 (+rmbidle)
+249:    +Keeper 0
+          155: 202 (+BH114735)
+250:    +Player 0
+          349: 429 (+humidl02)
+          349: 433 (+bh111048)
+          349: 433 (+bh111048)
+          349: 434 (+humidl5a)
+          349: 433 (+bh111048)
+          349: 434 (+humidl5a)
+          349: 433 (+bh111048)
+          349: 434 (+humidl5a)
+          349: 434 (+humidl5a)
+          349: 433 (+bh111048)
+          349: 435 (+humidlka)
+          349: 399 (+BB111000)
+          349: 433 (+bh111048)
+          349: 118 (+BH111001)
+          349: 433 (+bh111048)
+          349: 291 (+BH111005)
+          349: 433 (+bh111048)
+          349: 433 (+bh111048)
+          349: 294 (+BH112020)
+          349: 290 (+BH112502)
+          349: 164 (+BH114001)
+          349: 165 (+BH114003)
+          349: 163 (+BH114004)
+          349: 300 (+BH114005)
+          349: 301 (+BH114006)
+          349: 302 (+BH114007)
+          349: 303 (+BH114008)
+          349: 304 (+BH114009)
+          349: 433 (+bh111048)
+251:    +Archaeologist 0
+          160: 204 (+BH114312)
+          160: 205 (+BH114313)
+          160: 206 (+BH114314)
+          160: 189 (+shotalk2c)
+252: +Stalled 0
+253:    +Poisoned 0
+          514: 626 (+BH113650)
+          514: 426 (+BH113651)
+254:       +WithSword 0
+             56: 99 (+BH213650)
+             56: 100 (+BH213651)
+255:    +Stunned 0
+          255: 332 (+BH213605)
+          515: 627 (+BH113670)
+256:       +Long 0
+             516: 628 (+BH113671)
+257:          +WithSword 0
+                58: 102 (+BH213671)
+258:       +WithSword 0
+             57: 101 (+BH213670)
+             254: 331 (+BH213602)
+259:       +TreeBeast 0
+             72: 120 (+rmbstun)
+260:    +Blinded 0
+          215: 266 (+BH113600)
+261:       +WithSword 0
+             216: 267 (+BH213600)
+262:       +Foo 0
+             542: 648 (+BH113602)
+263:       +Bar 0
+             543: 649 (+BH113603)
+264:    +Flail 0
+          233: 284 (+BH113601)
+          511: 623 (+BH113610)
+265:       +InWater 0
+             513: 625 (+BH113612)
+266:          +WithSword 0
+                55: 98 (+BH213612)
+267:       +WithSword 0
+             53: 96 (+BH213610)
+268:    +Rebalance 0
+          512: 624 (+BH113611)
+269:       +WithSword 0
+             54: 97 (+BH213611)
+270: +Flail 0
+271:    +TreeBeast 0
+          91: 153 (+rmbelect)
+272: +Crumple 0
+273:    +KnockOut 0
+          227: 277 (+BH213717)
+          227: 278 (+BH213718)
+274:       +Sitting 0
+             148: 198 (+sitdie)
+275:       +WithSword 0
+276:          +Drunk 0
+                225: 277 (+BH213717)
+277:          +Ramirez 0
+                226: 277 (+BH213717)
+278:       +Shiver 0
+             150: 198 (+sitdie)
+279:    +Die 0
+          222: 274 (+BH213702)
+          222: 275 (+BH213705)
+          222: 276 (+BH213713)
+          222: 268 (+BH213701)
+          222: 269 (+BH213714)
+          222: 270 (+BH213715)
+          222: 271 (+BH213710)
+          222: 272 (+BH213712)
+280:       +Direction 1
+             218: 269 (+BH213714)
+281:       +Direction 2
+             219: 270 (+BH213715)
+282:       +Direction 3
+             217: 268 (+BH213701)
+283:       +IsConfined 0
+             220: 271 (+BH213710)
+             220: 272 (+BH213712)
+284:       +OnStairs 0
+             221: 273 (+BH213719)
+285:       +Sitting 0
+             151: 198 (+sitdie)
+286:       +WithSword 0
+287:          +Drunk 0
+                223: 272 (+BH213712)
+                223: 270 (+BH213715)
+288:          +Ramirez 0
+                224: 272 (+BH213712)
+                224: 270 (+BH213715)
+289:       +Shiver 0
+             149: 198 (+sitdie)
+290:    +Zombie 0
+          403: 504 (+BZ113700)
+          403: 505 (+BZ113701)
+          403: 506 (+BZ113702)
+291:    +BugDemon 0
+          338: 420 (+BB213700)
+292:    +CrayMan 0
+          556: 665 (+BC113700)
+          556: 666 (+BC113701)
+293:    +TreeBeast 0
+          90: 149 (+rmbdie1)
+          90: 150 (+rmbdie2)
+          90: 151 (+rmbdie2s)
+          90: 152 (+rmbdie3)
+294:    +Player 0
+          362: 451 (+plydie01)
+          362: 452 (+plydie2)
+          362: 453 (+oggdie1)
+          362: 454 (+oggdieup)
+          362: 455 (+ogsdieup)
+          362: 456 (+ogpdiefw)
+          362: 457 (+ogpdie2)
+          362: 458 (+ogpdie03)
+295: +ReceiveWound 0
+       249: 156 (+BH113501)
+296:    +SevereWound 0
+297:       +MeleeCombat 0
+298:          +Direction 1
+299:             +WithSword 0
+                   43: 79 (+BH213531)
+300:          +Direction 2
+301:             +WithSword 0
+                   41: 75 (+BH213510)
+                   41: 76 (+BH213512)
+                   41: 77 (+BH213513)
+302:          +Direction 7
+303:             +WithSword 0
+                   37: 66 (+BH213562)
+                   37: 67 (+BH213520)
+                   37: 68 (+BH213521)
+304:          +Direction 8
+305:             +WithSword 0
+                   39: 70 (+BH213550)
+306:       +Zombie 0
+             402: 503 (+BZ113570)
+307:       +Hammer 0
+308:          +WithSword 0
+                432: 533 (+BH413505)
+                432: 534 (+BH413506)
+309:    +MeleeCombat 0
+310:       +Direction 1
+311:          +WithSword 0
+                42: 78 (+BH213571)
+312:       +Direction 2
+313:          +WithSword 0
+                40: 71 (+BH213511)
+                40: 72 (+BH213514)
+                40: 73 (+BH213540)
+                40: 74 (+BH213541)
+314:       +Direction 7
+315:          +WithSword 0
+                35: 62 (+BH213560)
+                35: 63 (+BH213561)
+                35: 64 (+BH213530)
+                35: 65 (+BH213570)
+316:       +Direction 8
+317:          +WithSword 0
+                38: 69 (+BH213572)
+318:       +WithSword 0
+             36: 64 (+BH213530)
+319:       +TreeBeast 0
+             82: 136 (+rmbrewdf)
+             82: 137 (+rmbrewnd1)
+             82: 138 (+rmbrewnd2)
+             82: 139 (+rmbrewnd3)
+320:       +Player 0
+             370: 467 (+ogprwnd1)
+             370: 468 (+ogprwnd2)
+             370: 469 (+ogprwnd3)
+             370: 470 (+ogprwnd4)
+             370: 471 (+ogprwnd5)
+             370: 472 (+ogprwnd6)
+321:    +Direction 1
+          250: 317 (+BH113520)
+          250: 318 (+BH113521)
+          250: 319 (+BH113522)
+322:       +Zombie 0
+             390: 491 (+BZ113520)
+323:       +Hammer 0
+324:          +WithSword 0
+                429: 529 (+BH413501)
+325:       +BugDemon 0
+             334: 418 (+BB213500)
+326:    +Direction 2
+          251: 320 (+BH113510)
+          251: 321 (+BH113511)
+          251: 322 (+BH113512)
+          251: 323 (+BH113540)
+327:       +Zombie 0
+             391: 492 (+BZ113530)
+328:       +Hammer 0
+329:          +WithSword 0
+                428: 528 (+BH413500)
+330:       +BugDemon 0
+             333: 417 (+BB213502)
+331:    +Direction 7
+          248: 156 (+BH113501)
+          248: 315 (+BH113502)
+          248: 316 (+BH113503)
+332:       +Zombie 0
+             393: 491 (+BZ113520)
+333:       +Hammer 0
+334:          +WithSword 0
+                430: 530 (+BH413502)
+335:       +BugDemon 0
+             335: 419 (+BB213501)
+336:    +Direction 8
+          247: 281 (+BH113550)
+337:       +Zombie 0
+             392: 493 (+BZ113550)
+338:       +Hammer 0
+339:          +WithSword 0
+                431: 531 (+BH413503)
+                431: 532 (+BH413504)
+340:       +BugDemon 0
+             336: 418 (+BB213500)
+             336: 417 (+BB213502)
+341:    +BugDemon 0
+          337: 419 (+BB213501)
+342:    +CrayMan 0
+343:       +WithSword 0
+             559: 156 (+BH113501)
+344:    +Player 0
+          371: 467 (+ogprwnd1)
+          371: 468 (+ogprwnd2)
+          371: 469 (+ogprwnd3)
+          371: 470 (+ogprwnd4)
+          371: 471 (+ogprwnd5)
+          371: 472 (+ogprwnd6)
+345: +MeleeCombat 0
+346:    +Block 0
+347:       +Direction 1
+348:          +Hammer 0
+349:             +WithSword 0
+                   407: 512 (+BH413225)
+350:          +BugDemon 0
+                340: 422 (+BB213225)
+351:          +CrayMan 0
+                557: 667 (+BC113225)
+                557: 668 (+BC113226)
+352:          +WithSword 0
+                20: 39 (+BH213225)
+                20: 40 (+BH213226)
+                20: 41 (+BH213227)
+353:       +Direction 2
+354:          +Hammer 0
+355:             +WithSword 0
+                   408: 513 (+BH413228)
+356:          +BugDemon 0
+                341: 423 (+BB213228)
+357:          +WithSword 0
+                22: 45 (+BH213230)
+358:       +Direction 5
+359:          +Hammer 0
+360:             +WithSword 0
+                   409: 514 (+BH413231)
+361:          +BugDemon 0
+                342: 424 (+BB213231)
+362:          +CrayMan 0
+                558: 669 (+BC113231)
+363:          +WithSword 0
+                19: 36 (+BH213231)
+                19: 37 (+BH213232)
+                19: 38 (+BH213233)
+364:       +Direction 6
+365:          +BugDemon 0
+                343: 425 (+BB213222)
+366:          +WithSword 0
+                21: 42 (+BH213222)
+                21: 43 (+BH213223)
+                21: 44 (+BH213224)
+367:       +Hammer 0
+368:          +WithSword 0
+                406: 511 (+BH413220)
+369:       +BugDemon 0
+             339: 421 (+BB213220)
+370:       +WithSword 0
+             23: 46 (+BH21322z)
+371:    +Attack 0
+372:       +SpecialAttack 0
+373:          +Direction 0
+374:             +CrayMan 0
+                   546: 654 (+BC113100)
+                   546: 655 (+BC113004)
+375:          +Zombie 0
+                399: 478 (+ZOMSTD)
+                399: 497 (+BZ113001)
+376:          +Hammer 0
+377:             +WithSword 0
+                   413: 515 (+BH413100)
+                   413: 520 (+BH413005)
+                   413: 521 (+BH413oo6)
+378:          +BugDemon 0
+                324: 408 (+BB113010)
+                324: 409 (+BB113011)
+                324: 410 (+BB113012)
+379:          +WithSword 0
+                15: 12 (+BH211005)
+                15: 16 (+BH213112)
+                15: 17 (+BH213113)
+380:          +TreeBeast 0
+                85: 125 (+rmbstd)
+                85: 143 (+rmbatcmb1)
+                85: 144 (+rmbatcmb2)
+381:       +Direction 0
+382:          +Zombie 0
+                400: 478 (+ZOMSTD)
+                400: 499 (+BZ113003)
+                400: 500 (+BZ113004)
+383:          +Hammer 0
+384:             +WithSword 0
+                   411: 515 (+BH413100)
+                   411: 518 (+BH413003)
+385:          +BugDemon 0
+                322: 401 (+BB113100)
+                322: 404 (+BB113003)
+                322: 405 (+BB113004)
+386:          +WithSword 0
+                18: 12 (+BH211005)
+                18: 27 (+BH213010)
+                18: 28 (+BH213011)
+                18: 29 (+BH213012)
+                18: 30 (+BH213056)
+                18: 31 (+BH213104)
+                18: 32 (+BH213105)
+                18: 33 (+BH213106)
+                18: 34 (+BH213107)
+                18: 35 (+BH213108)
+387:          +Player 0
+                373: 473 (+ogpmelstd)
+                373: 431 (+plyswrnch)
+388:       +Direction 5
+389:          +Zombie 0
+                398: 478 (+ZOMSTD)
+                398: 497 (+BZ113001)
+                398: 498 (+BZ113002)
+390:          +Hammer 0
+391:             +WithSword 0
+                   412: 515 (+BH413100)
+                   412: 519 (+BH413004)
+392:          +BugDemon 0
+                321: 401 (+BB113100)
+                321: 402 (+BB113001)
+                321: 403 (+BB113002)
+393:          +WithSword 0
+                16: 12 (+BH211005)
+                16: 18 (+BH213030)
+                16: 19 (+BH213031)
+                16: 20 (+BH213032)
+                16: 21 (+BH213061)
+                16: 22 (+BH213063)
+                16: 23 (+BH213102)
+                16: 24 (+BH213020)
+                16: 25 (+BH213025)
+394:          +Player 0
+                372: 473 (+ogpmelstd)
+                372: 432 (+plyswrnch2)
+395:       +Direction 6
+396:          +Zombie 0
+                401: 478 (+ZOMSTD)
+                401: 501 (+BZ113005)
+                401: 502 (+BZ113006)
+397:          +Hammer 0
+398:             +WithSword 0
+                   410: 515 (+BH413100)
+                   410: 516 (+BH413001)
+                   410: 517 (+BH413002)
+399:          +BugDemon 0
+                323: 401 (+BB113100)
+                323: 406 (+BB113005)
+                323: 407 (+BB113006)
+400:          +WithSword 0
+                17: 12 (+BH211005)
+                17: 26 (+BH213021)
+401:       +OnStairs 0
+402:          +WithSword 0
+                14: 12 (+BH211005)
+                14: 14 (+BH213120)
+                14: 15 (+BH213121)
+403:       +OnStairs 1
+404:          +WithSword 0
+                13: 12 (+BH211005)
+                13: 13 (+BH213122)
+405:       +TreeBeast 0
+             84: 125 (+rmbstd)
+             84: 141 (+rmbsla2)
+             84: 142 (+rmbslrt2)
+406: +RangedCombat 0
+       510: 622 (+BH113100)
+       510: 539 (+BH113101)
+       510: 540 (+BH113102)
+407:    +Hammer 0
+408:       +WithBow 0
+             437: 539 (+BH113101)
+             437: 540 (+BH113102)
+409:    +BugDemon 0
+          344: 426 (+BH113651)
+410:    +WithBow 0
+          167: 213 (+BH313006)
+411:       +WithCrossbow 0
+             168: 214 (+cbowlong)
+412:       +WithBlowgun 0
+             169: 215 (+blowgun)
+413:    +TreeBeast 0
+          88: 147 (+rmbrngat)
+          88: 148 (+rmbratvr)
+414:    +Player 0
+          366: 463 (+humshthp)
+415:       +Crouching 0
+             365: 462 (+plycrsht)
+416: +Direction 3
+417:    +Player 0
+418:       +Jumping 0
+             360: 449 (+plyjmpfw)
+419: +Direction 4
+420:    +Player 0
+421:       +Jumping 0
+             359: 448 (+plyjmpbk)
+422: +Sit2Stand 0
+       526: 635 (+standup)
+423: +Stand2Sit 0
+       523: 632 (+BH114320)
+424: +Sit2Lie 0
+       524: 633 (+BH114321)
+425: +Lie2Stand 0
+       525: 634 (+BH114322)
+426: +WithSword 0
+427:    +Drink 0
+          157: 203 (+humgulp)
+428: +Drink 0
+       156: 203 (+humgulp)
+429: +Conversation 0
+430:    +Foo 0
+          93: 155 (+BH414737)
+431:       +Bar 0
+             97: 159 (+BH112027)
+432:          +Baz 0
+                100: 162 (+BH112015)
+433:       +Baz 0
+             98: 160 (+BH114012)
+434:       +Quux 0
+             102: 164 (+BH114001)
+435:    +Bar 0
+          94: 156 (+BH113501)
+436:       +Baz 0
+             99: 161 (+BH114010)
+437:       +Quux 0
+             103: 165 (+BH114003)
+438:    +Baz 0
+          96: 158 (+BH114730)
+439:       +Quux 0
+             104: 166 (+BH214157)
+440:    +Quux 0
+          101: 163 (+BH114004)
+441: +Conv 1
+       105: 155 (+BH414737)
+442: +Conv 2
+       106: 156 (+BH113501)
+443: +Conv 3
+       107: 157 (+BH414155)
+444: +Conv 4
+       108: 158 (+BH114730)
+445: +Conv 5
+       109: 159 (+BH112027)
+446: +Conv 6
+       110: 160 (+BH114012)
+447: +Conv 7
+       111: 161 (+BH114010)
+448: +Conv 8
+       112: 162 (+BH112015)
+449: +Conv 9
+       113: 163 (+BH114004)
+450: +Conv 10
+       114: 164 (+BH114001)
+451: +Conv 11
+       115: 165 (+BH114003)
+452: +Conv 12
+       116: 166 (+BH214157)
+453: +Conv 13
+       117: 167 (+cortez)
+454: +Conv 14
+       118: 168 (+digtalk)
+455: +Conv 15
+       119: 169 (+femtalk1a)
+456: +Conv 16
+       120: 170 (+femtalk1b)
+457: +Conv 17
+       121: 171 (+femtalk1c)
+458: +Conv 18
+       122: 172 (+femtalk2a)
+459: +Conv 19
+       123: 173 (+femtalk2b)
+460: +Conv 20
+       124: 174 (+femtalk2c)
+461: +Conv 21
+       125: 175 (+humdthtk)
+462: +Conv 22
+       126: 176 (+humtalk1)
+463: +Conv 23
+       127: 177 (+humtalk2a)
+464: +Conv 24
+       128: 178 (+humtalk2c)
+465: +Conv 25
+       129: 179 (+humtalk2d)
+466: +Conv 26
+       130: 180 (+humtalk2e)
+467: +Conv 27
+       131: 181 (+humtalk2f)
+468: +Conv 28
+       132: 182 (+humtalk3a)
+469: +Conv 29
+       133: 183 (+humtlkem)
+470: +Conv 30
+       134: 184 (+shotalk1a)
+471: +Conv 31
+       135: 185 (+shotalk1b)
+472: +Conv 32
+       136: 186 (+shotalk1c)
+473: +Conv 33
+       137: 187 (+shotalk2a)
+474: +Conv 34
+       138: 188 (+shotalk2b)
+475: +Conv 35
+       139: 189 (+shotalk2c)
+476: +Conv 36
+       140: 190 (+fembound)
+477: +Conv 37
+       141: 191 (+BH114736)
+478: +Conv 38
+       142: 192 (+BH114737)
+479: +Conv 39
+       143: 193 (+BH114738)
+480: +Conv 40
+       144: 194 (+BH114739)
+481: +Conv 41
+       145: 195 (+jen)
+482: +Conv 42
+       146: 196 (+plycrchd)
+483: +Misc 1
+       147: 197 (+humcpsch)
+484: +Misc 3
+       153: 200 (+cpssitc1)
+485: +Player 0
+486:    +Jumping 0
+          358: 447 (+plyjmpup1)
+487:    +Mantle 0
+          367: 464 (+plymant)
+488: +Direction 1
+489:    +PlyrSword 1
+490:       +PlyrSwordSwing 1
+             287: 358 (+camSynch)
+             287: 367 (+lefthold)
+491:    +PlyrSword 2
+492:       +PlyrSwordSwing 1
+             289: 358 (+camSynch)
+             289: 369 (+leftswing)
+493:    +PlyrSword 6
+          283: 358 (+camSynch)
+          283: 363 (+GBLF)
+494: +Direction 2
+495:    +PlyrSword 1
+496:       +PlyrSwordSwing 1
+             288: 358 (+camSynch)
+             288: 368 (+rtset)
+497:    +PlyrSword 2
+498:       +PlyrSwordSwing 1
+             290: 358 (+camSynch)
+             290: 370 (+rtflat11)
+499:    +PlyrSword 6
+          284: 358 (+camSynch)
+          284: 364 (+GBRT)
+500: +Direction 5
+501:    +PlyrSword 6
+          282: 358 (+camSynch)
+          282: 362 (+GBHI)
+502: +Direction 6
+503:    +PlyrSword 6
+          281: 358 (+camSynch)
+          281: 361 (+GBLO)
+504: +PlyrSword 0
+       279: 358 (+camSynch)
+       279: 359 (+ph212203)
+505: +PlyrSword 1
+506:    +BlackJack 0
+507:       +PlyrSwordSwing 0
+             295: 358 (+camSynch)
+             295: 371 (+highhold)
+508:    +PlyrSwordSwing 0
+          285: 358 (+camSynch)
+          285: 365 (+midwup)
+509:    +PlyrSwordSwing 2
+          291: 358 (+camSynch)
+          291: 371 (+highhold)
+510: +PlyrSword 2
+511:    +BlackJack 0
+512:       +PlyrSwordSwing 0
+             296: 358 (+camSynch)
+             296: 372 (+highswing)
+513:    +PlyrSwordSwing 0
+          286: 358 (+camSynch)
+          286: 366 (+GASLLSW)
+514:    +PlyrSwordSwing 2
+          292: 358 (+camSynch)
+          292: 372 (+highswing)
+515: +PlyrSword 3
+       280: 358 (+camSynch)
+       280: 360 (+GBMID)
+516: +PlyrSword 4
+       293: 358 (+camSynch)
+       293: 373 (+ph212202)
+517: +PlyrSword 5
+       294: 358 (+camSynch)
+       294: 374 (+ph212205)
+518: +PlyrCorpseCarry 0
+       345: 358 (+camSynch)
+519: +PlyrBow 0
+       174: 226 (+bowFlex)
+       174: 227 (+d99bdown)
+520: +PlyrBow 1
+       175: 226 (+bowFlex)
+       175: 228 (+GABaim)
+521: +PlyrBow 4
+       177: 226 (+bowFlex)
+       177: 229 (+d99brelx)
+522: +PlyrBow 5
+       178: 226 (+bowFlex)
+       178: 230 (+d99bbegn)
+523: +PlyrBow 6
+       176: 226 (+bowFlex)
+524: +PlyrBow 7
+       179: 226 (+bowFlex)
+525: +Test 0
+       438: 541 (+BURR01)
+526: +PlaySpecMotion 0
+       474: 588 (+BK111225)
+       475: 589 (+BK111226)
+527: +Locomote 0
+       440: 545 (+BK111012)
+       440: 546 (+BK111011)
+528:    +LocoUrgent 0
+          442: 549 (+BK111o3o)
+          442: 550 (+BK111o31)
+529:       +WithTurns 0
+             443: 549 (+BK111o3o)
+             443: 550 (+BK111o31)
+             443: 548 (+BK111213)
+530:    +Halt 0
+          445: 553 (+BK111036)
+531:    +Direction 4
+          444: 551 (+BK111050)
+          444: 552 (+BK111051)
+532:    +Frog 0
+          346: 427 (+FG111010)
+533: +Stand 0
+       439: 542 (+BK111ooo)
+       439: 543 (+BK111214)
+       439: 544 (+BK111215)
+534:    +Wheel 0
+          441: 542 (+BK111ooo)
+          441: 547 (+BK111212)
+          441: 548 (+BK111213)
+535:    +MeleeCombat 0
+          456: 566 (+BK113100)
+          456: 567 (+BK113101)
+536:    +Drunk 0
+          476: 590 (+Burrsway)
+537: +Search 0
+538:    +Peek 0
+          449: 556 (+BK112110)
+539:       +Direction 1
+             450: 557 (+BK112101)
+540:       +Direction 2
+             451: 558 (+BK112102)
+541:    +Scan 0
+          452: 559 (+BK112115)
+542: +Discover 0
+543:    +Recoil 0
+          447: 555 (+BK112100)
+544:       +Direction 4
+             448: 548 (+BK111213)
+545:    +Challenge 0
+          470: 584 (+BK114350)
+          470: 585 (+BK114351)
+546:    +Thwarted 0
+          469: 583 (+BK114300)
+547: +IdleGesture 0
+       477: 591 (+BK111001)
+       477: 592 (+BK111002)
+       477: 560 (+BK111000)
+548: +Stalled 0
+       464: 573 (+BK113601)
+       464: 574 (+BK113602)
+       464: 575 (+BK113603)
+549:    +Stunned 0
+          463: 573 (+BK113601)
+          463: 574 (+BK113602)
+          463: 575 (+BK113603)
+550:    +Flail 0
+          466: 577 (+BK113650)
+          466: 578 (+BK113651)
+          466: 579 (+BK113652)
+551:       +InAir 0
+             467: 580 (+BK134100)
+552:       +Long 0
+             465: 576 (+BK113600)
+553:    +Rebalance 0
+          446: 554 (+BK111037)
+554: +Crumple 0
+555:    +KnockOut 0
+          471: 586 (+BK113700)
+556:    +Die 0
+          472: 587 (+BK113701)
+557:       +IsConfined 0
+             473: 586 (+BK113700)
+558: +ReceiveWound 0
+       461: 570 (+BK113521)
+559:    +SevereWound 0
+          462: 572 (+BK113500)
+560:    +Direction 1
+          458: 569 (+BK113520)
+          458: 570 (+BK113521)
+561:    +Direction 2
+          457: 568 (+BK113510)
+562:    +Direction 7
+          460: 572 (+BK113500)
+563:    +Direction 8
+          459: 571 (+BK113550)
+564:    +Frog 0
+          347: 428 (+FG113500)
+565: +MeleeCombat 0
+566:    +Attack 0
+567:       +SpecialAttack 0
+             455: 560 (+BK111000)
+             455: 565 (+BK113120)
+568:       +Direction 0
+             454: 560 (+BK111000)
+             454: 564 (+BK113005)
+569:       +Direction 5
+             453: 560 (+BK111000)
+             453: 561 (+BK113001)
+             453: 562 (+BK113002)
+             453: 563 (+BK113003)
+570: +RangedCombat 0
+       468: 581 (+BK114212)
+       468: 582 (+BK114213)
+571: +PlaySpecMotion 0
+       203: 253 (+BS113701)
+       205: 255 (+BS131010)
+       205: 256 (+BS141011)
+       206: 247 (+BS141021)
+       210: 259 (+fetalspi)
+572: +Locomote 0
+       186: 237 (+BS111010)
+       186: 238 (+BS111011)
+573:    +LocoUrgent 0
+          189: 237 (+BS111010)
+          189: 238 (+BS111011)
+574:       +Direction 1
+             190: 239 (+BS111030)
+             190: 240 (+BS111031)
+575:          +MechSpid 0
+                484: 596 (+NM111030)
+                484: 597 (+NM111031)
+576:       +Direction 2
+             191: 241 (+BS111211)
+             191: 242 (+BS111210)
+577:          +MechSpid 0
+                485: 598 (+NM111211)
+                485: 599 (+NM111210)
+578:       +MechSpid 0
+             483: 594 (+NM111010)
+             483: 595 (+NM111011)
+579:    +MeleeCombat 0
+          192: 237 (+BS111010)
+          192: 238 (+BS111011)
+580:       +Direction 1
+             193: 239 (+BS111030)
+             193: 240 (+BS111031)
+581:          +MechSpid 0
+                487: 596 (+NM111030)
+                487: 597 (+NM111031)
+582:       +Direction 2
+             194: 241 (+BS111211)
+             194: 242 (+BS111210)
+583:          +MechSpid 0
+                488: 598 (+NM111211)
+                488: 599 (+NM111210)
+584:       +Direction 4
+             195: 243 (+BS111017)
+585:          +MechSpid 0
+                489: 600 (+NM111017)
+586:       +MechSpid 0
+             486: 594 (+NM111010)
+             486: 595 (+NM111011)
+587:    +Direction 1
+          187: 239 (+BS111030)
+          187: 240 (+BS111031)
+588:       +MechSpid 0
+             481: 596 (+NM111030)
+             481: 597 (+NM111031)
+589:    +Direction 2
+          188: 241 (+BS111211)
+          188: 242 (+BS111210)
+590:       +MechSpid 0
+             482: 598 (+NM111211)
+             482: 599 (+NM111210)
+591:    +Direction 4
+          196: 243 (+BS111017)
+592:       +MechSpid 0
+             490: 600 (+NM111017)
+593:    +MechSpid 0
+          480: 594 (+NM111010)
+          480: 595 (+NM111011)
+594: +Stand 0
+       183: 233 (+BS114002)
+       183: 234 (+BS111220)
+       183: 235 (+BS111221)
+595:    +Wheel 0
+          184: 233 (+BS114002)
+          184: 234 (+BS111220)
+          184: 235 (+BS111221)
+596:    +MeleeCombat 0
+          185: 236 (+BS113000)
+597:       +MechSpid 0
+             479: 593 (+NM113000)
+598:    +MechSpid 0
+599: +Search 0
+       200: 249 (+BS112400)
+       200: 250 (+BS112100)
+600:    +MechSpid 0
+          493: 604 (+NM112001)
+601: +Discover 0
+       201: 251 (+BS112200)
+602:    +MechSpid 0
+          494: 605 (+NM112200)
+603: +IdleGesture 0
+       199: 248 (+BS112001)
+604:    +MechSpid 0
+          492: 604 (+NM112001)
+605: +Crumple 0
+       202: 252 (+BS113700)
+606:    +MechSpid 0
+          495: 606 (+nmbrek)
+607: +ReceiveWound 0
+608:    +MeleeCombat 0
+          207: 257 (+BS113501)
+          207: 258 (+BS113502)
+609:       +Direction 1
+             208: 258 (+BS113502)
+610:          +MechSpid 0
+                498: 609 (+NM113502)
+611:       +Direction 2
+             209: 257 (+BS113501)
+612:          +MechSpid 0
+                499: 608 (+NM113501)
+613:       +MechSpid 0
+             497: 608 (+NM113501)
+             497: 609 (+NM113502)
+614: +MeleeCombat 0
+615:    +Attack 0
+          197: 236 (+BS113000)
+          197: 244 (+BS113001)
+          197: 245 (+BS113002)
+          197: 246 (+BS113003)
+          197: 247 (+BS141021)
+616:       +SpecialAttack 0
+             198: 236 (+BS113000)
+             198: 244 (+BS113001)
+617:       +MechSpid 0
+             491: 593 (+NM113000)
+             491: 601 (+NM113001)
+             491: 602 (+NM113002)
+             491: 603 (+NM113003)
+618: +RangedCombat 0
+       204: 254 (+BS114208)
+619:    +MechSpid 0
+          496: 607 (+nmzap)
+620: +Locomote 0
+       376: 477 (+BS121030)
+621: +PlaySpecMotion 0
+       277: 357 (+AP114001)
+622: +Locomote 0
+       270: 350 (+AP111001)
+623: +Stand 0
+       269: 349 (+AP111000)
+624: +Discover 0
+       272: 352 (+AP112550)
+625:    +Direction 0
+          275: 352 (+AP112550)
+626:    +Direction 5
+          273: 353 (+AP112551)
+627:    +Direction 6
+          274: 354 (+AP112552)
+628: +Crumple 0
+       276: 355 (+AP113701)
+       276: 356 (+AP113702)
+629: +RangedCombat 0
+       271: 351 (+AP113101)
+630: +PlaySpecMotion 0
+631:    +Droid 0
+          0: 0 (+mbtstd)
+632: +Locomote 0
+633:    +LocoUrgent 0
+634:       +Droid 0
+635:          +Maintenance 0
+                3: 3 (+botw3l)
+                3: 4 (+botw3r)
+636:    +Direction 4
+637:       +Droid 0
+             4: 5 (+mbtback)
+638:    +Droid 0
+          2: 3 (+botw3l)
+          2: 4 (+botw3r)
+639: +Stand 0
+640:    +Droid 0
+          1: 0 (+mbtstd)
+          1: 1 (+mbtfk1)
+          1: 2 (+mbtfk2)
+641: +Search 0
+642:    +Droid 0
+          8: 8 (+mbtserch)
+643: +Discover 0
+644:    +Droid 0
+          12: 5 (+mbtback)
+645: +Crumple 0
+646:    +Droid 0
+          5: 6 (+mbdthfd)
+647: +ReceiveWound 0
+648:    +MeleeCombat 0
+649:       +Droid 0
+             6: 7 (+mbtwndft)
+650:    +Droid 0
+          7: 7 (+mbtwndft)
+651: +RangedCombat 0
+652:    +Droid 0
+653:       +Security 0
+             10: 10 (+mbtrngla)
+654:       +Maintenance 0
+             9: 9 (+mbtrgat3)
+655:       +Assault 0
+             11: 11 (+mbtrngt2)

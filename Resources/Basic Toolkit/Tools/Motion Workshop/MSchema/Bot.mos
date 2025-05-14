@@ -1,0 +1,85 @@
+
+global Droid 0
+torso  Droid
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion mbtstd     0  500
+
+schema Stand 0
+MType  StandWith90s
+TimeScale 0.35
+XYZScale  0
+motion mbtstd     0  500
+motion mbtfk1     6  500
+motion mbtfk2     6  500
+
+schema Locomote 0
+MType  GroundLocoPair
+TimeScale 0
+XYZScale  0
+motion botw3l     0  0
+motion botw3r     0  0
+
+schema Locomote 0, LocoUrgent 0, Maintenance 0
+MType  GroundLocoPair
+TimeScale 0.7
+XYZScale  1.2
+motion botw3l     0  0
+motion botw3r     0  0
+
+schema Locomote 0, Direction 4
+MType  GroundAction
+TimeScale 0.25
+XYZScale  0
+motion mbtback     0  0
+
+schema Crumple 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion mbdthfd     0  500
+
+schema ReceiveWound 0, MeleeCombat 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion mbtwndft     0  500
+
+schema ReceiveWound 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion mbtwndft     0  500
+
+schema Search 0
+MType  GroundAction
+TimeScale 1.5
+XYZScale  0
+motion mbtserch     0  500
+
+schema RangedCombat 0, Maintenance 0
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion mbtrgat3     0  500
+
+schema RangedCombat 0, Security 0
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion mbtrngla     0  500
+
+schema RangedCombat 0, Assault 0
+MType  GroundAction
+TimeScale 0.7
+XYZScale  0
+motion mbtrngt2     0  500
+
+schema Discover 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion mbtback     0  0

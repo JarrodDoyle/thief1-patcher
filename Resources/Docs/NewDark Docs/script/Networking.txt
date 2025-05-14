@@ -1,0 +1,42 @@
+DECLARE_SCRIPT_SERVICE(Networking, 0x225)
+{
+	STDMETHOD(Broadcast)(const object ref obj, const char *msg, BOOL sendFromProxy = FALSE, const cMultiParm ref data = NULL) PURE;
+	STDMETHOD(SendToProxy)(const object ref toPlayer, const object ref obj, const char *msg, const cMultiParm ref data = NULL) PURE;
+	STDMETHOD(TakeOver)(const object ref obj) PURE;
+	STDMETHOD(GiveTo)(const object ref obj, const object ref toPlayer) PURE;
+	STDMETHOD_(BOOL, IsPlayer)(const object ref obj) PURE;
+	STDMETHOD_(BOOL, IsMultiplayer)() PURE;
+	STDMETHOD_(timer_handle, SetProxyOneShotTimer)(const object ref toObj, const char *msg, float time, const cMultiParm ref data = NULL_PARM) PURE;
+	STDMETHOD_(object, FirstPlayer)() PURE;
+	STDMETHOD_(object, NextPlayer)() PURE;
+	STDMETHOD(Suspend)() PURE;
+	STDMETHOD(Resume)() PURE;
+	STDMETHOD_(BOOL, HostedHere)(const object ref obj) PURE;
+	STDMETHOD_(BOOL, IsProxy)(const object ref obj) PURE;
+	STDMETHOD_(BOOL, LocalOnly)(const object ref obj) PURE;
+	STDMETHOD_(BOOL, IsNetworking)() PURE;
+	STDMETHOD_(object, Owner)(const object ref obj) PURE;
+
+	//
+	// new functions in T2 v1.27 / SS2 v2.48:
+	//
+
+	// only does something in T2 multiplayer builds
+	STDMETHOD(CreateContentProxy)(const object ref player, const object ref content) PURE;
+	// only does something in T2 multiplayer builds
+	STDMETHOD_(BOOL, AmHost)() PURE;
+
+	// current number of players, including yourself
+	STDMETHOD_(int, NumPlayers)(THIS) PURE;
+
+	// in multiplayer this returns the local player's player number
+	// the player number is a number from 1 and up, unique for each player in a session
+	// and is consistent across loads (1 is the host player)
+	STDMETHOD_(int, MyPlayerNum)() PURE;
+	// get the player number from a player object
+	STDMETHOD_(int, ObjToPlayerNum)(const object ref player) PURE;
+	// get the player object from a player number
+	STDMETHOD_(ObjID, PlayerNumToObj)(int player) PURE;
+	// get the name of a player, returns a 0-len string if player was not found
+	STDMETHOD_(string, GetPlayerName)(const object ref player) PURE;
+};

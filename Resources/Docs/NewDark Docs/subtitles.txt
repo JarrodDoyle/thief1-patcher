@@ -1,0 +1,105 @@
+Subtitles
+---------
+
+Subtitles are supported for sound and movie files. To enable subtitles you only have to place
+appropriate subtitle file(s) in the correct location and enable subtitles with the config var
+"enable_subtitles". Subtitles should then appear for all sounds and movies that have subtitles
+defined in the installed subtitle resource files.
+
+
+Subtitle resource files
+-----------------------
+
+Subtitle files have a .SUB extension and are loaded from "subtitles\" sub-directories in all
+resource (resname_base) and mod/FM paths. Language sub-directories should be used, so english
+subtitle files should be located in "subtitles\english\", spanish in "subtitles\spanish\" and
+so on. All *.SUB files from the relevant directories will be loaded.
+
+For information about the .SUB file format see the "subtitle-sample.sub" file.
+
+
+Subtitle config vars
+--------------------
+
+enable_subtitles
+    Enable subtitles system. Disabled by default.
+
+subtitles_hide_types
+    '+'-separated list of subtitle types that should not be displayed.
+    For example: subtitles_hide_types fx+bark+urgent
+
+subtitles_show_descr
+    Enable display of subtitle descriptions (for details see the "Descr" parameter in "subtitles-sample.sub"
+).
+    Disabled by default.
+
+subtitles_show_volume
+    Enable volume indicators on subtitles for positional/3D sounds, to help hearing impaired to roughly judge
+    if a sound is near/loud or further away. Disabled by default. The volume indicator consists of a 3-segment
+    vertical bar at the left edge of a subtitle, where 1 means the sound is far away (or faint for example when
+    obstructed by a door), 2 means medium range, and 3 means nearby. The indicator is based on the distance the
+    sound travels, not actual volume. Subtitles for sounds that aren't emitted from a position in the world won't
+    have any volume indicator.
+
+subtitles_color_<Type> <red> <green> <blue>
+    Define subtitle color for a Type of subtitles. Types are "player", "convo", "bark", "urgent", "fx", "movie",
+    "email". The color is specified as 3 values between 0 and 255 for R G B. The default is white (255 255 255).
+    For example to set the color for "urgent" barks to red: subtitles_color_urgent 255 0 0
+
+subtitles_bg_color <red> <green> <blue> <alpha>
+    Color for text background, a color of 0 0 0 0 disables the bg. Alpha only works when "use_d3d_display" is
+    enabled (and HW 2D isn't disabled), otherwise the alpha value is implicitly set to 255. The default is black.
+    Note that "d3d_disp_2d_overlay_alpha" will also affect subtitles.
+
+subtitles_bg_textwidth
+    Enable the text background to be limited to the width of the text, instead of the entire width specified by
+    "subtitles_dim".
+
+subtitles_font_dir <dirname>
+    Resource dir for optional custom font, for example "intrface\" (note the trailing backslash).
+
+subtitles_font_name <fontname>
+    Option custom font name, for example "textfont".
+
+subtitles_max_count <count>
+    Max number of subtitles that are displayed simultaneously on screen, the oldest gets pushed out first if count
+    is exceeded. Default is 5. The value is ignored during movies/cutscenes, the max count during those is always 1.
+
+subtitles_spacing <pixels>
+    Extra vertical spacing/margin between subtitles in pixels. Default is 4.
+
+subtitles_extra_time <time>
+    Additional time (milliseconds) to keep displaying subtitles after they would normally end. Default is 3000.
+    This is ignored during movies/cutscenes, extra time is always 0 during those.
+
+subtitles_dim <left> <right> <bottom>
+    Placement and size of subtitle display rectangle, specified as percentages of the screen. Default is 20 80 93.
+    Subtitles are bottom aligned, so the first subtitle will start at <bottom> and go upward. How far upward
+    depends on "subtitles_max_count" and how many lines of text each subtitle requires.
+
+subtitles_vol_dist_limits <dist1> <dist2>
+    Customize the distance limits for the volume indicator (see "subtitles_show_volume"). Default is 20 40.
+    If the sound distance is shorter than 'dist1' then the volume indicator will be 3, if the distance is between
+    'dist1' and 'dist2' the volume indicator will be 2, if it's 'dist2' or greater the volume indicator will be 1.
+
+subtitles_max_dist_<Type> <dist>
+    Define max distance for a subtitle type. Subtitles for positional/3D sounds that are farther away than this
+    limit, will not be displayed. The default is unlimited distance (0). See "subtitles_show_volume" for some
+    additional info on sound distance.
+    For example to skip subtitles for the "bark" type that have a distance beyond 50: subtitles_max_dist_bark 50
+
+subtitles_max_dist <dist>
+    Define default max distance for subtitle types that don't have an explicit "subtitles_max_dist_<Type>" set.
+    The default is unlimited distance (0).
+
+A couple of the above config vars have separate counterparts for subtitles during movies/cutscenes. They work just
+as above except that they are used instead of the above config vars during movie playback.
+
+movsubtitles_bg_color
+
+movsubtitles_bg_textwidth
+
+movsubtitles_dim
+
+Note that alpha value in "movsubtitles_bg_color
+" currently has no effect.

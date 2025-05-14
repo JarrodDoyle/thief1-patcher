@@ -1,0 +1,24 @@
+Free The Objects Toolkit. Shadowspawn - 9/14/2001       rsybel@adelphia.net
+
+===========================================================================
+BintoE - Version 0.75
+
+BintoE can now handle objects that have joints (axles). It will correctly
+extract the sub-objects, correctly place and orient them (that was fun!) and
+automatically generate correctly named axles.
+Correctly generate colors for non-texture mapped polygons.
+Still not ready to handle AI meshes.
+
+===========================================================================
+Eto3DS - Version 1.10
+
+Eto3ds now handles axles, two point objects with no faces or mapping.
+Default output format for textures is now .gif
+
+===========================================================================
+RTGto3ds - Version 1.03
+
+No changes.
+
+
+

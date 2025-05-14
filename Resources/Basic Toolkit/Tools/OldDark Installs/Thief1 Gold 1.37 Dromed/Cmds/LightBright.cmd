@@ -1,0 +1,2 @@
+light_bright
+lit_obj_toggle

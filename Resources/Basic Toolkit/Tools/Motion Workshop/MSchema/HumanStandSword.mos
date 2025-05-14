@@ -1,0 +1,175 @@
+
+global WithSword 0
+torso  Biped
+
+schema Stand 0, MeleeCombat 0
+MType  StandWithTurns
+TimeScale 0
+XYZScale  0
+motion BH211006     0  500
+motion BH211006     0  500
+motion BH211006     0  500
+motion BH211006     0  500
+
+schema Stand 0, Drunk 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH211007     4  500
+
+schema Stand 0, Halt 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH211037     0  500
+motion BH211038     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH211400     0  500
+motion BH211401     0  500
+motion BH211402     0  500
+motion BH211403     0  500
+motion BH211404     0  500
+motion BH211405     0  500
+
+schema Search 0, Peek 0, Direction 1
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212024     0  500
+
+schema Search 0, Peek 0, Direction 2
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212025     0  500
+
+schema Discover 0, Recoil 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212026     0  500
+
+schema Search 0, Peek 0, Direction 3
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH212027     0  500
+
+schema Stalled 0, Flail 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213610     0  500
+
+schema Stalled 0, Rebalance 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213611     0  500
+
+schema Stalled 0, Flail 0, InWater 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213612     0  500
+
+schema Stalled 0, Poisoned 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213650     0  500
+motion BH213651     0  500
+
+schema Stalled 0, Stunned 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213670     0  500
+
+schema Stalled 0, Stunned 0, Long 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH213671     0  500
+
+schema WorldFrob 0, AtWaist 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214312     0  500
+
+schema WorldFrob 0, AtWaist 0, Door 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214313     0  500
+
+schema WorldFrob 0, AtWaist 0, Lever 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214314     0  500
+
+schema ReadyItem 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion hippat     0  500
+
+schema PlaySpecMotion 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214722     0  500
+motion BH214723     0  500
+
+schema Discover 0, Challenge 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214731     0  500
+motion BH214735     0  500
+
+schema Discover 0, Thwarted 0
+MType  GroundAction
+TimeScale 1.7
+XYZScale  0
+motion BH214730     0  500
+motion BH214731     0  500
+
+schema Discover 0, PointOut 0, Direction 5
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214734     0  500
+
+schema Discover 0, PointOut 0, Direction 6
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214733     0  500
+
+schema Discover 0, PointOut 0, Direction 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214735     0  500
+
+schema Discover 0, Salute 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH214736     0  500
+motion BH214737     0  500
+motion BH214738     0  500
+motion BH214739     0  500
+
+schema Discover 0, Thwarted 0, Haunt 0
+MType  GroundAction
+TimeScale 0
+XYZScale  0
+motion BH111001     4  500

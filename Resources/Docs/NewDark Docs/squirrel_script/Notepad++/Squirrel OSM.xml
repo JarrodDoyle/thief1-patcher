@@ -1,0 +1,3157 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<NotepadPlus>
+	<AutoComplete language="Squirrel OSM">
+		<Environment ignoreCase="no" startFunc="(" stopFunc=")" paramSeparator="," terminal=";" />
+		<KeyWord name="AI" />
+		<KeyWord name="AbortAttack" func="yes">
+			<Overload retVal="HRESULT" descr="service Bow">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ActReact" />
+		<KeyWord name="Activate" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 1+]">
+				<Param name="const object obj" />
+			</Overload>
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ActivateMap" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Add" func="yes">
+			<Overload retVal="HRESULT" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Container">
+				<Param name="object obj" />
+				<Param name="object container" />
+				<Param name="int type = 0" />
+				<Param name="int flags = CTF_COMBINE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddAlarm" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int time" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddExp" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Who" />
+				<Param name="int amount" />
+				<Param name="BOOL verbose" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddHandler" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="IDarkOverlayHandler handler" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="IShockOverlayHandler handler" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddInvObj" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddMetaProperty" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+				<Param name="object metaprop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddMetaPropertyToMany" func="yes">
+			<Overload retVal="int" descr="service Object">
+				<Param name="object metaprop" />
+				<Param name="string ToSet" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddSpeedControl" func="yes">
+			<Overload retVal="<none>" descr="service DrkInv">
+				<Param name="string name" />
+				<Param name="float speed_fac" />
+				<Param name="float rot_fac" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="string name" />
+				<Param name="float speed_fac" />
+				<Param name="float rot_fac" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddText" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string msg" />
+				<Param name="object player" />
+				<Param name="int time = DEFAULT_MSG_TIME" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddTextObjProp" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="string propname" />
+				<Param name="object player" />
+				<Param name="int time = DEFAULT_MSG_TIME" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddTranslatableText" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string msg" />
+				<Param name="string table" />
+				<Param name="object player" />
+				<Param name="int time = DEFAULT_MSG_TIME" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddTranslatableTextIndexInt" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string msg" />
+				<Param name="string table" />
+				<Param name="object player" />
+				<Param name="int index" />
+				<Param name="int val" />
+				<Param name="int time = DEFAULT_MSG_TIME" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddTranslatableTextInt" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string msg" />
+				<Param name="string table" />
+				<Param name="object player" />
+				<Param name="int val" />
+				<Param name="int time = DEFAULT_MSG_TIME" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AllowDeath" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AmHost" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 11+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AmmoLoad" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object GunObj" />
+				<Param name="object AmmoObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnimTexture" />
+		<KeyWord name="AnyExist" func="yes">
+			<Overload retVal="BOOL" descr="service Object [API 12+]">
+				<Param name="object obj" />
+				<Param name="eTraitQueryType type = eTraitQueryType.kTraitQueryDescendents" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service Link">
+				<Param name="linkkind kind = 0" />
+				<Param name="object from = 0" />
+				<Param name="object to = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Archetype" func="yes">
+			<Overload retVal="ObjID" descr="service Object [API 8+]">
+				<Param name="object scr_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AttachCamera" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string s" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BeginContact" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="object source" />
+				<Param name="object sensor" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BeginCreate" func="yes">
+			<Overload retVal="ObjID" descr="service Object">
+				<Param name="object archetype_or_clone" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BeginTOverlayUpdate" func="yes">
+			<Overload retVal="BOOL" descr="service DarkOverlay">
+				<Param name="int handle" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="int handle" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinDelete" func="yes">
+			<Overload retVal="BOOL" descr="service Quest [API 10+]">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinExists" func="yes">
+			<Overload retVal="BOOL" descr="service Quest [API 10+]">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinGet" func="yes">
+			<Overload retVal="sqblob" descr="service Quest [API 10+]">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinGetTable" func="yes">
+			<Overload retVal="sqtable" descr="service Quest [API 10+]">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinSet" func="yes">
+			<Overload retVal="bool" descr="service Quest [API 10+]">
+				<Param name="string name" />
+				<Param name="sqblob blob" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BinSetTable" func="yes">
+			<Overload retVal="bool" descr="service Quest [API 10+]">
+				<Param name="string name" />
+				<Param name="sqtable table" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BindingGetFloat" func="yes">
+			<Overload retVal="float" descr="service Engine [API 3+]">
+				<Param name="string name" />
+			</Overload>
+			<Overload retVal="float" descr="service DarkGame [API 2+]">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BlockMessage" func="yes">
+			<Overload retVal="<none>" descr="class SqRootScript ; set the kSMF_MsgBlock flag on the current message">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Bow" />
+		<KeyWord name="Break" func="yes">
+			<Overload retVal="HRESULT" descr="service Debug">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Broadcast" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+				<Param name="string msg" />
+				<Param name="BOOL sendFromProxy = FALSE" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BroadcastOnAllLinks" func="yes">
+			<Overload retVal="HRESULT" descr="service Link">
+				<Param name="object SelfObj" />
+				<Param name="string Message" />
+				<Param name="linkkind recipients" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BroadcastOnAllLinksData" func="yes">
+			<Overload retVal="HRESULT" descr="service Link">
+				<Param name="object SelfObj" />
+				<Param name="string Message" />
+				<Param name="linkkind recipients" />
+				<Param name="cMultiParm linkdata" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BroadcastOnAllLinksMany" func="yes">
+			<Overload retVal="HRESULT" descr="service Link [API 12+]">
+				<Param name="string FromSet" />
+				<Param name="string Message" />
+				<Param name="linkkind recipients" />
+				<Param name="cMultiParm linkdata = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CD" />
+		<KeyWord name="CalcRelTransform" func="yes">
+			<Overload retVal="BOOL" descr="service Object [API 7+]">
+				<Param name="object parent_obj" />
+				<Param name="object child_obj" />
+				<Param name="vector &amp; rel_pos" />
+				<Param name="vector &amp; rel_facing" />
+				<Param name="int rel_type" />
+				<Param name="int sub_or_vhot_or_joint" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Camera" />
+		<KeyWord name="CameraReturn" func="yes">
+			<Overload retVal="HRESULT" descr="service Camera">
+				<Param name="object attachee" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CameraToWorld" func="yes">
+			<Overload retVal="vector" descr="service Camera [API 7+]">
+				<Param name="vector local_pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CapabilityControl" func="yes">
+			<Overload retVal="<none>" descr="service DrkInv">
+				<Param name="eDrkInvCap cap_change" />
+				<Param name="eDrkInvControl control" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Censored" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeTexture" func="yes">
+			<Overload retVal="HRESULT" descr="service AnimTexture">
+				<Param name="object refobj" />
+				<Param name="string fam1" />
+				<Param name="string tx1" />
+				<Param name="string fam2" />
+				<Param name="string tx2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeTextureLoc" func="yes">
+			<Overload retVal="HRESULT" descr="service AnimTexture [API 12+]">
+				<Param name="vector pos" />
+				<Param name="float rad" />
+				<Param name="string fam1" />
+				<Param name="string tx1" />
+				<Param name="string fam2" />
+				<Param name="string tx2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckLocked" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object CheckObj" />
+				<Param name="BOOL verbose" />
+				<Param name="object player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckPick" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="object pick_obj" />
+				<Param name="object locked_obj" />
+				<Param name="int stage" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CleanseBlood" func="yes">
+			<Overload retVal="<none>" descr="service DrkPowerups">
+				<Param name="object water_src_object" />
+				<Param name="float rad" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearAlertness" func="yes">
+			<Overload retVal="<none>" descr="service AI">
+				<Param name="ObjID objIdAI" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearCursorMode" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearData" func="yes">
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; remove persistent var">
+				<Param name="string sVarName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearGoals" func="yes">
+			<Overload retVal="<none>" descr="service AI">
+				<Param name="ObjID objIdAI" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearRadiation" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CloseDoor" func="yes">
+			<Overload retVal="BOOL" descr="service Door">
+				<Param name="object door_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Command" func="yes">
+			<Overload retVal="HRESULT" descr="service Debug">
+				<Param name="string cmd" />
+				<Param name="string arg = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfigGetFloat" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="string name" />
+				<Param name="float_ref value" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service DarkGame [API 2+]">
+				<Param name="string name" />
+				<Param name="float_ref value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfigGetInt" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="string name" />
+				<Param name="int_ref value" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service DarkGame [API 2+]">
+				<Param name="string name" />
+				<Param name="int_ref value" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="string name" />
+				<Param name="int_ref value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfigGetRaw" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="string name" />
+				<Param name="string &amp; value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfigIsDefined" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="string name" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service DarkGame [API 2+]">
+				<Param name="string name" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Container" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object ContainObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ControlCurrentLocation" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ControlCurrentPosition" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ControlCurrentRotation" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ControlVelocity" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 12+ for SS2 and T1/G]">
+				<Param name="object obj" />
+				<Param name="vector vel" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CopyFrom" func="yes">
+			<Overload retVal="HRESULT" descr="service Property">
+				<Param name="object targ" />
+				<Param name="string prop" />
+				<Param name="object src" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CountEcoMatching" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+				<Param name="int val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Create" func="yes">
+			<Overload retVal="ObjID" descr="service Object">
+				<Param name="object archetype_or_clone" />
+			</Overload>
+			<Overload retVal="LinkID" descr="service Link">
+				<Param name="linkkind kind" />
+				<Param name="object from" />
+				<Param name="object to" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateContentProxy" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 11+]">
+				<Param name="const object player" />
+				<Param name="const object content" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateMany" func="yes">
+			<Overload retVal="HRESULT" descr="service Link">
+				<Param name="linkkind kind" />
+				<Param name="string FromSet" />
+				<Param name="string ToSet" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreatePlayerPuppet" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+				<Param name="string modelName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreatePlayerPuppetDefault" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateTOverlayItem" func="yes">
+			<Overload retVal="int" descr="service DarkOverlay">
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int width" />
+				<Param name="int height" />
+				<Param name="int alpha" />
+				<Param name="BOOL trans_bg" />
+			</Overload>
+			<Overload retVal="int" descr="service ShockOverlay">
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int width" />
+				<Param name="int height" />
+				<Param name="int alpha" />
+				<Param name="BOOL trans_bg" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateTOverlayItemFromBitmap" func="yes">
+			<Overload retVal="int" descr="service DarkOverlay">
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int alpha" />
+				<Param name="int bm_handle" />
+				<Param name="BOOL trans_bg" />
+			</Overload>
+			<Overload retVal="int" descr="service ShockOverlay">
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int alpha" />
+				<Param name="int bm_handle" />
+				<Param name="BOOL trans_bg" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CutSceneModeOff" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CutSceneModeOn" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string sceneName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Damage" func="yes">
+			<Overload retVal="HRESULT" descr="service Damage">
+				<Param name="object victim" />
+				<Param name="object culprit" />
+				<Param name="int how_much" />
+				<Param name="int what_kind = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DarkGame" />
+		<KeyWord name="DarkOverlay" />
+		<KeyWord name="DarkUI" />
+		<KeyWord name="Data" />
+		<KeyWord name="Deactivate" func="yes">
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DebriefMode" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int mission" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Debug" />
+		<KeyWord name="Delete" func="yes">
+			<Overload retVal="BOOL" descr="service Quest">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DeregisterModel" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DescribeKeyBinding" func="yes">
+			<Overload retVal="string" descr="service DarkUI">
+				<Param name="string cmd" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Destroy" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Link">
+				<Param name="LinkID destroy_me" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyAllByName" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyCursorObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyInvObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object DestroyObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyMany" func="yes">
+			<Overload retVal="HRESULT" descr="service Link">
+				<Param name="linkkind kind" />
+				<Param name="string FromSet" />
+				<Param name="string ToSet" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyMelee" func="yes">
+			<Overload retVal="<none>" descr="service ShockWeapon">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyPlayerPuppet" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DestroyTOverlayItem" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DirectMotion" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="BOOL start" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DirectRand" func="yes">
+			<Overload retVal="int" descr="service Data">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DisableAlarmGlobal" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Door" />
+		<KeyWord name="DrawBitmap" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrawLine" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int x1" />
+				<Param name="int y1" />
+				<Param name="int x2" />
+				<Param name="int y2" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int x1" />
+				<Param name="int y1" />
+				<Param name="int x2" />
+				<Param name="int y2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrawObjectIcon" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="object obj" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrawString" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="string text" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="string text" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrawSubBitmap" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int src_x" />
+				<Param name="int src_y" />
+				<Param name="int src_width" />
+				<Param name="int src_height" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+				<Param name="int src_x" />
+				<Param name="int src_y" />
+				<Param name="int src_width" />
+				<Param name="int src_height" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrawTOverlayItem" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DrkInv" />
+		<KeyWord name="DrkPowerups" />
+		<KeyWord name="DynamicAttach" func="yes">
+			<Overload retVal="HRESULT" descr="service Camera">
+				<Param name="object attachee" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EndContact" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="object source" />
+				<Param name="object sensor" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EndCreate" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EndGame" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EndMission" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EndTOverlayUpdate" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Engine" />
+		<KeyWord name="Equip" func="yes">
+			<Overload retVal="HRESULT" descr="service PlayerLimbs">
+				<Param name="object item" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Weapon">
+				<Param name="object weapon" />
+				<Param name="int type = 0" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Bow">
+			</Overload>
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int slot" />
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Equipped" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+				<Param name="int slot" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Exists" func="yes">
+			<Overload retVal="BOOL" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service Quest">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FMizePath" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="string path" />
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FMizeRelativePath" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="string relpath" />
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Facing" func="yes">
+			<Overload retVal="vector" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FadeIn" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 8+]">
+				<Param name="float time" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FadeToBlack" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame">
+				<Param name="float time" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FillTOverlay" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int color_idx = 0" />
+				<Param name="int alpha = 255" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int color_idx = 0" />
+				<Param name="int alpha = 255" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindClosestObjectNamed" func="yes">
+			<Overload retVal="ObjID" descr="service Object [API 3+ in SS2, API 12+ in T1/G]">
+				<Param name="ObjID objId" />
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindDescendentsSpatial" func="yes">
+			<Overload retVal="objset" descr="service Object [API 12+]">
+				<Param name="object obj" />
+				<Param name="object arch" />
+				<Param name="float radius" />
+				<Param name="int number = 1" />
+				<Param name="BOOL closest = TRUE" />
+				<Param name="BOOL inside = TRUE" />
+				<Param name="BOOL cylindrical = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindFileInPath" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="string path_config_var" />
+				<Param name="string filename" />
+				<Param name="string &amp; fullname" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindLogData" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object LogObj" />
+				<Param name="int usetype" />
+				<Param name="int_ref level" />
+				<Param name="int_ref which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindScriptDonor" func="yes">
+			<Overload retVal="ObjID" descr="service Object [API 12+]">
+				<Param name="ObjID objID" />
+				<Param name="string name" />
+			</Overload>
+			<Overload retVal="ObjID" descr="service ShockObj">
+				<Param name="ObjID objID" />
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FindSpawnPoint" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="uint flags" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FinishAttack" func="yes">
+			<Overload retVal="HRESULT" descr="service Weapon">
+				<Param name="object owner" />
+				<Param name="object weapon" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Bow">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FinishPicking" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="object pick_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FinishUse" func="yes">
+			<Overload retVal="HRESULT" descr="service PlayerLimbs">
+				<Param name="object item" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FirstPlayer" func="yes">
+			<Overload retVal="ObjID" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FlushBitmap" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ForceCameraReturn" func="yes">
+			<Overload retVal="HRESULT" descr="service Camera">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FoundObject" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 2+]">
+				<Param name="ObjID obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Freeze" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+				<Param name="float sec" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+				<Param name="float sec" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Frob" func="yes">
+			<Overload retVal="void" descr="service DarkGame [API 12+]">
+				<Param name="BOOL in_inv = FALSE" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="BOOL in_inv = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Get" func="yes">
+			<Overload retVal="cMultiParm" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field = null" />
+			</Overload>
+			<Overload retVal="int" descr="service Quest">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAPIVersion" func="yes">
+			<Overload retVal="int" descr="global ; get the API version of the host app">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetActiveTime" func="yes">
+			<Overload retVal="uint" descr="service ShockPsi">
+				<Param name="ePsiPowers power" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAlertLevel" func="yes">
+			<Overload retVal="eAIScriptAlertLevel" descr="service AI">
+				<Param name="ObjID objIdAI" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAll" func="yes">
+			<Overload retVal="objset" descr="service Object [API 12+]">
+				<Param name="object obj" />
+				<Param name="eTraitQueryType type = eTraitQueryType.kTraitQueryDescendents" />
+			</Overload>
+			<Overload retVal="linkset" descr="service Link">
+				<Param name="linkkind kind = 0" />
+				<Param name="object from = 0" />
+				<Param name="object to = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAllInherited" func="yes">
+			<Overload retVal="linkset" descr="service Link">
+				<Param name="linkkind kind = 0" />
+				<Param name="object from = 0" />
+				<Param name="object to = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAllInheritedSingle" func="yes">
+			<Overload retVal="linkset" descr="service Link">
+				<Param name="linkkind kind = 0" />
+				<Param name="object from = 0" />
+				<Param name="object to = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAllVars" func="yes">
+			<Overload retVal="sqtable" descr="service Quest [API 10+]">
+				<Param name="eQuestDataType type" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAppName" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="BOOL title_only" />
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetArchetypeName" func="yes">
+			<Overload retVal="string" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAspectRatio" func="yes">
+			<Overload retVal="float" descr="service Engine [API 3+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAutomapLocationVisited" func="yes">
+			<Overload retVal="BOOL" descr="service DarkGame [API 2+]">
+				<Param name="int page" />
+				<Param name="int location" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetBitmap" func="yes">
+			<Overload retVal="int" descr="service DarkOverlay">
+				<Param name="string name" />
+				<Param name="string path = &quot;intrface\\&quot;" />
+			</Overload>
+			<Overload retVal="int" descr="service ShockOverlay">
+				<Param name="string name" />
+				<Param name="string path = &quot;iface\\&quot;" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetBitmapSize" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int_ref width" />
+				<Param name="int_ref height" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int_ref width" />
+				<Param name="int_ref height" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetBurnDmg" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCameraParent" func="yes">
+			<Overload retVal="ObjID" descr="service Camera [API 6+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCanvasSize" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int_ref width" />
+				<Param name="int_ref height" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetClassName" func="yes">
+			<Overload retVal="string" descr="class SqRootScript ; get the script class name">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetClimbingObject" func="yes">
+			<Overload retVal="<none>" descr="service Physics [API 3+]">
+				<Param name="object climber" />
+				<Param name="object &amp; climbobj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetClip" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+				<Param name="object GunObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCurrentFM" func="yes">
+			<Overload retVal="HRESULT" descr="service Version [API 3+]">
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCurrentFMPath" func="yes">
+			<Overload retVal="HRESULT" descr="service Version [API 3+]">
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCurrentMission" func="yes">
+			<Overload retVal="int" descr="service DarkGame [API 3+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCursorMode" func="yes">
+			<Overload retVal="int" descr="service ShockOverlay">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetDarkGame" func="yes">
+			<Overload retVal="int" descr="global ; get the game type (0=T1, 1=SS2, 2=T2)">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetData" func="yes">
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; get persistent var">
+				<Param name="string sVarName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetDistantSelectedObj" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetDoorState" func="yes">
+			<Overload retVal="eDoorStatus" descr="service Door">
+				<Param name="object door_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFacing" func="yes">
+			<Overload retVal="vector" descr="service Camera [API 6+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFirst" func="yes">
+			<Overload retVal="BOOL" descr="service Quest [API 12+]">
+				<Param name="eQuestDataType type" />
+				<Param name="string &amp; name" />
+				<Param name="int_ref val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFog" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int_ref r" />
+				<Param name="int_ref g" />
+				<Param name="int_ref b" />
+				<Param name="float_ref dist" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFogZone" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int iZone" />
+				<Param name="int_ref r" />
+				<Param name="int_ref g" />
+				<Param name="int_ref b" />
+				<Param name="float_ref dist" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetGame" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetGamsys" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetGravity" func="yes">
+			<Overload retVal="float" descr="service Physics">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetHazardResistance" func="yes">
+			<Overload retVal="float" descr="service ShockGame">
+				<Param name="int endur" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetIndexed" func="yes">
+			<Overload retVal="cMultiParm" descr="service Property [API 12+]">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field" />
+				<Param name="uchar index" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetInterfaceFocusObject" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="object &amp; obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMap" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="string &amp; result" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetModPath" func="yes">
+			<Overload retVal="HRESULT" descr="service Version [API 12+]">
+				<Param name="string &amp; result" />
+				<Param name="int which = -1" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMode" func="yes">
+			<Overload retVal="int" descr="service Light">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetName" func="yes">
+			<Overload retVal="string" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetNext" func="yes">
+			<Overload retVal="BOOL" descr="service Quest [API 12+]">
+				<Param name="string &amp; name" />
+				<Param name="int_ref val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetObjString" func="yes">
+			<Overload retVal="string" descr="service Data">
+				<Param name="ObjID obj" />
+				<Param name="string table" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetObjectScreenBounds" func="yes">
+			<Overload retVal="BOOL" descr="service DarkOverlay">
+				<Param name="object obj" />
+				<Param name="int_ref x1" />
+				<Param name="int_ref y1" />
+				<Param name="int_ref x2" />
+				<Param name="int_ref y2" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="object obj" />
+				<Param name="int_ref x1" />
+				<Param name="int_ref y1" />
+				<Param name="int_ref x2" />
+				<Param name="int_ref y2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetOne" func="yes">
+			<Overload retVal="ObjID" descr="service Object [API 12+]">
+				<Param name="object obj" />
+				<Param name="eTraitQueryType type = eTraitQueryType.kTraitQueryDescendents" />
+			</Overload>
+			<Overload retVal="LinkID" descr="service Link">
+				<Param name="linkkind kind = 0" />
+				<Param name="object from = 0" />
+				<Param name="object to = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetOverlayRect" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int which" />
+				<Param name="int_ref left" />
+				<Param name="int_ref top" />
+				<Param name="int_ref right" />
+				<Param name="int_ref bottom" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPlayerMaxPsiPoints" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPlayerMode)" func="yes">
+			<Overload retVal="int" descr="service DarkGame [API 12+]">
+			</Overload>
+			<Overload retVal="int" descr="service ShockGame [API 12+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPlayerName" func="yes">
+			<Overload retVal="string" descr="service Networking [API 11+]">
+				<Param name="object player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPlayerPsiPoints" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPosition" func="yes">
+			<Overload retVal="vector" descr="service Camera [API 6+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetProperty" func="yes">
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; get indexed property value on 'self' [API 12+]">
+				<Param name="string sPropName" />
+				<Param name="string sFieldName" />
+				<Param name="uchar iIndex" />
+			</Overload>
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; get property value on 'self'">
+				<Param name="string sPropName" />
+				<Param name="string sFieldName" />
+			</Overload>
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; get simple property value on 'self'">
+				<Param name="string sPropName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetReactionName" func="yes">
+			<Overload retVal="string" descr="service ActReact">
+				<Param name="int id" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetReactionNamed" func="yes">
+			<Overload retVal="int" descr="service ActReact">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetSelectedObj" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetSoundBlocking" func="yes">
+			<Overload retVal="BOOL" descr="service Door [API 2+]">
+				<Param name="object door_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetStat" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+				<Param name="object who" />
+				<Param name="eStats which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetString" func="yes">
+			<Overload retVal="string" descr="service Data">
+				<Param name="string table" />
+				<Param name="string name" />
+				<Param name="string def = &quot;&quot;" />
+				<Param name="string relpath = &quot;strings&quot;" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetStringSize" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="string text" />
+				<Param name="int_ref width" />
+				<Param name="int_ref height" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="string text" />
+				<Param name="int_ref width" />
+				<Param name="int_ref height" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTagBlock" func="yes">
+			<Overload retVal="cMultiParm" descr="service Engine [API 12+]">
+				<Param name="string name" />
+				<Param name="string field" />
+				<Param name="eWhichVarFile which = eWhichVarFile.kMissionVar" />
+				<Param name="int index = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTime" func="yes">
+			<Overload retVal="float" descr="class SqRootScript ; get the time (s) of the current/last processed message">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetVelocity" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics">
+				<Param name="object obj" />
+				<Param name="vector &amp; vel" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetVersion" func="yes">
+			<Overload retVal="<none>" descr="service Version [API 3+]">
+				<Param name="int_ref major" />
+				<Param name="int_ref minor" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetWeaponModel" func="yes">
+			<Overload retVal="ObjID" descr="service ShockWeapon">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetWeather" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int_ref precip_type" />
+				<Param name="float_ref precip_freq" />
+				<Param name="float_ref precip_speed" />
+				<Param name="float_r" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GiveTo" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+				<Param name="object toPlayer" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GrantPsiPower" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object who" />
+				<Param name="ePsiPowers which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HRM" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int hacktype" />
+				<Param name="object Obj" />
+				<Param name="BOOL frompsi" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Halt" func="yes">
+			<Overload retVal="int" descr="service Sound">
+				<Param name="object TargetObject" />
+				<Param name="string SoundName = &quot;&quot;" />
+				<Param name="object CallbackObject = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HaltSchema" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object TargetObject" />
+				<Param name="string SoundName = &quot;&quot;" />
+				<Param name="object CallbackObject = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HaltSpeech" func="yes">
+			<Overload retVal="HRESULT" descr="service Sound">
+				<Param name="object speakerObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HasImplant" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object Who" />
+				<Param name="eImplant implant" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HasMetaProperty" func="yes">
+			<Overload retVal="BOOL" descr="service Object">
+				<Param name="object obj" />
+				<Param name="object metaprop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HasPhysics" func="yes">
+			<Overload retVal="BOOL" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HasProperty" func="yes">
+			<Overload retVal="BOOL" descr="class SqRootScript ; check if 'self' has property">
+				<Param name="string sPropName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HasTrait" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object Who" />
+				<Param name="eTrait trait" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HealObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Who" />
+				<Param name="int amt" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HideInvObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object DestroyObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Home" func="yes">
+			<Overload retVal="<none>" descr="service ShockWeapon">
+				<Param name="object projectile" />
+				<Param name="object target" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="HostedHere" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IDarkOverlayHandler" />
+		<KeyWord name="IShockOverlayHandler" />
+		<KeyWord name="InheritsFrom" func="yes">
+			<Overload retVal="BOOL" descr="service Object">
+				<Param name="object obj" />
+				<Param name="object archetype_or_metaprop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="InvItem" func="yes">
+			<Overload retVal="ObjID" descr="service DarkUI">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="InvSelect" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkUI">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="InvWeapon" func="yes">
+			<Overload retVal="ObjID" descr="service DarkUI">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsAlarmActive" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsCommandBound" func="yes">
+			<Overload retVal="BOOL" descr="service DarkUI">
+				<Param name="string cmd" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsDataSet" func="yes">
+			<Overload retVal="BOOL" descr="class SqRootScript ; check if persistent var is set">
+				<Param name="string sVarName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsEditor" func="yes">
+			<Overload retVal="int" descr="global ; returns non-zero if the host app is the editor">
+			</Overload>
+			<Overload retVal="int" descr="service Version [API 3+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsEquipped" func="yes">
+			<Overload retVal="BOOL" descr="service Weapon">
+				<Param name="object owner" />
+				<Param name="object weapon" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service Bow">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsFrozen" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsHeld" func="yes">
+			<Overload retVal="eContainType" descr="service Container [API 1+]">
+				<Param name="object container" />
+				<Param name="object containee" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsLocked" func="yes">
+			<Overload retVal="BOOL" descr="service Locked">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsMultiplayer" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsNetworking" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsOBB" func="yes">
+			<Overload retVal="BOOL" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsOverloaded" func="yes">
+			<Overload retVal="BOOL" descr="service ShockPsi">
+				<Param name="ePsiPowers power" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsPlayer" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsPositionValid" func="yes">
+			<Overload retVal="BOOL" descr="service Object [API 12+ in T1/G]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsProxy" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsPsiActive" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="ePsiPowers power" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsRemote" func="yes">
+			<Overload retVal="BOOL" descr="service Camera [API 6+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsRope" func="yes">
+			<Overload retVal="BOOL" descr="service Physics [API 3+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsRunningDX6" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsSphere" func="yes">
+			<Overload retVal="BOOL" descr="service Physics [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsStunned" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsTransient" func="yes">
+			<Overload retVal="BOOL" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Key" />
+		<KeyWord name="Keypad" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object BaseObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="KillPlayer" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="KillTimer" func="yes">
+			<Overload retVal="<none>" descr="class SqRootScript ; cancel a timer message">
+				<Param name="timer_handle th" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LaunchProjectile" func="yes">
+			<Overload retVal="ObjID" descr="service Physics">
+				<Param name="object launcher" />
+				<Param name="object proj" />
+				<Param name="float power" />
+				<Param name="int flags" />
+				<Param name="vector add_vel" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LevelTransport" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string newlevel" />
+				<Param name="int marker" />
+				<Param name="uint flags" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Light" />
+		<KeyWord name="Link" />
+		<KeyWord name="LinkDest" func="yes">
+			<Overload retVal="ObjID" descr="class SqRootScript ; returns the destination of a link (for quick access without using an sLink object)">
+				<Param name="LinkID id" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkGet" func="yes">
+			<Overload retVal="HRESULT" descr="service LinkTools">
+				<Param name="int id" />
+				<Param name="sLink&amp; l" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkGetData" func="yes">
+			<Overload retVal="cMultiParm" descr="service LinkTools">
+				<Param name="int id" />
+				<Param name="string field" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkKindName" func="yes">
+			<Overload retVal="string" descr="service LinkTools">
+				<Param name="int id" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkKindNamed" func="yes">
+			<Overload retVal="int" descr="service LinkTools">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkSetData" func="yes">
+			<Overload retVal="HRESULT" descr="service LinkTools">
+				<Param name="int id" />
+				<Param name="string field" />
+				<Param name="cMultiParm val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkSource" func="yes">
+			<Overload retVal="ObjID" descr="class SqRootScript ; returns the source of a link (for quick access without using an sLink object)">
+				<Param name="LinkID id" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkTools" />
+		<KeyWord name="Listener" />
+		<KeyWord name="LoadCursor" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LocalOnly" func="yes">
+			<Overload retVal="BOOL" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LockMovement" func="yes">
+			<Overload retVal="HRESULT" descr="service Camera [API 12+]">
+				<Param name="BOOL movement_locked" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Locked" />
+		<KeyWord name="Log" func="yes">
+			<Overload retVal="HRESULT" descr="service Debug [API 3+]">
+				<Param name="string s" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MPrint" func="yes">
+			<Overload retVal="HRESULT" descr="service Debug">
+				<Param name="string s" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MakeFrobObj" func="yes">
+			<Overload retVal="BOOL" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="object objIdTarget" />
+				<Param name="eAIActionPriority = kNormalPriorityAction" />
+				<Param name="cMultiParm dataToSendOnReach = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MakeFrobObjWith" func="yes">
+			<Overload retVal="BOOL" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="object objIdTarget" />
+				<Param name="object objWith" />
+				<Param name="eAIActionPriority = kNormalPriorityAction" />
+				<Param name="cMultiParm dataToSendOnReach = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MakeGotoObjLoc" func="yes">
+			<Overload retVal="BOOL" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="object objIdTarget" />
+				<Param name="eAIScriptSpeed speed = kNormalSpeed" />
+				<Param name="eAIActionPriority = kNormalPriorityAction" />
+				<Param name="cMultiParm dataToSendOnReach = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MessageIs" func="yes">
+			<Overload retVal="BOOL" descr="class SqRootScript ; check if current message's name is 'sMessageName'">
+				<Param name="string sMessageName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Mouse" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="BOOL mode" />
+				<Param name="BOOL clear" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MouseCursor" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MoveAllContents" func="yes">
+			<Overload retVal="HRESULT" descr="service Container">
+				<Param name="object src" />
+				<Param name="object targ" />
+				<Param name="int flags = CTF_COMBINE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MyPlayerNum" func="yes">
+			<Overload retVal="int" descr="service Networking [API 11+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Named" func="yes">
+			<Overload retVal="ObjID" descr="service Object">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Networking" />
+		<KeyWord name="NextPlayer" func="yes">
+			<Overload retVal="ObjID" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NoMove" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 12+]">
+				<Param name="BOOL move_allowed" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="BOOL jump_allowed" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NotifyEnterTripwire" func="yes">
+			<Overload retVal="<none>" descr="service ShockAI">
+				<Param name="object who" />
+				<Param name="object what" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NotifyExitTripwire" func="yes">
+			<Overload retVal="<none>" descr="service ShockAI">
+				<Param name="object who" />
+				<Param name="object what" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NumPlayers" func="yes">
+			<Overload retVal="int" descr="service Networking [API 11+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ObjID" func="yes">
+			<Overload retVal="ObjID" descr="class SqRootScript ; returns an ObjID based on an object name">
+				<Param name="string sObjName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ObjRaycast" func="yes">
+			<Overload retVal="int" descr="service Engine [API 3+]">
+				<Param name="vector from" />
+				<Param name="vector to" />
+				<Param name="vector &amp; hit_location" />
+				<Param name="object &amp; hit_object" />
+				<Param name="int ShortCircuit" />
+				<Param name="int flags" />
+				<Param name="object ignore1" />
+				<Param name="object ignore2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ObjToPlayerNum" func="yes">
+			<Overload retVal="int" descr="service Networking [API 11+]">
+				<Param name="object player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ObjTryDeploy" func="yes">
+			<Overload retVal="BOOL" descr="service DrkPowerups">
+				<Param name="object src_object" />
+				<Param name="object deploy_arch" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Object" />
+		<KeyWord name="ObjectLocked" func="yes">
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ObjectToWorld" func="yes">
+			<Overload retVal="vector" descr="service Object [API 3+]">
+				<Param name="object obj" />
+				<Param name="vector obj_pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OnDeactivate" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockPsi">
+				<Param name="ePsiPowers power" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OpenDoor" func="yes">
+			<Overload retVal="BOOL" descr="service Door">
+				<Param name="object door_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OpenLookPopup" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OverlayChange" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int which" />
+				<Param name="int mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OverlayChangeObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int which" />
+				<Param name="int mode" />
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OverlayGetObj" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OverlayOn" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="int which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OverlaySetObj" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int which" />
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Owner" func="yes">
+			<Overload retVal="ObjID" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PGroup" />
+		<KeyWord name="PayNanites" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int quan" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Physics" />
+		<KeyWord name="PickLock" />
+		<KeyWord name="Play" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAmbient" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAmbientNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAtLocation" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="vector &amp; Vector" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAtLocationNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="vector &amp; Vector" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAtObject" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="object TargetObject" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayAtObjectNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="object TargetObject" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayEnvSchema" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="string Tags" />
+				<Param name="object SourceObject = 0" />
+				<Param name="object AgentObject = 0" />
+				<Param name="eEnvSoundLoc loc = kEnvSoundOnObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayEnvSchemaNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="string Tags" />
+				<Param name="object SourceObject = 0" />
+				<Param name="object AgentObject = 0" />
+				<Param name="eEnvSoundLoc loc = kEnvSoundOnObj" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayMotion" func="yes">
+			<Overload retVal="BOOL" descr="service Puppet">
+				<Param name="const object obj" />
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="string SoundName" />
+				<Param name="eSoundSpecial Special = kSoundNormal" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchema" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAmbient" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAmbientNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAtLocation" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="vector &amp; Vector" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAtLocationNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="vector &amp; Vector" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAtObject" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="object SourceObject" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaAtObjectNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="object SourceObject" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySchemaNet" func="yes">
+			<Overload retVal="BOOL" descr="service Sound [API 12+ for T1/G]">
+				<Param name="object CallbackObject" />
+				<Param name="object Schema" />
+				<Param name="eSoundNetwork Network = kSoundNetDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlaySound" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="string schema_name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayVideo" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string vidname" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayVoiceOver" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="object cb_obj" />
+				<Param name="object Schema" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerGun" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerLimbs" />
+		<KeyWord name="PlayerMode" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 12+]">
+				<Param name="int mode" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="ePlayerMode mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerModeSimple" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerMotionSetOffset" func="yes">
+			<Overload retVal="<none>" descr="service Physics [API 1+]">
+				<Param name="int subModel" />
+				<Param name="vector &amp; offset" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerNumToObj" func="yes">
+			<Overload retVal="ObjID" descr="service Networking [API 11+]">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PortalRaycast" func="yes">
+			<Overload retVal="BOOL" descr="service Engine [API 3+]">
+				<Param name="vector from" />
+				<Param name="vector to" />
+				<Param name="vector &amp; hit_location" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Position" func="yes">
+			<Overload retVal="vector" descr="service Object">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Possessed" func="yes">
+			<Overload retVal="BOOL" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PossessedSimple" func="yes">
+			<Overload retVal="BOOL" descr="service Property [API 11+]">
+				<Param name="object obj" />
+				<Param name="string prop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PostMessage" func="yes">
+			<Overload retVal="<none>" descr="class SqRootScript ; post a message on the message queue">
+				<Param name="object to" />
+				<Param name="string sMessage" />
+				<Param name="cMultiParm data = null" />
+				<Param name="cMultiParm data2 = null" />
+				<Param name="cMultiParm data3 = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreLoad" func="yes">
+			<Overload retVal="BOOL" descr="service Sound">
+				<Param name="string SpeechName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreventSwap" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Property" />
+		<KeyWord name="PseudoProjectile" func="yes">
+			<Overload retVal="ObjID" descr="service ShockGame">
+				<Param name="object source" />
+				<Param name="object emittype" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PsiRadarScan" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Puppet" />
+		<KeyWord name="Quest" />
+		<KeyWord name="RadiationHack" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RandFlt0to1" func="yes">
+			<Overload retVal="float" descr="service Data">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RandFltNeg1to1" func="yes">
+			<Overload retVal="float" descr="service Data">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RandInt" func="yes">
+			<Overload retVal="int" descr="service Data">
+				<Param name="int low" />
+				<Param name="int high" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RandRange" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+				<Param name="int low" />
+				<Param name="int high" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="React" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="reaction_kind what" />
+				<Param name="float stim_intensity" />
+				<Param name="object target = 0" />
+				<Param name="object agent = 0" />
+				<Param name="cMultiParm parm1 = 0" />
+				<Param name="cMultiParm parm2 = 0" />
+				<Param name="cMulti" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReadBook" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkUI">
+				<Param name="string text" />
+				<Param name="string art" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Ready" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="object picker" />
+				<Param name="object pick_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RecalcStats" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object who" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RefreshInv" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Remove" func="yes">
+			<Overload retVal="HRESULT" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Container">
+				<Param name="object obj" />
+				<Param name="object container = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveAlarm" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveFromContainer" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="object Container" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveHandler" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="IDarkOverlayHandler handler" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="IShockOverlayHandler handler" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveMetaProperty" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+				<Param name="object metaprop" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveMetaPropertyFromMany" func="yes">
+			<Overload retVal="int" descr="service Object">
+				<Param name="object metaprop" />
+				<Param name="string ToSet" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveSpeedControl" func="yes">
+			<Overload retVal="<none>" descr="service DrkInv">
+				<Param name="string name" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RenderedThisFrame" func="yes">
+			<Overload retVal="BOOL" descr="service Object">
+				<Param name="object scr_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Replicator" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object RepObj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Reply" func="yes">
+			<Overload retVal="<none>" descr="class SqRootScript ; set message reply">
+				<Param name="cMultiParm value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReplyWithObj" func="yes">
+			<Overload retVal="<none>" descr="class SqRootScript ; set message reply to an ObjID">
+				<Param name="object value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Research" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ResearchConsume" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RespawnPlayer" func="yes">
+			<Overload retVal="BOOL" descr="service DarkGame [API 8+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Resume" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Resurrect" func="yes">
+			<Overload retVal="HRESULT" descr="service Damage">
+				<Param name="object victim" />
+				<Param name="object culprit = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Save" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 12+]">
+				<Param name="const char *name" />
+				<Param name="int which" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service ShockGame [API 12+]">
+				<Param name="const char *name" />
+				<Param name="int which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendMessage" func="yes">
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; send an immediate message">
+				<Param name="object to" />
+				<Param name="string sMessage" />
+				<Param name="cMultiParm data = null" />
+				<Param name="cMultiParm data2 = null" />
+				<Param name="cMultiParm data3 = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendToProxy" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+				<Param name="object toPlayer" />
+				<Param name="object obj" />
+				<Param name="string msg" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Set" func="yes">
+			<Overload retVal="HRESULT" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field" />
+				<Param name="cMultiParm val" />
+			</Overload>
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+				<Param name="int mode" />
+				<Param name="float min_brightness" />
+				<Param name="float max_brightness" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Quest">
+				<Param name="string name" />
+				<Param name="int value" />
+				<Param name="eQuestDataType type = kQuestDataMission" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetActive" func="yes">
+			<Overload retVal="HRESULT" descr="service PGroup">
+				<Param name="ObjID PGroupObjID" />
+				<Param name="BOOL active" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetArchetype" func="yes">
+			<Overload retVal="HRESULT" descr="service Object [API 12+]">
+				<Param name="object obj" />
+				<Param name="object arch" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetArrow" func="yes">
+			<Overload retVal="BOOL" descr="service Bow">
+				<Param name="object arrow" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetAutomapLocationVisited" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkGame [API 2+]">
+				<Param name="int page" />
+				<Param name="int location" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetBGM" func="yes">
+			<Overload retVal="HRESULT" descr="service CD">
+				<Param name="int track" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetBlocking" func="yes">
+			<Overload retVal="HRESULT" descr="service Door [API 2+]">
+				<Param name="object door_obj" />
+				<Param name="BOOL state" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetCursorBitmap" func="yes">
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="string name" />
+				<Param name="string path = &quot;iface\\&quot;" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetCustomFont" func="yes">
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="int index" />
+				<Param name="string name" />
+				<Param name="string path = &quot;fonts\\&quot;" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetData" func="yes">
+			<Overload retVal="cMultiParm" descr="class SqRootScript ; set persistent var">
+				<Param name="string sVarName" />
+				<Param name="cMultiParm value = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetEnvMapZone" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 4+]">
+				<Param name="int iZone" />
+				<Param name="string texture" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetExplored" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int maploc" />
+				<Param name="char val = 1" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetFaceVisage" func="yes">
+			<Overload retVal="<none>" descr="service AI [API 12+]">
+				<Param name="object who" />
+				<Param name="eFaceVisage visage" />
+				<Param name="uint priority = kFacePriorityMin" />
+				<Param name="int duration = kFaceDurationInfinite" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetFog" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int r" />
+				<Param name="int g" />
+				<Param name="int b" />
+				<Param name="float dist" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetFogZone" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int iZone" />
+				<Param name="int r" />
+				<Param name="int g" />
+				<Param name="int b" />
+				<Param name="float dist" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetFont" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int font_type" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetGravity" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics">
+				<Param name="object obj" />
+				<Param name="float gravity" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetIndexed" func="yes">
+			<Overload retVal="HRESULT" descr="service Property [API 12+]">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field" />
+				<Param name="uchar index" />
+				<Param name="cMultiParm val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetInterfaceMouseOverObject" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetKeyboardInputCapture" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="BOOL bCapture" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetLocal" func="yes">
+			<Overload retVal="HRESULT" descr="service Property [API 11+ for T1/G]">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field" />
+				<Param name="cMultiParm val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetLocalIndexed" func="yes">
+			<Overload retVal="HRESULT" descr="service Property [API 12+]">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="string field" />
+				<Param name="uchar index" />
+				<Param name="cMultiParm val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetLogTime" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int level" />
+				<Param name="int logtype" />
+				<Param name="int which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetMinimumAlert" func="yes">
+			<Overload retVal="<none>" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="eAIScriptAlertLevel level" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetMode" func="yes">
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+				<Param name="int mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetModify" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="int modlevel" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetName" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetNextMission" func="yes">
+			<Overload retVal="<none>" descr="service DarkGame [API 3+]">
+				<Param name="int mission" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetObjState" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="eObjState state" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetOneShotTimer" func="yes">
+			<Overload retVal="timer_handle" descr="class SqRootScript ; set a one-shot timer message on 'self'">
+				<Param name="string sTimerName" />
+				<Param name="float fPeriod" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+			<Overload retVal="timer_handle" descr="class SqRootScript ; set a one-shot timer message on object 'to'">
+				<Param name="ObjID to" />
+				<Param name="string sTimerName" />
+				<Param name="float fPeriod" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPeriodicTimer" func="yes">
+			<Overload retVal="timer_handle" descr="class SqRootScript ; set a periodic timer message on 'self'">
+				<Param name="string sTimerName" />
+				<Param name="float fPeriod" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+			<Overload retVal="timer_handle" descr="class SqRootScript ; set a periodic timer message on object 'to'">
+				<Param name="ObjID to" />
+				<Param name="string sTimerName" />
+				<Param name="float fPeriod" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPlayerPsiPoints" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int points" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPlayerVolume" func="yes">
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="float volume" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetProperty" func="yes">
+			<Overload retVal="BOOL" descr="class SqRootScript ; set indexed property value on 'self' [API 12+]">
+				<Param name="string sPropName" />
+				<Param name="string sFieldName" />
+				<Param name="uchar iIndex" />
+				<Param name="cMultiParm value" />
+			</Overload>
+			<Overload retVal="BOOL" descr="class SqRootScript ; set property value on 'self'">
+				<Param name="string sPropName" />
+				<Param name="string sFieldName" />
+				<Param name="cMultiParm value" />
+			</Overload>
+			<Overload retVal="BOOL" descr="class SqRootScript ; set simple property value on 'self'">
+				<Param name="string sPropName" />
+				<Param name="cMultiParm value" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetProxyOneShotTimer" func="yes">
+			<Overload retVal="timer_handle" descr="service Networking [API 1+]">
+				<Param name="object toObj" />
+				<Param name="string msg" />
+				<Param name="float time" />
+				<Param name="cMultiParm data = null" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetQBHacked" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string qbname" />
+				<Param name="int qbval" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetScriptFlags" func="yes">
+			<Overload retVal="<none>" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="int iFlags" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetSelectedPsiPower" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="int which" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetSimple" func="yes">
+			<Overload retVal="HRESULT" descr="service Property">
+				<Param name="object obj" />
+				<Param name="string prop" />
+				<Param name="cMultiParm val" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetSingleSensorContact" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="object source" />
+				<Param name="object sensor" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetTagBlock" func="yes">
+			<Overload retVal="HRESULT" descr="service Engine [API 12+]">
+				<Param name="string name" />
+				<Param name="string field" />
+				<Param name="string value" />
+				<Param name="eWhichVarFile which = eWhichVarFile.kMissionVar" />
+				<Param name="int index = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetTextColor" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int r" />
+				<Param name="int g" />
+				<Param name="int b" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int r" />
+				<Param name="int g" />
+				<Param name="int b" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetTextColorFromStyle" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int style_color" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetTrack" func="yes">
+			<Overload retVal="HRESULT" descr="service CD">
+				<Param name="int track" />
+				<Param name="uint flags" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetTransience" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+				<Param name="BOOL is_transient" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetVelocity" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics">
+				<Param name="object obj" />
+				<Param name="vector vel" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetWeaponModel" func="yes">
+			<Overload retVal="<none>" descr="service ShockWeapon">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetWeather" func="yes">
+			<Overload retVal="<none>" descr="service Engine [API 3+]">
+				<Param name="int precip_type" />
+				<Param name="float precip_freq" />
+				<Param name="float precip_speed" />
+				<Param name="flo" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShockAI" />
+		<KeyWord name="ShockGame" />
+		<KeyWord name="ShockObj" />
+		<KeyWord name="ShockOverlay" />
+		<KeyWord name="ShockPsi" />
+		<KeyWord name="ShockWeapon" />
+		<KeyWord name="ShutoffPsi" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Signal" func="yes">
+			<Overload retVal="<none>" descr="service AI">
+				<Param name="ObjID objIdAI" />
+				<Param name="string signal" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SimTime" func="yes">
+			<Overload retVal="int" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Slay" func="yes">
+			<Overload retVal="HRESULT" descr="service Damage">
+				<Param name="object victim" />
+				<Param name="object culprit" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SlayAllByName" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SongChange" func="yes">
+			<Overload retVal="<none>" descr="service Sound [API 12+]">
+				<Param name="string song" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SongSetTheme" func="yes">
+			<Overload retVal="<none>" descr="service Sound [API 12+]">
+				<Param name="string theme" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Sound" />
+		<KeyWord name="SqRootScript" />
+		<KeyWord name="StackAdd" func="yes">
+			<Overload retVal="HRESULT" descr="service Container [API 1+]">
+				<Param name="object src" />
+				<Param name="int quantity" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartAttack" func="yes">
+			<Overload retVal="HRESULT" descr="service Weapon">
+				<Param name="object owner" />
+				<Param name="object weapon" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Bow">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartConversation" func="yes">
+			<Overload retVal="BOOL" descr="service AI">
+				<Param name="ObjID conversationID" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartFadeIn" func="yes">
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="int time" />
+				<Param name="uchar red" />
+				<Param name="uchar green" />
+				<Param name="uchar blue" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartFadeOut" func="yes">
+			<Overload retVal="<none>" descr="service ShockGame">
+				<Param name="int time" />
+				<Param name="uchar red" />
+				<Param name="uchar green" />
+				<Param name="uchar blue" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartObjectDragDrop" func="yes">
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartPicking" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="object picker" />
+				<Param name="object pick_obj" />
+				<Param name="object locked_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StartUse" func="yes">
+			<Overload retVal="HRESULT" descr="service PlayerLimbs">
+				<Param name="object item" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StaticAttach" func="yes">
+			<Overload retVal="HRESULT" descr="service Camera">
+				<Param name="object attachee" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Stimulate" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact ['source' only available in T1/G with API 12+]">
+				<Param name="object who" />
+				<Param name="stimulus_kind what" />
+				<Param name="float how_much" />
+				<Param name="object source = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StopControlVelocity" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics [API 12+ for SS2 and T1/G]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Stun" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+				<Param name="string startTags" />
+				<Param name="string loopTags" />
+				<Param name="float sec" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+				<Param name="string startTags" />
+				<Param name="string loopTags" />
+				<Param name="float sec" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StyleColorKind" />
+		<KeyWord name="Subscribe" func="yes">
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeHierarchy" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="BOOL async = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeLink" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="linkkind kind" />
+				<Param name="eRelationListenMsg interests = eRelationListenMsg.kListenLinkModify|keRelationListenMsg.ListenLinkBirth|keRelationListenMsg.ListenLinkDeath" />
+				<Param name="BOOL async = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeMsg" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics">
+				<Param name="object phys_obj" />
+				<Param name="int message_types" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service Quest">
+				<Param name="object obj" />
+				<Param name="string name" />
+				<Param name="eQuestDataType type = kQuestDataUnknown" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeObject" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="BOOL dbmsgs = FALSE" />
+				<Param name="BOOL async = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeProperty" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="string propname" />
+				<Param name="ePropertyListenMsg interests = eRelationListenMsg.kListenPropModify|eRelationListenMsg.kListenPropSet|eRelationListenMsg.kListenPropUnset" />
+				<Param name="BOOL async = FALSE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SubscribeToStimulus" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="object obj" />
+				<Param name="stimulus_kind what" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Suspend" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TakeOver" func="yes">
+			<Overload retVal="HRESULT" descr="service Networking [API 1+]">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TargetScan" func="yes">
+			<Overload retVal="ObjID" descr="service ShockWeapon">
+				<Param name="object projectile" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TechTool" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Teleport" func="yes">
+			<Overload retVal="HRESULT" descr="service Object">
+				<Param name="object obj" />
+				<Param name="vector position" />
+				<Param name="vector facing" />
+				<Param name="object ref_frame = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TextMessage" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkUI">
+				<Param name="string message" />
+				<Param name="int color = 0" />
+				<Param name="int timeout = DEFAULT_TIMEOUT" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TextMessageFormatted" func="yes">
+			<Overload retVal="HRESULT" descr="service DarkUI [API 12+]">
+				<Param name="string message" />
+				<Param name="int color" />
+				<Param name="int timeout" />
+				<Param name="string font = null" />
+				<Param name="int xmargin = DEFAULT_MARGIN" />
+				<Param name="int ymargin = DEFAULT_MARGIN" />
+				<Param name="int align = kMsgAlignDefault" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TlucTextAdd" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string name" />
+				<Param name="string table" />
+				<Param name="int offset" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ToggleDoor" func="yes">
+			<Overload retVal="HRESULT" descr="service Door">
+				<Param name="object door_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ToggleLookCursor" func="yes">
+			<Overload retVal="<none>" descr="service ShockOverlay">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TreasureTable" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TriggerLog" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="int usetype" />
+				<Param name="int uselevel" />
+				<Param name="int which" />
+				<Param name="BOOL show_mfd" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TriggerWorldFlash" func="yes">
+			<Overload retVal="<none>" descr="service DrkPowerups">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TryToUseKey" func="yes">
+			<Overload retVal="BOOL" descr="service Key">
+				<Param name="object key_obj" />
+				<Param name="object lock_obj" />
+				<Param name="eKeyUse how" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TweqAllByName" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="string name" />
+				<Param name="BOOL state" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnEquip" func="yes">
+			<Overload retVal="HRESULT" descr="service PlayerLimbs">
+				<Param name="object item" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Weapon">
+				<Param name="object weapon" />
+			</Overload>
+			<Overload retVal="HRESULT" descr="service Bow">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnFreeze" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnReady" func="yes">
+			<Overload retVal="BOOL" descr="service PickLock">
+				<Param name="object picker" />
+				<Param name="object pick_obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnStun" func="yes">
+			<Overload retVal="BOOL" descr="service AI [API 11+]">
+				<Param name="object who" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockAI">
+				<Param name="object who" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Unsubscribe" func="yes">
+			<Overload retVal="<none>" descr="service Light">
+				<Param name="object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeHierarchy" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeLink" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="linkkind kind" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeMsg" func="yes">
+			<Overload retVal="HRESULT" descr="service Physics">
+				<Param name="object phys_obj" />
+				<Param name="int message_types" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service Quest">
+				<Param name="object obj" />
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeObject" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeProperty" func="yes">
+			<Overload retVal="HRESULT" descr="service Listener [API 12+]">
+				<Param name="const object watcher" />
+				<Param name="const object obj" />
+				<Param name="string propname" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UnsubscribeToStimulus" func="yes">
+			<Overload retVal="HRESULT" descr="service ActReact">
+				<Param name="object obj" />
+				<Param name="stimulus_kind what" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UpdateMovingTerrainVelocity" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="const object objID" />
+				<Param name="const object next_node" />
+				<Param name="float speed" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UpdateTOverlayAlpha" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int alpha" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int alpha" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UpdateTOverlayPosition" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int x" />
+				<Param name="int y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UpdateTOverlaySize" func="yes">
+			<Overload retVal="<none>" descr="service DarkOverlay">
+				<Param name="int handle" />
+				<Param name="int width" />
+				<Param name="int height" />
+			</Overload>
+			<Overload retVal="<none>" descr="service ShockOverlay">
+				<Param name="int handle" />
+				<Param name="int width" />
+				<Param name="int height" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="UseLog" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object LogObj" />
+				<Param name="BOOL PickedUpByMe" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ValidGun" func="yes">
+			<Overload retVal="BOOL" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ValidPos" func="yes">
+			<Overload retVal="BOOL" descr="service Physics [API 1+]">
+				<Param name="const object obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ValidateSpawn" func="yes">
+			<Overload retVal="<none>" descr="service ShockAI">
+				<Param name="object creature" />
+				<Param name="object spawnMarker" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="VaporizeInv" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Version" />
+		<KeyWord name="Weapon" />
+		<KeyWord name="WearArmor" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="WorldToCamera" func="yes">
+			<Overload retVal="vector" descr="service Camera [API 7+]">
+				<Param name="vector world_pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="WorldToObject" func="yes">
+			<Overload retVal="vector" descr="service Object [API 7+]">
+				<Param name="object obj" />
+				<Param name="vector world_pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="WorldToScreen" func="yes">
+			<Overload retVal="BOOL" descr="service DarkOverlay">
+				<Param name="vector pos" />
+				<Param name="int_ref x" />
+				<Param name="int_ref y" />
+			</Overload>
+			<Overload retVal="BOOL" descr="service ShockOverlay">
+				<Param name="vector pos" />
+				<Param name="int_ref x" />
+				<Param name="int_ref y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="YorN" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object BaseObj" />
+				<Param name="string s" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ZeroControls" func="yes">
+			<Overload retVal="HRESULT" descr="service ShockGame">
+				<Param name="object Obj" />
+				<Param name="BOOL poll" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="eAIAction" />
+		<KeyWord name="eAIActionPriority" />
+		<KeyWord name="eAIActionResult" />
+		<KeyWord name="eAIMode" />
+		<KeyWord name="eAIScriptAlertLevel" />
+		<KeyWord name="eAIScriptSpeed" />
+		<KeyWord name="eAITeam" />
+		<KeyWord name="eBodyAction" />
+		<KeyWord name="eContainsEvent" />
+		<KeyWord name="eDarkContainType" />
+		<KeyWord name="eDarkWeaponType" />
+		<KeyWord name="eDoorAction" />
+		<KeyWord name="eDoorStatus" />
+		<KeyWord name="eDrkInvCap" />
+		<KeyWord name="eDrkInvControl" />
+		<KeyWord name="eEcoState" />
+		<KeyWord name="eEnvSoundLoc" />
+		<KeyWord name="eFaceVisage" />
+		<KeyWord name="eFrobLoc" />
+		<KeyWord name="eGoalState" />
+		<KeyWord name="eHierarchyMsgKind" />
+		<KeyWord name="eImplant" />
+		<KeyWord name="eInventoryType" />
+		<KeyWord name="eKeyUse" />
+		<KeyWord name="eObjNotifyMsg" />
+		<KeyWord name="eObjState" />
+		<KeyWord name="eObjType" />
+		<KeyWord name="ePhysCollisionType" />
+		<KeyWord name="ePhysContactType" />
+		<KeyWord name="ePhysMessageResult" />
+		<KeyWord name="ePhysScriptMsgType" />
+		<KeyWord name="ePlayerEquip" />
+		<KeyWord name="ePlayerMode" />
+		<KeyWord name="ePropertyListenMsg" />
+		<KeyWord name="ePsiPowerType" />
+		<KeyWord name="ePsiPowers" />
+		<KeyWord name="eQuestDataType" />
+		<KeyWord name="eRelationListenMsg" />
+		<KeyWord name="eRoomChange" />
+		<KeyWord name="eScrMsgFlags" />
+		<KeyWord name="eScrTimedMsgKind" />
+		<KeyWord name="eSlayResult" />
+		<KeyWord name="eSoundNetwork" />
+		<KeyWord name="eSoundSpecial" />
+		<KeyWord name="eSpawnFlags" />
+		<KeyWord name="eStats" />
+		<KeyWord name="eTechSkills" />
+		<KeyWord name="eTrait" />
+		<KeyWord name="eTraitQueryType" />
+		<KeyWord name="eTweqDirection" />
+		<KeyWord name="eTweqDo" />
+		<KeyWord name="eTweqOperation" />
+		<KeyWord name="eTweqType" />
+		<KeyWord name="eWeaponSkills" />
+		<KeyWord name="eWhichInvObj" />
+		<KeyWord name="eWhichVarFile" />
+		<KeyWord name="float_ref" func="yes">
+			<Overload retVal="float_ref" descr="global ; construct a float_ref object">
+			</Overload>
+			<Overload retVal="float_ref" descr="global ; construct a float_ref object initialized to 'f'">
+				<Param name="float f" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="int_ref" func="yes">
+			<Overload retVal="int_ref" descr="global ; construct an int_ref object">
+			</Overload>
+			<Overload retVal="int_ref" descr="global ; construct an int_ref object initialized to 'i'">
+				<Param name="int i" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="linkkind" func="yes">
+			<Overload retVal="RelationID" descr="class SqRootScript ; returns a link flavor based on a link flavor/type name">
+				<Param name="string sLinkFlavorName" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="message" func="yes">
+			<Overload retVal="sScrMsg_or_derived" descr="class SqRootScript ; get current message">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="object" func="yes">
+			<Overload retVal="object" descr="global ; construct an 'object' object initialized to 0">
+			</Overload>
+			<Overload retVal="object" descr="global ; construct an 'object' object initialized to 'obj'">
+				<Param name="ObjID obj" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="sLink" func="yes">
+			<Overload retVal="sLink" descr="global ; construct an sLink object">
+			</Overload>
+			<Overload retVal="sLink" descr="global ; construct an sLink object initialized with the link 'lid'">
+				<Param name="LinkID lid" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="self" />
+		<KeyWord name="string" func="yes">
+			<Overload retVal="string" descr="global ; construct an empty string object">
+			</Overload>
+			<Overload retVal="string" descr="global ; construct a string object initialized to 's'">
+				<Param name="string s" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="userparams" func="yes">
+			<Overload retVal="sqtable" descr="class SqRootScript ; get squirrel table with parsed key/value pairs form &quot;Design Note&quot; property">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="vector" func="yes">
+			<Overload retVal="vector" descr="global ; construct a vector object initialized to 0">
+			</Overload>
+			<Overload retVal="vector" descr="global ; construct a vector object initialized to 'f'">
+				<Param name="float f" />
+			</Overload>
+			<Overload retVal="vector" descr="global ; construct a vector object initialized to X,Y,Z">
+				<Param name="float X" />
+				<Param name="float Y" />
+				<Param name="float Z" />
+			</Overload>
+		</KeyWord>
+	</AutoComplete>
+</NotepadPlus>

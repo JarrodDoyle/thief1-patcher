@@ -1,0 +1,335 @@
+The type of class returned by the function "message()", that can be called in message handlers to access
+the current message, depends on the message. Here is a listing of all the different message classes.
+Each message class has a list for which messages it's relevant. The generic message class "sScrMsg" is
+used for all other messages that aren't listed here.
+
+// generic message and base class for all specialized message types
+// (specialized messages have additional message data specific to that message type)
+class sScrMsg
+{
+	const ObjID from;
+	const ObjID to;
+	const string message;
+	const uint time;
+	const int flags;
+	const cMultiParm data;
+	const cMultiParm data2;
+	const cMultiParm data3;
+}
+
+
+// ----------------------------------------------------------------
+// COMMON SPECIALIZED MESSSAGES
+// ----------------------------------------------------------------
+
+// Messages: "Timer"
+class sScrTimerMsg extends sScrMsg
+{
+   const string name;
+}
+
+// Messages: "TweqComplete"
+class sTweqMsg extends sScrMsg
+{
+   const eTweqType Type;
+   const eTweqOperation Op;
+   const eTweqDirection Dir;
+}
+
+// Messages: "SoundDone"
+class sSoundDoneMsg extends sScrMsg
+{
+   const vector coordinates;
+   const ObjID targetObject;
+   const string name;
+}
+
+// Messages: "SchemaDone"
+class sSchemaDoneMsg extends sScrMsg
+{
+   const vector coordinates;
+   const ObjID targetObject;
+   const string name;
+}
+
+// Messages: "Sim"
+class sSimMsg extends sScrMsg
+{
+   const BOOL starting;
+}
+
+// Messages: "ObjRoomTransit", "PlayerRoomEnter", "PlayerRoomExit", "RemotePlayerRoomEnter", "RemotePlayerRoomExit",
+//           "CreatureRoomEnter", "CreatureRoomExit", "ObjectRoomEnter", "ObjectRoomExit"
+class sRoomMsg extends sScrMsg
+{
+   const ObjID FromObjId;
+   const ObjID ToObjId;
+   const ObjID MoveObjId;
+   const eObjType ObjType;
+   const eRoomChange TransitionType;
+}
+
+// Messages: "QuestChange"
+class sQuestMsg extends sScrMsg
+{
+   const string m_pName;
+   const int m_oldValue;
+   const int m_newValue;
+}
+
+// Messages: "MovingTerrainWaypoint"
+class sMovingTerrainMsg extends sScrMsg
+{
+   const ObjID waypoint;
+}
+
+// Messages: "WaypointReached"
+class sWaypointMsg extends sScrMsg
+{
+   const ObjID moving_terrain;
+}
+
+// Messages: "MediumTransition"
+class sMediumTransMsg extends sScrMsg
+{
+   const int nFromType;
+   const int nToType;
+}
+
+// Messages: "FrobToolBegin", "FrobToolEnd", "FrobWorldBegin", "FrobWorldEnd", "FrobInvBegin", "FrobInvEnd"
+class sFrobMsg extends sScrMsg
+{
+	const ObjID SrcObjId;
+	const ObjID DstObjId;
+	const ObjID Frobber;
+	const eFrobLoc SrcLoc;
+	const eFrobLoc DstLoc;
+	const float Sec;
+	const BOOL Abort;
+}
+
+// Messages: "DoorOpen", "DoorClose", "DoorOpening", "DoorClosing", "DoorHalt"
+class sDoorMsg extends sScrMsg
+{
+   const eDoorAction ActionType;
+   const eDoorAction PrevActionType;
+   const BOOL isProxy;
+}
+
+// Messages: "Difficulty"
+class sDiffScrMsg extends sScrMsg
+{
+   const int difficulty;
+} 
+
+// Messages: "Damage"
+class sDamageScrMsg  extends sScrMsg
+{
+   const int kind;
+   const int damage;
+   const ObjID culprit;
+} 
+
+// Messages: "Slain"
+class sSlayMsg extends sScrMsg
+{
+   const ObjID culprit;
+   const int kind;
+}
+
+// Messages: "Container"
+class sContainerScrMsg extends sScrMsg
+{
+   const eContainsEvent event;
+   const ObjID containee;
+} 
+
+// Messages: "Contained"
+class sContainedScrMsg extends sScrMsg
+{
+   const eContainsEvent event;
+   const ObjID container;
+} 
+
+// Messages: "Combine"
+class sCombineScrMsg extends sScrMsg
+{
+   const ObjID combiner;
+} 
+
+// Messages: "ContainSimActivate", "ContainAdd", "ContainRemove", "ContainCombine"
+class sContainMsg extends sScrMsg
+{
+   const ObjID container;
+   const ObjID containee;
+}
+
+// Messages: "MotionStart", "MotionEnd", "MotionFlagReached"
+class sBodyMsg extends sScrMsg
+{
+   const eBodyAction ActionType;
+   const string MotionName;
+   const int FlagValue;
+}
+
+// Messages: "StartWindup", "StartAttack", "EndAttack"
+class sAttackMsg extends sScrMsg
+{
+   const ObjID weapon;
+}
+
+// Messages: "SignalAI"
+class sAISignalMsg extends sScrMsg
+{
+	const string signal;
+}
+
+// Messages: "PatrolPoint"
+class sAIPatrolPointMsg extends sScrMsg
+{
+   const ObjID patrolObj;
+}
+
+// Messages: "Alertness"
+class sAIAlertnessMsg extends sScrMsg
+{
+	const eAIScriptAlertLevel level;
+	const eAIScriptAlertLevel oldLevel;
+}
+
+// Messages: "HighAlert"
+class sAIHighAlertMsg extends sScrMsg
+{
+	const eAIScriptAlertLevel level;
+	const eAIScriptAlertLevel oldLevel;
+}
+
+// Messages: "AIModeChange"
+class sAIModeChangeMsg extends sScrMsg
+{
+	const eAIMode mode;
+	const eAIMode previous_mode;
+}
+
+// Messages: "ObjActResult"
+class sAIObjActResultMsg extends sScrMsg
+{
+	const eAIAction action;
+	const eAIActionResult result;
+	const cMultiParm actdata;
+	const ObjID target;
+}
+
+// Messages: "PhysFellAsleep", "PhysWokeUp", "PhysMadePhysical", "PhysMadeNonPhysical", "PhysCollision",
+//           "PhysContactCreate", "PhysContactDestroy", "PhysEnter", "PhysExit"
+class sPhysMsg extends sScrMsg
+{
+   const int Submod;
+   const ePhysCollisionType collType;
+   const ObjID collObj;
+   const int collSubmod;
+   const float collMomentum;
+   const vector collNormal;
+   const vector collPt;
+   const ePhysContactType contactType;
+   const ObjID contactObj;
+   const int contactSubmod;
+   const ObjID transObj;
+   const int transSubmod;
+}
+
+// Messages: stim message names are the stim name with "Stimulus" appended, "<stim_name>Stimulus",
+//           for example for a stim named "Fire" the message name would be "FireStimulus"
+//
+// Note: Because message handlers are declared as regular squirrel functions whose names have to be valid identifiers,
+//       you want to stim names to only contain alpha numeric characters and underscore. Otherwise you have to replace
+//       illegal characters with underscore in the function name or handle them through the generic OnMessage() handler
+//       which is less efficient and messier.
+class sStimMsg extends sScrMsg
+{
+   const StimID stimulus;
+   const float intensity;
+   const StimSensorID sensor;
+   const StimSourceID source;
+}
+
+// Messages: "ReportMessage"
+class sReportMsg extends sScrMsg
+{
+   const int WarnLevel;
+   const int Flags;
+   const int Types;
+   const string TextBuffer;
+
+   SetTextBuffer(string s);
+}
+
+// Messages: "PropNotify"
+class sPropNotifyMsg extends sScrMsg
+{
+   const ePropertyListenMsg type;
+   const string propname;
+   const ObjID obj;
+   const ObjID donor;
+}
+
+// Messages: "ObjNotify"
+class sObjNotifyMsg extends sScrMsg
+{
+   const eObjNotifyMsg type;
+   const ObjID obj;
+}
+
+// Messages: "LinkNotify"
+class sLinkNotifyMsg extends sScrMsg
+{
+   const eRelationListenMsg type;
+   const LinkID id;
+   const ObjID source;
+   const ObjID dest;
+   RelationID flavor;
+}
+
+// Messages: "TraitNotify"
+class sTraitNotifyMsg extends sScrMsg
+{
+   const eHierarchyMsgKind type;
+   const ObjID obj;
+   const ObjID donor;
+}
+
+
+// ----------------------------------------------------------------
+// THIEF SPECIALIZED MESSSAGES
+// ----------------------------------------------------------------
+
+// Messages: "DarkGameModeChange"
+class sDarkGameModeScrMsg extends sScrMsg
+{
+   const BOOL resuming;
+   const BOOL suspending;
+}
+
+// Messages: "PickStateChange"
+class sPickStateScrMsg extends sScrMsg
+{
+   const int prevstate;
+   const int currentstate;
+}
+
+
+// ----------------------------------------------------------------
+// SS2 SPECIALIZED MESSSAGES
+// ----------------------------------------------------------------
+
+// Messages: "YorNDone"
+class sYorNMsg extends sScrMsg
+{
+   const bool yes;
+}
+
+// Messages: "KeypadDone"
+class sKeypadMsg extends sScrMsg
+{
+   const int code;
+}

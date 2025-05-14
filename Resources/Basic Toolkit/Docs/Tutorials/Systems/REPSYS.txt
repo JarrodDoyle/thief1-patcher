@@ -1,0 +1,90 @@
+Report System
+-------------
+
+HIGH CONCEPT
+
+The report system provides a set of tools for (hopefully) easily and
+efficiently generating informational reports about the level for use by
+designers and programmers, both to diagnose problems and to understand
+what is currently in a mission.
+
+The basic idea is that various systems which have reporting to do register
+callbacks with the report manager, specifying which type of reporting the
+function does.  Thus, the report system itself does no actual reporting,
+per se, and instead serves to get from the user the parameters desired,
+and then call out to all registered report callbacks as appropriate.
+
+The user chooses what types of reports they want to run, at what warning
+level they wish to do so, and where they want the output.  Once this is
+done, the report system grinds through and does the stuff.
+
+THE PARAMETERS
+
+Currently, there are 8 types of report function one can register as when
+adding yourself in.  The first, kReportHeader, is for overall data about
+the level (name, size, which designer last saved it, that sort of thing). 
+Next, kReportPerObj, will be called back with every ObjID.  Next,
+kReportAllObj, is the most common.  AllObj means "call me once and I'll go
+through all obj's myself and deal".  This is most prevalent since most
+report functions will probably be property (or groups of properties)
+based, and thus will just want to get told "hey, go deal" and then iterate
+across their own properties themselves.  
+
+Next, there are a bunch of more special case ones.  kReportWorldDB is for
+renderer/world db stuff, kReportRoom is for the RoomDB, and kReportAIPath
+is for, as you might guess, the AIPath DB.  kReportScript will go through
+sending OnReport messages to all scripts on objects.  kReportDebug is for
+internal usage, but could be used for things which dump things involving
+current limits, or memory consumption, or other stats.
+
+While currently WarnLevel, as set by the user when asking for the report,
+is an int, i suggest we use the defines in report.h, and maybe just make
+it an enum or something.  The defines are commented in the header, but
+basically there are 4 levels.  Errors, meaning only tell me about problems
+i better fix, Warnings, meaning tell me of things that look suspicous,
+Info, which includes summaries like "there are X keys of type Y" sorts of
+things, and DumpAll, which means spew as much info as you can possibly
+conceive of.
+
+SO YOU WANT YOUR SYSTEM TO DO REPORTS
+
+This is basically very straightforward.  First, you want to declare a
+callback, matching either the ReportObjCallback or the ReportGenCallback
+typedef from report.h, depending on whether you are a PerObj, or any other
+type.  Then, you want to write some code to do in it.  You probably want
+to start by checking WarnLevel.  You get passed (..., void *data, char
+*buffer) as part of the callback.  "data" is what you passed in to the
+report register function, just handed back to you.  "buffer" is the string
+buffer you should fill (sprintf) with your report info.  This buffer will
+be put to screen, file, mono, etc. by the report system later.  Currently
+it is a Malloc'd 256k block, so if you need more text than that, come ask
+for help in understanding how big 256k of text really is.
+
+One somewhat icky part here is the issue of hotregion, hilight, and
+selection based reports.  In the report control structure, the user can
+ask for, say, only Concretes in the current Hilight, or AllObj's in the
+current active HotRegion set, or something.  If you are in a non-PerObj
+callback (ie. an AllObj) and want to do Obj things, you will probably be
+iterating across your own properties.  Thus, you may want to call
+"ReportCheckObjActive(o)" for obj's you plan to talk about, if you are
+that sort of thing, and not do so for things deemed inactive by the report
+controller.
+
+Now, you have your splufty callback, you are ready.  At your Init or
+Startup, make sure you call ReportRegisterXXXCallback, where XXX is Gen or
+Obj, depending on what sort of Report thing you are.  It takes the
+callback, the type of callback it is, and a void *data it will passback to
+you in the run.  Note there are unregisterXXXCallback calls as well, if
+you want them.
+
+You probably want to ifdef REPORT the callback itself, or put it in its
+own ifdef REPORT'd file, or something.  However, to make things a bit
+easier, the ReportRegisterXXXCallback stuff is #def'd out to nothing in
+non-REPORT builds, so you can just stick it in your Init function and all
+will be well.
+
+THAT IS PRETTY MUCH IT
+
+See header.
+
+

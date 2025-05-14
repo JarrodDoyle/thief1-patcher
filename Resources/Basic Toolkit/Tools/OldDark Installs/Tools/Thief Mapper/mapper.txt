@@ -1,0 +1,11 @@
+These are the tools we use to make automaps in thief. Here's the basic process 
+
+1) make a file P001ra.pcx that is the automap page one with *all* the annotations 
+2) Draw bounding boxes around the annotations in color 254 
+3) From a DOS box, run "cutout p001ra.pcx" to generate the p001rXXX.pcx files 
+4) Run "makerect p001ra.pcx" to generate the p001ra.bin file 
+
+If you have annotations that overlap, you can spread them over multiple files, just feed all the files into both tools on the command line in the same order (e.g. "makerect p001ra.pcx p001rb.pcx" etc). 
+
+If you have problems getting these to work, let me know. Though, like all of dromed, they are unsupported. - MAHK (mahk@lglass.com)
+
