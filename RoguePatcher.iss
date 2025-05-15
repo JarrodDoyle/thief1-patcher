@@ -64,30 +64,6 @@ WelcomeLabel1=Welcome to the {#Name} Wizard
 WelcomeLabel2=This will install the latest NewDark patch for Thief: The Dark Project and Thief: Gold. A full installation of either game is required and a fresh unmodded install is assumed.%n%nThis patcher keeps the game as close to vanilla as possible and attempts to ensure maximum compatibility with fan mission projects.%n%nNote: Many changes made by this installer are irreversible. It is recommended you backup your game before continuing with the installation.
 
 [Code]
-procedure UpdateTasksList();
-begin
-  WizardForm.TasksList.ItemEnabled[0] := False;
-
-  // if WizardIsTaskSelected('dromed') then
-  //   begin
-  //     WizardForm.TasksList.ItemEnabled[3] := True;
-  //     WizardForm.TasksList.ItemEnabled[4] := True;
-  //   end
-  // else
-  //   begin
-  //     WizardSelectTasks('!toolkit, !dromedhw');
-  //     WizardForm.TasksList.ItemEnabled[3] := False;
-  //     WizardForm.TasksList.ItemEnabled[4] := False;
-  //   end
-end;
-
-
-procedure TasksClickCheck(Sender: TObject);
-begin
-  UpdateTasksList();
-end;
-
-
 procedure EditConfigLine(File, TargetLine, NewLine: String);
 var
   LineIndex: Integer;
@@ -170,12 +146,7 @@ begin
       EditConfigLine('cam_ext.cfg', 'd3d_disp_limit_gpu_frames 1', ';d3d_disp_limit_gpu_frames 1');
       EditConfigLine('cam_ext.cfg', ';d3d_disp_limit_gpu_frames 1 1', 'd3d_disp_limit_gpu_frames 1 1');
     end;
-end;
 
-procedure CurPageChanged(CurPageID: Integer);
-begin
-  if CurPageID = wpSelectTasks then 
-    UpdateTasksList();
 end;
 
 function NextButtonClick(PageId: Integer): Boolean;
@@ -186,9 +157,4 @@ begin
     Result := False;
     exit;
   end;
-end;
-
-procedure InitializeWizard();
-begin
-  WizardForm.TasksList.OnClickCheck := @TasksClickCheck;
 end;
