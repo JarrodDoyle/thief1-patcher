@@ -34,27 +34,23 @@ Name: "dromed"; Description: "DromEd";
 Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit";
 Name: "multiplayer"; Description: "Multiplayer";
 
-; [Tasks]
-; Name: "newdark"; Description: "Install NewDark 1.28";
+[Tasks]
+Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
 
-;Name: "dromed"; Description: "Install DromEd"; GroupDescription: "Level Editor:"; Flags: unchecked
-;Name: "toolkit"; Description: "Install the Basic Toolkit"; GroupDescription: "Level Editor:"; Flags: unchecked
-;Name: "dromedhw"; Description: "Enable hardware rendering"; GroupDescription: "Level Editor:"; Flags: unchecked
-
-;Name: "fpsfix"; Description: "High refresh rate physics corrections"; GroupDescription: "Fixes/Corrections:"; Flags: unchecked
-;Name: "stutterfix"; Description: "Micro stutter/mouse lag fix (Not recommended on CrossFire/SLI setups)"; GroupDescription: "Fixes/Corrections:"; Flags: unchecked
-
-;Name: "newmantle"; Description: "Enable NewDark mantling (HIGHLY RECOMMENDED)"; GroupDescription: "Config Edits:";
-;Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "Config Edits:";
-;Name: "texfilter"; Description: "Disable texture filtering"; GroupDescription: "Config Edits:"; Flags: unchecked
-;Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Config Edits:"; Flags: unchecked
+Name: "newmantle"; Description: "Enable NewDark mantling"; GroupDescription: "General Tweaks:";
+Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "General Tweaks:";
+Name: "fpsfix"; Description: "Fix physics issues at high framerates"; GroupDescription: "General Tweaks:";
+Name: "stutterfix"; Description: "Reduce micro stutter and mouse lag (Not recommended on CrossFire/SLI setups)"; GroupDescription: "General Tweaks:";
+Name: "smallportal"; Description: "Reduce camera jolt near complex geometry and doorways"; GroupDescription: "General Tweaks:";
+Name: "texfilter"; Description: "Disable texture filtering for a retro look"; GroupDescription: "General Tweaks:"; Flags: unchecked
+Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "General Tweaks:"; Flags: unchecked
 
 [Files]
 Source: "Resources\NewDark\*"; DestDir: "{app}"; Components: newdark; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\DromEd\*"; DestDir: "{app}"; Components: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
+Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -131,14 +127,9 @@ begin
     EditConfigLine('cam_ext.cfg', ';new_mantle', 'new_mantle');
   if IsTaskSelected('fmsel') then
     EditConfigLine('cam_mod.ini', ';fm', 'fm');
-  if IsTaskSelected('texfilter') then
-    EditConfigLine('cam_ext.cfg', 'tex_filter_mode 16', 'tex_filter_mode 0');
-  if IsTaskSelected('windowed') then
-    EditConfigLine('cam_ext.cfg', ';force_windowed', 'force_windowed');
-
   if IsTaskSelected('fpsfix') then
     begin
-      EditConfigLine('cam_ext.cfg', 'framerate_cap 100.0', 'framerate_cap 200.0');
+      EditConfigLine('cam_ext.cfg', 'framerate_cap 100.0', 'framerate_cap 240.0');
       EditConfigLine('cam_ext.cfg', ';phys_freq 60', 'phys_freq 60');
     end;
   if IsTaskSelected('stutterfix') then
@@ -146,6 +137,12 @@ begin
       EditConfigLine('cam_ext.cfg', 'd3d_disp_limit_gpu_frames 1', ';d3d_disp_limit_gpu_frames 1');
       EditConfigLine('cam_ext.cfg', ';d3d_disp_limit_gpu_frames 1 1', 'd3d_disp_limit_gpu_frames 1 1');
     end;
+  if IsTaskSelected('smallportal') then
+    EditConfigLine('cam_ext.cfg', ';small_portal_repel', 'small_portal_repel');
+  if IsTaskSelected('texfilter') then
+    EditConfigLine('cam_ext.cfg', 'tex_filter_mode 16', 'tex_filter_mode 0');
+  if IsTaskSelected('windowed') then
+    EditConfigLine('cam_ext.cfg', ';force_windowed', 'force_windowed');
 
 end;
 
