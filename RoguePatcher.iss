@@ -116,32 +116,32 @@ begin
   EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'script_module_path'), 'script_module_path .\');
   EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'movie_path'), 'movie_path .\MOVIES');
 
-  if IsTaskSelected('dromedhw') then
+  if WizardIsTaskSelected('dromedhw') then
     begin
       EditConfigLine('DromEd.cfg', 'edit_screen_depth 16', ';edit_screen_depth 16');
       EditConfigLine('DromEd.cfg', ';editor_disable_gdi', 'editor_disable_gdi');
       EditConfigLine('DromEd.cfg', ';edit_screen_depth 32', 'edit_screen_depth 32');
     end;
 
-  if IsTaskSelected('newmantle') then
+  if WizardIsTaskSelected('newmantle') then
     EditConfigLine('cam_ext.cfg', ';new_mantle', 'new_mantle');
-  if IsTaskSelected('fmsel') then
+  if WizardIsTaskSelected('fmsel') then
     EditConfigLine('cam_mod.ini', ';fm', 'fm');
-  if IsTaskSelected('fpsfix') then
+  if WizardIsTaskSelected('fpsfix') then
     begin
       EditConfigLine('cam_ext.cfg', 'framerate_cap 100.0', 'framerate_cap 240.0');
       EditConfigLine('cam_ext.cfg', ';phys_freq 60', 'phys_freq 60');
     end;
-  if IsTaskSelected('stutterfix') then
+  if WizardIsTaskSelected('stutterfix') then
     begin
       EditConfigLine('cam_ext.cfg', 'd3d_disp_limit_gpu_frames 1', ';d3d_disp_limit_gpu_frames 1');
       EditConfigLine('cam_ext.cfg', ';d3d_disp_limit_gpu_frames 1 1', 'd3d_disp_limit_gpu_frames 1 1');
     end;
-  if IsTaskSelected('smallportal') then
+  if WizardIsTaskSelected('smallportal') then
     EditConfigLine('cam_ext.cfg', ';small_portal_repel', 'small_portal_repel');
-  if IsTaskSelected('texfilter') then
+  if WizardIsTaskSelected('texfilter') then
     EditConfigLine('cam_ext.cfg', 'tex_filter_mode 16', 'tex_filter_mode 0');
-  if IsTaskSelected('windowed') then
+  if WizardIsTaskSelected('windowed') then
     EditConfigLine('cam_ext.cfg', ';force_windowed', 'force_windowed');
 
 end;
