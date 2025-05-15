@@ -32,7 +32,7 @@ Name: "custom"; Description: "Custom"; Flags: iscustom
 Name: "newdark"; Description: "NewDark"; Types: custom; Flags: fixed;
 Name: "dromed"; Description: "DromEd"; 
 Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit";
-Name: "multiplayer"; Description: "Multiplayer";
+Name: "multiplayer"; Description: "Multiplayer (Experimental)";
 
 [Tasks]
 Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
