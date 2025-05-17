@@ -36,6 +36,7 @@ Name: "multiplayer"; Description: "Multiplayer (Experimental)";
 Name: "dmm"; Description: "Dark Mod Manager";
 Name: "mods"; Description: "Mods";
 Name: "mods\fmdml"; Description: "Fan Mission DML fixes";
+Name: "mods\am16sfixed"; Description: "AM16's Bugfixed Original Missions";
 
 [Tasks]
 Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
@@ -55,6 +56,7 @@ Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolki
 Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\DMM\*"; DestDir: {app}; Components: dmm; Flags: ignoreversion
 Source: "Resources\Mods\TGFMDML\*"; DestDir: "{app}\MODS\TGFMDML"; Components: mods\fmdml; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\Mods\AM16s Thief1 Fixed\*"; DestDir: "{app}\MODS\AM16s Thief1 Fixed"; Components: mods\am16sfixed; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Languages]
@@ -163,6 +165,8 @@ begin
       Mods := '';
       if WizardIsComponentSelected('mods\fmdml') then
         AddPath(Mods, '.\MODS\TGFMDML');
+      if WizardIsComponentSelected('mods\am16sfixed') then
+        AddPath(Mods, '.\MODS\AM16s Thief1 Fixed');
 
       if (Length(Mods) <> 0) then
         EditConfigLine('cam_mod.ini', ';mod_path MyBowMod+.\TexturePack', 'mod_path ' + Mods);
