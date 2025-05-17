@@ -33,6 +33,7 @@ Name: "newdark"; Description: "NewDark"; Types: custom; Flags: fixed;
 Name: "dromed"; Description: "DromEd"; 
 Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit";
 Name: "multiplayer"; Description: "Multiplayer (Experimental)";
+Name: "dmm"; Description: "Dark Mod Manager";
 
 [Tasks]
 Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
@@ -50,6 +51,7 @@ Source: "Resources\NewDark\*"; DestDir: "{app}"; Components: newdark; Flags: ign
 Source: "Resources\DromEd\*"; DestDir: "{app}"; Components: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\DMM\*"; DestDir: {app}; Components: dmm; Flags: ignoreversion
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Languages]
