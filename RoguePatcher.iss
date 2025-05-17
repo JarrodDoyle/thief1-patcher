@@ -1,5 +1,5 @@
 #define Name "RoguePatcher"
-#define Version "1.28.0"
+#define Version "1.28.1"
 #define Publisher "Jarrod Doyle"
 #define URL "https://jayrude.dev/"
 
