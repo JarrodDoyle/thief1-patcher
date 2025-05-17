@@ -1,0 +1,29 @@
+DML1
+//T1 FM: The Mages Area by Pershin Sergey V. (mad god) / Fixes: miss22.mis.dml
+
+FINGERPRINT
+{
+	70 [-6 45 38]
+	78 [30 3 40]
+	66 [-51 -77 -59]
+	475 [-233 20 4]
+	365 [-142 112 -54]
+	698 [-325 -40 4]
+	1211 [-271 19 -47]
+	693 [-311 -32 2]
+	QVAR "goal_target_1" == 830
+}
+
+// fix trap door getting stuck and not opening in NewDark by giving the door enough push force
+// so the player object doesn't mess with it while opening
+ObjProp 138 "RotDoor"
+{
+	"Push Mass" 300.0000
+}
+//lets open the double door once the player completes the word puzzle
++Link 401 370 "ControlDevice"
+{
+}
++Link 401 398 "ControlDevice"
+{
+}

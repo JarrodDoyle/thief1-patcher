@@ -1,0 +1,85 @@
+DML1
+//T1 FM: Bloodflowers by Peter Parrish (Paz) / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	30 [13 17 1]
+	44 [3 -29 5]
+	127 [-56 -7 -5]
+	100 [-10 12 -6]
+	70 [8 1 -7]
+	107 [-56 -4 -5]
+	6 [3 -27 -4]
+	52 [11 52 6]
+	QVAR "goal_target_0" == 143
+}
+
+//goals
+ObjProp 95 "Scripts"
+{
+	"Don't Inherit" false
+}
++ObjProp 101 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 101 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 101 "TrapQVar"
+{
+	"" =1:goal_final_3
+}
++ObjProp 102 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 102 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 102 "TrapQVar"
+{
+	"" =1:goal_irreversible_3
+}
+
+//quest items
++ObjProp 107 "NoDrop"
+{
+	"" true
+}
++ObjProp 143 "FrobInfo"
+{
+	"World Action" Move
+}
++ObjProp 143 "NoDrop"
+{
+	"" true
+}
+
+//doors
++Receptron 7 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Link 8 9 "ScriptParams"
+{
+	"" Double
+}
+
+//footlockers
++ObjProp 98 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 99 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 100 "JointPos"
+{
+	"Joint 1" 90.00
+}

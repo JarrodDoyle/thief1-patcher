@@ -1,0 +1,69 @@
+DML1
+//T1 FM: Amida by JIS / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	257 [-101 76 -36]
+	135 [2 -8 -1]
+	105 [18 24 0]
+	175 [-45 16 -9]
+	346 [-81 11 -25]
+	33 [30 3 -4]
+	59 [-29 -6 -5]
+	326 [-49 -23 -31]
+	QVAR "goal_target_2" == 185
+}
+
+//the house key has two key scripts due to inheritance, not allowed under NewDark
+ObjProp 355 "Scripts"
+{
+	"Don't Inherit" True
+}
+//set goals 2, 3, 4 to complete once 185, 201 and 197 are slain
++ObjProp 381 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 381 "TrapQVar"
+{
+	"" =1:goal_state_2
+}
++ObjProp 185 "Scripts"
+{
+	"Script 0" TrigSlain
+}
++Link 185 381 "ControlDevice"
+{
+}
+
++ObjProp 70 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 70 "TrapQVar"
+{
+	"" =1:goal_state_3
+}
++ObjProp 201 "Scripts"
+{
+	"Script 0" TrigSlain
+}
++Link 201 70 "ControlDevice"
+{
+}
+
++ObjProp 4 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 4 "TrapQVar"
+{
+	"" =1:goal_state_4
+}
++ObjProp 197 "Scripts"
+{
+	"Script 0" TrigSlain
+}
++Link 197 4 "ControlDevice"
+{
+}

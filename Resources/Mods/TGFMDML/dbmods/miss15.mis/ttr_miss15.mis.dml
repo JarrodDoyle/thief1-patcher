@@ -1,0 +1,76 @@
+DML1
+//T1 FM: The Trickster's Return by Sneaky Shadow / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	275 [46 267 -39]
+	1082 [28 275 19]
+	201 [3 193 9]
+	741 [5 277 0]
+	927 [-26 324 16]
+	361 [24 63 -34]
+	447 [97 -4 -30]
+	506 [97 3 -36]
+	QVAR "goal_target_0" == 292
+}
+
+#script "nvscript"
+
+//goal
+Create -36
+{
+	+ObjProp "DesignNote"
+	{
+		"" NVTrapSetQVarOn="Sim"; NVTrapSetQVarOff="Null"
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" NVTrapSetQVar
+	}
+	+ObjProp "TrapQVar"
+	{
+		"" =1:goal_final_7
+	}
+}
+
+//doors
++ObjProp 700 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 1208 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 381 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 371 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 376 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 410 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 551 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 526 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 171 "FrobInfo"
+{
+    "World Action" Ignore
+}
++ObjProp 552 "FrobInfo"
+{
+    "World Action" Ignore
+}

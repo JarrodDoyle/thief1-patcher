@@ -1,0 +1,555 @@
+DML1
+//TG FM: Skull of Lysander by Phillip McReynolds / Fixes: miss41.mis.dml
+
+FINGERPRINT
+{
+	106 [49 -11 -15]
+	62 [59 19 -10]
+	82 [13 1 -21]
+	91 [12 -44 -26]
+	314 [-16 -52 -26]
+	61 [59 19 -10]
+	131 [27 -71 -24]
+	311 [3 -74 -23]
+	QVAR "goal_target_2" == 61
+}
+
+#script "nvscript"
+
+//starting point
+ObjProp 72 "Position"
+{
+	"Location" -4, 0, -5
+}
+
+//final goal (expert)
++ObjProp 47 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 47 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 47 "TrapQVar"
+{
+	"" =1:goal_irreversible_2
+}
++ObjProp 48 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 48 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 48 "TrapQVar"
+{
+	"" =420:goal_target_2
+}
+
+//quest items
++Receptron 248 "Stench"
+{
+	Max None
+
+	Target 384
+	Agent Me
+
+	Effect "clone_props"
+}
+++Receptron 248 "Stench"
+{
+	Max None
+
+	Target Me
+
+	Effect "set_model"
+	{
+		"Model Name" skull
+	}
+}
+++Receptron 248 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent Me
+
+	Effect "move_obj"
+	{
+		"Heading" 180
+	}
+}
+++Receptron 248 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent -1629
+
+	Effect "add_prop"
+	{
+		"Prop Name" FrobInfo
+	}
+}
+++Receptron 248 "Stench"
+{
+	Max None
+
+	Effect "SetQvar"
+	{
+		"Quest Variable" goal_state_0
+		"Operation" Set To
+		"Operand" 1
+	}
+}
++ObjProp 248 "FrobInfo"
+{
+	"World Action" Default
+}
++ObjProp 248 "GameName"
+{
+	"" Name_sob: "Skull of Broca"
+}
++ObjProp 248 "ExtraLight"
+{
+	"Amount (-1..1)" 0.50
+	"Additive?" true
+}
++ObjProp 248 "ModelName"
+{
+	"" gskull
+}
++StimSource 384 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 384 "FrobInfo"
+{
+	"Tool Action" Script
+}
++ObjProp 384 "NoDrop"
+{
+	"" true
+}
++ObjProp 384 "InvType"
+{
+	"" Item
+}
++ObjProp 417 "DiffDestroy"
+{
+	"quest var values" 0
+}
++ObjProp 417 "NoDrop"
+{
+	"" true
+}
++ObjProp 417 "GameName"
+{
+	"" Name_plans: "Lysander's Plans"
+}
+
+//doors
+Create -147 "SD1"
+{
+	+ObjProp "TransDoor"
+	{
+		"Open Position" 4.00
+		"Base Speed" 2.00
+	}
+	+ObjProp "Position"
+	{
+		"Location" 64.37, 6.9, -2.05
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" StdDoor
+	}
+	+ObjProp "Scale"
+	{
+		"" 1.01, 1, 1
+	}
+}
++Receptron "SD1" "Stench"
+{
+	Max None
+
+	Target Me
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
++StimSource "SD1" "Stench"
+{
+	Intensity 1
+	Propagator "Radius"
+}
+-ObjProp "SD1" "PhysType"
++ObjProp "SD1" "PhysType"
+{
+	"Type" OBB
+}
+Create -2045 "SD2"
+{
+	-ObjProp "TransDoor"
+	+ObjProp "RotDoor"
+	{
+		"Open Angle" 270
+		"Base Speed" 2.00
+		"Clockwise?" true
+	}
+	+ObjProp "DesignNote"
+	{
+		"" NVMetaTrapOn="TurnOff"; NVMetaTrapOff="TurnOn"; NVMetaTrapMeta="FrobInert"; NVMetaTrapTarget="&ScriptParams"
+	}
+	+ObjProp "FrobInfo"
+	{
+		"World Action" None
+	}
+	+ObjProp "BlockFrob"
+	{
+		"" true
+	}
+	+ObjProp "Position"
+	{
+		"Location" 5.9, -54.66, -27.88
+		"Heading" 4000
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" NVMetaTrap
+		"Script 1" ""
+	}
+	+ObjProp "Scale"
+	{
+		"" 0.8, 0.5, 0.5
+	}
+	+ObjProp "OTxtRepr0"
+	{
+		"" fam\core\wdplnk2
+	}
+}
++Receptron "SD2" "Stench"
+{
+	Max None
+
+	Target Me
+	Agent -1263
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
++StimSource "SD2" "Stench"
+{
+	Intensity 1
+	Propagator "Radius"
+}
++Link "SD2" 356 "ScriptParams"
+{
+}
++Link "SD2" 357 "ScriptParams"
+{
+}
++Link "SD2" 358 "ScriptParams"
+{
+}
++Link "SD2" 359 "ScriptParams"
+{
+}
++Link "SD2" 360 "ScriptParams"
+{
+}
++Link "SD2" 361 "ScriptParams"
+{
+}
+-ObjProp "SD2" "PhysType"
++ObjProp "SD2" "PhysType"
+{
+	"Type" OBB
+}
++MetaProp "SD2" -2418
++ObjProp 122 "Scale"
+{
+	"" 1.05, 1, 1
+}
++ObjProp 122 "FrobInfo"
+{
+}
++ObjProp 165 "FrobInfo"
+{
+}
++ObjProp 175 "FrobInfo"
+{
+}
++ObjProp 261 "FrobInfo"
+{
+}
++ObjProp 262 "FrobInfo"
+{
+}
++ObjProp 263 "FrobInfo"
+{
+}
++ObjProp 263 "Scale"
+{
+	"" 1.05, 1, 1
+}
++ObjProp 285 "FrobInfo"
+{
+}
+-ObjProp 322 "TransDoor"
++MetaProp 322 -2418
++ObjProp 323 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
+ObjProp 323 "CollisionType"
+{
+	"" None
+}
++ObjProp 323 "HasRefs"
+{
+}
++ObjProp 323 "Scale"
+{
+	"" 0.01, 0.01, 0.01
+}
+-ObjProp 323 "PhysType"
++ObjProp 323 "PhysType"
+{
+	"Type" OBB
+}
++MetaProp 325 -2420
++MetaProp 392 -2418
++ObjProp 392 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
+ObjProp 392 "CollisionType"
+{
+	"" None
+}
++ObjProp 392 "HasRefs"
+{
+}
++ObjProp 421 "Scale"
+{
+	"" 1.12, 1.12, 1
+}
+ObjProp 421 "Position"
+{
+	"Location" 55.88, -18.475, -0.5
+}
+-ObjProp 421 "PhysType"
++ObjProp 421 "PhysType"
+{
+	"Type" OBB
+}
+
+//AIs
++ObjProp 37 "AI_Hearing"
+{
+	"" Below Average
+}
++ObjProp 39 "AI_Hearing"
+{
+	"" Below Average
+}
++Receptron 173 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent 280
+
+	Effect "add_prop"
+	{
+		"Prop Name" GameName
+	}
+}
++ObjProp 173 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="[Me]"; NVRelayTrapTOn="[1.00]Stench"
+}
++ObjProp 173 "GameName"
+{
+	"" Name_Lysander: "Lysander"
+}
++ObjProp 173 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" emageca
+}
++ObjProp 173 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 173 "ModelName"
+{
+	"" emage
+}
++ObjProp 173 "SpchVoice"
+{
+	"" vmages
+}
++ObjProp 174 "ModelName"
+{
+	"" skull
+}
++ObjProp 280 "GameName"
+{
+	"" Name_LysanderC: "Lysander's Corpse"
+}
+
+//barrels
++ObjProp 45 "FrobInfo"
+{
+}
++ObjProp 56 "FrobInfo"
+{
+}
++ObjProp 57 "FrobInfo"
+{
+}
+ObjProp 57 "Position"
+{
+	"Location" 38.6, -6.1, -27.1
+}
+ObjProp 58 "Position"
+{
+	"Location" 38.6, -10.75, -27.1
+}
++ObjProp 58 "FrobInfo"
+{
+}
+ObjProp 187 "Position"
+{
+	"Location" 19.5, -51.5, -28.15
+}
+-ObjProp 187 "PhysType"
++ObjProp 187 "PhysType"
+{
+	"Type" Sphere Hat
+}
+
+//footlockers
+ObjProp 51 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 51 "PhysType"
++ObjProp 51 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 188 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//switches
+-Link 52 323 "ControlDevice"
++Link 52 "SD1" "ControlDevice"
+{
+}
+-Link 368 392 "ControlDevice"
++Link 368 "SD2" "ControlDevice"
+{
+}
+-Link 422 323 "ControlDevice"
++Link 422 "SD1" "ControlDevice"
+{
+}
+
+//loot
++MetaProp 356 -1629
++MetaProp 357 -1629
++MetaProp 358 -1629
++MetaProp 359 -1629
++MetaProp 360 -1629
++MetaProp 361 -1629
+ObjProp 406 "Position"
+{
+	"Location" 68.85, 16.875, 0.935
+}
+
+//scrolls
+-ObjProp 414 "PhysType"
+ObjProp 414 "Position"
+{
+	"Location" 18.165, 12, -29
+}
++ObjProp 454 "RenderType"
+{
+	"" Not Rendered
+}
++ObjProp 460 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 460 "Scripts"
+{
+	"Script 0" StdBook
+}
+
+//various objects
++ObjProp 118 "RenderType"
+{
+	"" Not Rendered
+}
+ObjProp 145 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 145 "PhysType"
++ObjProp 145 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 146 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 146 "PhysType"
++ObjProp 146 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 147 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 147 "PhysType"
++ObjProp 147 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 172 "Scale"
+-ObjProp 289 "PhysType"
++ObjProp 289 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 339 "FrobInfo"
+{
+}
++ObjProp 350 "FrobInfo"
+{
+}
++ObjProp 351 "FrobInfo"
+{
+}

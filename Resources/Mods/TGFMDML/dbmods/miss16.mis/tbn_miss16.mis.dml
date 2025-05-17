@@ -1,0 +1,169 @@
+DML1
+//T1 FM: Trial By Night by Skarza.MJA / Fixes: miss16.mis.dml
+
+FINGERPRINT
+{
+	661 [-37 44 -23]
+	1757 [-146 -59 -76]
+	672 [-101 62 -15]
+	388 [-298 74 -42]
+	1890 [-109 -45 -73]
+	1188 [-311 -72 -45]
+	939 [-142 61 -13]
+	1860 [-123 -27 -75]
+	QVAR "goal_target_4" == 1337
+}
+
+//unlit candles should not be frobable
++ObjProp 271 "FrobInfo"
+{
+	"World Action" None
+}
++ObjProp 281 "FrobInfo"
+{
+	"World Action" None
+}
++ObjProp 282 "FrobInfo"
+{
+	"World Action" None
+}
++ObjProp 683 "FrobInfo"
+{
+	"World Action" None
+}
+
+//candle setup needs to be put on the concretes, as we cannot safely fingerprint the gamesys. concretes 885, 881, 272, 1462, 689
++ObjProp 885 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVMetaTrap
+	"Script 2" NVRemovePropertyTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 885 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="null"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="^{1.7:Flame"; NVRelayTrapTOn="[1.0]WaterStim"; NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo";
+}
++ObjProp 885 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 886 "Scripts"
+{
+	"Script 2" NVRelayTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 886 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="^{1.7:Candle"; NVRelayTrapTOn="FrobWorldEnd";
+}
+
++ObjProp 881 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVMetaTrap
+	"Script 2" NVRemovePropertyTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 881 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="null"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="^{1.7:Flame"; NVRelayTrapTOn="[1.0]WaterStim"; NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo";
+}
++ObjProp 881 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 882 "Scripts"
+{
+	"Script 2" NVRelayTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 882 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="^{1.7:Candle"; NVRelayTrapTOn="FrobWorldEnd";
+}
+
++ObjProp 272 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVMetaTrap
+	"Script 2" NVRemovePropertyTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 272 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="null"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="^{1.7:Flame"; NVRelayTrapTOn="[1.0]WaterStim"; NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo";
+}
++ObjProp 272 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 14 "Scripts"
+{
+	"Script 2" NVRelayTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 14 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="^{1.7:Candle"; NVRelayTrapTOn="FrobWorldEnd";
+}
+
++ObjProp 1462 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVMetaTrap
+	"Script 2" NVRemovePropertyTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1462 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="null"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="^{1.7:Flame"; NVRelayTrapTOn="[1.0]WaterStim"; NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo";
+}
++ObjProp 1462 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 1463 "Scripts"
+{
+	"Script 2" NVRelayTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1463 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="^{1.7:Candle"; NVRelayTrapTOn="FrobWorldEnd";
+}
+
++ObjProp 689 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVMetaTrap
+	"Script 2" NVRemovePropertyTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 689 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="null"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="^{1.7:Flame"; NVRelayTrapTOn="[1.0]WaterStim"; NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo";
+}
++ObjProp 689 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 868 "Scripts"
+{
+	"Script 2" NVRelayTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 868 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="^{1.7:Candle"; NVRelayTrapTOn="FrobWorldEnd";
+}

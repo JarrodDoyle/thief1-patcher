@@ -1,0 +1,114 @@
+DML1
+//T1 FM: Torben - The Traitor by IOnDo / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	267 [17 3 16]
+	466 [-37 29 -16]
+	382 [-34 11 -19]
+	218 [36 5 -9]
+	168 [-18 28 -3]
+	304 [38 -38 -11]
+	138 [-31 49 -16]
+	82 [34 28 -33]
+	QVAR "goal_target_1" == 335
+}
+
+#script "nvscript"
+
+//goals
++ObjProp 84 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 84 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 84 "TrapQVar"
+{
+	"" =1:goal_irreversible_3
+}
++ObjProp 335 "NoDrop"
+{
+	"" true
+}
+//objects
+-ObjProp 247 "PhysType"
+ObjProp 247 "Position"
+{
+	"Location" 14.7843, 38.4395, 14.0062
+}
++ObjProp 247 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 362 "PhysType"
+ObjProp 362 "Position"
+{
+	"Location" -7.8834, -0.435235, 15.1225
+}
++ObjProp 362 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 273 "Position"
+{
+	"Location" 15.7192, 9.18552, 11.1667
+}
+-ObjProp 221 "PhysType"
+ObjProp 221 "Position"
+{
+	"Location" 16.4568, 20.7688, 10.4807
+}
++ObjProp 221 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 335 "Scripts"
+{
+	"Script 0" LootSounds
+	"Don't Inherit" true
+}
++ObjProp 335 "FrobInfo"
+{
+	"World Action" Move, Script
+}
+ObjProp 361 "PickCfg"
+{
+	"Pins 2" 2
+}
+//doors
+ObjProp 172 "RotDoor"
+{
+	"Status" Closed
+}
+ObjProp 173 "Position"
+{
+	"Bank" 0
+}
+ObjProp 173 "RotDoor"
+{
+	"Open Angle" 90.0
+	"Status" Closed
+	"Clockwise?" false
+}
+-ObjProp 172 "PhysType"
++ObjProp 172 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 173 "PhysType"
++ObjProp 173 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 468 "DesignNote"
+{
+	"" NVSetPropertyTrapProperty="Locked"; NVSetPropertyTrapTarget="&ControlDevice"; NVSetPropertyTrapValue=0; NVRandomPropertyTrapOn="TurnOff"; NVRandomPropertyTrapTarget="&ControlDevice"; NVRandomPropertyTrapProperty="Locked"; NVRandomPropertyTrapValue=1
+}
++ObjProp 468 "Scripts"
+{
+	"Script 0" NVSetPropertyTrap
+	"Script 1" NVRandomPropertyTrap
+}

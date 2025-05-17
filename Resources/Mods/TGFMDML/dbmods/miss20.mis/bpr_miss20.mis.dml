@@ -1,0 +1,379 @@
+DML1
+//TG FM: Bloodstone Prison by Garett Choy (Kung Fu Gecko) / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	650 [-172 31 48]
+	78 [-156 -21 49]
+	796 [-9 39 4]
+	222 [-17 -13 61]
+	552 [-135 -10 51]
+	420 [-21 16 66]
+	679 [-205 -52 46]
+	673 [-182 -1 59]
+	QVAR "goal_target_4" == 532
+}
+
+#script "nvscript"
+
+//goals
++ObjProp 347 "DesignNote"
+{
+	"" NVRelayTrapDelay=1000
+}
++Link 347 820 "ControlDevice"
+{
+}
++ObjProp 347 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 349 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 349 "TrapQVar"
+{
+	"" =1:goal_state_5
+}
+-ObjProp 350 "FrobInfo"
++Link 102 821 "ControlDevice"
+{
+}
++ObjProp 102 "Scripts"
+{
+	"Script 1" TrigSlain
+}
++ObjProp 820 "TrapQVar"
+{
+	"" =1:goal_visible_6
+}
++ObjProp 821 "DiffDestroy"
+{
+	"quest var values" 0, 1
+}
++ObjProp 821 "TrapQVar"
+{
+	"" =1:goal_state_6
+}
++ObjProp 838 "DiffDestroy"
+{
+	"quest var values" 0, 1
+}
+-Link 838 820 "ControlDevice"
++Link 838 349 "ControlDevice"
+{
+}
++Link 838 347 "ControlDevice"
+{
+}
++ObjProp 771 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 771 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 771 "TrapQVar"
+{
+	"" =1:goal_irreversible_7
+}
+
+//AIs
++ObjProp 9 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 35 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 46 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 128 "NonPhysCreature"
+{
+	"" true
+}
++ObjProp 531 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hamprsca
+}
++ObjProp 627 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 628 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
+
+//doors
+ObjProp 61 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 62 "RotDoor"
+{
+	"Open Angle" 270
+	"Clockwise?" true
+}
++Link 63 70 "ScriptParams"
+{
+	"" Double
+}
++Link 76 88 "ScriptParams"
+{
+	"" Double
+}
++Receptron 76 "Stench"
+{
+	Max None
+
+	Target 88
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 88 "Stench"
+{
+	Max None
+
+	Target 76
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 123 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Receptron 126 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 126 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Link 159 177 "ScriptParams"
+{
+	"" Double
+}
++Link 594 683 "ScriptParams"
+{
+	"" Double
+}
++Receptron 594 "Stench"
+{
+	Max None
+
+	Target 683
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 683 "Stench"
+{
+	Max None
+
+	Target 594
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 684 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 684 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Link 719 720 "ScriptParams"
+{
+	"" Double
+}
++Receptron 719 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 719 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 719 "Stench"
+{
+	Max None
+
+	Target 720
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 720 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 720 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 720 "Stench"
+{
+	Max None
+
+	Target 719
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++StimSource 780 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
+
+//bando's wife's brooch
+ObjProp 71 "FrobInfo"
+{
+	"Inv Action" None
+}
++ObjProp 71 "NoDrop"
+{
+	"" true
+}
+
+//misplaced objects
+-ObjProp 118 "PhysType"
++ObjProp 118 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 511 "PhysType"
+ObjProp 511 "Position"
+{
+	"Location" -45.18, -45.25, 15.1
+}
+-ObjProp 512 "PhysType"
+ObjProp 512 "Position"
+{
+	"Location" -44.29, -45.58, 15.1
+}
+-ObjProp 830 "PhysType"
+ObjProp 830 "Position"
+{
+	"Location" -131.79, -2, 49.68
+}
+
+//footlockers
++ObjProp 273 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 304 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 306 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 309 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//invalid scaling
+-ObjProp 58 "Scale"
+-ObjProp 72 "Scale"
+-ObjProp 114 "Scale"
+-ObjProp 229 "Scale"
+-ObjProp 232 "Scale"
+-ObjProp 233 "Scale"
+-ObjProp 240 "Scale"
+-ObjProp 246 "Scale"
+-ObjProp 247 "Scale"
+-ObjProp 327 "Scale"
+-ObjProp 336 "Scale"
+-ObjProp 337 "Scale"
+-ObjProp 361 "Scale"
+-ObjProp 374 "Scale"
+-ObjProp 387 "Scale"
+-ObjProp 390 "Scale"
+-ObjProp 401 "Scale"
+-ObjProp 406 "Scale"
+-ObjProp 410 "Scale"
+-ObjProp 411 "Scale"
+-ObjProp 414 "Scale"
+-ObjProp 415 "Scale"
+-ObjProp 416 "Scale"
+-ObjProp 422 "Scale"
+-ObjProp 436 "Scale"
+-ObjProp 501 "Scale"
+-ObjProp 502 "Scale"
+-ObjProp 509 "Scale"
+-ObjProp 526 "Scale"
+-ObjProp 527 "Scale"
+-ObjProp 528 "Scale"
+-ObjProp 529 "Scale"
+-ObjProp 530 "Scale"
+-ObjProp 546 "Scale"
+-ObjProp 548 "Scale"
+-ObjProp 584 "Scale"
+-ObjProp 687 "Scale"
+-ObjProp 715 "Scale"
+-ObjProp 731 "Scale"
+-ObjProp 732 "Scale"
+-ObjProp 905 "Scale"

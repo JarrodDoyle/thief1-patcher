@@ -1,0 +1,102 @@
+DML1
+//T1 FM: Hammer Asylum by Sperry and Asymuth / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	97 [20 31 -25]
+	139 [85 64 6]
+	62 [56 45 -26]
+	131 [81 94 0]
+	108 [56 42 -25]
+	32 [31 61 -29]
+	25 [32 51 -28]
+	22 [-1 45 -2]
+	NAME 7 "Default Room"
+}
+
+#script nvscript
+
+//Final goal fix
++ObjProp 128 "DesignNote"
+{
+	"" NVRelaytrapOn="Sim"; NVRelayTrapDest="[Me]"
+}
++ObjProp 128 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVRelaytrap
+}
++ObjProp 128 "TrapQVar"
+{
+	"" =1:goal_final_0
+}
++ObjProp 100 "DesignNote"
+{
+	"" NVRelaytrapOn="Sim"; NVRelayTrapDest="[Me]"
+}
++ObjProp 100 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVRelaytrap
+}
++ObjProp 100 "TrapQVar"
+{
+	"" =1:goal_visible_0
+}
++ObjProp 57 "DesignNote"
+{
+	"" NVRelaytrapOn="Sim"; NVRelayTrapDest="[Me]"
+}
++ObjProp 57 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVRelaytrap
+}
++ObjProp 57 "TrapQVar"
+{
+	"" =2:goal_type_0
+}
++ObjProp 25 "DesignNote"
+{
+	"" NVRelaytrapOn="Sim"; NVRelayTrapDest="[Me]"
+}
++ObjProp 25 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVRelaytrap
+}
++ObjProp 57 "TrapQVar"
+{
+	"" =0:goal_state_0
+}
++ObjProp 21 "Scripts"
+{
+	"Script 0" Trigdooropen
+}
++Link 21 100 "ControlDevice"
+{
+}
++Link 21 57 "ControlDevice"
+{
+}
++Link 21 25 "ControlDevice"
+{
+}
++Link 21 128 "ControlDevice"
+{
+}
++ObjProp 38 "Scripts"
+{
+	"Script 0" TrigSlain   
+}
++ObjProp 30 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 30 "TrapQVar"
+{
+	"" =1:goal_state_0
+}
++Link 38 30 "ControlDevice"
+{
+}

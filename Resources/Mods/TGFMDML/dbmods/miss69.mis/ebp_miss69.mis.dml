@@ -1,0 +1,37 @@
+DML1
+//T1 FM: Escape: The Bear Pits by Wrichards / Fix sword objective: miss69.mis.dml
+
+FINGERPRINT
+{
+	365 [-7 -184 10]
+	1242 [36 4 -27]
+	1678 [1 -97 53]
+	184 [133 -257 51]
+	883 [204 -182 51]
+	856 [205 -284 52]
+	21 [-22 99 1]
+	1561 [197 -281 51]
+	QVAR "goal_target_0" == 2
+}
+
++ObjProp 1238 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 1238 "TrapQVar"
+{
+	"" =1:goal_state_0
+}
++ObjProp 232 "Scripts"
+{
+	"Script 0" StdButton
+}
++ObjProp 232 "FrobInfo"
+{
+	"World Action" Move, Script
+	"Inv Action" Script, FocusScript
+	"Tool Action" Script, FocusScript 
+}
++Link 232 1238 "ControlDevice"
+{
+}

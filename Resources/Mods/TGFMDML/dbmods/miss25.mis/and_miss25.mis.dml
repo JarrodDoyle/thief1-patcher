@@ -1,0 +1,123 @@
+DML1
+//T1 FM: A Noble Death by Ben Meadows (Ishy) / Fixes: miss25.mis.dml
+
+FINGERPRINT
+{
+	22 [-85 28 -8]
+	62 [-2 -86 -25]
+	312 [-87 19 -21]
+	442 [-71 71 -20]
+	334 [-46 45 -20]
+	314 [-67 19 -22]
+	233 [-43 71 -24]
+	196 [-18 -75 -23]
+	QVAR "goal_target_0" == 403
+}
+
+//final goal
++ObjProp 78 "Scripts"
+{
+	"Script 0" TrigContained
+}
++Link 78 270 "ControlDevice"
+{
+}
++Link 78 271 "ControlDevice"
+{
+}
++ObjProp 270 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 270 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
++ObjProp 271 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 271 "TrapQVar"
+{
+	"" =137:goal_target_5
+}
+
+//skull of gilder (expert only)
++ObjProp 173 "DiffPermit"
+{
+	"quest var values" 2
+}
++ObjProp 173 "FrobInfo"
+{
+	"World Action" Move
+}
++ObjProp 173 "NoDrop"
+{
+	"" true
+}
++ObjProp 173 "GameName"
+{
+	"" Name_sog: "Skull of Gilder"
+}
++ObjProp 186 "DiffPermit"
+{
+	"quest var values" 2
+}
+
+//beds
+-ObjProp 63 "PhysType"
++ObjProp 63 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 66 "PhysType"
++ObjProp 66 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 87 "PhysType"
++ObjProp 87 "PhysType"
+{
+	"Type" OBB
+}
+
+//secret door
++Receptron 157 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 157 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
+
+//scrolls
+-ObjProp 221 "PhysType"
+-ObjProp 472 "PhysType"
+
+//plates (junk)
++ObjProp 222 "InvType"
+{
+}
++ObjProp 239 "InvType"
+{
+}
++ObjProp 242 "InvType"
+{
+}
++ObjProp 255 "InvType"
+{
+}
++ObjProp 256 "InvType"
+{
+}
++ObjProp 258 "InvType"
+{
+}
++ObjProp 259 "InvType"
+{
+}

@@ -1,0 +1,74 @@
+DML1
+//T1 FM: Oblivion by Wrichards / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	1228 [-261 -360 15]
+	1496 [-378 -407 -38]
+	619 [-493 -427 -11]
+	321 [-278 -385 15]
+	131 [-239 -449 11]
+	840 [-235 -518 11]
+	1948 [-188 -349 -75]
+	588 [-365 -531 -33]
+	QVAR "goal_target_9" == 1507
+}
+
+//fixing the crushing walls snapping into incorrect position upon level init
+-Link 942 946 "TPathInit"
++Link 942 945 "TPathInit"
+{
+}
+-Link 1123 1120 "TPathInit"
++Link 1123 1119 "TPathInit"
+{
+}
+-Link 1122 1160 "TPathInit"
++Link 1122 1159 "TPathInit"
+{
+}
+//moving a ladder to be less pain to use
+-ObjProp 1718 "PhysType"
+ObjProp 1718 "Position"
+{
+	"Location" -557.403, -415.413, -56.75
+}
++ObjProp 1718 "PhysType"
+{
+	"Type" OBB
+	"# Submodels" 6
+}
+//complete goal once the Torc is found
++ObjProp 1907 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 1907 "TrapQVar"
+{
+	"" =1:goal_state_4
+}
++ObjProp 1684 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 1684 "DesignNote"
+{
+	"" NVRelayTrapOn="Destroy"; NVRelayTrapTDest="1907"; NVRelayTrapTOn="TurnOn"; NVRelayTrapTCount=1; NVRelayTrapOff="Null";
+}
+//pressure plates are missing one replacement texture
++ObjProp 1158 "OTxtRepr1"
+{
+	"" fam\core\stone4
+}
++ObjProp 472 "OTxtRepr1"
+{
+	"" fam\core\stone4
+}
++ObjProp 1157 "OTxtRepr1"
+{
+	"" fam\core\stone4
+}
++ObjProp 1438 "OTxtRepr1"
+{
+	"" fam\core\stone4
+}

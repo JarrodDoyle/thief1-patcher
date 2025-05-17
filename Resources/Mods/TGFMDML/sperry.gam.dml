@@ -1,0 +1,57 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: sperry.gam.dml
+
+FINGERPRINT
+{
+	NAME -3219 "GStim2"
+	NAME -3221 "SandStim"
+}
+
+//adding scripts
++ObjProp -470 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp -470 "DesignNote"
+{
+	"" NVLinkBuilderOn="BeginScript"; NVLinkBuilderOff="Null"; NVLinkBuilderLinkType="DetailAttachement"; NVLinkBuilderCount=1; NVLinkBuilderLinkData1Field="Type"; NVLinkBuilderLinkData1Value="1"; NVLinkBuilderLinkData2Field="vhot/sub #"; NVLinkBuilderLinkData2Value="1"; NVLinkBuilderLinkData3Field="rel pos"; NVLinkBuilderLinkData3Value="0, 0, 0.13";
+}
+//adding scripts
++ObjProp -53 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+	"Script 1" NVLinkBuilder2
+	"Script 2" NVLinkBuilder3
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp -53 "DesignNote"
+{
+	"" NVLinkBuilderOn="BeginScript"; NVLinkBuilderOff="Null"; NVLinkBuilderLinkType="DetailAttachement"; NVLinkBuilderCount=1; NVLinkBuilderLinkData1Field="Type"; NVLinkBuilderLinkData1Value="1"; NVLinkBuilderLinkData2Field="vhot/sub #"; NVLinkBuilderLinkData2Value="1"; NVLinkBuilderLinkData3Field="rel pos"; NVLinkBuilderLinkData3Value="0, 0, 0.13"; NVLinkBuilder2On="BeginScript"; NVLinkBuilder2Off="Null"; NVLinkBuilder2LinkType="DetailAttachement"; NVLinkBuilder2Count=1; NVLinkBuilder2LinkData1Field="Type"; NVLinkBuilder2LinkData1Value="1"; NVLinkBuilder2LinkData2Field="vhot/sub #"; NVLinkBuilder2LinkData2Value="2"; NVLinkBuilder2LinkData3Field="rel pos"; NVLinkBuilder2LinkData3Value="0, 0, 0.13"; NVLinkBuilder3On="BeginScript"; NVLinkBuilder3Off="Null"; NVLinkBuilder3LinkType="DetailAttachement"; NVLinkBuilder3Count=1; NVLinkBuilder3LinkData1Field="Type"; NVLinkBuilder3LinkData1Value="1"; NVLinkBuilder3LinkData2Field="vhot/sub #"; NVLinkBuilder3LinkData2Value="3"; NVLinkBuilder3LinkData3Field="rel pos"; NVLinkBuilder3LinkData3Value="0, 0, 0.13";
+}
+//lantern needs some props to make the guard lantern drop look ok
++ObjProp -29 "PhysType"
+{
+	"Type" Sphere
+	"# Submodels" 1
+}
++ObjProp -29 "PhysControl"
+{
+	"Controls Active" None
+}
++ObjProp -29 "Scale"
+{
+	"" 0.75, 0.75, 0.75
+}
++ObjProp -29 "SelfLit"
+{
+	"" 50
+}
++ObjProp -29 "CollisionType"
+{
+	"" No Result
+}

@@ -1,0 +1,213 @@
+DML1
+//TG FM: A Secret Affair by Aisha / Fixes: miss25.mis.dml
+
+FINGERPRINT
+{
+	325 [21 10 -3]
+	112 [-35 -8 0]
+	255 [-29 -26 17]
+	43 [-23 28 2]
+	88 [15 -14 -2]
+	25 [-7 -23 17]
+	229 [-17 21 10]
+	305 [40 3 1]
+	QVAR "goal_target_1" == 136
+}
+
+//final goal
++ObjProp 280 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 280 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 280 "TrapQVar"
+{
+	"" =1:goal_final_6
+}
++ObjProp 281 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 281 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 281 "TrapQVar"
+{
+	"" =1:goal_irreversible_6
+}
+
+//quest items
++ObjProp 136 "DiffDestroy"
+{
+	"quest var values" 0
+}
++ObjProp 371 "NoDrop"
+{
+	"" true
+}
++ObjProp 371 "GameName"
+{
+	"" Name_Evidence: "Evidence"
+}
+-ObjProp 371 "PhysType"
+ObjProp 371 "Position"
+{
+	"Heading" c000
+	"Pitch" 0
+}
+
+//doors
+Create -2045 "SD"
+{
+	-ObjProp "TransDoor"
+	+ObjProp "RotDoor"
+	{
+		"Open Angle" 90.00
+		"Base Speed" 2.00
+	}
+	+ObjProp "FrobInfo"
+	{
+		"World Action" None
+	}
+	+ObjProp "BlockFrob"
+	{
+		"" true
+	}
+	+ObjProp "Position"
+	{
+		"Location" -21.2475, -25.748, 7.9
+		"Heading" 4000
+		"Bank" 4000
+	}
+	+ObjProp "Scale"
+	{
+		"" 0.375, 0.4, 0.375
+	}
+	+ObjProp "OTxtRepr0"
+	{
+		"" fam\core\Ftile1
+	}
+}
+-ObjProp "SD" "PhysType"
++ObjProp "SD" "PhysType"
+{
+	"Type" OBB
+}
++Link 108 112 "ScriptParams"
+{
+	"" Double
+}
++Receptron 108 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 112
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 112 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 108
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 234 "TransDoor"
+{
+	"Closed Position" 1.75
+}
+-ObjProp 234 "PhysType"
++ObjProp 234 "PhysType"
+{
+	"Type" OBB
+}
++MetaProp 234 -2420
+ObjProp 260 "StTweqLock"
+{
+	"AnimS" None
+}
++ObjProp 385 "DiffDestroy"
+{
+	"quest var values" 0, 1, 2
+}
++Link 387 "SD" "ControlDevice"
+{
+}
++StimSource 390 "EarthStim"
+{
+	Intensity 10
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
+
+//chests
++ObjProp 48 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 163 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//bed
++Receptron 204 "EarthStim"
+{
+	Max None
+
+	Target Me
+	Agent -180
+
+	Effect "add_prop"
+	{
+		"Prop Name" PhysDims
+	}
+}
++StimSource 204 "EarthStim"
+{
+	Intensity 1
+	Propagator "Radius"
+}
+-ObjProp 204 "PhysType"
++ObjProp 204 "PhysType"
+{
+	"Type" OBB
+}
+
+//fireplace
+ObjProp 216 "PGLaunchInfo"
+{
+	"Min time" 2.00
+	"Max time" 2.50
+}
+ObjProp 218 "PGLaunchInfo"
+{
+	"Max time" 2.00
+}
+
+//AI
+ObjProp 256 "AI_AlrtRsp"
+{
+	"Priority" Very high
+}

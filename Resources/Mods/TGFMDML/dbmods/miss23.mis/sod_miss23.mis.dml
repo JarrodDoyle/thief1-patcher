@@ -1,0 +1,55 @@
+DML1
+//T1 FM: Seeds of Doubt by Duncan Cooke (The Deceiver) / Fixes: miss23.mis.dml
+
+FINGERPRINT
+{
+	1102 [-597 -136 -149]
+	129 [-189 -21 -3]
+	591 [-529 -150 -148]
+	74 [-134 17 -12]
+	1119 [-270 69 -12]
+	825 [-551 -54 -152]
+	422 [-373 -114 -13]
+	34 [-196 34 -13]
+	QVAR "goal_target_6" == 280
+}
+
+#script "nvscript"
+
+//Deceiver's minions
++ObjProp 1170 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" true
+}
++ObjProp 1170 "DesignNote"
+{
+	"" NVRelayTrapTOn="[0.00]PokeStim"; NVRelayTrapTDest=1169
+}
++ObjProp 1209 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" true
+}
++ObjProp 1209 "DesignNote"
+{
+	"" NVRelayTrapTOn="[0.00]PokeStim"; NVRelayTrapTDest=1210
+}
++ObjProp 842 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" true
+}
++ObjProp 842 "DesignNote"
+{
+	"" NVRelayTrapTOn="[0.00]PokeStim"; NVRelayTrapTDest=845
+}

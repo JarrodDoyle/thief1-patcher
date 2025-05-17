@@ -1,0 +1,39 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: miss31.mis.dml
+
+FINGERPRINT
+{
+	73 [20 -71 6]
+	772 [34 -83 12]
+	222 [3 -81 -6]
+	703 [-19 0 41]
+	8 [12 -81 -3]
+	112 [-54 -70 -4]
+	237 [9 -93 14]
+	126 [13 -127 13]
+	QVAR "goal_target_1" == 312
+}
+
+//clearing the weird metaprop from the archer
++ObjProp 222 "AI_AlrtRsp"
+{
+	"Alert level" (2) Moderate
+	"Priority" Absolute
+	"Response: Step 1" Add/Remove Meta-property(Add/Remove,Mprop name,Target Objects)
+	"   Argument 1" Remove
+	"   Argument 2" M-Sitting Quidam
+	"   Argument 3" 222
+}
+//link the candle concretes with their flames
++ObjProp 82 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="83"; NVLinkBuilderLinkDest="82";
+}
++ObjProp 59 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="60"; NVLinkBuilderLinkDest="59";
+}
++ObjProp 19 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="20"; NVLinkBuilderLinkDest="19";
+}

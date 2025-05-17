@@ -1,0 +1,100 @@
+DML1
+//T1 FM: Basic (Contest 4) by GOB / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	64 [3 -40 14]
+	114 [-24 5 -9]
+	161 [444 398 12]
+	117 [-2 27 14]
+	93 [-7 -40 14]
+	107 [-28 -15 -13]
+	123 [124 371 12]
+	122 [124 371 12]
+	NAME 2 "Texture 23"
+}
+
+//starting point
+ObjProp 10 "Position"
+{
+	"Heading" 4000
+}
+
+//primary goal
++ObjProp 15 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++Link 15 16 "ControlDevice"
+{
+}
++Link 15 17 "ControlDevice"
+{
+}
++Link 15 18 "ControlDevice"
+{
+}
++ObjProp 15 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" TrapRelay
+}
++ObjProp 15 "TrapQVar"
+{
+	"" =2500:goal_loot_0
+}
++ObjProp 16 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 16 "TrapQVar"
+{
+	"" =0:goal_state_0
+}
++ObjProp 17 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 17 "TrapQVar"
+{
+	"" =3:goal_type_0
+}
++ObjProp 18 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 18 "TrapQVar"
+{
+	"" =1:goal_visible_0
+}
+
+//loot
++ObjProp 38 "Loot"
+{
+}
+
+//mr apple
+ObjProp 102 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}
+ObjProp 103 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}
+ObjProp 104 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}
+ObjProp 105 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}
+ObjProp 109 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}
+ObjProp 110 "Scripts"
+{
+	"Script 0" IntrinsicPlaque
+}

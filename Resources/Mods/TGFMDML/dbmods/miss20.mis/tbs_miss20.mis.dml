@@ -1,0 +1,153 @@
+DML1
+//TG FM: The Blue Star by Andreas Lilja (MoonAchilles) / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	691 [5 13 -9]
+	506 [55 -2 -33]
+	249 [0 -12 7]
+	199 [24 -73 -21]
+	738 [-43 -56 -20]
+	482 [-8 -18 0]
+	672 [24 -70 -13]
+	750 [-89 -48 -9]
+	QVAR "goal_target_5" == 693
+}
+
+//goals
++ObjProp 802 "Scripts"
+{
+	"Script 0" TrigContained
+}
++Link 802 357 "ControlDevice"
+{
+}
++Link 802 358 "ControlDevice"
+{
+}
++Link 802 422 "ControlDevice"
+{
+}
++Link 802 437 "ControlDevice"
+{
+}
++Link 802 466 "ControlDevice"
+{
+}
+
+//goal 4 (after starting)
++ObjProp 357 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 357 "TrapQVar"
+{
+	"" =1:goal_reverse_4
+}
++ObjProp 358 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 358 "TrapQVar"
+{
+	"" =0:goal_state_4
+}
+
+//goal 5
++ObjProp 422 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 422 "TrapQVar"
+{
+	"" =1:goal_final_5
+}
++ObjProp 437 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 437 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
++ObjProp 466 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 466 "TrapQVar"
+{
+	"" =0:goal_state_5
+}
+
+//mantling
++ObjProp 357 "PhysCanMant"
+{
+}
++ObjProp 358 "PhysCanMant"
+{
+}
++ObjProp 422 "PhysCanMant"
+{
+}
++ObjProp 437 "PhysCanMant"
+{
+}
++ObjProp 550 "PhysCanMant"
+{
+}
++ObjProp 685 "PhysCanMant"
+{
+}
++ObjProp 688 "PhysCanMant"
+{
+}
++ObjProp 1010 "PhysCanMant"
+{
+}
++ObjProp 1011 "PhysCanMant"
+{
+}
++ObjProp 1012 "PhysCanMant"
+{
+}
+
+//doors
++MetaProp 12 -2420
++ObjProp 261 "BlockFrob"
+{
+	"" true
+}
+-ObjProp 387 "JointPos"
+-ObjProp 388 "JointPos"
+-ObjProp 479 "JointPos"
+-ObjProp 953 "JointPos"
+
+//shutters
++Link 886 918 "ScriptParams"
+{
+	"" Double
+}
+
+//portcullis
++ObjProp 916 "FrobInfo"
+{
+}
++ObjProp 963 "FrobInfo"
+{
+}
++ObjProp 964 "FrobInfo"
+{
+}
++ObjProp 969 "FrobInfo"
+{
+}
+
+//haunts / keys
++Link 625 291 "Contains"
+{
+	"" Generic Contents
+}
++Link 628 149 "Contains"
+{
+	"" Generic Contents
+}

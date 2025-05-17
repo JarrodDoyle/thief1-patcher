@@ -34,6 +34,8 @@ Name: "dromed"; Description: "DromEd";
 Name: "dromed\toolkit"; Description: "DromEd Basic Toolkit";
 Name: "multiplayer"; Description: "Multiplayer (Experimental)";
 Name: "dmm"; Description: "Dark Mod Manager";
+Name: "mods"; Description: "Mods";
+Name: "mods\fmdml"; Description: "Fan Mission DML fixes";
 
 [Tasks]
 Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
@@ -52,6 +54,7 @@ Source: "Resources\DromEd\*"; DestDir: "{app}"; Components: dromed; Flags: ignor
 Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\DMM\*"; DestDir: {app}; Components: dmm; Flags: ignoreversion
+Source: "Resources\Mods\TGFMDML\*"; DestDir: "{app}\MODS\TGFMDML"; Components: mods\fmdml; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "darkicon.ico"; DestDir: "{app}"; AfterInstall: PerformTasks
 
 [Languages]
@@ -84,6 +87,13 @@ begin
   end;
 end;
 
+procedure AddPath(var PathVar: String; NewPath: String);
+begin
+  if (Length(PathVar) <> 0) then
+    PathVar := PathVar + '+';
+  PathVar := PathVar + NewPath;
+end;
+
 function GetLineContaining(File, TargetString: String): String;
 var
   i: Integer;
@@ -107,6 +117,8 @@ begin
 end;
 
 procedure PerformTasks();
+var
+  Mods: String;
 begin
   // Make sure things work properly with T1
   EditConfigLine('cam.cfg', 'dark1', 'dark1');
@@ -146,6 +158,15 @@ begin
   if WizardIsTaskSelected('windowed') then
     EditConfigLine('cam_ext.cfg', ';force_windowed', 'force_windowed');
 
+  if WizardIsComponentSelected('mods') then
+    begin
+      Mods := '';
+      if WizardIsComponentSelected('mods\fmdml') then
+        AddPath(Mods, '.\MODS\TGFMDML');
+
+      if (Length(Mods) <> 0) then
+        EditConfigLine('cam_mod.ini', ';mod_path MyBowMod+.\TexturePack', 'mod_path ' + Mods);
+    end;
 end;
 
 function NextButtonClick(PageId: Integer): Boolean;

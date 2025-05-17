@@ -1,0 +1,410 @@
+DML1
+//T1 FM: Treachery by Sperry / Fixes: miss28.mis.dml
+
+FINGERPRINT
+{
+	231 [-24 45 -6]
+	197 [29 -16 -10]
+	206 [12 70 -8]
+	53 [-2 5 -8]
+	295 [13 8 -8]
+	214 [17 -53 -7]
+	101 [-40 -22 -20]
+	382 [28 -15 -8]
+	QVAR "goal_target_0" == 155
+}
+
+//final goal
++ObjProp 10 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 10 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 10 "TrapQVar"
+{
+	"" =1:goal_final_5
+}
++ObjProp 11 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 11 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 11 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
+
+//doors
+ObjProp 26 "RotDoor"
+{
+	"Open Angle" 89
+}
+ObjProp 26 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 28 "RotDoor"
+{
+	"Open Angle" 271
+}
+ObjProp 28 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 29 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 30 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
++Receptron 34 "Stench"
+{
+	Max None
+
+	Target 35
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 34 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 35 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
++Receptron 35 "Stench"
+{
+	Max None
+
+	Target 34
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 39 "Stench"
+{
+	Max None
+
+	Target 40
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 39 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 40 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
++Receptron 40 "Stench"
+{
+	Max None
+
+	Target 39
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+-ObjProp 42 "PickCfg"
++ObjProp 42 "DiffRemoveProp"
+{
+	"quest var values" 2
+	"alt quest var values" 0, 1
+	"Properties" FrobInfo
+}
++ObjProp 42 "FrobInfo"
+{
+}
++ObjProp 42 "ExtraLight"
+{
+	"Amount (-1..1)" 0.10
+}
++ObjProp 43 "ExtraLight"
+{
+	"Amount (-1..1)" 0.10
+}
+ObjProp 53 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 54 "Scale"
+{
+	"" 0.75, 0.75, 1
+}
+ObjProp 55 "RotDoor"
+{
+	"Open Angle" 271
+}
+ObjProp 58 "RotDoor"
+{
+	"Open Angle" 89
+}
++Receptron 139 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
+ObjProp 140 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 140 "PhysType"
++ObjProp 140 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 141 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 142 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Receptron 220 "Stench"
+{
+	Max None
+
+	Target 221
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+-ObjProp 220 "PickCfg"
+-ObjProp 221 "PickCfg"
++Receptron 221 "Stench"
+{
+	Max None
+
+	Target 220
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++ObjProp 259 "ExtraLight"
+{
+	"Amount (-1..1)" 0.10
+}
+-ObjProp 289 "PickCfg"
++ObjProp 289 "ExtraLight"
+{
+	"Amount (-1..1)" 0.10
+}
+
+//quest items
++ObjProp 155 "NoDrop"
+{
+	"" true
+}
++ObjProp 210 "DiffRemoveProp"
+{
+	"quest var values" 2
+	"alt quest var values" 0, 1
+	"Properties" FrobInfo
+}
++ObjProp 210 "FrobInfo"
+{
+}
+ObjProp 278 "Position"
+{
+	"Location" 37.25, -12.85, -9.6
+	"Heading" 3400
+	"Pitch" 4000
+}
+
+//keys
++StimSource 165 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 181 "DiffDestroy"
+{
+	"quest var values" 0, 1
+}
++ObjProp 182 "DiffDestroy"
+{
+	"quest var values" 0, 1
+}
++StimSource 183 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 184 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 185 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 186 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 214 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 216 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
+ObjProp 216 "HasRefs"
+{
+	"" false
+}
++StimSource 217 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 218 "Stench"
+{
+	Intensity 3
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
+ObjProp 263 "HasRefs"
+{
+	"" false
+}
++ObjProp 308 "DiffDestroy"
+{
+	"quest var values" 0, 1
+}
+
+//misplaced objects
+ObjProp 195 "Position"
+{
+	"Location" 20.15, -46.3, -7.24
+}
+ObjProp 213 "Position"
+{
+	"Location" 19, -52.7, -6.55
+	"Heading" 4000
+}
+-ObjProp 213 "PhysType"
++ObjProp 213 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 295 "Position"
+{
+	"Location" 13.25, 7.5, -7.9
+}
+-ObjProp 295 "PhysType"
++ObjProp 295 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 347 "Position"
+{
+	"Location" 9.8, -16, -4
+}
+-ObjProp 347 "PhysType"
++ObjProp 347 "PhysType"
+{
+	"Type" OBB
+}

@@ -1,0 +1,72 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: miss33.mis.dml
+
+FINGERPRINT
+{
+	572 [4 -128 44]
+	194 [22 76 23]
+	485 [46 98 22]
+	1157 [5 -162 44]
+	1010 [78 16 -5]
+	198 [-54 -88 50]
+	942 [-24 -59 -15]
+	1048 [-35 -200 24]
+	QVAR "goal_target_4" == 1116
+}
+
+//the scroll key has two key scripts due to inheritance, not allowed under NewDark
+ObjProp 1049 "Scripts"
+{
+	"Don't Inherit" True
+}
+//also the portcullis should not open as much so it won't slide off the world
+ObjProp 956 "TransDoor"
+{
+	"Open Position" 4
+}
+//keys will not be consumed after use
+ObjProp 367 "FrobInfo"
+{
+	"Tool Action" Script, Deselect
+}
+ObjProp 489 "FrobInfo"
+{
+	"Tool Action" Script, Deselect
+}
+//link the candle concretes with their flames
++ObjProp 203 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="117"; NVLinkBuilderLinkDest="203";
+}
++ObjProp 196 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="197"; NVLinkBuilderLinkDest="196";
+}
++ObjProp 188 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="189"; NVLinkBuilderLinkDest="188";
+}
++ObjProp 201 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="204"; NVLinkBuilderLinkDest="201";
+}
+//attempt to fix the oversensitive AIs in the kitchen
+ObjProp 870 "AI_AlrtRsp"
+{
+	"Alert level" (3) High
+}
+ObjProp 872 "AI_AlrtRsp"
+{
+	"Alert level" (3) High
+}
+ObjProp 873 "AI_AlrtRsp"
+{
+	"Alert level" (3) High
+}
+//removing improper collision type from lanterns
+-ObjProp 201 "CollisionType"
+-ObjProp 188 "CollisionType"
+-ObjProp 196 "CollisionType"
+-ObjProp 203 "CollisionType"
+-ObjProp 636 "CollisionType"
+-ObjProp 202 "CollisionType"

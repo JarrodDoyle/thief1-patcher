@@ -1,0 +1,28 @@
+DML1
+//T1 FM: Golden Book (Last Page) by Zontik / Fixes: miss21.mis.dml
+
+FINGERPRINT
+{
+	1091 [254 461 484]
+	1146 [261 439 502]
+	1125 [252 498 489]
+	41 [513 508 501]
+	1687 [392 562 523]
+	993 [328 455 475]
+	1355 [459 465 474]
+	778 [367 486 511]
+	QVAR "goal_target_11" == 89
+}
+
+//key
+-ObjProp 448 "FrobInfo"    
++ObjProp 448 "FrobInfo"           
+{
+	"World Action" Move
+	"Inv Action" None
+	"Tool Action" Script, Deselect
+}
++ObjProp 448 "SlayResult"         
+{
+	"Effect" Destroy
+}

@@ -1,0 +1,389 @@
+DML1
+//T1 FM: The Fiend by Jan Jakubovic (krompac) / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	1061 [124 14 49]
+	953 [246 -141 11]
+	36 [20 -3 57]
+	160 [10 -3 49]
+	267 [-23 -39 50]
+	668 [26 -44 48]
+	195 [13 24 46]
+	194 [9 26 46]
+	QVAR "goal_target_0" == 59
+}
+
+//starting point
+ObjProp 29 "Position"
+{
+	"Heading" 9c00
+}
+
+//loot
+-MetaProp 977 -1706
++ObjProp 872 "Loot"
+{
+}
++ObjProp 923 "Loot"
+{
+}
++ObjProp 926 "Loot"
+{
+}
++ObjProp 927 "Loot"
+{
+}
++ObjProp 928 "Loot"
+{
+}
++ObjProp 929 "Loot"
+{
+}
++ObjProp 930 "Loot"
+{
+}
+
+//doors
++Receptron 72 "EarthStim"
+{
+	Min 2
+	Max 4
+
+	Target 76
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 72 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 72 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Link 72 76 "ScriptParams"
+{
+	"" Double
+}
++Receptron 76 "EarthStim"
+{
+	Min 2
+	Max 4
+
+	Target 72
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 76 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 76 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
+ObjProp 112 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Link 187 188 "ScriptParams"
+{
+	"" Double
+}
++Receptron 210 "EarthStim"
+{
+	Min 5
+	Max None
+
+	Target 211
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 210 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 210 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Link 210 211 "ScriptParams"
+{
+	"" Double
+}
++Receptron 211 "EarthStim"
+{
+	Min 5
+	Max None
+
+	Target 210
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 211 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 211 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
+ObjProp 243 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Receptron 438 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 438 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++StimSource 464 "EarthStim"
+{
+	Intensity 6
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 520 "EarthStim"
+{
+	Intensity 3
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 988 "RotDoor"
+{
+	"Open Angle" 270
+	"Base Speed" 2.00
+	"Clockwise?" true
+}
+-ObjProp 988 "TransDoor"
+
+//AIs
++ObjProp 54 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 212 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 463 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 503 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 504 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 507 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 508 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 517 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 550 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 580 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 583 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 664 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 672 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 673 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 674 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 697 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1035 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1036 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1037 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1054 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1085 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1090 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1091 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1093 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1094 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
++ObjProp 1095 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" assaca
+}
+
+//bed
++Receptron 129 "EarthStim"
+{
+	Max None
+
+	Target Me
+	Agent -180
+
+	Effect "add_prop"
+	{
+		"Prop Name" PhysDims
+	}
+}
++StimSource 129 "EarthStim"
+{
+	Intensity 1
+	Propagator "Radius"
+}
+
+//footlockers
++ObjProp 193 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 226 "JointPos"
+{
+	"Joint 1" 90.00
+}
+-ObjProp 226 "PhysType"
+ObjProp 226 "Position"
+{
+	"Heading" c000
+}
++ObjProp 226 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 832 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//invalid scaling
+-ObjProp 894 "Scale"

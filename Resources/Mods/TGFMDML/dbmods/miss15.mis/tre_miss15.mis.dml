@@ -1,0 +1,25 @@
+DML1
+//T1 FM: The Treasury by Bryan Matthews / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	382 [-160 90 -39]
+	387 [-120 66 -41]
+	819 [-48 201 -129]
+	1143 [-89 241 -135]
+	1500 [-172 216 -124]
+	690 [-72 351 -129]
+	733 [-75 354 -125]
+	1304 [-78 269 -126]
+	QVAR "goal_target_0" == 1443
+}
+
+//fixing moving wall orientation
+ObjProp 445 "Position"
+{
+	"Pitch" 4000
+}
+ObjProp 452 "Position"
+{
+	"Pitch" 4000
+}

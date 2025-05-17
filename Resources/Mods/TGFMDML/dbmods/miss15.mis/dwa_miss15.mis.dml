@@ -1,0 +1,77 @@
+DML1
+//T1 FM: Darkwalker by Jeremy Justus / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	258 [-114 -33 20]
+	254 [-10 -29 1]
+	266 [-97 -9 24]
+	20 [4 -60 -6]
+	259 [-113 -33 21]
+	263 [-123 -9 24]
+	136 [-46 42 -32]
+	131 [-35 4 1]
+	QVAR "goal_target_3" == 177
+}
+
+//goals
++ObjProp 14 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 14 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 14 "TrapQVar"
+{
+	"" =1:goal_final_3
+}
++ObjProp 15 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 15 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 15 "TrapQVar"
+{
+	"" =1:goal_irreversible_3
+}
++ObjProp 16 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 16 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 16 "TrapQVar"
+{
+	"" =1:goal_reverse_2
+}
+
+//various objects
+-Link 22 24 "ControlDevice"
+-ObjProp 23 "PhysType"
+ObjProp 23 "Position"
+{
+	"Pitch" 0
+}
++ObjProp 23 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 28 "FrobInfo"
+{
+}
++ObjProp 90 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 185 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}

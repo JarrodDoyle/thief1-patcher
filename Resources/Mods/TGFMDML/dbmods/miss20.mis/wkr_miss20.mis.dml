@@ -1,0 +1,260 @@
+DML1
+//TG FM: WoodKey Resthouse by GOB / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	240 [89 -28 3]
+	368 [134 10 9]
+	121 [122 -23 1]
+	258 [117 10 -3]
+	213 [95 -1 -1]
+	203 [79 -28 3]
+	80 [106 3 -9]
+	45 [130 -5 0]
+	QVAR "goal_target_1" == 340
+}
+
+//final goal
++ObjProp 159 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 159 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 159 "TrapQVar"
+{
+	"" =1:goal_final_3
+}
++ObjProp 160 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 160 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 160 "TrapQVar"
+{
+	"" =1:goal_irreversible_3
+}
+
+//loot
++ObjProp 140 "PickDist"
+{
+	"" 5.00
+}
++ObjProp 288 "Loot"
+{
+}
++ObjProp 289 "Loot"
+{
+}
++ObjProp 290 "Loot"
+{
+}
++ObjProp 311 "Loot"
+{
+}
++ObjProp 315 "Loot"
+{
+}
++ObjProp 316 "Loot"
+{
+}
++ObjProp 317 "Loot"
+{
+}
++ObjProp 413 "PickDist"
+{
+	"" 5.00
+}
+
+//AIs
+-ObjProp 3 "Shadow"
+-ObjProp 5 "Shadow"
++ObjProp 5 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramireca
+}
+-ObjProp 307 "Shadow"
+-ObjProp 362 "Shadow"
+-ObjProp 385 "Shadow"
+-ObjProp 385 "AI_AlertCap"
+-ObjProp 385 "AI_Vision"
+ObjProp 385 "Position"
+{
+	"Location" 104.6, -10.5, -7.8
+}
+-ObjProp 386 "AI_AlertCap"
+-ObjProp 386 "AI_Vision"
+ObjProp 386 "Position"
+{
+	"Location" 106.5, -20.7, -7.8
+}
+-ObjProp 386 "Shadow"
+-ObjProp 395 "Shadow"
+
+//doors
++ObjProp 7 "FrobInfo"
+{
+}
+ObjProp 92 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++ObjProp 155 "FrobInfo"
+{
+}
++ObjProp 169 "FrobInfo"
+{
+}
+ObjProp 195 "RotDoor"
+{
+	"Open Angle" 270
+	"Clockwise?" true
+}
+ObjProp 195 "Scale"
+{
+	"" 1.05, 1.05, 0.895
+}
++ObjProp 203 "FrobInfo"
+{
+}
++ObjProp 240 "FrobInfo"
+{
+}
+ObjProp 280 "Scale"
+{
+	"" 1.05, 1.05, 0.895
+}
+-ObjProp 339 "PhysType"
++ObjProp 339 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 366 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+
+//chests
+ObjProp 133 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 293 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 360 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 360 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 360 "PhysType"
++ObjProp 360 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 390 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 390 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 390 "PhysType"
++ObjProp 390 "PhysType"
+{
+	"Type" OBB
+}
+
+//fireplace
+ObjProp 168 "PGLaunchInfo"
+{
+	"Min time" 2.00
+	"Max time" 2.50
+}
+ObjProp 172 "PGLaunchInfo"
+{
+	"Min time" 1.50
+	"Max time" 1.50
+}
+
+//convos
+ObjProp 276 "AI_Converation"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 274
+	"   Argument 1"[2] ""
+	"   Argument 2"[2] 274
+}
+ObjProp 277 "AI_Converation"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 220
+}
+ObjProp 345 "AI_Converation"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 370
+	"   Argument 1"[2] ""
+	"   Argument 2"[2] 345
+	"   Argument 1"[3] ""
+	"   Argument 2"[3] 370
+	"   Argument 1"[4] ""
+	"   Argument 2"[4] 370
+}
+
+//duplicate key
+-Link 307 332 "ControlDevice"
++Link 307 332 "Contains"
+{
+}
+
+//crates
+ObjProp 354 "Position"
+{
+	"Location" 112.9, 4.5, 3.15
+}
+-ObjProp 354 "PhysType"
++ObjProp 354 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 355 "Position"
+{
+	"Location" 112.9, 10.5, 3.15
+}
+-ObjProp 355 "PhysType"
++ObjProp 355 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 398 "Position"
+{
+	"Location" 112.9, 2, 3.15
+}
+-ObjProp 398 "PhysType"
++ObjProp 398 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 399 "Position"
+{
+	"Location" 119, 2.5, 3.15
+}
+-ObjProp 399 "PhysType"
++ObjProp 399 "PhysType"
+{
+	"Type" Sphere Hat
+}

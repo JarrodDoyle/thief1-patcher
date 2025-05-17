@@ -1,0 +1,37 @@
+DML1
+//T1 FM: The Varyx Obelisk by xarax / Fixes: miss42.mis.dml
+
+FINGERPRINT
+{
+	1491 [156 449 -16]
+	805 [-83 491 -23]
+	1171 [238 510 61]
+	1576 [292 119 -21]
+	369 [217 171 -35]
+	989 [-136 517 -28]
+	975 [-67 602 -41]
+	867 [164 281 -18]
+	NAME 746 "TrolPtEastGate"
+}
+
+#script NVScript
+
+//goals
++ObjProp 326 "Scripts"
+{
+    "Script 1" NVTrapSetQVar
+}
++ObjProp 394 "Scripts"
+{
+    "Script 1" NVTrapSetQVar
+}
+-ObjProp 384 "Scripts"
+-ObjProp 327 "Scripts"
++ObjProp 384 "Scripts"
+{
+    "Script 0" NVTrigQVar
+}
++ObjProp 327 "Scripts"
+{
+    "Script 0" NVTrigQVar
+}

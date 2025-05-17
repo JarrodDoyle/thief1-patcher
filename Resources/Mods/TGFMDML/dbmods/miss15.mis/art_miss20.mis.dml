@@ -1,0 +1,341 @@
+DML1
+//TG FM: The Artefact by Mayar / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	406 [437 467 495]
+	284 [431 498 508]
+	200 [471 556 480]
+	252 [430 518 494]
+	215 [435 528 493]
+	170 [450 466 503]
+	333 [461 498 511]
+	109 [527 538 495]
+	QVAR "goal_target_1" == 394
+}
+
+//goals
++ObjProp 116 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 116 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 116 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
++ObjProp 117 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 117 "TrapQVar"
+{
+	"" =3:goal_state_3
+}
+
+//doors
+ObjProp 31 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 31 "Position"
+{
+	"Location" 445.89, 512.25, 496
+	"Heading" 4000
+}
+-ObjProp 31 "PhysType"
++ObjProp 31 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 35 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 35 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 35 "PhysType"
++ObjProp 35 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 151 "FrobInfo"
+{
+}
+ObjProp 316 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 316 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 316 "PhysType"
++ObjProp 316 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 318 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 318 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 318 "PhysType"
++ObjProp 318 "PhysType"
+{
+	"Type" OBB
+}
+
+//AIs
++ObjProp 43 "GameName"
+{
+	"" Name_Isaak: "Isaak"
+}
++ObjProp 43 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" thgrswca
+}
++Link 43 117 "ControlDevice"
+{
+}
++ObjProp 43 "Scripts"
+{
+	"Script 0" TrigSlain
+	"Script 1" TrigBrainDead
+}
++ObjProp 4 "AI_FleePoint"
+{
+	"" 10
+}
+-ObjProp 280 "AI_FleePoint"
+-ObjProp 343 "AI_AlertCap"
+-ObjProp 343 "AI_FleeConds"
+-ObjProp 343 "AI_Vision"
+ObjProp 343 "AI_AlrtRsp"
+{
+	"Alert level" (1) Low
+	"   Argument 2" M-Sleeping Servant
+	"Response: Step 2" Nothing()
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] ""
+}
+-ObjProp 346 "AI_FleeConds"
+-ObjProp 346 "AI_Hearing"
+-ObjProp 346 "AI_Vision"
+-ObjProp 346 "AI_AlrtRsp"
++ObjProp 346 "GameName"
+{
+	"" Name_Walram: "Lord Walram"
+}
+-ObjProp 421 "AI_FleeConds"
+-ObjProp 421 "AI_Hearing"
+-ObjProp 421 "AI_AlrtRsp"
+ObjProp 422 "AI_Hearing"
+{
+	"" Null
+}
+
+//scrolls
++ObjProp 44 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 44 "Scripts"
+{
+	"Script 0" StdBook
+}
++ObjProp 57 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 57 "Scripts"
+{
+	"Script 0" StdBook
+}
+
+//misplaced objects
+ObjProp 54 "Position"
+{
+	"Location" 459.5, 465.35, 459.9
+	"Pitch" 0
+}
+-ObjProp 54 "PhysType"
++ObjProp 54 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 274 "Position"
+{
+	"Location" 472, 497.6, 513.2
+}
+-ObjProp 274 "PhysType"
++ObjProp 274 "PhysType"
+{
+	"Type" Sphere
+}
+ObjProp 281 "Position"
+{
+	"Location" 426.85, 511.3, 467.7
+	"Heading" c000
+}
+-ObjProp 281 "PhysType"
++ObjProp 281 "PhysType"
+{
+	"Type" Sphere
+}
+ObjProp 456 "Position"
+{
+	"Heading" 4000
+	"Pitch" 0
+}
+-ObjProp 456 "PhysType"
++ObjProp 456 "PhysType"
+{
+	"Type" OBB
+}
+
+//footlockers
++ObjProp 104 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 152 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 207 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 223 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 303 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 304 "PickCfg"
+{
+	"Pins 2" 1
+}
++ObjProp 383 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 384 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 384 "Position"
+{
+	"Location" 463.9, 510.2, 511
+	"Heading" 8000
+}
+-ObjProp 384 "PhysType"
++ObjProp 384 "PhysType"
+{
+	"Type" OBB
+}
+
+//beds
+ObjProp 128 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 128 "PhysType"
++ObjProp 128 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 147 "PhysType"
++ObjProp 147 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 206 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 206 "PhysType"
++ObjProp 206 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 218 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 218 "PhysType"
++ObjProp 218 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 219 "Position"
+{
+	"Heading" 8000
+}
+-ObjProp 219 "PhysType"
++ObjProp 219 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 352 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 352 "PhysType"
++ObjProp 352 "PhysType"
+{
+	"Type" OBB
+}
+
+//fireplaces
+ObjProp 142 "PGLaunchInfo"
+{
+	"Min time" 1.50
+	"Max time" 1.50
+}
+ObjProp 144 "PGLaunchInfo"
+{
+	"Min time" 1.50
+	"Max time" 1.50
+}
+ObjProp 215 "PGLaunchInfo"
+{
+	"Min time" 1.00
+	"Max time" 1.00
+}
+ObjProp 217 "PGLaunchInfo"
+{
+	"Min time" 1.50
+	"Max time" 1.50
+}
+
+//banners
++ObjProp 356 "BlockFrob"
+{
+	"" true
+}
++ObjProp 457 "SlayResult"
+{
+	"Effect" Destroy
+}
+
+//quest item
++ObjProp 394 "StackCount"
+{
+}

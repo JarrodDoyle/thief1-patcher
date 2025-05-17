@@ -1,0 +1,169 @@
+DML1
+//T1 FM: The Storm by JJ / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	287 [-23 97 -5]
+	94 [-7 89 23]
+	307 [-80 100 0]
+	190 [-21 153 -4]
+	348 [-78 70 -5]
+	306 [-80 100 0]
+	281 [-1 113 12]
+	228 [-55 132 -2]
+	QVAR "goal_target_2" == 185
+}
+
+//final goal
++ObjProp 79 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 79 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 79 "TrapQVar"
+{
+	"" =1:goal_final_2
+}
++ObjProp 80 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 80 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 80 "TrapQVar"
+{
+	"" =1:goal_irreversible_2
+}
+
+//doors
++Link 34 35 "ScriptParams"
+{
+	"" Double
+}
++Link 78 85 "ScriptParams"
+{
+	"" Double
+}
++Link 207 208 "ScriptParams"
+{
+	"" Double
+}
+ObjProp 265 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Link 454 455 "ScriptParams"
+{
+	"" Double
+}
++ObjProp 313 "FrobInfo"
+{
+}
+-ObjProp 313 "PhysType"
+ObjProp 313 "Position"
+{
+	"Location" -91.33, 139.54, -4
+}
++ObjProp 313 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 328 "Scale"
+{
+	"" 1.1667, 1.1667, 1
+}
++ObjProp 341 "FrobInfo"
+{
+}
++ObjProp 341 "BlockFrob"
+{
+	"" true
+}
+-ObjProp 341 "PhysType"
+ObjProp 341 "Position"
+{
+	"Heading" 4000
+}
++ObjProp 341 "PhysType"
+{
+	"Type" OBB
+}
+
+//beds
+-ObjProp 37 "PhysType"
++ObjProp 37 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 84 "PhysType"
++ObjProp 84 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 388 "PhysType"
+ObjProp 388 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 388 "PhysType"
+{
+	"Type" OBB
+}
+
+//barrels
+ObjProp 171 "Position"
+{
+	"Location" -42.95, 156.4, -6.19
+}
+ObjProp 172 "Position"
+{
+	"Location" -39.85, 156.4, -6.19
+}
+ObjProp 254 "Position"
+{
+	"Location" -47.5, 136.5, -6.19
+}
+ObjProp 255 "Position"
+{
+	"Location" -44.25, 136.5, -6.19
+}
+
+//AIs
++ObjProp 292 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" bafgca
+}
+ObjProp 310 "AI_Hearing"
+{
+	"" Above Average
+}
+ObjProp 371 "Position"
+{
+	"Location" -112.3, 130.2, -6.1
+}
+ObjProp 387 "Position"
+{
+	"Location" -112.3, 127.9, -7.85
+	"Heading" 0
+	"Pitch" 0
+	"Bank" 0
+}
+ObjProp 391 "Position"
+{
+	"Location" -112.3, 127.4, -7.37
+}
+
+//junk
++ObjProp 336 "InvType"
+{
+}
++ObjProp 398 "FrobInfo"
+{
+}

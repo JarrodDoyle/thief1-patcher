@@ -1,0 +1,241 @@
+DML1
+//T1 FM: Information by Carl Ireland (Goit) / Fixes: miss16.mis.dml
+
+FINGERPRINT
+{
+	198 [50 429 -34]
+	781 [-115 71 -27]
+	705 [-55 -32 -48]
+	472 [143 141 -25]
+	940 [91 -262 -30]
+	832 [114 332 -36]
+	635 [-43 8 -14]
+	932 [86 -267 -30]
+	QVAR "goal_target_1" == 265
+}
+
+//starting point
+ObjProp 23 "Position"
+{
+	"Heading" 8000
+}
+
+//goals
+ObjProp 264 "FrobInfo"
+{
+	"World Action" Script
+}
+-Link 264 1160 "ControlDevice"
+ObjProp 264 "Scripts"
+{
+	"Script 0" StdBook
+}
++ObjProp 265 "FrobInfo"
+{
+	"World Action" Script
+}
++Link 265 584 "ControlDevice"
+{
+}
++ObjProp 265 "Scripts"
+{
+	"Script 0" StdBook
+	"Script 1" TrigWorldFrob
+}
+-ObjProp 447 "DesignNote"
++ObjProp 447 "TrapQVar"
+{
+	"" =1:goal_state_2
+}
++ObjProp 584 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 584 "TrapQVar"
+{
+	"" =1:goal_state_1
+}
++ObjProp 585 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 585 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 585 "TrapQVar"
+{
+	"" =1:goal_irreversible_4
+}
+-ObjProp 681 "NoDrop"
+-ObjProp 836 "DesignNote"
++ObjProp 836 "TrapQVar"
+{
+	"" =1:goal_visible_2
+}
+-ObjProp 975 "DesignNote"
++ObjProp 975 "TrapQVar"
+{
+	"" =1:goal_visible_4
+}
+-ObjProp 1091 "DesignNote"
++Link 1091 1160 "ControlDevice"
+{
+}
++ObjProp 1091 "Scripts"
+{
+	"Script 1" TrapRelay
+}
++ObjProp 1091 "TrapQVar"
+{
+	"" =1:goal_state_0
+}
+-ObjProp 1160 "DesignNote"
++ObjProp 1160 "TrapQVar"
+{
+	"" =1:goal_visible_3
+}
+
+//mantling
++ObjProp 82 "PhysCanMant"
+{
+}
+
+//footlockers
+ObjProp 201 "Locked"
+{
+	"" false
+}
++ObjProp 202 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 214 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 215 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 224 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 225 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//doors
+ObjProp 241 "RotDoor"
+{
+	"Open Angle" 270
+	"Clockwise?" true
+}
+ObjProp 241 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 241 "PhysType"
++ObjProp 241 "PhysType"
+{
+	"Type" OBB
+}
++MetaProp 249 -2420
+ObjProp 259 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 259 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 259 "PhysType"
++ObjProp 259 "PhysType"
+{
+	"Type" OBB
+}
+
+//switches
+-Link 248 250 "ControlDevice"
+-Link 250 248 "ControlDevice"
++Link 250 248 "FrobProxy"
+{
+	"FrobProxyMask" AllowDirect
+}
+ObjProp 887 "RotDoor"
+{
+	"Open Angle" 345.00
+	"Clockwise?" true
+}
++ObjProp 887 "PickDist"
+{
+	"" 3.00
+}
+ObjProp 887 "Position"
+{
+	"Bank" 0
+}
+-ObjProp 887 "PhysType"
++ObjProp 887 "PhysType"
+{
+	"Type" OBB
+}
+
+//beds
+-ObjProp 666 "PhysType"
++ObjProp 666 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 888 "PhysType"
++ObjProp 888 "PhysType"
+{
+	"Type" OBB
+}
+
+//AIs
+Link 750 751 "AIWatchObj"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 734
+}
+Link 823 251 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 251
+}
+ObjProp 824 "AI_AlrtRsp"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 834
+}
+Link 824 826 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 546
+	"   Argument 1"[2] ""
+	"   Argument 2"[2] 825
+}
+Link 1029 1025 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 962
+}
+
+//various objects
++MetaProp 114 -2419
++MetaProp 115 -2419
++ObjProp 879 "ExtraLight"
+{
+	"Amount (-1..1)" 0.10
+	"Additive?" true
+}
++ObjProp 1164 "FrobInfo"
+{
+}
++ObjProp 1165 "FrobInfo"
+{
+}

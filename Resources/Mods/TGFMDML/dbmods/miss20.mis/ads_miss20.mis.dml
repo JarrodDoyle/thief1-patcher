@@ -1,0 +1,203 @@
+DML1
+//T1 FM: A Dark Secret (Das Dunkle Geheimnis) by Mayar / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	575 [245 -59 510]
+	93 [490 523 493]
+	422 [280 -20 492]
+	1187 [225 404 495]
+	179 [276 480 505]
+	981 [261 -109 494]
+	154 [413 508 497]
+	827 [280 -134 524]
+	QVAR "goal_target_0" == 777
+}
+
+//final goal
++ObjProp 58 "TrapFlags"
+{
+	"" Once, NoOff
+}
++ObjProp 58 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 58 "TrapQVar"
+{
+	"" =1:goal_irreversible_8
+}
++Link 849 58 "ControlDevice"
+{
+}
+
+//footlocker
+-ObjProp 623 "PhysType"
+ObjProp 623 "Position"
+{
+	"Location" 279.67, 41.48, 505.763
+}
++ObjProp 623 "PhysType"
+{
+	"Type" OBB
+}
+
+//letter
++ObjProp 787 "NoDrop"
+{
+	"" true
+}
+
+//banners
++ObjProp 724 "BlockFrob"
+{
+	"" true
+}
+
++ObjProp 868 "BlockFrob"
+{
+	"" true
+}
+
+//safe door
++ObjProp 828 "BlockFrob"
+{
+	"" true
+}
+
+//mask (hard, expert)
++ObjProp 977 "DiffDestroy"
+{
+	"quest var values" 0
+}
++ObjProp 977 "FrobInfo"
+{
+	"World Action" Move
+}
++ObjProp 977 "NoDrop"
+{
+	"" true
+}
+
++ObjProp 972 "DiffDestroy"
+{
+	"quest var values" 0
+}
+
++ObjProp 978 "DiffDestroy"
+{
+	"quest var values" 0
+}
+
+//poster scroll
+ObjProp 983 "Book"
+{
+	"" Door
+}
+
+//servant
+ObjProp 1123 "AI_AlrtRsp"
+{
+	"Priority" Very high
+}
+
+//unused door
++ObjProp 56 "FrobInfo"
+{
+}
+
+//optional
+
+//beds
+-ObjProp 181 "PhysType"
+ObjProp 181 "Position"
+{
+	"Heading" 4000
+}
++ObjProp 181 "PhysType"
+{
+	"Type" OBB
+}
+
+-ObjProp 761 "PhysType"
+ObjProp 761 "Position"
+{
+	"Heading" 4000
+}
++ObjProp 761 "PhysType"
+{
+	"Type" OBB
+}
+
+-ObjProp 815 "PhysType"
+ObjProp 815 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 815 "PhysType"
+{
+	"Type" OBB
+}
+
+//gates
++ObjProp 244 "FrobInfo"
+{
+}
+
++ObjProp 245 "FrobInfo"
+{
+}
+
+//plates
++ObjProp 497 "InvType"
+{
+}
+
++ObjProp 579 "InvType"
+{
+}
+
++ObjProp 580 "InvType"
+{
+}
+
+//barrel
++ObjProp 546 "FrobInfo"
+{
+}
+
+//scrolls
++ObjProp 981 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 981 "Scripts"
+{
+	"Script 0" StdBook
+}
+-ObjProp 981 "PhysType"
+ObjProp 981 "Position"
+{
+	"Heading" 4000
+	"Bank" 0
+}
+
++ObjProp 987 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 987 "Scripts"
+{
+	"Script 0" StdBook
+}
+-ObjProp 987 "PhysType"
+ObjProp 987 "Position"
+{
+	"Heading" 4000
+}
+
+//cabinet-door
++ObjProp 976 "Material Tags"
+{
+	"1: Tags" Material Wood
+}

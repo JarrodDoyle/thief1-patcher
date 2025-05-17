@@ -1,0 +1,43 @@
+DML1
+//T1 FM: The Secret Way by David Webb (Hengist) / Fixes: miss22.mis.dml
+
+FINGERPRINT
+{
+	668 [258 -172 -1]
+	1546 [-43 51 -9]
+	142 [68 251 -11]
+	370 [61 -41 4]
+	1145 [19 -89 -23]
+	811 [260 -286 -18]
+	308 [70 -40 -7]
+	1187 [49 -90 -7]
+	QVAR "goal_target_0" == 1839
+}
+
+//Holman
++ObjProp 216 "Scripts"
+{
+	"Script 0" TrapRequireAll
+}
+Create -448 "HolmanDoneTrig"
+{
+}
++Link "HolmanDoneTrig" 216 "ControlDevice"
+{
+}
+-Link 1160 219 "ControlDevice"
++Link 1160 216 "ControlDevice"
+{
+}
++Link 216 219 "ControlDevice"
+{
+}
+ObjProp 1220 "AI_Converation"
+{
+	"Actor"[8] ActorOne
+	"Conversation: Action 2"[1] Wait(Time(ms),Motion Tags)
+	"   Argument 1"[8] 1000
+	"Actor"[9] ActorOne
+	"Conversation: Action 3"[1] Frob object(Target Object,With Object)
+	"   Argument 1"[9] HolmanDoneTrig
+}

@@ -1,0 +1,373 @@
+DML1
+//T1 FM: The Gauntlet by Apache / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	130 [-142 39 31]
+	297 [-101 109 33]
+	97 [-209 -6 39]
+	455 [-61 130 34]
+	308 [-35 -52 35]
+	239 [-101 74 33]
+	599 [-89 -11 63]
+	317 [-33 -66 34]
+	QVAR "goal_target_0" == 378
+}
+
+#script "nvscript"
+
+//primary goal
++ObjProp 47 "DiffTurnOn"
+{
+   "quest var values" 0, 1, 2
+}
++ObjProp 47 "Scripts"
+{
+   "Script 0" TrapSetQVar
+}
++ObjProp 47 "TrapQVar"
+{
+   "" =1:goal_final_0
+}
++ObjProp 49 "DiffTurnOn"
+{
+   "quest var values" 0, 1, 2
+}
++ObjProp 49 "Scripts"
+{
+   "Script 0" TrapSetQVar
+}
++ObjProp 49 "TrapQVar"
+{
+   "" =1:goal_irreversible_0
+}
+
+//keys
++ObjProp 19 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 20 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 23 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 24 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 25 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 448 "FrobInfo"
+{
+   "World Action" Move
+   "Tool Action" Script, Delete
+}
++ObjProp 448 "NoDrop"
+{
+   "" true
+}
+
+//doors
+ObjProp 131 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
++ObjProp 131 "Locked"
+{
+}
+ObjProp 132 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
++ObjProp 132 "Locked"
+{
+}
+ObjProp 133 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
++ObjProp 133 "Locked"
+{
+}
+-ObjProp 516 "PhysType"
++ObjProp 516 "PhysType"
+{
+   "Type" OBB
+}
+
+//statue room
+-Link 202 217 "ControlDevice"
+ObjProp 164 "Position"
+{
+   "Location" -97, 89, 29.35
+}
+
+//haunt (trap)
++ObjProp 230 "DesignNote"
+{
+   "" NVRelayTrapCount=1
+}
++ObjProp 230 "Scripts"
+{
+   "Script 0" NVRelayTrap
+   "Don't Inherit" true
+}
+
+//scroll (song)
+-ObjProp 459 "PhysType"
+ObjProp 459 "Position"
+{
+   "Location" -92.79, 97.5, 29.8
+}
++ObjProp 459 "PhysType"
+{
+   "Type" Sphere
+}
+
+//hall of death
+Create -445 "Blocker"
+{
+   -ObjProp "PhysType"
+   +ObjProp "Position"
+   {
+      "Location" -84, -64, 41.7
+      "Pitch" c000
+   }
+   +ObjProp "PhysType"
+   {
+      "Type" OBB
+   }
+   +ObjProp "RenderType"
+   {
+      "" Not Rendered
+   }
+   +ObjProp "Material Tags"
+   {
+      "1: Tags" ""
+   }
+   +ObjProp "Scripts"
+   {
+      "Script 0" TrapDestroy
+   }
+}
+
+//banners
++Link 322 "Blocker" "ControlDevice"
+{
+}
++ObjProp 322 "Scripts"
+{
+   "Script 0" TrigSlain
+}
++ObjProp 324 "BlockFrob"
+{
+   "" true
+}
+
+//levers
++ObjProp 186 "DesignNote"
+{
+   "" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"
+}
++ObjProp 186 "Scripts"
+{
+   "Script 0" NVMetaTrap
+}
++ObjProp 250 "DesignNote"
+{
+   "" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"
+}
++ObjProp 250 "Scripts"
+{
+   "Script 0" NVMetaTrap
+}
++ObjProp 316 "DesignNote"
+{
+   "" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"
+}
++ObjProp 316 "Scripts"
+{
+   "Script 0" NVMetaTrap
+}
++ObjProp 348 "DesignNote"
+{
+   "" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"
+}
++ObjProp 348 "Scripts"
+{
+   "Script 0" NVMetaTrap
+}
++ObjProp 527 "RenderType"
+{
+   "" Not Rendered
+}
++ObjProp 589 "RenderType"
+{
+   "" Not Rendered
+}
+
+//barrels
+ObjProp 275 "Position"
+{
+   "Location" -77, 46.83, 31.85
+}
+ObjProp 277 "Position"
+{
+   "Location" -82.67, 46.43, 31.1
+}
+
+//chests
++ObjProp 444 "JointPos"
+{
+   "Joint 1" 90.00
+}
+-ObjProp 509 "Scripts"
+-ObjProp 509 "PhysType"
+ObjProp 509 "Position"
+{
+   "Location" -51.1, 129.45, 30.67
+}
++ObjProp 509 "PhysType"
+{
+   "Type" OBB
+}
++ObjProp 518 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 519 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 521 "JointPos"
+{
+   "Joint 1" 90.00
+}
+
+//garrett's speech
++ObjProp 446 "DesignNote"
+{
+   "" NVVOTrapCount=1
+}
++ObjProp 446 "Scripts"
+{
+   "Script 0" NVVOTrap
+   "Don't Inherit" true
+}
+
+//teleports
++Link 332 517 "ControlDevice"
+{
+}
++ObjProp 452 "DesignNote"
+{
+   "" NVRemovePropertyTrapProp="RenderType"
+}
++ObjProp 452 "RenderType"
+{
+   "" Not Rendered
+}
++ObjProp 452 "Scripts"
+{
+   "Script 0" NVRemovePropertyTrap
+}
+-Link 515 583 "ControlDevice"
+-Link 515 582 "ControlDevice"
+-Link 515 581 "ControlDevice"
+-Link 515 580 "ControlDevice"
+-Link 515 579 "ControlDevice"
+-Link 515 578 "ControlDevice"
+-Link 515 577 "ControlDevice"
+-Link 515 576 "ControlDevice"
+-Link 515 575 "ControlDevice"
+-Link 515 574 "ControlDevice"
+-Link 515 573 "ControlDevice"
+-Link 515 572 "ControlDevice"
+-Link 515 571 "ControlDevice"
+-Link 515 570 "ControlDevice"
+-Link 515 517 "ControlDevice"
+-Link 515 525 "ControlDevice"
+-Link 515 569 "ControlDevice"
++ObjProp 480 "DesignNote"
+{
+   "" NVRelayTrapCount=1
+}
++Link 480 452 "ControlDevice"
+{
+}
++Link 480 525 "ControlDevice"
+{
+}
++Link 480 569 "ControlDevice"
+{
+}
++Link 480 570 "ControlDevice"
+{
+}
++Link 480 571 "ControlDevice"
+{
+}
++Link 480 572 "ControlDevice"
+{
+}
++Link 480 573 "ControlDevice"
+{
+}
++Link 480 574 "ControlDevice"
+{
+}
++Link 480 575 "ControlDevice"
+{
+}
++Link 480 576 "ControlDevice"
+{
+}
++Link 480 577 "ControlDevice"
+{
+}
++Link 480 578 "ControlDevice"
+{
+}
++Link 480 579 "ControlDevice"
+{
+}
++Link 480 580 "ControlDevice"
+{
+}
++Link 480 581 "ControlDevice"
+{
+}
++Link 480 582 "ControlDevice"
+{
+}
++Link 480 583 "ControlDevice"
+{
+}
++ObjProp 480 "Scripts"
+{
+   "Script 0" NVRelayTrap
+   "Don't Inherit" true
+}
+ObjProp 582 "Position"
+{
+   "Location" -56, -2.85, 34
+}
+
+//loot
++ObjProp 615 "Loot"
+{
+}

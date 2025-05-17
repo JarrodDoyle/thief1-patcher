@@ -1,0 +1,181 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: miss30.mis.dml
+
+FINGERPRINT
+{
+	88 [-29 -54 -20]
+	246 [2 109 6]
+	214 [12 -32 -17]
+	401 [4 -66 39]
+	485 [10 -34 13]
+	1231 [2 118 41]
+	1657 [5 -120 6]
+	749 [42 74 39]
+	QVAR "goal_target_1" == 626
+}
+
+//assign the prisoners to the neutral team so the guard won't go nuts when he sees them
+ObjProp 1249 "AI_Team"
+{
+	"" Neutral
+}
+ObjProp 1248 "AI_Team"
+{
+	"" Neutral
+}
+ObjProp 305 "AI_Team"
+{
+	"" Neutral
+}
+ObjProp 1246 "AI_Team"
+{
+	"" Neutral
+}
+//removing extralight from the weird torch
+-ObjProp 57 "ExtraLight"
+//modifying the locker teleport trap position so the teleported locker would not snap into its position so obviously
+ObjProp 1453 "Position"
+{
+	"Location" 12.8983, -69.3688, 12.7631
+	"Heading" fc87
+}
+//link the candle concretes with their flames
++ObjProp 273 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="274"; NVLinkBuilderLinkDest="273";
+}
++ObjProp 163 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="164"; NVLinkBuilderLinkDest="163";
+}
++ObjProp 21 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="14"; NVLinkBuilderLinkDest="21";
+}
++ObjProp 83 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="84"; NVLinkBuilderLinkDest="83";
+}
+//link the chandeleer flames
++ObjProp 114 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="123"; NVLinkBuilderLinkDest="114"; NVLinkBuilder2LinkSource="116"; NVLinkBuilder2LinkDest="114"; NVLinkBuilder3LinkSource="115"; NVLinkBuilder3LinkDest="114";
+}
++ObjProp 389 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="397"; NVLinkBuilderLinkDest="389"; NVLinkBuilder2LinkSource="396"; NVLinkBuilder2LinkDest="389"; NVLinkBuilder3LinkSource="398"; NVLinkBuilder3LinkDest="389";
+}
++ObjProp 387 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="390"; NVLinkBuilderLinkDest="387"; NVLinkBuilder2LinkSource="391"; NVLinkBuilder2LinkDest="387"; NVLinkBuilder3LinkSource="392"; NVLinkBuilder3LinkDest="387";
+}
++ObjProp 388 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="394"; NVLinkBuilderLinkDest="388"; NVLinkBuilder2LinkSource="393"; NVLinkBuilder2LinkDest="388"; NVLinkBuilder3LinkSource="395"; NVLinkBuilder3LinkDest="388";
+}
+//the hammer guards should drop their lanterns when KO'd
++ObjProp 1016 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1016 "DesignNote"
+{
+	"" NVRelayTrapOn="Damage"; NVRelayTrapTOn="DropLight"; NVRelayTrapTDest="1289";
+}
++ObjProp 1289 "Scripts"
+{
+	"Script 0" NVSlayMeTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1289 "DesignNote"
+{
+	"" NVSlayMeTrapOn="DropLight";
+}
+-Link 1016 1289 "CreatureAttachment"
++Link 1289 1016 "DetailAttachement"
+{
+	"Type" Joint
+	"vhot/sub #" 0
+	"joint" Left Fingers
+	"Flags" No Joint Rot
+}
++Link 1289 -29 "Corpse"
+{
+}
+//the lantern should not be rotated
+-ObjProp 1289 "PhysType"
+ObjProp 1289 "Position"
+{
+	"Heading" 0
+	"Pitch" 0
+	"Bank" 0
+}
+ObjProp 1289 "Scale"
+{
+	"" 0.75, 0.75, 0.75
+}
+//the hammer guards should drop their lanterns when KO'd
++ObjProp 1283 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1283 "DesignNote"
+{
+	"" NVRelayTrapOn="Damage"; NVRelayTrapTOn="DropLight"; NVRelayTrapTDest="1290";
+}
++ObjProp 1290 "Scripts"
+{
+	"Script 0" NVSlayMeTrap
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp 1290 "DesignNote"
+{
+	"" NVSlayMeTrapOn="DropLight";
+}
+-Link 1283 1290 "CreatureAttachment"
++Link 1290 1283 "DetailAttachement"
+{
+	"Type" Joint
+	"vhot/sub #" 0
+	"joint" Left Fingers
+	"Flags" No Joint Rot
+}
++Link 1290 -29 "Corpse"
+{
+}
+//the lantern should not be rotated
+-ObjProp 1290 "PhysType"
+ObjProp 1290 "Position"
+{
+	"Heading" 0
+	"Pitch" 0
+	"Bank" 0
+}
+ObjProp 1290 "Scale"
+{
+	"" 0.75, 0.75, 0.75
+}
+//lamp 21 bad colision setting
+ObjProp 21 "CollisionType"
+{
+	"" Bounce
+}
+//removing improper collision type from chandeliers
+-ObjProp 114 "CollisionType"
+-ObjProp 388 "CollisionType"
+-ObjProp 387 "CollisionType"
+-ObjProp 389 "CollisionType"

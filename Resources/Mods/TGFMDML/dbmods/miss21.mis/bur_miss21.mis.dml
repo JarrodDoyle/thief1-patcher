@@ -1,0 +1,21 @@
+DML1
+//T1 FM: The BurgoMaster by David Webb (Hengist) / Fixes: miss21.mis.dml
+
+FINGERPRINT
+{
+	74 [97 -194 -11]
+	188 [53 -190 -2]
+	631 [65 70 -12]
+	286 [50 13 -14]
+	858 [5 150 -14]
+	328 [-49 -76 -19]
+	484 [-10 -110 -13]
+	351 [-52 -67 -20]
+	QVAR "goal_target_0" == 1074
+}
+
+//increasing the pick distance of the horn so it would be possible to actually pick it up
+ObjProp 1168 "PickDist"
+{
+	"" 1.50
+}

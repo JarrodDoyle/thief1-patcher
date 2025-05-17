@@ -1,0 +1,161 @@
+DML1
+//T1 FM: The Immoral Immortal by Keith Kelly (Zail) / Fixes: miss30.mis.dml
+
+FINGERPRINT
+{
+	283 [-113 -31 -36]
+	165 [-53 -111 -17]
+	390 [208 181 -28]
+	176 [-40 -125 -17]
+	470 [-95 -155 -18]
+	282 [-111 -11 -35]
+	380 [41 295 0]
+	60 [-45 38 -1]
+	QVAR "goal_target_1" == 422
+}
+
+#script "nvscript"
+
+//final goal
++ObjProp 40 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 40 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 40 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
+
+//burrick / loot
++ObjProp 296 "DesignNote"
+{
+	"" NVDeleteTrapOn="Slain"
+}
+Link 296 299 "AIProjectile"
+{
+	"Ammo" 2
+}
++Link 296 299 "ControlDevice"
+{
+}
++ObjProp 296 "Scripts"
+{
+	"Script 0" NVDeleteTrap
+}
++ObjProp 299 "DesignNote"
+{
+	"" NVRemovePropertyTrapOn="Launch"; NVRemovePropertyTrapProp="StackCount"
+}
++ObjProp 299 "Scripts"
+{
+	"Script 0" NVRemovePropertyTrap
+}
+
+//bridge
+-Link 323 309 "TPathInit"
++Link 323 333 "TPathInit"
+{
+}
++MetaProp 323 -2418
++MetaProp 383 -2418
+-Link 383 274 "TPathInit"
++Link 383 406 "TPathInit"
+{
+}
+
+//AIs
+-Link 39 123 "CreatureAttachment"
++Link 39 123 "Contains"
+{
+	"" Belt
+}
+-Link 128 335 "CreatureAttachment"
++Link 128 335 "Contains"
+{
+	"" Belt
+}
+
+//chests
++ObjProp 52 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 53 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 315 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 430 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//doors
+ObjProp 171 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 171 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 171 "PhysType"
++ObjProp 171 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 172 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 172 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 172 "PhysType"
++ObjProp 172 "PhysType"
+{
+	"Type" OBB
+}
+
+//various objects
+-ObjProp 191 "PhysType"
++ObjProp 191 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 385 "Position"
+{
+	"Location" 193.75, 215.8, -31.93
+}
+-ObjProp 385 "PhysType"
++ObjProp 385 "PhysType"
+{
+	"Type" Sphere Hat
+}
++ObjProp 426 "DesignNote"
+{
+	"" NVRemovePropertyTrapOn="FrobWorldEnd"; NVRemovePropertyTrapProp="FrobInfo"
+}
+ObjProp 426 "Scripts"
+{
+	"Script 1" NVRemovePropertyTrap
+}
+ObjProp 471 "Position"
+{
+	"Heading" c000
+}
+-ObjProp 471 "PhysType"
++ObjProp 471 "PhysType"
+{
+	"Type" OBB
+}

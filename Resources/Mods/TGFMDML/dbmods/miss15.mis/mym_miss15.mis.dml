@@ -1,0 +1,513 @@
+DML1
+//T1 FM: The Mystery Man by Guillaume Manders (Doaal) / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	1220 [-52 -116 -32]
+	141 [52 -47 0]
+	202 [87 18 -2]
+	1002 [-120 -77 -32]
+	263 [104 29 10]
+	1797 [86 58 27]
+	1173 [47 -110 1]
+	59 [-4 60 -1]
+	QVAR "goal_target_9" == 1638
+}
+
+//final goal
++ObjProp 1110 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 1110 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 1110 "TrapQVar"
+{
+	"" =1:goal_irreversible_10
+}
+
+//loot
++ObjProp 1110 "Loot"
+{
+}
++ObjProp 1112 "Loot"
+{
+}
++ObjProp 1116 "Loot"
+{
+}
++ObjProp 1117 "Loot"
+{
+}
+
+//doors
+-ObjProp 42 "PhysType"
++ObjProp 42 "PhysType"
+{
+	"Type" OBB
+}
++Receptron 43 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
+++Receptron 43 "Stench"
+{
+	Max None
+
+	Target 416
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
+++Receptron 43 "Stench"
+{
+	Max None
+
+	Target 492
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
+++Receptron 43 "Stench"
+{
+	Max None
+
+	Target 1048
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
+++Receptron 43 "Stench"
+{
+	Max None
+
+	Target 1170
+	Agent -2645
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
++StimSource 43 "Stench"
+{
+	Intensity 1
+	Propagator "Radius"
+}
++ObjProp 43 "TransDoor"
+{
+	"Open Position" -5.50
+	"Base Speed" 3.00
+}
+-ObjProp 43 "RotDoor"
++Link 92 94 "ScriptParams"
+{
+	"" Double
+}
+ObjProp 114 "RotDoor"
+{
+	"Open Angle" 89
+}
+ObjProp 211 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+-ObjProp 211 "PhysType"
+ObjProp 211 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 211 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 221 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+-ObjProp 221 "PhysType"
+ObjProp 221 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 221 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 222 "Material Tags"
+-ObjProp 319 "Material Tags"
+-ObjProp 416 "Material Tags"
+-ObjProp 416 "PhysType"
++ObjProp 416 "PhysType"
+{
+	"Type" OBB
+}
++MetaProp 416 -2420
+-ObjProp 492 "Material Tags"
++MetaProp 492 -2420
++Link 507 511 "ScriptParams"
+{
+	"" Double
+}
+Receptron 507 "DoorStim"
+{
+	Min 10
+	Max None
+
+	Target 511
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+-StimSource 507 "DoorStim"
+-StimSource 511 "DoorStim"
+Receptron 511 "DoorStim"
+{
+	Min 10
+	Max None
+
+	Target 507
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+-StimSource 675 "DoorStim"
+-Receptron 675 "DoorStim" 00210002
++Link 675 676 "ScriptParams"
+{
+	"" Double
+}
+-StimSource 676 "DoorStim"
+-Receptron 676 "DoorStim" 00210003
+-ObjProp 780 "Material Tags"
++MetaProp 780 -2420
++ObjProp 879 "DiffRemoveProp"
+{
+	"quest var values" 0
+	"alt quest var values" 1, 2
+	"Properties" PickDist
+}
++ObjProp 879 "PickDist"
+{
+	"" -8.00
+}
++MetaProp 960 -2420
++MetaProp 1006 -2420
+-ObjProp 1046 "Class Tags"
+-ObjProp 1047 "Class Tags"
+-ObjProp 1048 "Material Tags"
++MetaProp 1048 -2420
+-ObjProp 1081 "Material Tags"
++Link 1133 1134 "ScriptParams"
+{
+	"" Double
+}
+-StimSource 1137 "TaliStim"
+-Receptron 1137 "TaliStim" 00210008
++Link 1137 1138 "ScriptParams"
+{
+	"" Double
+}
+-StimSource 1138 "TaliStim"
+-Receptron 1138 "TaliStim" 0021000A
+ObjProp 1296 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 1301 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Link 1356 1358 "ScriptParams"
+{
+	"" Double
+}
++MetaProp 1377 -2419
+ObjProp 1510 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+-ObjProp 1510 "PhysType"
+ObjProp 1510 "Position"
+{
+	"Heading" 4000
+}
++ObjProp 1510 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 1528 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+-ObjProp 1528 "PhysType"
+ObjProp 1528 "Position"
+{
+	"Heading" c000
+}
++ObjProp 1528 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 1616 "TransDoor"
+{
+	"Open Position" 4.00
+	"Base Speed" 2.00
+}
+-ObjProp 1616 "RotDoor"
++ObjProp 1616 "BlockFrob"
+{
+	"" true
+}
+
+//misplaced objects
+-ObjProp 58 "PhysType"
+ObjProp 58 "Position"
+{
+	"Heading" c000
+}
++ObjProp 58 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 869 "Position"
+{
+	"Location" 158, -87, 4.65
+}
+ObjProp 874 "Position"
+{
+	"Location" 162, -87, 4.65
+}
+ObjProp 1517 "Position"
+{
+	"Location" -18, -82.25, -14.7
+}
+
+//banners
++ObjProp 79 "BlockFrob"
+{
+	"" true
+}
++ObjProp 487 "BlockFrob"
+{
+	"" true
+}
++ObjProp 663 "BlockFrob"
+{
+	"" true
+}
++ObjProp 693 "BlockFrob"
+{
+	"" true
+}
++ObjProp 759 "BlockFrob"
+{
+	"" true
+}
++ObjProp 811 "BlockFrob"
+{
+	"" true
+}
++ObjProp 1011 "BlockFrob"
+{
+	"" true
+}
++ObjProp 1865 "BlockFrob"
+{
+	"" true
+}
+
+//chests
++ObjProp 322 "DiffLock"
+{
+	"quest var values" 0, 1
+}
++ObjProp 595 "DiffLock"
+{
+	"quest var values" 0
+}
++ObjProp 1573 "DiffLock"
+{
+	"quest var values" 1, 2
+}
++ObjProp 1773 "DiffLock"
+{
+	"quest var values" 0, 1
+}
+
+//AIs
+ObjProp 473 "AI_Hearing"
+{
+	"" Null
+}
++Link 1186 1457 "ControlDevice"
+{
+}
+-Link 1448 1457 "ControlDevice"
+-Link 1457 1448 "ControlDevice"
++Link 1457 1761 "ControlDevice"
+{
+}
+ObjProp 1638 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hauntca
+}
++ObjProp 1819 "AI_ObjPathable"
+{
+	"" true
+}
+-ObjProp 1875 "Scale"
+-ObjProp 1876 "Scale"
+
+//switches
+-Link 106 330 "ControlDevice"
++Link 106 330 "FrobProxy"
+{
+	"FrobProxyMask" AllowDirect
+}
+-Link 330 106 "ControlDevice"
+-Link 330 222 "ControlDevice"
+-Link 417 423 "ControlDevice"
+-Link 417 416 "ControlDevice"
+-Link 423 417 "ControlDevice"
++Link 423 417 "FrobProxy"
+{
+	"FrobProxyMask" AllowDirect
+}
++ObjProp 971 "Class Tags"
+{
+}
+
+//quest items
++ObjProp 668 "FrobInfo"
+{
+	"World Action" Move
+}
+-ObjProp 668 "NoDrop"
+-ObjProp 1574 "NoDrop"
++ObjProp 1574 "FrobInfo"
+{
+	"World Action" Move
+}
+
+//convos b/t guards
+ObjProp 1107 "AI_Converation"
+{
+	"   Argument 1"[2] ""
+	"   Argument 2"[2] 1106
+	"   Argument 1"[3] ""
+	"   Argument 2"[3] 1105
+}
+ObjProp 1772 "AI_Converation"
+{
+	"   Argument 1"[7] ""
+	"   Argument 2"[7] 78
+	"   Argument 1"[25] ""
+	"   Argument 2"[25] 112
+}
+
+//keys
+-ObjProp 1690 "KeyDst"
+-ObjProp 1691 "KeyDst"
++ObjProp 1690 "KeySrc"
+{
+	"RegionMask" 1
+	"LockID" 9
+}
++ObjProp 1691 "KeySrc"
+{
+	"RegionMask" 1
+	"LockID" 9
+}
++StimSource 1711 "DoorStim"
+{
+	Intensity 11
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 1712 "DoorStim"
+{
+	Intensity 11
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 1716 "DoorStim"
+{
+	Intensity 11
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 1717 "DoorStim"
+{
+	Intensity 11
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++StimSource 1718 "DoorStim"
+{
+	Intensity 11
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}

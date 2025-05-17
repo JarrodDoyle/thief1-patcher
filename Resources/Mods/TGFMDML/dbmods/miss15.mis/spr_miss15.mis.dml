@@ -1,0 +1,291 @@
+DML1
+//T1 FM: Saving Private Rye Anne by Adrian May (Nirvana_Thief) / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	549 [-86 11 47]
+	619 [44 -15 13]
+	357 [-98 -53 28]
+	563 [-111 -6 46]
+	347 [-83 20 32]
+	20 [-58 27 6]
+	221 [-97 -4 35]
+	515 [-53 26 48]
+	QVAR "goal_target_6" == 751
+}
+
+#script "nvscript"
+
+//goals
+Create -2086 "GoalFix"
+{
+	+ObjProp "DesignNote"
+	{
+		"" NVTrigOBBPlayer=1; NVLinkBuilderLinkType="ControlDevice"; NVLinkBuilderLinkSource="[Me]"; NVLinkBuilderLinkDest=276
+	}
+	-ObjProp "PhysType"
+	+ObjProp "Position"
+	{
+		"Location" 3.5, -1.5, 32
+	}
+	+ObjProp "PhysType"
+	{
+		"Type" OBB
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" NVTrigOBB
+		"Script 1" NVLinkBuilder
+		"Don't Inherit" true
+	}
+}
+ObjProp 408 "Scripts"
+{
+	"Don't Inherit" false
+}
++ObjProp 270 "DiffTurnOn"
+{
+	"quest var values" 0, 1
+}
++ObjProp 270 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 270 "TrapQVar"
+{
+	"" =1:goal_final_4
+}
++ObjProp 271 "DiffTurnOn"
+{
+	"quest var values" 0, 1
+}
++ObjProp 271 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 271 "TrapQVar"
+{
+	"" =1:goal_irreversible_4
+}
++ObjProp 272 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 272 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 272 "TrapQVar"
+{
+	"" =1:goal_max_diff_4
+}
++ObjProp 273 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 273 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 273 "TrapQVar"
+{
+	"" =1:goal_reverse_5
+}
++Link 274 275 "ControlDevice"
+{
+}
++ObjProp 274 "Scripts"
+{
+	"Script 0" NVTrigQVar
+}
++ObjProp 274 "TrapQVar"
+{
+	"" =1:goal_state_3
+}
++Link 275 "GoalFix" "ControlDevice"
+{
+}
++ObjProp 275 "Scripts"
+{
+	"Script 0" TrapRequireAll
+}
++ObjProp 276 "DesignNote"
+{
+	"" NVTrapSetQVarCount=1
+}
++ObjProp 276 "Scripts"
+{
+	"Script 0" NVTrapSetQVar
+}
++ObjProp 276 "TrapQVar"
+{
+	"" =1:goal_state_6
+}
++Link 655 275 "ControlDevice"
+{
+}
++ObjProp 655 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVTrigQVar
+}
++ObjProp 655 "TrapQVar"
+{
+	"" =1:goal_state_0
+}
+-ObjProp 656 "PhysType"
++ObjProp 656 "FrobInfo"
+{
+	"World Action" Script
+}
++Link 656 655 "ControlDevice"
+{
+}
+ObjProp 656 "Position"
+{
+	"Heading" c000
+}
++ObjProp 656 "Scripts"
+{
+	"Script 0" StdBook
+	"Script 1" TrigWorldFrob
+}
+
+//loot
+ObjProp 682 "Position"
+{
+	"Location" -19.25, -1.75, 47
+	"Pitch" 4000
+}
+ObjProp 683 "Position"
+{
+	"Location" -19.25, -1.00, 47
+	"Pitch" 4000
+}
+
+//beds
+-ObjProp 350 "PhysType"
++ObjProp 350 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 351 "PhysType"
+ObjProp 351 "Position"
+{
+	"Heading" c000
+}
++ObjProp 351 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 352 "PhysType"
+ObjProp 352 "Position"
+{
+	"Heading" c000
+}
++ObjProp 352 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 353 "PhysType"
++ObjProp 353 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 409 "PhysType"
++ObjProp 409 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 445 "PhysType"
+ObjProp 445 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 445 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 446 "PhysType"
++ObjProp 446 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 479 "PhysType"
+ObjProp 479 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 479 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 480 "PhysType"
+ObjProp 480 "Position"
+{
+	"Heading" 8000
+}
++ObjProp 480 "PhysType"
+{
+	"Type" OBB
+}
+
+//chest
+-ObjProp 380 "PhysType"
+ObjProp 380 "Position"
+{
+	"Heading" c000
+}
++ObjProp 380 "PhysType"
+{
+	"Type" OBB
+}
+
+//front doors
++Receptron 702 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 703
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Link 702 703 "ScriptParams"
+{
+	"" Double
+}
++Receptron 703 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 702
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 703 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++StimSource 773 "EarthStim"
+{
+	Intensity 10
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}

@@ -1,0 +1,366 @@
+DML1
+//T1 FM: The Vigil by Jussi Lehtinen (Banshee) / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	777 [81 35 -38]
+	238 [92 3 -42]
+	384 [17 -167 0]
+	94 [-98 -14 -4]
+	452 [53 9 5]
+	40 [-81 35 -4]
+	762 [41 88 -39]
+	709 [1 50 -1]
+	QVAR "goal_target_1" == 646
+}
+
+//final goal
++ObjProp 10 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 10 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 10 "TrapQVar"
+{
+	"" =1:goal_irreversible_1
+}
+
+//starting point
+ObjProp 61 "Position"
+{
+	"Heading" b800
+}
+
+//loot
+ObjProp 93 "Loot"
+{
+	"Art" 0
+}
+
+//doors
+ObjProp 57 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Link 143 147 "ScriptParams"
+{
+	"" Double
+}
++MetaProp 229 -2420
++MetaProp 237 -2420
+ObjProp 260 "FrobInfo"
+{
+	"World Action" None
+}
++Receptron 475 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 476
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Link 475 476 "ScriptParams"
+{
+	"" Double
+}
++Receptron 476 "EarthStim"
+{
+	Min 9
+	Max None
+
+	Target 475
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++StimSource 680 "EarthStim"
+{
+	Intensity 10
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++Link 590 591 "ScriptParams"
+{
+	"" Double
+}
+ObjProp 797 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++Link 813 814 "ScriptParams"
+{
+	"" Double
+}
++ObjProp 820 "FrobInfo"
+{
+}
++ObjProp 820 "BlockFrob"
+{
+	"" true
+}
++ObjProp 821 "FrobInfo"
+{
+}
++ObjProp 821 "BlockFrob"
+{
+	"" true
+}
++Link 900 901 "ScriptParams"
+{
+	"" Double
+}
+
+//quest items
+Receptron 92 "BashStim" 00210000
+{
+	Min 2
+}
+Receptron 92 "BashStim" 00210001
+{
+	Min 2
+}
+++Receptron 92 "BashStim"
+{
+	Min 2
+	Max None
+
+	Target 113
+
+	Effect "destroy_obj"
+}
+++Receptron 92 "BashStim"
+{
+	Min 2
+	Max None
+
+	Target 91
+
+	Effect "destroy_obj"
+}
+++Receptron 164 "FireStim"
+{
+	Max None
+	Target 638
+	Effect "destroy_obj"
+}
+++Receptron 164 "FireStim"
+{
+	Max None
+	Target 90
+	Effect "destroy_obj"
+}
+++Receptron 168 "WaterStim"
+{
+	Max None
+	Target 640
+	Effect "destroy_obj"
+}
+++Receptron 168 "WaterStim"
+{
+	Max None
+	Target 641
+	Effect "destroy_obj"
+}
++StimSource 635 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 635 "StackCount"
+{
+}
++StimSource 636 "Stench"
+{
+	Intensity 4
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 636 "StackCount"
+{
+}
++StimSource 637 "Stench"
+{
+	Intensity 7
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
++ObjProp 637 "StackCount"
+{
+}
++Receptron 681 "Stench"
+{
+	Max 2
+
+	Target Me
+	Agent -1629
+
+	Effect "add_metaprop"
+}
++Receptron 682 "Stench"
+{
+	Min 6
+	Max 8
+
+	Target Me
+	Agent -1629
+
+	Effect "add_metaprop"
+}
++Receptron 683 "Stench"
+{
+	Min 3
+	Max 5
+
+	Target Me
+	Agent -1629
+
+	Effect "add_metaprop"
+}
++ObjProp 762 "NoDrop"
+{
+	"" true
+}
++ObjProp 897 "StackCount"
+{
+}
+
+//mantling
++ObjProp 134 "PhysCanMant"
+{
+}
++ObjProp 139 "PhysCanMant"
+{
+}
++ObjProp 140 "PhysCanMant"
+{
+}
++ObjProp 141 "PhysCanMant"
+{
+}
++ObjProp 467 "PhysCanMant"
+{
+}
++ObjProp 468 "PhysCanMant"
+{
+}
++ObjProp 570 "PhysCanMant"
+{
+}
++ObjProp 590 "PhysCanMant"
+{
+}
++ObjProp 591 "PhysCanMant"
+{
+}
++ObjProp 900 "PhysCanMant"
+{
+}
++ObjProp 901 "PhysCanMant"
+{
+}
+
+//candlesticks
++ObjProp 137 "FrobInfo"
+{
+}
++ObjProp 144 "FrobInfo"
+{
+}
++ObjProp 145 "FrobInfo"
+{
+}
++ObjProp 146 "FrobInfo"
+{
+}
++ObjProp 224 "FrobInfo"
+{
+}
++ObjProp 225 "FrobInfo"
+{
+}
+
+//chests
++ObjProp 540 "JointPos"
+{
+	"Joint 1" 90.00
+}
+-Link 973 812 "AIAttack"
++Link 812 973 "Contains"
+{
+}
++ObjProp 812 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 816 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//scroll
+-ObjProp 983 "PhysType"
+ObjProp 983 "Position"
+{
+	"Location" -2.5, -37, -4.75
+}
+
+//AIs
++ObjProp 47 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hamgca
+}
++ObjProp 355 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hamgca
+}
++ObjProp 739 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hamgca
+}
++ObjProp 890 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" hamgca
+}

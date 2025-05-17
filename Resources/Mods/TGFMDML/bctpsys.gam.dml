@@ -1,0 +1,22 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: bctpsys.gam.dml
+
+FINGERPRINT
+{
+	NAME -5699 "th2hhi"
+	NAME -5743 "MageTable"
+}
+
+//adding scripts
++ObjProp -470 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp -470 "DesignNote"
+{
+	"" NVLinkBuilderOn="BeginScript"; NVLinkBuilderOff="Null"; NVLinkBuilderLinkType="DetailAttachement"; NVLinkBuilderCount=1; NVLinkBuilderLinkData1Field="Type"; NVLinkBuilderLinkData1Value="1"; NVLinkBuilderLinkData2Field="vhot/sub #"; NVLinkBuilderLinkData2Value="1"; NVLinkBuilderLinkData3Field="rel pos"; NVLinkBuilderLinkData3Value="0, 0, 0.13";
+}

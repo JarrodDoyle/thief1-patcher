@@ -1,0 +1,42 @@
+DML1
+//TG FM: Business at Midnight by David Moore / Fixes: miss21.mis.dml
+
+FINGERPRINT
+{
+	279 [-188 108 -25]
+	817 [-268 60 -21]
+	1018 [-298 -76 -14]
+	929 [-126 40 -15]
+	326 [-59 -28 -33]
+	640 [-368 -31 -12]
+	231 [-42 7 8]
+	269 [-251 156 -46]
+	QVAR "goal_target_0" == 629
+}
+
+//Fix for Business at Midnight not ending; also fixed a guard that can't be blackjacked since he's randomly losing his physics for no reason
+
++ObjProp 836 "Scripts"
+{
+    "Script 1" TrigRoomPlayer
+}
+
++ObjProp 115 "TrapQVar"
+{
+    "" =1:goal_state_3
+}
++Link 836 115 "ControlDevice"
+{
+}
++ObjProp 115 "Scripts"
+{
+    "Script 0" TrapSetQVar
+}
++ObjProp 807 "PhysAIColl"
+{
+    "" True
+}
++ObjProp 807 "PhysAttr"
+{
+
+}

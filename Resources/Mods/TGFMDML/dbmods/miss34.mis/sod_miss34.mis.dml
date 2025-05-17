@@ -1,0 +1,23 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: miss34.mis.dml
+
+FINGERPRINT
+{
+	991 [-194 -102 52]
+	489 [-113 3 -20]
+	18 [-139 42 -20]
+	645 [-13 67 -43]
+	1206 [-9 27 -10]
+	1105 [-41 224 -32]
+	660 [-63 -9 -5]
+	589 [-120 186 -33]
+	QVAR "goal_target_10" == 1008
+}
+
+//link the candle concretes with their flames
++ObjProp 69 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="70"; NVLinkBuilderLinkDest="69";
+}
+//removing improper collision type from lanterns
+-ObjProp 69 "CollisionType"

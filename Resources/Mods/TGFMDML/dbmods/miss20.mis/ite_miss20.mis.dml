@@ -1,0 +1,158 @@
+DML1
+//T1 FM: The Item by Oszkar Winkler (Sam2 = Sam/PengeMester) / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	245 [-104 -130 -58]
+	631 [57 -181 -71]
+	482 [116 -533 12]
+	498 [161 -454 12]
+	491 [152 -554 12]
+	989 [-32 -182 -25]
+	825 [-168 -121 -62]
+	326 [0 -459 48]
+	QVAR "goal_target_4" == 248
+}
+
+//final goal
++ObjProp 405 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 405 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 405 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
+
+//loot
+-ObjProp 31 "StackCount"
+ObjProp 150 "Position"
+{
+	"Location" 25.9, -98.3, -5.94
+}
+ObjProp 273 "Position"
+{
+	"Location" 43, -47.25, -17.1
+	"Pitch" 0
+}
+ObjProp 705 "Position"
+{
+	"Location" 32.2, -233.27, -72.97
+}
+
+//quest item
+-ObjProp 248 "Loot"
+-ObjProp 248 "InvType"
++ObjProp 248 "FrobInfo"
+{
+	"World Action" Move, Script
+	"Inv Action" Script, FocusScript
+	"Tool Action" Script, FocusScript
+}
++ObjProp 248 "GameName"
+{
+	"" Name_som: "Sword of Mercinius"
+}
++Link 248 250 "ControlDevice"
+{
+}
+ObjProp 248 "Scripts"
+{
+	"Script 0" TrigWorldFrob
+}
++Link 250 162 "ControlDevice"
+{
+}
++ObjProp 250 "Scripts"
+{
+	"Script 0" TrapDestroy
+}
+
+//doors
++ObjProp 13 "FrobInfo"
+{
+}
+ObjProp 399 "Scale"
+{
+	"" 1.1, 1, 1.1
+}
+
+//chests
+ObjProp 70 "Position"
+{
+	"Location" -12.9, -82.1, -19.58
+}
+-ObjProp 70 "PhysType"
++ObjProp 70 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 70 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 74 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 827 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//banner
++ObjProp 127 "BlockFrob"
+{
+	"" true
+}
+
+//misplaced objects
+ObjProp 385 "Position"
+{
+	"Location" 248, -159.55, 40.97
+}
+-ObjProp 385 "PhysType"
++ObjProp 385 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 639 "Position"
+{
+	"Location" 36.53, -231.77, -71.21
+	"Heading" 4000
+}
+-ObjProp 639 "PhysType"
++ObjProp 639 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 641 "Position"
+{
+	"Location" 48.2, -231.77, -71.21
+	"Heading" c000
+}
+-ObjProp 641 "PhysType"
++ObjProp 641 "PhysType"
+{
+	"Type" OBB
+}
+
+//various objects
++ObjProp 269 "InvType"
+{
+}
++ObjProp 667 "FrobInfo"
+{
+	"World Action" Move
+	"Tool Action" Script, Delete
+}
++ObjProp 991 "FrobInfo"
+{
+}
++ObjProp 992 "FrobInfo"
+{
+}

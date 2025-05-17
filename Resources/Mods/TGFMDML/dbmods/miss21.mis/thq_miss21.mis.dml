@@ -1,0 +1,1045 @@
+DML1
+//T1 FM: The Thieves Quarter by Alan Miles (Rugball) / Fixes: miss21.mis.dml
+
+FINGERPRINT
+{
+	38 [6 6 -11]
+	972 [-155 85 -14]
+	170 [-95 33 -14]
+	707 [-180 50 1]
+	259 [-77 25 2]
+	1063 [-261 109 -10]
+	415 [-59 -38 -12]
+	1207 [-281 89 -20]
+	QVAR "goal_target_4" == 1220
+}
+
+#script "nvscript"
+
+//final goal
++Link 61 77 "ControlDevice"
+{
+}
+ObjProp 61 "Scripts"
+{
+	"Script 0" TrigRoomPlayer
+}
++ObjProp 75 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 75 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 75 "TrapQVar"
+{
+	"" =75:goal_target_6
+}
++Link 76 77 "ControlDevice"
+{
+}
++ObjProp 76 "Scripts"
+{
+	"Script 0" NVTrigQVar
+}
++ObjProp 76 "TrapQVar"
+{
+	"" =1:goal_state_5
+}
++Link 77 78 "ControlDevice"
+{
+}
++ObjProp 77 "Scripts"
+{
+	"Script 0" TrapRequireAll
+}
++ObjProp 78 "TrapFlags"
+{
+	"" Once
+}
++ObjProp 78 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 78 "TrapQVar"
+{
+	"" =1:goal_state_6
+}
++ObjProp 78 "GameName"
+{
+	"" Name_BartokC: "Bartok's Corpse"
+}
++Link 713 77 "ControlDevice"
+{
+}
++ObjProp 713 "Scripts"
+{
+	"Script 0" NVTrigContained
+}
++Link 987 77 "ControlDevice"
+{
+}
++ObjProp 987 "Scripts"
+{
+	"Script 0" NVTrigContained
+}
++Link 1132 77 "ControlDevice"
+{
+}
++Link 1220 77 "ControlDevice"
+{
+}
+
+//loot
++ObjProp 411 "DiffDestroy"
+{
+	"quest var values" 0
+}
++ObjProp 1451 "Loot"
+{
+}
++ObjProp 1452 "Loot"
+{
+}
+
+//gate lever
++ObjProp 12 "JointPos"
+{
+	"Joint 1" 0.70
+}
++ObjProp 43 "Scripts"
+{
+	"Script 0" TrapRelay
+	"Don't Inherit" true
+}
+
+//broadhead arrows
+-ObjProp 13 "PhysType"
+-ObjProp 478 "PhysType"
+
+//doors
++Receptron 18 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++ObjProp 18 "DiffRemoveProp"
+{
+	"quest var values" 0
+	"alt quest var values" 1, 2
+	"Properties" FrobInfo
+}
++ObjProp 18 "FrobInfo"
+{
+}
++ObjProp 18 "PhysCanMant"
+{
+}
+ObjProp 18 "JointPos"
+{
+	"Joint 1" 0.00
+}
+ObjProp 111 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 150 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 151 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 216 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 216 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 216 "PhysType"
++ObjProp 216 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 263 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
+ObjProp 264 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
++Receptron 527 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++ObjProp 527 "Scale"
+{
+	"" 1.05, 1, 1.05
+}
+-ObjProp 527 "JointPos"
+-ObjProp 561 "JointPos"
++MetaProp 698 -2420
+ObjProp 709 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
++Link 792 793 "ScriptParams"
+{
+	"" Double
+}
+ObjProp 792 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 793 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 807 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 882 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 886 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+Receptron 919 "LightBright" 00210017
+{
+	Min 99
+	Max None
+}
+++Receptron 919 "LightBright"
+{
+	Min 99
+	Max None
+
+	Target 1217
+
+	Effect "rem_prop"
+	{
+		"Prop Name" FrobInfo
+	}
+}
+++Receptron 919 "LightBright"
+{
+	Min 99
+	Max None
+
+	Target 1241
+
+	Effect "rem_prop"
+	{
+		"Prop Name" FrobInfo
+	}
+}
++MetaProp 919 -2420
++Link 972 973 "ScriptParams"
+{
+	"" Double
+}
+ObjProp 972 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 973 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 1048 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 1048 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
++ObjProp 1049 "FrobInfo"
+{
+}
+ObjProp 1049 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 1054 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+ObjProp 1055 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+-ObjProp 1133 "JointPos"
+ObjProp 1157 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
+ObjProp 1170 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
++ObjProp 1195 "KeyDst"
+{
+	"RegionMask" 1
+	"LockID" 222
+}
+ObjProp 1195 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
++ObjProp 1196 "KeyDst"
+{
+	"RegionMask" 1
+	"LockID" 222
+}
+ObjProp 1196 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
+ObjProp 1197 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
+ObjProp 1198 "Scale"
+{
+	"" 0.7143, 0.7143, 1.2143
+}
+ObjProp 1330 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+-ObjProp 1369 "JointPos"
++Receptron 1369 "WeaponStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
++Receptron 1369 "FireStim"
+{
+	Min None
+	Max None
+	Effect "Abort"
+}
+ObjProp 1149 "Scale"
+{
+	"" 1.333, 1.333, 1.143
+}
+
+//quest items
+-Link 22 363 "ControlDevice"
+-Link 22 299 "ControlDevice"
++ObjProp 292 "DiffDestroy"
+{
+	"quest var values" 1, 2
+}
+-Link 363 1135 "ControlDevice"
++Link 363 1131 "ControlDevice"
+{
+}
++ObjProp 363 "DesignNote"
+{
+	"" NVRelayTrapCount=1
+}
++ObjProp 363 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Don't Inherit" true
+}
+StimSource 858 "LightBright"
+{
+	Propagator "Contact"
+}
+ObjProp 858 "FrobInfo"
+{
+	"Inv Action" None
+}
++ObjProp 858 "InvType"
+{
+	"" Item
+}
++Link 858 870 "ControlDevice"
+{
+}
++Link 858 1020 "ControlDevice"
+{
+}
+ObjProp 858 "Scripts"
+{
+	"Script 1" TweqOnOff
+}
++ObjProp 870 "Scripts"
+{
+	"Script 0" TrapDestroy
+}
++ObjProp 1020 "DesignNote"
+{
+	"" NVRelayTrapOn="TurnOff"; NVRelayTrapOff="TurnOn"; NVRelayTrapCount=1
+}
++Link 1020 858 "ControlDevice"
+{
+}
++ObjProp 1020 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++MetaProp 1020 -2419
++ObjProp 1132 "StackCount"
+{
+}
+-Link 1135 1131 "ControlDevice"
++Link 1135 363 "ControlDevice"
+{
+}
++ObjProp 1135 "Position"
+{
+	"Location" -12.5, 39.5, -11.5
+}
+-ObjProp 1135 "PhysType"
++ObjProp 1135 "PhysType"
+{
+	"Type" Sphere
+}
++ObjProp 1179 "DesignNote"
+{
+	"" NVRelayTrapCount=1
+}
++ObjProp 1179 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Don't Inherit" true
+}
+-Receptron 1226 "WaterStim"
+
+//AIs
+-Link 80 197 "AIWatchObj"
++ObjProp 80 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++ObjProp 197 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 199 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" olwosvca
+}
++ObjProp 222 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++ObjProp 394 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++ObjProp 414 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++ObjProp 475 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" conhumca
+}
++Receptron 584 "Stench"
+{
+	Max None
+
+	Target 730
+	Agent -2418
+
+	Effect "add_prop"
+	{
+		"Prop Name" Material Tags
+	}
+}
+++Receptron 584 "Stench"
+{
+	Max None
+
+	Target 858
+	Agent 1403
+
+	Effect "add_prop"
+	{
+		"Prop Name" PhysDims
+	}
+}
++StimSource 584 "Stench"
+{
+	Intensity 1
+	Propagator "Radius"
+}
++ObjProp 584 "DesignNote"
+{
+	"" NVLinkBuilderOff="FrobWorldEnd"; NVLinkBuilderLinkType="PhysAttach"; NVLinkBuilderLinkSource=718; NVLinkBuilderLinkDest=730
+}
++ObjProp 584 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp 584 "PickDist"
+{
+	"" -5.00
+}
++ObjProp 584 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+}
+ObjProp 718 "CollisionType"
+{
+	"" None
+}
+Receptron 730 "HolyStim" 00210003
+{
+	Target 584
+	Effect "frob_obj"
+}
+++Receptron 730 "HolyStim"
+{
+	Max None
+
+	Target 718
+	Agent -7
+
+	Effect "add_prop"
+	{
+		"Prop Name" CollisionType
+	}
+}
+++Receptron 730 "HolyStim"
+{
+	Max None
+
+	Target 718
+	Agent -1286
+
+	Effect "add_prop"
+	{
+		"Prop Name" PhysControl
+	}
+}
+++Receptron 730 "HolyStim"
+{
+	Max None
+	Target Me
+	Effect "destroy_obj"
+}
+++Receptron 777 "Knockout"
+{
+	Min None
+	Max None
+
+	Effect "SetQvar"
+	{
+		"Quest Variable" goal_state_0
+		"Operation" Set To
+		"Operand" 3
+	}
+}
++Receptron 777 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent 78
+
+	Effect "add_prop"
+	{
+		"Prop Name" GameName
+	}
+}
++ObjProp 777 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="[Me]"; NVRelayTrapTOn="[1.00]Stench"
+}
++ObjProp 777 "GameName"
+{
+	"" Name_Bartok: "Bartok"
+}
++ObjProp 777 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" frakusca
+}
+Link 777 347 "AIWatchObj"
+{
+	"Response: Step 1" Add link(Flavor,Destination(s),Source(s))
+	"   Argument 1" PhysAttach
+	"   Argument 2" 73
+	"   Argument 3" Player
+	"Response: Step 2" Face(Angle,Object(-1 for angle relative to self))
+	"   Argument 2"[1] Player
+	"   Argument 3"[1] ""
+	"Response: Step 3" Play sound/motion(Sound Concept,Sound Tags,Motion Tags)
+	"   Argument 3"[2] Conversation 0, Foo 0, Baz 0
+	"Response: Step 4" Play sound/motion(Sound Concept,Sound Tags,Motion Tags)
+	"   Argument 1"[3] ""
+	"   Argument 2"[3] ""
+	"   Argument 3"[3] WorldFrob 0, AtWaist 0
+	"Response: Step 5" Remove link(Flavor,Destination(s),Source(s))
+	"   Argument 1"[4] Contains
+	"   Argument 2"[4] 1132
+	"   Argument 3"[4] Player
+	"Response: Step 6" Frob object(Target Object,With Object)
+	"   Argument 1"[5] 1184
+	"Response: Step 7" Frob object(Target Object,With Object)
+	"   Argument 1"[6] 60
+	"   Argument 2"[6] ""
+	"   Argument 3"[6] ""
+	"Response: Step 8" Add link(Flavor,Destination(s),Source(s))
+	"   Argument 1"[7] Contains
+	"   Argument 2"[7] 10
+	"   Argument 3"[7] Player
+	"Response: Step 9" Remove link(Flavor,Destination(s),Source(s))
+	"   Argument 1"[8] PhysAttach
+	"   Argument 2"[8] 73
+	"   Argument 3"[8] Player
+}
++ObjProp 777 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 992 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramireca
+}
++ObjProp 1039 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++ObjProp 1067 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" thgrswca
+}
++ObjProp 1074 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++ObjProp 1280 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
++Receptron 1345 "Stench"
+{
+	Max None
+
+	Target Me
+	Agent 78
+
+	Effect "add_prop"
+	{
+		"Prop Name" GameName
+	}
+}
++ObjProp 1345 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="[Me]"; NVRelayTrapTOn="[1.00]Stench"
+}
++ObjProp 1345 "GameName"
+{
+	"" Name_Bartok: "Bartok"
+}
++ObjProp 1345 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" frakusca
+}
++ObjProp 1345 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 1421 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" ramgca
+}
+Link 404 657 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 587
+}
+Link 648 1238 "AIWatchObj"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 1263
+}
+Link 983 1026 "AIWatchObj"
+{
+	"   Argument 1"[1] ""
+	"   Argument 2"[1] 1224
+}
+Link 1074 1004 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 1066
+}
+
+//mantling
+Create -445 "Blocker1"
+{
+	+ObjProp "Position"
+	{
+		"Location" -208, 27.1, -8
+		"Pitch" c000
+	}
+	+ObjProp "PhysCanMant"
+	{
+	}
+	+ObjProp "RenderType"
+	{
+		"" Not Rendered
+	}
+	+ObjProp "Material Tags"
+	{
+		"1: Tags" ""
+	}
+	+ObjProp "Scale"
+	{
+		"" 1, 1, 0.85
+	}
+}
+-ObjProp "Blocker1" "PhysType"
++ObjProp "Blocker1" "PhysType"
+{
+	"Type" OBB
+}
+Create -445 "Blocker2"
+{
+	+ObjProp "Position"
+	{
+		"Location" -248.9, 73.5, -10
+		"Bank" c000
+	}
+	+ObjProp "PhysCanMant"
+	{
+	}
+	+ObjProp "RenderType"
+	{
+		"" Not Rendered
+	}
+	+ObjProp "Material Tags"
+	{
+		"1: Tags" ""
+	}
+	+ObjProp "Scale"
+	{
+		"" 1, 1, 3
+	}
+}
+-ObjProp "Blocker2" "PhysType"
++ObjProp "Blocker2" "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 110 "PhysCanMant"
+{
+}
++ObjProp 153 "Position"
+{
+	"Location" -52.5, 29, 1
+}
+-ObjProp 153 "PhysType"
++ObjProp 153 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 153 "Material Tags"
+{
+}
++ObjProp 211 "Position"
+{
+	"Location" -52.5, 19.75, 1
+}
+-ObjProp 211 "PhysType"
++ObjProp 211 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 211 "Material Tags"
+{
+}
++ObjProp 214 "Position"
+{
+	"Location" -52.5, 10.5, 1
+}
+-ObjProp 214 "PhysType"
++ObjProp 214 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 214 "Material Tags"
+{
+}
++ObjProp 236 "PhysCanMant"
+{
+}
++ObjProp 253 "PhysCanMant"
+{
+}
++ObjProp 279 "PhysCanMant"
+{
+}
++ObjProp 282 "PhysCanMant"
+{
+}
++ObjProp 445 "PhysCanMant"
+{
+}
++ObjProp 530 "Material Tags"
+{
+}
++ObjProp 823 "PhysCanMant"
+{
+}
++ObjProp 848 "PhysCanMant"
+{
+}
++ObjProp 850 "PhysCanMant"
+{
+}
++ObjProp 851 "PhysCanMant"
+{
+}
++ObjProp 854 "PhysCanMant"
+{
+}
++ObjProp 856 "PhysCanMant"
+{
+}
++ObjProp 857 "PhysCanMant"
+{
+}
++ObjProp 1084 "PhysCanMant"
+{
+}
++ObjProp 1165 "PhysCanMant"
+{
+}
++ObjProp 1167 "PhysCanMant"
+{
+}
++ObjProp 1175 "PhysCanMant"
+{
+}
++ObjProp 1188 "PhysCanMant"
+{
+}
++ObjProp 1202 "PhysCanMant"
+{
+}
++ObjProp 1259 "PhysCanMant"
+{
+}
++ObjProp 1260 "PhysCanMant"
+{
+}
++ObjProp 1329 "Position"
+{
+	"Location" -217.2, 23, -1
+}
+-ObjProp 1329 "PhysType"
++ObjProp 1329 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 1329 "Material Tags"
+{
+}
+
+//scrolls
+-ObjProp 176 "PhysType"
+-ObjProp 405 "PhysType"
+-Receptron 257 "SlashStim"
+-Receptron 257 "SlashStim"
++Receptron 257 "Stench"
+{
+	Max None
+
+	Target 1155
+	Agent 197
+
+	Effect "move_obj"
+	{
+		"Position" 1, 1, -3.1
+	}
+}
+++Receptron 257 "Stench"
+{
+	Max None
+
+	Target 1403
+	Agent 197
+
+	Effect "move_obj"
+	{
+		"Position" 1, 1, -3.1
+	}
+}
++ObjProp 257 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapTDest="[Me]"; NVRelayTrapTOn="[1.00]Stench"
+}
+ObjProp 257 "Scripts"
+{
+	"Script 3" NVRelayTrap
+}
++ObjProp 877 "DesignNote"
+{
+	"" NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapOnDelay=5500; NVMetaTrapMeta="FrobInert"
+}
+ObjProp 877 "Scripts"
+{
+	"Script 1" NVMetaTrap
+}
+
+//footlockers
++ObjProp 224 "JointPos"
+{
+	"Joint 1" 90.00
+}
+ObjProp 330 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 330 "PhysType"
++ObjProp 330 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 330 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 679 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 855 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 862 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 914 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 1126 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//misplaced objects
+ObjProp 328 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 328 "PhysType"
++ObjProp 328 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 329 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 329 "PhysType"
++ObjProp 329 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 435 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 435 "PhysType"
++ObjProp 435 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 532 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 532 "PhysType"
++ObjProp 532 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 635 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 635 "PhysType"
++ObjProp 635 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 1106 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 1106 "PhysType"
++ObjProp 1106 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 1204 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 1204 "PhysType"
++ObjProp 1204 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 1205 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 1205 "PhysType"
++ObjProp 1205 "PhysType"
+{
+	"Type" OBB
+}
+
+//various objects
++ObjProp 31 "FrobInfo"
+{
+}
++ObjProp 1217 "FrobInfo"
+{
+}
++ObjProp 1241 "FrobInfo"
+{
+}
++MetaProp 429 -2419
++MetaProp 791 -2419

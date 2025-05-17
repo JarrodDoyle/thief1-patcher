@@ -1,0 +1,11 @@
+DML1
+//T1 FM: Mansion of Chaos by Sharga / Fixes: actreact.gam.dml
+
+FINGERPRINT
+{
+	NAME -3218 "AaronStim"
+	NAME -3222 "FireSwordStim"
+}
+
+//fix the water with lava stims, first, remove the stim from the flow archetype
+-StimSource -4100 "FireStim"

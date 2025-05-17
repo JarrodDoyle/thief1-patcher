@@ -1,0 +1,133 @@
+DML1
+//T1 FM: Prodigal Corpse by Chris Howcroft (Pseudonymouse) / Fix the goals: miss19.mis.dml
+
+FINGERPRINT
+{
+	899 [58 -380 -44]
+	284 [96 -357 7]
+	930 [77 -333 -47]
+	1041 [49 -290 17]
+	788 [75 -321 35]
+	1049 [132 -264 38]
+	866 [58 -348 -37]
+	150 [45 -315 3]
+	QVAR "goal_target_3" == 905
+}
+
+-ObjProp 936 "AirSupply"
+++Receptron 936 "objstim"
+{
+	Min None
+	Max None
+	Target Me
+	Agent -1629
+	Effect "add_prop"
+	{
+		"Prop Name" FrobInfo
+	}
+}
+
++ObjProp 977 "Scripts"
+{
+	"Script 0" TrigContained
+}
++Link 977 172 "ControlDevice"
+{
+}
++Link 977 173 "ControlDevice"
+{
+}
++Link 977 174 "ControlDevice"
+{
+}
++Link 977 175 "ControlDevice"
+{
+}
++Link 977 176 "ControlDevice"
+{
+}
++Link 977 177 "ControlDevice"
+{
+}
+
++ObjProp 172 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 172 "TrapQVar"
+{
+	"" =0:goal_final_5
+}
+
++ObjProp 173 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 173 "TrapQVar"
+{
+	"" =0:goal_final_6
+}
+
++ObjProp 174 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 174 "TrapQVar"
+{
+	"" =0:goal_final_7
+}
+
++ObjProp 175 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 175 "TrapQVar"
+{
+	"" =1:goal_irreversible_4
+}
+
++ObjProp 176 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 176 "TrapQVar"
+{
+	"" =1:goal_reverse_5
+}
+
++ObjProp 177 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 177 "TrapQVar"
+{
+	"" =1:goal_reverse_6
+}
+
++ObjProp 178 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 178 "TrapQVar"
+{
+	"" =3:goal_state_7
+}
+
+-ObjProp 1074 "FrobInfo"
++Link 1074 178 "ControlDevice"
+{
+}
++ObjProp 1074 "Scripts"
+{
+	"Script 0" TrigSlain
+	"Script 1" CorpseFrobHack
+}
+
++ObjProp 795 "NoDrop"
+{
+	"" true
+}
++ObjProp 905 "NoDrop"
+{
+	"" true
+}

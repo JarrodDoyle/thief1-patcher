@@ -1,0 +1,492 @@
+DML1
+//TG FM: Hellerhouse by Stringgod / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	157 [-26 -89 -73]
+	333 [46 -5 -23]
+	135 [2 -94 -40]
+	564 [23 -54 -20]
+	233 [-44 -67 -72]
+	569 [14 -55 -24]
+	111 [18 -66 -12]
+	354 [-45 69 -20]
+	QVAR "goal_target_5" == 171
+}
+
+//goals
++ObjProp 239 "Scripts"
+{
+	"Script 0" TrigContained
+}
++Link 239 344 "ControlDevice"
+{
+}
++Link 239 345 "ControlDevice"
+{
+}
++ObjProp 344 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 344 "TrapQVar"
+{
+	"" =1:goal_irreversible_0
+}
++ObjProp 345 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 345 "TrapQVar"
+{
+	"" =1:goal_irreversible_5
+}
+
+//mantling
++ObjProp 170 "PhysCanMant"
+{
+}
++ObjProp 254 "PhysCanMant"
+{
+}
++ObjProp 264 "PhysCanMant"
+{
+}
++ObjProp 268 "PhysCanMant"
+{
+}
++ObjProp 269 "PhysCanMant"
+{
+}
++ObjProp 271 "PhysCanMant"
+{
+}
++ObjProp 313 "PhysCanMant"
+{
+}
++ObjProp 314 "PhysCanMant"
+{
+}
++ObjProp 315 "PhysCanMant"
+{
+}
++ObjProp 316 "PhysCanMant"
+{
+}
++ObjProp 317 "PhysCanMant"
+{
+}
++ObjProp 329 "PhysCanMant"
+{
+}
++ObjProp 330 "PhysCanMant"
+{
+}
++ObjProp 332 "PhysCanMant"
+{
+}
++ObjProp 334 "PhysCanMant"
+{
+}
++ObjProp 344 "PhysCanMant"
+{
+}
++ObjProp 345 "PhysCanMant"
+{
+}
++ObjProp 346 "PhysCanMant"
+{
+}
++ObjProp 347 "PhysCanMant"
+{
+}
++ObjProp 349 "PhysCanMant"
+{
+}
++ObjProp 350 "PhysCanMant"
+{
+}
++ObjProp 351 "PhysCanMant"
+{
+}
++ObjProp 352 "PhysCanMant"
+{
+}
++ObjProp 354 "PhysCanMant"
+{
+}
++ObjProp 355 "PhysCanMant"
+{
+}
++ObjProp 359 "PhysCanMant"
+{
+}
++ObjProp 360 "PhysCanMant"
+{
+}
++ObjProp 361 "PhysCanMant"
+{
+}
++ObjProp 362 "PhysCanMant"
+{
+}
++ObjProp 364 "PhysCanMant"
+{
+}
++ObjProp 365 "PhysCanMant"
+{
+}
++ObjProp 369 "PhysCanMant"
+{
+}
++ObjProp 370 "PhysCanMant"
+{
+}
++ObjProp 374 "PhysCanMant"
+{
+}
++ObjProp 376 "PhysCanMant"
+{
+}
++ObjProp 377 "PhysCanMant"
+{
+}
++ObjProp 380 "PhysCanMant"
+{
+}
++ObjProp 382 "PhysCanMant"
+{
+}
++ObjProp 383 "PhysCanMant"
+{
+}
++ObjProp 385 "PhysCanMant"
+{
+}
++ObjProp 387 "PhysCanMant"
+{
+}
++ObjProp 388 "PhysCanMant"
+{
+}
++ObjProp 389 "PhysCanMant"
+{
+}
++ObjProp 391 "PhysCanMant"
+{
+}
++ObjProp 393 "PhysCanMant"
+{
+}
++ObjProp 395 "PhysCanMant"
+{
+}
++ObjProp 397 "PhysCanMant"
+{
+}
++ObjProp 400 "PhysCanMant"
+{
+}
++ObjProp 402 "PhysCanMant"
+{
+}
++ObjProp 403 "PhysCanMant"
+{
+}
++ObjProp 408 "PhysCanMant"
+{
+}
++ObjProp 409 "PhysCanMant"
+{
+}
++ObjProp 412 "PhysCanMant"
+{
+}
++ObjProp 415 "PhysCanMant"
+{
+}
++ObjProp 416 "PhysCanMant"
+{
+}
++ObjProp 417 "PhysCanMant"
+{
+}
++ObjProp 418 "PhysCanMant"
+{
+}
++ObjProp 419 "PhysCanMant"
+{
+}
++ObjProp 424 "PhysCanMant"
+{
+}
++ObjProp 429 "PhysCanMant"
+{
+}
++ObjProp 431 "PhysCanMant"
+{
+}
++ObjProp 435 "PhysCanMant"
+{
+}
++ObjProp 438 "PhysCanMant"
+{
+}
++ObjProp 445 "PhysCanMant"
+{
+}
++ObjProp 457 "PhysCanMant"
+{
+}
++ObjProp 459 "PhysCanMant"
+{
+}
++ObjProp 461 "PhysCanMant"
+{
+}
++ObjProp 484 "PhysCanMant"
+{
+}
+
+//patti
+ObjProp 111 "AI_AlrtRsp"
+{
+	"Priority" Very high
+}
+
+//sword (carmana)
++ObjProp 138 "NoDrop"
+{
+	"" true
+}
+
+//books
+-ObjProp 217 "PhysType"
+ObjProp 217 "Position"
+{
+	"Location" -32.6151, -51.5731, -71.8502
+}
++ObjProp 217 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 218 "PhysType"
+ObjProp 218 "Position"
+{
+	"Location" -32.6151, -51.5731, -72.3202
+}
++ObjProp 218 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 219 "PhysType"
+ObjProp 219 "Position"
+{
+	"Location" -32.6151, -51.5731, -72.7902
+}
++ObjProp 219 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 220 "PhysType"
+ObjProp 220 "Position"
+{
+	"Location" -32.6151, -51.5731, -73.2601
+}
++ObjProp 220 "PhysType"
+{
+	"Type" OBB
+}
+
+//table
+-ObjProp 202 "PhysType"
++ObjProp 202 "PhysType"
+{
+	"Type" OBB
+}
+
+//barrels
++ObjProp 263 "FrobInfo"
+{
+}
++ObjProp 266 "FrobInfo"
+{
+}
+
+//pail
+-ObjProp 282 "PhysType"
+ObjProp 282 "Position"
+{
+	"Location" 33.6441, -24.9831, -107.71
+}
++ObjProp 282 "PhysType"
+{
+	"Type" Sphere
+}
+
+//secret doors
++ObjProp 469 "BlockFrob"
+{
+	"" true
+}
++MetaProp 469 -2420
++MetaProp 645 -2420
+
+//levers
++ObjProp 17 "RenderType"
+{
+	"" Not Rendered
+}
+-ObjProp 643 "PhysType"
+ObjProp 643 "Position"
+{
+	"Location" 2.16, -55.8556, -8.8922
+}
++ObjProp 643 "PhysType"
+{
+	"Type" OBB
+}
+
+//useless eye
++ObjProp 118 "FrobInfo"
+{
+}
+
+//plates
++ObjProp 633 "InvType"
+{
+}
++ObjProp 634 "InvType"
+{
+}
++ObjProp 635 "InvType"
+{
+}
+
+//books
++ObjProp 150 "FrobInfo"
+{
+}
++ObjProp 152 "FrobInfo"
+{
+}
++ObjProp 155 "FrobInfo"
+{
+}
++ObjProp 156 "FrobInfo"
+{
+}
++ObjProp 157 "FrobInfo"
+{
+}
++ObjProp 158 "FrobInfo"
+{
+}
++ObjProp 159 "FrobInfo"
+{
+}
++ObjProp 160 "FrobInfo"
+{
+}
++ObjProp 207 "FrobInfo"
+{
+}
++ObjProp 215 "FrobInfo"
+{
+}
++ObjProp 216 "FrobInfo"
+{
+}
++ObjProp 217 "FrobInfo"
+{
+}
++ObjProp 218 "FrobInfo"
+{
+}
++ObjProp 219 "FrobInfo"
+{
+}
++ObjProp 220 "FrobInfo"
+{
+}
++ObjProp 221 "FrobInfo"
+{
+}
++ObjProp 222 "FrobInfo"
+{
+}
++ObjProp 223 "FrobInfo"
+{
+}
++ObjProp 224 "FrobInfo"
+{
+}
++ObjProp 225 "FrobInfo"
+{
+}
++ObjProp 226 "FrobInfo"
+{
+}
++ObjProp 228 "FrobInfo"
+{
+}
++ObjProp 229 "FrobInfo"
+{
+}
++ObjProp 230 "FrobInfo"
+{
+}
++ObjProp 231 "FrobInfo"
+{
+}
++ObjProp 232 "FrobInfo"
+{
+}
++ObjProp 233 "FrobInfo"
+{
+}
++ObjProp 234 "FrobInfo"
+{
+}
+
+//tables
+-ObjProp 84 "PhysType"
++ObjProp 84 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 134 "PhysType"
++ObjProp 134 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 162 "PhysType"
++ObjProp 162 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 168 "PhysType"
++ObjProp 168 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 202 "PhysType"
++ObjProp 202 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 474 "PhysType"
++ObjProp 474 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 512 "PhysType"
++ObjProp 512 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 571 "PhysType"
++ObjProp 571 "PhysType"
+{
+	"Type" OBB
+}

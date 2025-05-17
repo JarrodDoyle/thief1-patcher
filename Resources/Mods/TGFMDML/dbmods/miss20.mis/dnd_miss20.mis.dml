@@ -1,0 +1,280 @@
+DML1
+//TG FM: Dead Night Sweet Delight by MysteryMan / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	413 [501 441 463]
+	374 [457 505 509]
+	268 [511 525 493]
+	85 [505 427 461]
+	352 [516 506 497]
+	716 [550 498 502]
+	909 [539 470 486]
+	608 [542 481 485]
+	QVAR "goal_target_0" == 664
+}
+
+#script "nvscript"
+
+//pick axe / sword
+Create -236 "PickSword2"
+{
+	+ObjProp "FrobInfo"
+	{
+		"World Action" Move, Script
+		"Inv Action" Script, FocusScript
+		"Tool Action" Script, FocusScript
+	}
+	+ObjProp "BashFactor"
+	{
+		"" 10.00
+	}
+	+ObjProp "SlayResult"
+	{
+		"Effect" No Effect
+	}
+	+ObjProp "InvLimbModel"
+	{
+		"" armsw4
+	}
+	+ObjProp "GameName"
+	{
+		"" Name_PickAxe
+	}
+	+ObjProp "Position"
+	{
+		"Location" 537.85, 466, 486.765
+		"Bank" 8000
+	}
+	+ObjProp "Scripts"
+	{
+		"Script 0" TrigWorldFrob
+	}
+	+ObjProp "ModelName"
+	{
+		"" picksword2
+	}
+}
++StimSource "PickSword2" "PickStim"
+{
+	Intensity 3
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Collision, Weapon Swing Low
+		}
+	}
+}
+++StimSource "PickSword2" "PickStim"
+{
+	Intensity 4
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Collision, Weapon Swing Med
+		}
+	}
+}
+++StimSource "PickSword2" "PickStim"
+{
+	Intensity 5
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Collision, Weapon Swing High
+		}
+	}
+}
++Link "PickSword2" 353 "ControlDevice"
+{
+}
+Create -1704 "ND127"
+{
+	+ObjProp "DiffTurnOn"
+	{
+		"quest var values" 0, 1, 2
+	}
+}
++Link "ND127" 264 "ControlDevice"
+{
+}
++ObjProp 264 "Scripts"
+{
+	"Script 0" TrapDestroy
+}
++ObjProp 353 "Scripts"
+{
+	"Script 0" TrapDestroy
+}
+
+//goals
+-Link 13 719 "ControlDevice"
++ObjProp 251 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=200
+}
+ObjProp 251 "Scripts"
+{
+	"Script 1" NVRelayTrap
+}
+-Link 686 684 "ControlDevice"
++Link 686 719 "ControlDevice"
+{
+}
++Link 719 684 "ControlDevice"
+{
+}
++ObjProp 719 "DesignNote"
+{
+	"" NVRelayTrapDelay=1200
+}
+-ObjProp 719 "TrapQVar"
++ObjProp 719 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Don't Inherit" true
+}
+
+//secrets
++ObjProp 124 "BlockFrob"
+{
+	"" true
+}
++ObjProp 124 "PickDist"
+{
+	"" 5.00
+}
++ObjProp 128 "Book"
+{
+	"" foundit
+}
+-ObjProp 128 "AI_Converation"
+-ObjProp 128 "AI_SaveConverse"
+-Link 128 127 "AIConversationActor"
++Link 128 -3894 "SoundDescription"
+{
+}
+ObjProp 128 "Scripts"
+{
+	"Script 0" TrapSetQVar
+	"Script 1" NVOnscreenText
+	"Script 2" NVAmbientSoundTrap
+}
++ObjProp 128 "TrapQVar"
+{
+	"" +1:DrSSecrets
+}
+-ObjProp 133 "PickDist"
+-StimSource 133 "SecretStim"
+-StimSource 234 "SecretStim"
++MetaProp 233 -2420
++ObjProp 341 "BlockFrob"
+{
+	"" true
+}
+-ObjProp 440 "PickDist"
+ObjProp 440 "Scripts"
+{
+	"Script 0" TrigWorldFrob
+	"Script 1" ""
+	"Script 2" ""
+}
+-StimSource 440 "SecretStim"
+-StimSource 614 "SecretStim"
+-StimSource 616 "SecretStim"
+-StimSource 651 "SecretStim"
+ObjProp 651 "Scripts"
+{
+	"Script 0" TrigWorldFrob
+	"Script 1" ""
+}
+-StimSource 710 "SecretStim"
+-StimSource 658 "SecretStim"
+-StimSource 667 "SecretStim"
+-ObjProp 667 "PickDist"
++ObjProp 668 "BlockFrob"
+{
+	"" true
+}
++ObjProp 945 "DesignNote"
+{
+	"" NVRelayTrapOff="Null"
+}
++ObjProp 945 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Don't Inherit" true
+}
+
+//fireplace
+ObjProp 65 "PGLaunchInfo"
+{
+	"Min time" 1.00
+	"Max time" 1.00
+}
+ObjProp 87 "PGLaunchInfo"
+{
+	"Min time" 1.00
+	"Max time" 1.00
+}
+
+//various objects
++ObjProp 70 "PickDist"
+{
+	"" 5.00
+}
++ObjProp 91 "PickDist"
+{
+	"" 5.00
+}
+-ObjProp 923 "NoDrop"
+
+//misplaced objects
++Receptron 177 "Stench"
+{
+	Max None
+
+	Target 233
+	Agent -1262
+
+	Effect "add_prop"
+	{
+		"Prop Name" Class Tags
+	}
+}
++StimSource 177 "Stench"
+{
+	Intensity 1
+	Propagator "Radius"
+}
+ObjProp 177 "Position"
+{
+	"Location" 541, 461, 499.955
+}
+-ObjProp 177 "PhysType"
++ObjProp 177 "PhysType"
+{
+	"Type" OBB
+}
+-ObjProp 766 "PhysType"
+ObjProp 766 "Position"
+{
+	"Location" 532.3, 468.7, 501.155
+}
+
+//AIs
++ObjProp 213 "InvRendType"
+{
+	"Type" Alternate Bitmap
+	"Resource" frakusca
+}
++Link 549 550 "CreatureAttachment"
+{
+	"Joint" Abdomen
+}

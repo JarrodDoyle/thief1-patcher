@@ -1,0 +1,99 @@
+DML1
+//T1 FM: N'lahotep's Tomb by Fafhrd / Fixes: miss19.mis.dml
+
+FINGERPRINT
+{
+	144 [-10 117 -65]
+	153 [-10 114 -65]
+	67 [7 56 -45]
+	6 [10 3 -19]
+	46 [1 64 -44]
+	173 [8 137 -60]
+	131 [68 98 -59]
+	11 [-5 0 -19]
+	QVAR "goal_target_2" == 178
+}
+
+//final goal
++ObjProp 17 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 17 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 17 "TrapQVar"
+{
+	"" =1:goal_irreversible_2
+}
+
+//doors
+ObjProp 12 "Scale"
+{
+	"" 1.143, 1.143, 1.143
+}
+ObjProp 16 "Scale"
+{
+	"" 1.143, 1.143, 1
+}
+ObjProp 67 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
++ObjProp 89 "BlockFrob"
+{
+	"" true
+}
++ObjProp 135 "Scale"
+{
+	"" 1, 1.01, 1
+}
+-ObjProp 135 "PhysType"
++ObjProp 135 "PhysType"
+{
+	"Type" OBB
+}
++MetaProp 175 -2420
+-ObjProp 175 "TransDoor"
+ObjProp 175 "RotDoor"
+{
+	"Open Angle" 90
+	"Clockwise?" false
+}
+ObjProp 175 "Position"
+{
+	"Heading" 0
+}
+-ObjProp 175 "PhysType"
++ObjProp 175 "PhysType"
+{
+	"Type" OBB
+}
+
+//jar
++ObjProp 143 "PickDist"
+{
+	"" 5.00
+}
+ObjProp 143 "Position"
+{
+	"Location" -6.5, 114, -65.1
+}
+
+//scroll of n'lahotep
++ObjProp 173 "NoDrop"
+{
+	"" true
+}
++ObjProp 173 "GameName"
+{
+	"" Name_son: "Scroll of N'lahotep"
+}
+
+//chest
++ObjProp 174 "PickDist"
+{
+	"" 4.00
+}

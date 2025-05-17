@@ -1,0 +1,32 @@
+DML1
+//T1 FM: Keeper of the Bell by DarthsLair / Fixes: miss20.mis.dml
+
+FINGERPRINT
+{
+	703 [500 525 -59]
+	276 [473 513 5]
+	151 [498 469 -73]
+	821 [369 471 -67]
+	317 [375 457 -65]
+	673 [520 511 -35]
+	440 [446 506 37]
+	872 [529 500 16]
+	QVAR "goal_target_9" == 1000
+}
+
+//Fix for Keeper of the Bell/ring in a chest/moved a switch under a statue
+
++Link 441 745 "Contains"
+{
+}
++ObjProp 687 "Position"
+{
+	"Location" 528.97, 525.4, -6.45
+	"Pitch" 0
+	"Heading" 4000
+	"Bank" c000
+}
++ObjProp 608 "BlockFrob"
+{
+	"" true
+} 

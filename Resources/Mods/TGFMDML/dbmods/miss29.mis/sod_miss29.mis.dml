@@ -1,0 +1,105 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: miss29.mis.dml
+
+FINGERPRINT
+{
+	15 [42 -72 7]
+	121 [13 -87 -1]
+	433 [66 -70 -6]
+	871 [222 19 6]
+	135 [61 -110 24]
+	934 [233 121 18]
+	306 [16 120 11]
+	544 [5 58 -9]
+	QVAR "goal_target_6" == 388
+}
+
+//fix the weird nuclear beam near the beginning
+-ObjProp 998 "ExtraLight"
+ObjProp 998 "Scale"
+{
+	"" 1.43, 31.77, 1.77
+}
+//fix for the find a way to embassy quest unticking itself and never ticking back when the player leaves it through the front door and returns via the sewer
++ObjProp 250 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 250 "TrapQVar"
+{
+	"" =1:goal_irreversible_0
+}
++Link 198 250 "ControlDevice"
+{
+}
+//link the candle concretes with their flames
++ObjProp 647 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="733"; NVLinkBuilderLinkDest="647";
+}
++ObjProp 729 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="736"; NVLinkBuilderLinkDest="729";
+}
++ObjProp 728 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="730"; NVLinkBuilderLinkDest="728";
+}
++ObjProp 646 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="723"; NVLinkBuilderLinkDest="646";
+}
++ObjProp 636 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="638"; NVLinkBuilderLinkDest="636";
+}
++ObjProp 21 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="28"; NVLinkBuilderLinkDest="21";
+}
++ObjProp 22 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="23"; NVLinkBuilderLinkDest="22";
+}
+//standing candles
++ObjProp 33 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="34"; NVLinkBuilderLinkDest="33";
+}
++ObjProp 206 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="207"; NVLinkBuilderLinkDest="206";
+}
++ObjProp 205 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="212"; NVLinkBuilderLinkDest="205";
+}
++ObjProp 183 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="184"; NVLinkBuilderLinkDest="183";
+}
++ObjProp 271 "DesignNote"
+{
+	"" NVLinkBuilderLinkSource="272"; NVLinkBuilderLinkDest="271";
+}
+//making the loot candle inert
++ObjProp 665 "FrobInfo"
+{
+	"World Action" Move
+}
+//make sure the manhole cover gets destroyed properly once the ambush starts
++ObjProp 1003 "Scripts"
+{
+	"Script 0" NVDeleteTrap
+	"Don't Inherit" true
+}
+//removing improper collision type from lanterns
+-ObjProp 647 "CollisionType"
+-ObjProp 646 "CollisionType"
+-ObjProp 729 "CollisionType"
+-ObjProp 728 "CollisionType"
+-ObjProp 636 "CollisionType"
+-ObjProp 21 "CollisionType"
+-ObjProp 22 "CollisionType"
+-ObjProp 183 "CollisionType"
+-ObjProp 271 "CollisionType"

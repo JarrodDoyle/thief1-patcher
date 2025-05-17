@@ -1,0 +1,457 @@
+DML1
+//T1 FM: The Rose of Bantry by Etienne Aubert (Blutch) / Fixes: miss15.mis.dml
+
+FINGERPRINT
+{
+	73 [-83 286 64]
+	333 [-161 263 46]
+	315 [-74 286 39]
+	273 [-83 267 36]
+	577 [-37 301 33]
+	770 [-8 267 30]
+	311 [-94 314 30]
+	44 [-24 -9 63]
+	QVAR "goal_target_1" == 800
+}
+
+//mantling
++ObjProp 188 "PhysCanMant"
+{
+}
+
+//final goal
++ObjProp 189 "DiffTurnOn"
+{
+   "quest var values" 0, 1, 2
+}
++ObjProp 189 "Scripts"
+{
+   "Script 0" TrapSetQVar
+}
++ObjProp 189 "TrapQVar"
+{
+   "" =1:goal_final_2
+}
++ObjProp 190 "DiffTurnOn"
+{
+   "quest var values" 0, 1, 2
+}
++ObjProp 190 "Scripts"
+{
+   "Script 0" TrapSetQVar
+}
++ObjProp 190 "TrapQVar"
+{
+   "" =1:goal_irreversible_2
+}
++ObjProp 191 "Scripts"
+{
+   "Script 0" TrapSetQVar
+}
++ObjProp 191 "TrapQVar"
+{
+   "" =3:goal_state_2
+}
+
+//quest items
++ObjProp 114 "FrobInfo"
+{
+}
++ObjProp 114 "NoDrop"
+{
+   "" true
+}
++ObjProp 915 "DiffDestroy"
+{
+   "quest var values" 0, 1
+}
++ObjProp 915 "FrobInfo"
+{
+}
++ObjProp 915 "NoDrop"
+{
+   "" true
+}
++ObjProp 915 "InvType"
+{
+   "" Item
+}
+
+//doors
+ObjProp 20 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
+-ObjProp 20 "PhysType"
+ObjProp 20 "Position"
+{
+   "Heading" c000
+}
++ObjProp 20 "PhysType"
+{
+   "Type" OBB
+}
+ObjProp 21 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
+-ObjProp 22 "PhysType"
+ObjProp 22 "Position"
+{
+   "Heading" c000
+}
++ObjProp 22 "PhysType"
+{
+   "Type" OBB
+}
++ObjProp 38 "Scale"
+{
+   "" 0.985, 1, 1
+}
++Receptron 210 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 210 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 344 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 344 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 345 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 345 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 349 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 349 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++ObjProp 349 "FrobInfo"
+{
+}
++Link 421 422 "ScriptParams"
+{
+   "" Double
+}
++ObjProp 436 "Scale"
+{
+   "" 0.985, 1, 1
+}
+Receptron 500 "WeaponStim"
+{
+   Min None
+   Max None
+}
++Receptron 500 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+ObjProp 546 "RotDoor"
+{
+   "Open Angle" 90
+   "Clockwise?" false
+}
++Receptron 631 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 631 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+Receptron 640 "WeaponStim"
+{
+   Min None
+   Max None
+}
++Receptron 640 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+Receptron 688 "WeaponStim"
+{
+   Min None
+   Max None
+}
++Receptron 688 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 810 "WeaponStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 810 "FireStim"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+
+//chests
++ObjProp 232 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 707 "JointPos"
+{
+   "Joint 1" 90.00
+}
+-ObjProp 708 "PhysType"
+ObjProp 708 "Position"
+{
+   "Location" -56.85, 87.674, 32.138
+}
++ObjProp 708 "PhysType"
+{
+   "Type" OBB
+}
++ObjProp 708 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 809 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 817 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 818 "JointPos"
+{
+   "Joint 1" 90.00
+}
++ObjProp 932 "JointPos"
+{
+   "Joint 1" 90.00
+}
+
+//misplaced objects
+ObjProp 254 "Position"
+{
+   "Location" 2.85, -6.12, 9
+}
+ObjProp 255 "Position"
+{
+   "Location" 2.85, -10.6, 9
+}
+-ObjProp 619 "PhysType"
++ObjProp 619 "PhysType"
+{
+   "Type" OBB
+}
++Receptron 659 "EarthStim"
+{
+   Max None
+
+   Target Me
+   Agent -10
+
+   Effect "add_prop"
+   {
+      "Prop Name" PhysControl
+   }
+}
++StimSource 659 "EarthStim"
+{
+   Intensity 1
+   Propagator "Radius"
+}
+-ObjProp 661 "PhysType"
+ObjProp 661 "Position"
+{
+   "Location" -147.45, 287.725, 33.05
+}
++ObjProp 661 "PhysType"
+{
+   "Type" OBB
+}
+-ObjProp 671 "PhysType"
++ObjProp 671 "PhysType"
+{
+   "Type" OBB
+}
+-ObjProp 678 "PhysType"
++ObjProp 678 "PhysType"
+{
+   "Type" OBB
+}
+ObjProp 752 "Position"
+{
+   "Location" -72, 6.17, 22.94
+}
+ObjProp 774 "Position"
+{
+   "Location" -18.1, 13.6, 7.9
+}
+ObjProp 778 "Position"
+{
+   "Pitch" 0
+}
+ObjProp 836 "Position"
+{
+   "Location" -18.1, 10.3, 7.9
+}
+ObjProp 942 "Position"
+{
+   "Pitch" 0
+}
+
+//unused books
++ObjProp 351 "FrobInfo"
+{
+}
++ObjProp 490 "FrobInfo"
+{
+}
++ObjProp 685 "FrobInfo"
+{
+}
++ObjProp 844 "FrobInfo"
+{
+}
+
+//AIs
++ObjProp 66 "DiffDestroy"
+{
+   "quest var values" 0, 1, 2
+}
++Receptron 102 "Knockout"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 102 "KOGas"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++ObjProp 157 "GameName"
+{
+   "" Name_Cutty: "Cutty"
+}
++ObjProp 157 "InvRendType"
+{
+   "Type" Alternate Bitmap
+   "Resource" thgrswca
+}
++Link 157 191 "ControlDevice"
+{
+}
+ObjProp 157 "Position"
+{
+   "Location" -238.68, 76.16, 45.1
+}
++ObjProp 157 "Scripts"
+{
+   "Script 0" TrigSlain
+   "Script 1" TrigBrainDead
+}
+ObjProp 491 "AI_Mode"
+{
+   "" Normal
+}
++Receptron 906 "Knockout"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 906 "KOGas"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 976 "Knockout"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 976 "KOGas"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+ObjProp 983 "Position"
+{
+   "Location" -2, 279.5, 45
+}
++Receptron 985 "Knockout"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 985 "KOGas"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
++Receptron 1003 "Knockout"
+{
+   Min None
+   Max None
+   Effect "Abort"
+}
+-MetaProp 102 -3665
+-MetaProp 906 -3665
+-MetaProp 976 -3665
+-MetaProp 985 -3665
+-MetaProp 1003 -3665
+
+//switches
++Link 318 337 "FrobProxy"
+{
+   "FrobProxyMask" AllowDirect
+}

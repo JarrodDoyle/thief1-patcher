@@ -1,0 +1,40 @@
+DML1
+//T1 FM: Shadow of Doubt by Sperry / Fixes: tripplegam.gam.dml
+
+//adding scripts
++ObjProp -470 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp -470 "DesignNote"
+{
+	"" NVLinkBuilderOn="BeginScript"; NVLinkBuilderOff="Null"; NVLinkBuilderLinkType="DetailAttachement"; NVLinkBuilderCount=1; NVLinkBuilderLinkData1Field="Type"; NVLinkBuilderLinkData1Value="1"; NVLinkBuilderLinkData2Field="vhot/sub #"; NVLinkBuilderLinkData2Value="1"; NVLinkBuilderLinkData3Field="rel pos"; NVLinkBuilderLinkData3Value="0, 0, 0.13";
+}
++ObjProp -181 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+	"Script 1" NVRelayTrap
+	"Script 2" NVMetaTrap
+	"Script 3" ""
+	"Don't Inherit" false
+}
++ObjProp -181 "DesignNote"
+{
+	"" NVLinkBuilderOn="BeginScript"; NVLinkBuilderOff="Null"; NVLinkBuilderLinkType="DetailAttachement"; NVLinkBuilderCount=1; NVLinkBuilderLinkData1Field="Type"; NVLinkBuilderLinkData1Value="1"; NVLinkBuilderLinkData2Field="vhot/sub #"; NVLinkBuilderLinkData2Value="0"; NVLinkBuilderLinkData3Field="rel pos"; NVLinkBuilderLinkData3Value="0, 0, 0.13"; NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapTDest="&~DetailAttachement"; NVRelayTrapTOn="[1.0]WaterStim"; NVRelayTrapOff="Null"; NVMetaTrapOn="FrobWorldEnd"; NVMetaTrapMeta="FrobInert"; NVMetaTrapOff="Null";
+}
++ObjProp -182 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp -183 "FrobInfo"
+{
+	"World Action" Script
+}
++ObjProp -184 "FrobInfo"
+{
+	"World Action" Script
+}

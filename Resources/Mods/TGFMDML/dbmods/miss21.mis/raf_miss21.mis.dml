@@ -1,0 +1,740 @@
+DML1
+//T1 FM: Returning a Favor by Maria Strom (Morrgan) / Fixes: miss21.mis.dml
+
+FINGERPRINT
+{
+	51 [-117 -40 -2]
+	1091 [-202 -38 -4]
+	771 [-154 37 -8]
+	1112 [-203 -31 -9]
+	1109 [-204 -31 -7]
+	144 [-127 -26 -9]
+	32 [-163 -21 -37]
+	856 [-139 -39 -6]
+	QVAR "goal_target_11" == 300
+}
+
+#script "nvscript"
+
+//final goal
++ObjProp 145 "DiffTurnOn"
+{
+	"quest var values" 0, 1, 2
+}
++ObjProp 145 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 145 "TrapQVar"
+{
+	"" =1:goal_irreversible_11
+}
+
+//goal 3
++ObjProp 517 "DesignNote"
+{
+	"" NVTriggeringRoomTDest=783
+}
++ObjProp 517 "Scripts"
+{
+	"Script 0" NVTriggeringRoom
+}
+-Link 865 795 "ControlDevice"
+-Link 865 954 "ControlDevice"
++Link 783 954 "ControlDevice"
+{
+}
++ObjProp 783 "DesignNote"
+{
+	"" NVRelayTrapOn="EnteredRoom"; NVRelayTrapOff="ExitedRoom"; NVRelayTrapOnDelay=500; NVRelayTrapTDest=793
+}
++ObjProp 783 "FrobInfo"
+{
+	"World Action" Move, Script
+	"Inv Action" Move, FocusScript
+}
+ObjProp 783 "Scripts"
+{
+	"Script 0" TrigWorldFrob
+	"Script 1" NVRelayTrap
+	"Script 2" ""
+}
++ObjProp 790 "DiffDestroy"
+{
+	"quest var values" 0, 1, 2
+}
+-Link 791 793 "ControlDevice"
++ObjProp 793 "Scripts"
+{
+	"Script 0" NVTrapSetQVar
+	"Don't Inherit" true
+}
+
+//goal 4
+++Receptron 973 "HolyStim"
+{
+	Min 1
+	Max 3
+
+	Target Source
+
+	Effect "rem_prop"
+	{
+		"Prop Name" FrobInfo
+	}
+}
++ObjProp 973 "SlayResult"
+{
+	"Effect" No Effect
+}
+-ObjProp 973 "Material Tags"
++MetaProp 973 -2418
++ObjProp 991 "DiffRemoveProp"
+{
+	"quest var values" 0, 1
+	"alt quest var values" 2
+	"Properties" FrobInfo
+}
++ObjProp 991 "FrobInfo"
+{
+	"World Action" Move
+}
+
+//goal 5
++ObjProp 146 "DiffRemoveProp"
+{
+	"quest var values" 0
+	"alt quest var values" 1, 2
+	"Properties" TrapQVar
+}
++ObjProp 146 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 146 "TrapQVar"
+{
+	"" =3:goal_state_5
+}
++ObjProp 406 "DesignNote"
+{
+	"" NVRelayTrapOn="DoorClose"; NVRelayTrapOff="DoorOpening"; NVRelayTrapTDest=482
+}
++ObjProp 406 "BlockFrob"
+{
+	"" true
+}
+ObjProp 406 "Scripts"
+{
+	"Script 0" TrigUnlock
+	"Script 1" NVRelayTrap
+	"Script 2" ""
+}
++ObjProp 481 "BlockFrob"
+{
+	"" true
+}
++ObjProp 482 "BlockFrob"
+{
+	"" true
+}
++Link 482 802 "ControlDevice"
+{
+}
++ObjProp 482 "Scripts"
+{
+	"Script 0" TrapRelay
+	"Don't Inherit" true
+}
++ObjProp 786 "DesignNote"
+{
+	"" NVRelayTrapOn="Slain"; NVRelayTrapDelay=20; NVRelayTrapTDest=896
+}
+-Link 786 896 "ControlDevice"
++Link 786 146 "ControlDevice"
+{
+}
+ObjProp 786 "Scripts"
+{
+	"Script 0" TrigSlain
+	"Script 1" NVRelayTrap
+	"Script 2" ""
+	"Script 3" ""
+}
++ObjProp 876 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 800 "DesignNote"
+{
+	"" NVMetaTrapMeta="FrobInert"; NVMetaTrapTarget=406
+}
++ObjProp 800 "Scripts"
+{
+	"Script 0" NVMetaTrap
+}
++ObjProp 956 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=20; NVRelayTrapTDest=798
+}
+-Link 956 798 "ControlDevice"
++ObjProp 956 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
+
+//pickpockets
++ObjProp 147 "Scripts"
+{
+	"Script 0" TrapSetQVar
+}
++ObjProp 147 "TrapQVar"
+{
+	"" -1:DrSPocketCnt
+}
++Link 288 147 "ControlDevice"
+{
+}
++ObjProp 831 "DesignNote"
+{
+	"" NVDeleteTrapOn="Contained"
+}
++ObjProp 831 "StackCount"
+{
+}
++Link 831 288 "ControlDevice"
+{
+}
++ObjProp 831 "Scripts"
+{
+	"Script 0" NVDeleteTrap
+}
+
+//doors
+-MetaProp 228 -2419
++MetaProp 228 -2420
++MetaProp 238 -2420
++MetaProp 692 -2420
++MetaProp 751 -2418
+ObjProp 162 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 163 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 164 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 165 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 267 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 268 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 269 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 303 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 304 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 307 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 430 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 431 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 440 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
++Receptron 440 "Stench"
+{
+	Max None
+
+	Target 441
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
++Receptron 441 "Stench"
+{
+	Max None
+
+	Target 440
+	Agent Me
+
+	Effect "add_prop"
+	{
+		"Prop Name" Locked
+	}
+}
+ObjProp 441 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 478 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 490 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 498 "RotDoor"
+{
+	"Open Angle" 271
+}
+ObjProp 502 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+ObjProp 846 "Scale"
+{
+	"" 1.1429, 1.1429, 1.1429
+}
+
+//scrolls
+ObjProp 259 "Position"
+{
+	"Heading" 871c
+}
+-ObjProp 259 "PhysType"
+-ObjProp 261 "PhysType"
+ObjProp 261 "Position"
+{
+	"Heading" 8e38
+}
++ObjProp 756 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=200; NVRelayTrapTDest=762; NVRelayTrap2On="FrobWorldEnd"; NVRelayTrap2Delay=1200
+}
+-Link 756 762 "ControlDevice"
+ObjProp 756 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVRelayTrap2
+}
+-ObjProp 755 "ScriptTiming"
+-ObjProp 770 "ScriptTiming"
++ObjProp 772 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=200
+}
+ObjProp 772 "Scripts"
+{
+	"Script 0" StdBook
+	"Script 1" NVRelayTrap
+	"Script 2" ""
+}
++ObjProp 869 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=1000; NVRelayTrapTDest=794
+}
+-Link 869 794 "ControlDevice"
++ObjProp 869 "Scripts"
+{
+	"Script 0" NVRelayTrap
+}
++ObjProp 870 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=200; NVRelayTrap2On="FrobWorldEnd"; NVRelayTrap2Delay=1200; NVRelayTrap2TDest=755
+}
+-Link 870 755 "ControlDevice"
+ObjProp 870 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVRelayTrap2
+}
+-Link 954 970 "ControlDevice"
++Link 954 970 "Contains"
+{
+}
++ObjProp 954 "Scripts"
+{
+	"Script 0" TrapRelease
+	"Don't Inherit" true
+}
++ObjProp 970 "DesignNote"
+{
+	"" NVRelayTrapOn="FrobWorldEnd"; NVRelayTrapDelay=200; NVRelayTrap2On="FrobWorldEnd"; NVRelayTrap2Delay=1200; NVRelayTrap2TDest=798
+}
+-Link 970 798 "ControlDevice"
+-ObjProp 970 "PhysType"
+ObjProp 970 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVRelayTrap2
+}
+-Link 1052 797 "ControlDevice"
+-Link 1052 798 "ControlDevice"
++Link 1052 432 "ControlDevice"
+{
+}
++Link 432 797 "ControlDevice"
+{
+}
++ObjProp 432 "DesignNote"
+{
+	"" NVRelayTrapDelay=200; NVRelayTrap2Delay=1200; NVRelayTrap2TDest=798
+}
++ObjProp 432 "Scripts"
+{
+	"Script 0" NVRelayTrap
+	"Script 1" NVRelayTrap2
+}
+
+//AIs
++ObjProp 520 "GameName"
+{
+	"" Name_Canthas: "Master Forger Canthas"
+}
++ObjProp 531 "GameName"
+{
+	"" Name_Limmon: "Brother Limmon"
+}
+ObjProp 584 "Scripts"
+{
+	"Script 0" TrigSlain
+	"Script 1" ""
+	"Script 2" ""
+	"Script 3" ""
+}
++ObjProp 623 "GameName"
+{
+	"" Name_Nattacus: "Brother Nattacus"
+}
+Link 623 632 "AIWatchObj"
+{
+	"   Argument 1" ""
+	"   Argument 2" 667
+}
+Link 623 634 "AIWatchObj"
+{
+	"      No test once triggered" true
+	"   Argument 1" ""
+	"   Argument 2" 451
+	"   Argument 3"[1] Conversation, Quux
+	"Response: Step 4" Play sound/motion(Sound Concept,Sound Tags,Motion Tags)
+	"   Argument 3"[3] Search, Peek
+}
+-Link 635 630 "AIPatrol"
+-Link 634 635 "AIPatrol"
++Link 634 630 "AIPatrol"
+{
+}
+ObjProp 634 "Position"
+{
+	"Location" -183, -51.5, -15.7883
+}
++ObjProp 636 "AI_Hearing"
+{
+	"" Null
+}
++ObjProp 636 "FrobInfo"
+{
+}
+ObjProp 636 "Scripts"
+{
+	"Script 0" TrigSlain
+	"Script 1" ""
+}
++ObjProp 651 "GameName"
+{
+	"" Name_Gador: "Brother Gador"
+}
++ObjProp 836 "GameName"
+{
+	"" Name_Tareas: "Brother Tareas"
+}
++Link 1051 795 "ControlDevice"
+{
+}
++ObjProp 1051 "GameName"
+{
+	"" Name_GeraldC: "Gerald's Corpse"
+}
+ObjProp 1051 "Scripts"
+{
+	"Script 0" TrigWorldFrob
+	"Script 1" ""
+	"Script 2" ""
+}
++Link 1020 25 "ControlDevice"
+{
+}
++ObjProp 25 "DesignNote"
+{
+	"" NVLinkBuilderOn="TurnOff"; NVLinkBuilderOff="TurnOn"; NVLinkBuilderLinkType="AIWatchObj"; NVLinkBuilderLinkSource=836; NVLinkBuilderLinkDest=854
+}
++ObjProp 25 "Scripts"
+{
+	"Script 0" NVLinkBuilder
+}
+
+//switches
+ObjProp 166 "Position"
+{
+	"Location" -155.75, 32.46, -5
+}
++ObjProp 166 "Scale"
+{
+	"" 0.85, 1, 0.85
+}
+-ObjProp 166 "PhysType"
++ObjProp 166 "PhysType"
+{
+	"Type" OBB
+}
++ObjProp 166 "CfgTweqJoints"
+{
+	"Halt" Stop Tweq
+	"AnimC" Sim
+	"Primary Joint" 1
+	"Joint1AnimC" Sim
+	"    rate-low-high" 0.15, 0, 0.6
+}
++ObjProp 664 "PickDist"
+{
+	"" 5.00
+}
+
+//misplaced objects
+ObjProp 32 "Position"
+{
+	"Location" -163.3, -20.985, -37.18
+}
+-ObjProp 32 "PhysType"
++ObjProp 32 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 183 "Position"
+{
+	"Heading" 4000
+}
+-ObjProp 183 "PhysType"
++ObjProp 183 "PhysType"
+{
+	"Type" OBB
+}
+ObjProp 217 "Position"
+{
+	"Location" -81, -64.6, -8.18
+}
+-ObjProp 217 "PhysType"
++ObjProp 217 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 223 "Position"
+{
+	"Location" -141.25, 29.95, -3.25
+}
+ObjProp 224 "Position"
+{
+	"Location" -130.05, 22.5, -3.25
+}
+ObjProp 404 "Position"
+{
+	"Location" -159.7, -20.377, -37.18
+}
+-ObjProp 404 "PhysType"
++ObjProp 404 "PhysType"
+{
+	"Type" Sphere Hat
+}
+ObjProp 414 "Position"
+{
+	"Location" -165.95, 27.5, -4.25
+}
+ObjProp 681 "Position"
+{
+	"Location" -181.25, 37.95, -4.25
+}
+ObjProp 818 "Position"
+{
+	"Location" -141.25, 29.95, -4.25
+}
+ObjProp 819 "Position"
+{
+	"Location" -130.05, 22.5, -4.25
+}
+ObjProp 825 "Position"
+{
+	"Location" -156.5, -14.05, -4.25
+}
+ObjProp 826 "Position"
+{
+	"Location" -154.5, 29.95, -4.25
+}
+
+//banners
++ObjProp 71 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 86 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 159 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 160 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 161 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 192 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 327 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 339 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 417 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 489 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 493 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 553 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 665 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 669 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 774 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 837 "SlayResult"
+{
+	"Effect" Destroy
+}
++ObjProp 951 "SlayResult"
+{
+	"Effect" Destroy
+}
+
+//footlockers
++ObjProp 77 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 85 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 324 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 325 "BlockFrob"
+{
+	"" true
+}
++ObjProp 325 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 343 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 344 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 345 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 494 "JointPos"
+{
+	"Joint 1" 90.00
+}
++ObjProp 847 "JointPos"
+{
+	"Joint 1" 90.00
+}
+
+//junk
++ObjProp 415 "InvType"
+{
+}
+
+//keys
++ObjProp 416 "StackCount"
+{
+}
++ObjProp 759 "StackCount"
+{
+}
++ObjProp 760 "StackCount"
+{
+}
+-ObjProp 760 "NoDrop"
+-ObjProp 852 "NoDrop"
++ObjProp 852 "StackCount"
+{
+}
++ObjProp 888 "StackCount"
+{
+}
++StimSource 888 "Stench"
+{
+	Intensity 1
+
+	Propagator "Contact"
+	{
+		Shape
+		{
+			"Contact Types" Frob Inv -> World
+		}
+	}
+}
