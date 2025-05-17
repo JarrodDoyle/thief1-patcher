@@ -885,6 +885,10 @@ allow_physics_toggle
 allow_fly
     allow use of the "fly" and "flytoggle" commands in the standard game executable
 
+trans_door_block_fix
+    allow translating doors to enter the blocking state when obstructed. This feature is incompatible with some
+    missions, so it should only be enabled for missions that do not rely on the original behavior.
+
 no_auto_relight
     (DromEd only) do not automatically relight the level during level processing
     The default is 0 (disabled).
@@ -985,6 +989,11 @@ crouch_unmount
     action of the crouch and crouch hold keys that aborts climbing, so it's possible to drop off a ladder or
     rope without jumping.
     The default is 1 (enabled).
+
+crouch_norepeat
+    this is actually a bind var ("user.bnd") and not a .cfg var. It allows to turn on/off the new option to
+    prevent the crouch action from being repeated when holding the toggle crouch key.
+    The default is 0 (disabled).
 
 flytoggle
     this is actually a bind var ("user.bnd") and not a .cfg var. It can be bound to toggle whether the player

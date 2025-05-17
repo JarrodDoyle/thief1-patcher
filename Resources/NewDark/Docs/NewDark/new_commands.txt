@@ -47,6 +47,7 @@ spew_metaprops           : toggle debug info to mono when metaproperties are add
 spew_stimulations        : toggle debug info to mono for stimulation events during game mode
 spew_script_msg          : toggle debug info to mono when dispatching messages to script instances
 run_sys                  : run system commands in file
+run_sys_wait             : run system commands in file and wait for them to finish
 load_patched_mis         : Load .MIS and .DIF if available
 load_terrain             : Load only the terrain portion from a .MIS/.COW, will prompt for separate gamesys load
 load_world_gam           : Load .COW but force gamesys to load from different file, will prompt for separate gamesys load
