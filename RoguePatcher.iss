@@ -40,6 +40,7 @@ Name: "mods\am16sfixed"; Description: "AM16's Bugfixed Original Missions";
 
 [Tasks]
 Name: "dromedhw"; Description: "Enable hardware rendering mode"; GroupDescription: "DromEd:"; Components: dromed;
+Name: "objids"; Description: "Use increased ObjID ranges"; GroupDescription: "DromEd:"; Components: dromed;
 
 Name: "newmantle"; Description: "Enable NewDark mantling"; GroupDescription: "General Tweaks:";
 Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "General Tweaks:";
@@ -138,6 +139,12 @@ begin
       EditConfigLine('DromEd.cfg', 'edit_screen_depth 16', ';edit_screen_depth 16');
       EditConfigLine('DromEd.cfg', ';editor_disable_gdi', 'editor_disable_gdi');
       EditConfigLine('DromEd.cfg', ';edit_screen_depth 32', 'edit_screen_depth 32');
+    end;
+  if WizardIsTaskSelected('objids') then
+    begin
+      EditConfigLine('dark.cfg', GetLineContaining('dark.cfg', 'obj_min'), 'obj_min -18192');
+      EditConfigLine('dark.cfg', GetLineContaining('dark.cfg', 'obj_max'), 'obj_max 8184');
+      EditConfigLine('dark.cfg', GetLineContaining('dark.cfg', 'max_refs'), 'max_refs 47740');
     end;
 
   if WizardIsTaskSelected('newmantle') then
