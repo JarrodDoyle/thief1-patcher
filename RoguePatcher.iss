@@ -128,6 +128,11 @@ begin
   // Make sure things work properly with T1
   EditConfigLine('cam.cfg', 'dark1', 'dark1');
 
+  // Realistically weather and fog should always be enabled
+  EditConfigLine('cam.cfg', GetLineContaining('cam.cfg', 'render_weather'), 'render_weather 1');
+  EditConfigLine('cam.cfg', GetLineContaining('cam.cfg', 'enhanced_sky'), 'enhanced_sky 1');
+  EditConfigLine('cam.cfg', GetLineContaining('cam.cfg', 'fogging'), 'fogging 1');
+
   // Fix up install.cfg to use relative paths
   EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'install_path'), 'install_path .\');
   EditConfigLine('install.cfg', GetLineContaining('install.cfg', 'resname_base'), 'resname_base .\RES');
