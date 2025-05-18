@@ -51,6 +51,7 @@ Name: "windowed"; Description: "Enable windowed mode"; GroupDescription: "Genera
 
 [Files]
 Source: "Resources\NewDark\*"; DestDir: "{app}"; Components: newdark; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Resources\Missing\*"; DestDir: "{app}"; Components: newdark; Flags: onlyifdoesntexist
 Source: "Resources\DromEd\*"; DestDir: "{app}"; Components: dromed; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Basic Toolkit\*"; DestDir: "{app}"; Components: dromed\toolkit; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Resources\Multiplayer\*"; DestDir: "{app}"; Components: multiplayer; Flags: ignoreversion recursesubdirs createallsubdirs
