@@ -45,6 +45,7 @@ Name: "objids"; Description: "Use increased ObjID ranges"; GroupDescription: "Dr
 Name: "newmantle"; Description: "Enable NewDark mantling"; GroupDescription: "General Tweaks:";
 Name: "fmsel"; Description: "Enable built-in fan mission launcher"; GroupDescription: "General Tweaks:";
 Name: "fpsfix"; Description: "Fix physics issues at high framerates"; GroupDescription: "General Tweaks:";
+Name: "swgamma"; Description: "Enable gamma correct screenshots and windowed mode"; GroupDescription: "General Tweaks:";
 Name: "stutterfix"; Description: "Reduce micro stutter and mouse lag (Not recommended on CrossFire/SLI setups)"; GroupDescription: "General Tweaks:";
 Name: "smallportal"; Description: "Reduce camera jolt near complex geometry and doorways"; GroupDescription: "General Tweaks:";
 Name: "texfilter"; Description: "Disable texture filtering for a retro look"; GroupDescription: "General Tweaks:"; Flags: unchecked
@@ -156,6 +157,8 @@ begin
       EditConfigLine('cam_ext.cfg', 'framerate_cap 100.0', 'framerate_cap 240.0');
       EditConfigLine('cam_ext.cfg', ';phys_freq 60', 'phys_freq 60');
     end;
+  if WizardIsTaskSelected('swgamma') then
+    EditConfigLine('cam_ext.cfg', ';d3d_disp_sw_cc', 'd3d_disp_sw_cc');
   if WizardIsTaskSelected('stutterfix') then
     begin
       EditConfigLine('cam_ext.cfg', 'd3d_disp_limit_gpu_frames 1', ';d3d_disp_limit_gpu_frames 1');
